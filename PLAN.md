@@ -242,6 +242,26 @@ iqtree3 --alisim <prefix> -t <tree.nwk> -m "JC69+G4{1.0}" \
 
 ---
 
+## 9b. 实验 6（新增，来自 gpt6 审查的拾遗）
+
+**条件独立检验 —— 项目原先的 $R^2$ 论证回答不了这个问题。**
+
+在控制平均 $p$-距离之后，$I_{ss}$ 是否仍携带独立预测信息？
+
+$$\Pr(Y\mid ar p, I_{ss})\quad	ext{vs}\quad\Pr(Y\mid ar p)$$
+
+$Y$ 取两个真值：(i) 简约信息位点比例；(ii) 拓扑恢复成功与否。
+
+设计：复用实验 2 的 uniform-Iss 采样点（同一 $ar p$ 上有多个 $I_{ss}$ 的条件由设计密度保证），
+在每个 $ar p$ 分箱内比较两个 logistic 模型的拟合与交叉验证 AUC。
+
+**为什么必须做**：项目的"冗余"主张建立在二阶论证上（$\E[I_{ss}]$ 只依赖 $\langle P_{jj}angle$），
+而**二阶之上** $\E[I_{ss}]$ 依赖位点模式分布的三阶、四阶矩，那些不由成对同一性决定。
+$N{=}4$ 时 2:2 是简约信息位点、3:1 不是——两种模式熵不同。所以 $I_{ss}$ 原则上能读到
+$ar p$ 读不到的模式结构。控制 $ar p$ 之后条件独立与否，是"冗余"的唯一判定点。
+
+---
+
 ## 10. 提交序列总览
 
 ```
@@ -256,5 +276,6 @@ ab7df45  chore: snapshot pre-existing audit material and initialize repository
          feat(exp2): Iss vs p-distance with closed forms
          feat(exp3): Felsenstein->Farris transfer
          feat(exp4): perturbation trends vs C-value / lambda
+         feat(exp5): conditional-independence test (Pr(Y|pbar,Iss) vs Pr(Y|pbar))
          feat(figs): ref-style plate
 ```
