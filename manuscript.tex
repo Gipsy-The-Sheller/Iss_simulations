@@ -1,0 +1,213 @@
+% =====================================================================
+%  The index of substitution saturation -- spectral criterion
+%  Build:  pdflatex manuscript && bibtex manuscript && pdflatex manuscript x2
+%  Bibliography: refs/refs_iss_clean.bib  (auto-generated, see scripts/)
+%
+%  Title candidates (pick one, delete the rest):
+%    (i)   What the index of substitution saturation measures, and why its
+%          critical value is a power threshold
+%    (ii)  An exact spectral criterion for the index of substitution saturation
+%    (iii) The index of substitution saturation as a functional of the
+%          substitution spectrum
+% =====================================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+% --- review aids: drop \linenumbers and \todo for submission -------------
+\usepackage{lineno}          % load after hyperref
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
+
+% --- notation -----------------------------------------------------------
+\newcommand{\Iss}{I_{ss}}
+\newcommand{\Issc}{I_{ss.c}}
+\newcommand{\Hbar}{\bar H}
+\newcommand{\HFSS}{H_{FSS}}
+\newcommand{\bpi}{\boldsymbol{\pi}}
+\newcommand{\bxi}{\boldsymbol{\xi}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Mult}{\mathrm{Mult}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{What the index of substitution saturation measures,\\
+       and why its critical value is a power threshold}
+\author{Zhi-Jie Xu\thanks{College of Biological Science \& Medical Engineering,
+        Donghua University, Shanghai 201620, China.}}
+\date{\today}
+
+\begin{document}
+\linenumbers
+\maketitle
+
+% =====================================================================
+\begin{abstract}
+\noindent
+The index of substitution saturation $\Iss=\Hbar/\HFSS$
+\citep{xia2003iss} is used to decide, before any tree is built, whether an
+alignment retains phylogenetic signal. We show that the entropy construction
+enters $\E[\Iss]$ only through the spectrum of the rate matrix: resolving the
+transition matrix on the eigenbasis of the symmetrised generator
+$S=\Pi^{1/2}Q\Pi^{-1/2}$ reduces the index to a linear functional of the
+coordinates $\xi_k=\langle e^{\lambda_k d}\rangle$, and $\Iss$ is an affine
+function of the mean pairwise $p$-distance precisely when
+$\tr A^{(k)}/\sum_j\pi_j A^{(k)}_{jj}$ is constant across the distinct non-zero
+eigenvalues of $Q$. The criterion holds for every reversible model under
+uniform base frequencies, and for every composition when the spectrum is
+degenerate; in the F84 regime used to calibrate $\Iss$ it fails, though only to
+first order in a composition term we quantify. Where it holds, $\Iss$ and the
+mean $p$-distance induce the same ordering of alignments, so the content of the
+test is carried entirely by the critical value --- and that value fails for
+reasons independent of the spectrum. Being per-site, $\Iss$ is intensive, its
+distribution invariant to sequence length to $O(L^{-1})$, whereas $\Issc$
+increases with $L$; under $\Gamma$-distributed rates the tree length at which
+$\Iss$ takes a given value depends strictly monotonically on the shape
+parameter $\alpha$, a coordinate the published table does not contain. A
+four-taxon transfer of long branches at fixed patristic total illustrates the
+consequence: $\Iss$ is constant along the path to $O(r)$, while the probability
+of recovering the true topology spans nearly its full range. Passing the test
+is therefore strong evidence against saturation; failing it is weak evidence.
+\end{abstract}
+
+% =====================================================================
+\section{Introduction}
+
+The index of substitution saturation, $\Iss=\Hbar/\HFSS$, was introduced by
+\citet{xia2003iss} to answer a question that substitution models address only
+implicitly: have a set of sequences accumulated so many multiple substitutions
+that their phylogenetic signal is exhausted? Its construction is deliberately
+minimal. $\Hbar$ is the mean entropy of the base composition at a site,
+$\HFSS$ the entropy expected under full saturation, so the ratio requires only
+an alignment --- no tree, no model fit, no likelihood. That independence is why
+it is used: $\Iss$ can be computed before any phylogeny is built, and compared
+against a tabulated critical value $\Issc$ to decide in advance whether a data
+set is fit for analysis \citep{xia2003iss,xia2009handbook}.
+
+We show that the entropy construction enters $\E[\Iss]$ only through the
+spectrum of the rate matrix, which makes the question of what $\Iss$ measures a
+spectral one. Resolving the transition matrix on the eigenbasis of the
+symmetrised generator $S=\Pi^{1/2}Q\Pi^{-1/2}$ reduces the index to a linear
+functional of the coordinates $\xi_k=\langle e^{\lambda_k d}\rangle$, and the
+affine relation to the mean pairwise $p$-distance follows precisely when
+$\tr A^{(k)}/\sum_j\pi_j A^{(k)}_{jj}$ is constant across the distinct non-zero
+eigenvalues of $Q$. The criterion holds for every reversible model under
+uniform base frequencies and for every composition when the spectrum is
+degenerate; in the F84 regime used to calibrate $\Iss$ it fails, though only to
+first order in a composition term we quantify. Where it holds, $\Iss$ and mean
+$p$-distance induce the same ordering of alignments, so the content of the test
+is carried by the critical value --- and that value fails independently of the
+spectrum. $\Iss$ is intensive, invariant to sequence length to $O(L^{-1})$,
+whereas $\Issc$ grows with $L$; and under $\Gamma$-distributed rates the tree
+length at which $\Iss$ takes a given value depends strictly monotonically on
+the shape parameter $\alpha$, a coordinate the published table does not
+contain. A four-taxon transfer of long branches at fixed patristic total
+illustrates the consequence: $\Iss$ is constant along the path to $O(r)$, while
+the probability of recovering the true topology spans nearly its full range.
+
+% =====================================================================
+\section{Setting and conventions}
+\todo{fix the $H_{FSS}$ convention here; convention A (Xia Eq.~3) is primary}
+
+Let $N$ sequences of length $L$ be related by a tree $\mathcal{T}$ with leaf
+states generated by a reversible rate matrix $Q$ stationary with respect to
+$\bpi$, normalised so that $-\sum_j\pi_jQ_{jj}=1$. Write $\hat{\mathbf p}^{(i)}$
+for the empirical state frequencies at site $i$, $\hat p_j$ for their average
+over sites (the pooled frequencies), and
+\begin{equation}
+  H_i=h(\hat{\mathbf p}^{(i)}),\qquad
+  h(\mathbf p)=-\sum_j p_j\ln p_j,\qquad
+  \Hbar=\frac1L\sum_{i=1}^{L}H_i .
+\end{equation}
+Xia's index is $\Iss=\Hbar/\HFSS$. The normalising constant admits two
+readings, and we will need both:
+\begin{equation}
+  \HFSS^{(A)}=\E_{\mathbf n\sim\Mult(N,\hat{\mathbf p})}\bigl[h(\mathbf n/N)\bigr],
+  \qquad
+  \HFSS^{(B)}=h(\hat{\mathbf p}),
+\end{equation}
+convention $(A)$ being Xia's \citep{xia2003iss,xia2009handbook} and convention
+$(B)$ the plug-in composition entropy. Since
+$\HFSS^{(A)}=h(\hat{\mathbf p})-\frac{K-1}{2N}+O(N^{-2})$ with $K=4$ states, the
+two are related pointwise on any data set by
+\begin{equation}
+  \Iss^{(A)}=c\,\Iss^{(B)},\qquad
+  c=\frac{h(\hat{\mathbf p})}{\HFSS^{(A)}}\in(1,\,1.08]
+  \ \text{for }N\ge 16 .
+  \label{eq:convention}
+\end{equation}
+Convention therefore rescales the index but does not change which of two
+alignments is more saturated, nor --- as we show in
+Section~\ref{sec:criterion} --- whether the affine relation holds.
+
+% =====================================================================
+\section{Spectral resolution}
+\todo{Part II \S S1': Lemma 9 (spectral resolution), Lemma 10 (the three scalars)}
+
+% =====================================================================
+\section{Exact and second-order closed forms}
+\todo{Part I Theorem 1 (second order) and Theorem 2 (exact, star tree);
+      Part I Lemma 5.  Reproduce Tables S2/S3 here.}
+
+% =====================================================================
+\section{When is \texorpdfstring{$\Iss$}{Iss} an affine function of $p$-distance?}
+\label{sec:criterion}
+\todo{Part II Theorem 6 (master criterion) with Corollaries 6.1--6.3,
+      Remark 10, Lemma 11 and Tables S8/S9.
+      State the failure condition as $\Delta\not\propto\Psi$, not $\Delta\neq0$.}
+
+% =====================================================================
+\section{The critical value}
+\todo{Part II Theorem 8 (L-invariance) and Corollary 8.1 (verdict flip at $L^*$);
+      Part I Lemma 7 + Theorem 3 ($\Gamma$); Proposition 1 restated as
+      "the tabulated threshold is calibrated at $\alpha=\infty$ only".
+      Verify the $O(1/L)$ drift of Remark 12 against experiment 1.}
+
+% =====================================================================
+\section{Simulation}
+\todo{Two experiments, both driven by AliSim (IQ-TREE 3.0.1) with explicit
+      seeds:
+      (i) uniform-$\Iss$ sampling density $p_s(s)\propto\mu'(s)$
+          (Part II Theorem 11) for the $(\bar p,\Iss)$ plane;
+      (ii) the Felsenstein$\to$Farris transfer $(a,b,c,d)=(L-t,S,L,S+t)$,
+           $t\in[0,L-S]$, reporting $\Iss$ and $\Pr[\hat{\mathcal T}=\mathcal T]$
+           for ML (IQ-TREE), MP and NJ.}
+
+% =====================================================================
+\section{Discussion}
+\todo{Demarcation belongs here, stated as substance rather than as defence:
+      \begin{itemize}
+        \item \citet{verbruggen2007codium} and \citet{letsch2011rrna} question
+              the threshold while accepting the index; we characterise the index.
+        \item \citet{duchene2021saturation} operationalise saturation as long
+              tree length, which is the same single-variable manipulation used
+              to calibrate $\Iss$; a branch-level a posteriori test
+              \citep{manuel2025satute} is a different object, and is what we
+              take to be the right replacement.
+        \item The bidirectional mis-calibration: omitting $\Gamma$ delays the
+              decay of $\Pr[\hat{\mathcal T}=\mathcal T]$ (threshold too small),
+              model misspecification accelerates it (threshold too large); the
+              net sign is not determined.
+      \end{itemize}}
+
+% =====================================================================
+\bibliographystyle{plainnat}
+\bibliography{refs/refs_iss_clean}
+
+\end{document}
