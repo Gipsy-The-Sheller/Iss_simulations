@@ -78,22 +78,36 @@ def transfer_path(L: float, S: float, r: float, t: float) -> Node:
 
 
 def pairwise_distances(node: Node) -> np.ndarray:
-    """Patristic distance matrix between leaves."""
+    """True patristic distance matrix between leaves.
+
+    Uses the most recent common ancestor, so leaves in the same clade do NOT
+    get their distance inflated by the path through the root.  (An earlier
+    version summed root-to-tip depths, which is wrong within a clade.)
+    """
     leaves = node.leaves()
     idx = {id(l): i for i, l in enumerate(leaves)}
     n = len(leaves)
     D = np.zeros((n, n))
+    path: dict[int, list] = {}          # leaf index -> [(node id, depth from root)]
 
-    def walk(v: Node, depth: float):
+    def walk(v: Node, anc: list, depth: float):
+        here = anc + [(id(v), depth)]
         if v.is_leaf:
-            return [(idx[id(v)], depth)]
-        acc = []
+            path[idx[id(v)]] = here
+            return
         for c in v.children:
-            acc.extend(walk(c, depth + c.length))
-        return acc
+            walk(c, here, depth + c.length)
 
-    tips = walk(node, node.length)
-    for i, di in tips:
-        for j, dj in tips:
-            D[i, j] = di + dj
+    walk(node, [], 0.0)
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            pi_, pj = path[i], path[j]
+            common = 0
+            for (ai, _), (aj, _) in zip(pi_, pj):
+                if ai != aj:
+                    break
+                common += 1
+            lca = pi_[common - 1][1] if common else 0.0
+            D[i, j] = D[j, i] = (pi_[-1][1] - lca) + (pj[-1][1] - lca)
     return D
