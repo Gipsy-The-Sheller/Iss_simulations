@@ -94,3 +94,13 @@ def dump_meta(exp: str, meta: dict, root: Path | None = None):
     d = out_path(exp, root).parent
     (d / "meta.json").write_text(json.dumps(meta, indent=1, default=str),
                                  encoding="utf-8")
+
+
+def work_dir(exp: str, tag: str, root: Path | None = None) -> Path:
+    """The one place that decides where a cell's alignments live.
+
+    s04_'s recovery step previously hard-coded a different path and silently
+    found nothing; every consumer must go through this function.
+    """
+    root = Path(root or Path(__file__).resolve().parents[2])
+    return root / "work" / exp / tag

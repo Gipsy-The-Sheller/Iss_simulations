@@ -120,12 +120,35 @@ def _all_children(node: Node):
 
 
 # ------------------------------------------------------------------------ Iss
+def equidistant_star(node):
+    """Return the common root-to-leaf length if `node` is an equidistant star,
+    else None.  A star has an exact closed form for any N, so it must never be
+    routed to the (exponential) pattern enumeration."""
+    if node.is_leaf or not node.children:
+        return None
+    if not all(c.is_leaf for c in node.children):
+        return None
+    d = node.children[0].length
+    if all(abs(c.length - d) <= 1e-12 * max(1.0, abs(d)) for c in node.children):
+        return float(d)
+    return None
+
+
 def E_Iss(N: int, tree_or_d, Q, pi, rates=(1.0,), weights=(1.0,),
           convention: str = "A", base: str = "nats") -> float:
-    """Exact E[I_ss] -- star trees analytically, small trees by enumeration."""
+    """Exact E[I_ss] -- star trees analytically (any N), other trees with N<=8
+    by pattern enumeration."""
     pi = np.asarray(pi, dtype=float)
-    if np.isscalar(tree_or_d) or isinstance(tree_or_d, (int, float)):
+    if not isinstance(tree_or_d, (int, float)):
+        n_leaf = len(tree_or_d.leaves())
+        if n_leaf != N:
+            raise ValueError(
+                f"N={N} disagrees with the tree, which has {n_leaf} leaves; "
+                "the reference entropy would be computed at the wrong N")
+    if isinstance(tree_or_d, (int, float)):
         EH = star_E_H(N, float(tree_or_d), Q, pi, rates, weights, base)
+    elif (d_star := equidistant_star(tree_or_d)) is not None:
+        EH = star_E_H(N, d_star, Q, pi, rates, weights, base)
     else:
         pats = tree_patterns(tree_or_d, Q, pi, rates, weights)
         EH = 0.0

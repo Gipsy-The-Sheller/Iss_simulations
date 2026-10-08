@@ -28,7 +28,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from issbench import trees                                             # noqa: E402
 from issbench.infer import ptrue                                       # noqa: E402
 from issbench.models import build_Q                                    # noqa: E402
-from issbench.runner import dump_meta, run_cells, out_path             # noqa: E402
+from issbench.runner import (dump_meta, out_path, run_cells,          # noqa: E402
+                            work_dir)
 from issbench.stats import read_fasta                                  # noqa: E402
 from issbench.trees import write_newick                                # noqa: E402
 
@@ -63,7 +64,7 @@ def recovery():
     """
     rows = []
     for k, t in enumerate(np.linspace(0.0, P - Q, N_T)):
-        wd = ROOT / "results" / EXP / "work" / EXP / f"t{k:02d}"
+        wd = work_dir(EXP, f"t{k:02d}", ROOT)
         files = sorted(wd.glob(f"t{k:02d}*.fa"))
         if not files:
             print(f"  [t{k:02d}] no alignments found, skipping", flush=True)

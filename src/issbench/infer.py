@@ -86,10 +86,21 @@ def mp_split(M: np.ndarray) -> str:
 
 
 # --------------------------------------------------------------------- NJ
+JC_P_CAP = 0.74          # p >= 3/4 is undefined for JC69; cap rather than inf
+
+
 def jc_distance(p):
+    """Jukes-Cantor corrected distance, capped at p = JC_P_CAP.
+
+    Returning inf for saturated pairs (the previous behaviour) makes every
+    split sum infinite and the minimisation arbitrary, which silently destroys
+    the NJ arm near saturation.  Capping at p = 0.74 is the usual convention;
+    it is a real limitation of distance methods in this regime and is reported
+    as such rather than hidden.
+    """
     p = np.asarray(p, dtype=float)
-    out = np.where(p >= 0.75, np.inf, -0.75 * np.log(np.maximum(1.0 - 4.0 * p / 3.0, 1e-300)))
-    return out
+    pc = np.minimum(p, JC_P_CAP)
+    return -0.75 * np.log(1.0 - 4.0 * pc / 3.0)
 
 
 def nx_split(M: np.ndarray, corrected: bool = True) -> str:

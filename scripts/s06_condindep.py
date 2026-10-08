@@ -157,15 +157,31 @@ def analyze():
                         delta=auc_pi - auc_p))
         print(f"  {y}: AUC(pbar)={auc_p:.4f}  AUC(pbar,Iss)={auc_pi:.4f}"
               f"  delta={auc_pi-auc_p:+.4f}")
-    # continuous target: informativeness fraction, via a rank correlation
+    # Continuous target, treated the SAME way as the binary one: compare
+    # out-of-sample R^2 of  f(pbar)  against  f(pbar) + Iss, with polynomial
+    # features so that pbar enters flexibly.  Two ad-hoc conditioning
+    # statistics (binned residual vs partial correlation) disagreed in sign on
+    # this data, which is why the fit comparison is the one that is reported.
+    from sklearn.linear_model import RidgeCV
+    from sklearn.model_selection import KFold, cross_val_score
     from scipy.stats import spearmanr
-    r_p = spearmanr(df["pbar"], df["pi_site"]).correlation
-    df["res_pi"] = df["pi_site"] - df.groupby(
-        pd.qcut(df["pbar"], 20, duplicates="drop")).transform("mean")["pi_site"]
-    r_i = spearmanr(df["iss_A"], df["res_pi"]).correlation
-    print(f"  pi_site: rho(pbar)={r_p:+.4f}  rho(Iss | pbar residual)={r_i:+.4f}")
-    out.append(dict(target="pi_site_fraction", auc_pbar=r_p,
-                    auc_pbar_plus_iss=r_i, delta=r_i))
+
+    y = df["pi_site"].to_numpy(float)
+    r_p_spear = spearmanr(df["pbar"], y).correlation
+
+    def r2(cols):
+        X = df[cols].to_numpy(float)
+        m = make_pipeline(PolynomialFeatures(2, include_bias=False),
+                          StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 13)))
+        kf = KFold(5, shuffle=True, random_state=0)
+        return float(cross_val_score(m, X, y, cv=kf, scoring="r2").mean())
+
+    r2_p = r2(["pbar"])
+    r2_pi = r2(["pbar", "iss_A"])
+    print(f"  pi_site: rho(pbar)={r_p_spear:+.4f}  CV R2(pbar)={r2_p:.4f}"
+          f"  CV R2(pbar,Iss)={r2_pi:.4f}  delta={r2_pi-r2_p:+.4f}")
+    out.append(dict(target="pi_site_fraction", auc_pbar=r2_p,
+                    auc_pbar_plus_iss=r2_pi, delta=r2_pi - r2_p))
     pd.DataFrame(out).to_csv(d / "condindep.csv", index=False)
     print(f"wrote {d/'condindep.csv'}")
 

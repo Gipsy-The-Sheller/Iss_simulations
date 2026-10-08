@@ -24,7 +24,10 @@ from issbench.runner import dump_meta, run_cells                       # noqa: E
 from issbench.trees import Node, write_newick                          # noqa: E402
 
 EXP = "exp1_Lmap"
-TL_GRID = np.exp(np.linspace(np.log(2.0), np.log(200.0), 24))
+# TL = 2 already gives mean pairwise ~1.12 (pbar ~ 0.58, Iss ~ 0.71), so a
+# grid starting at 2 misses the whole low-divergence regime; and TL = 200 is
+# deep in the plateau.  Span 0.2 to 100 instead.
+TL_GRID = np.exp(np.linspace(np.log(0.2), np.log(100.0), 28))
 L_GRID = [100, 200, 500, 1000, 2000, 5000, 10000]
 N_REPS = 200            # per (TL, L, topology); raise for the final figure
 ALPHA = np.inf          # homogeneity first; add +G4 arms later
@@ -32,14 +35,23 @@ MODEL = "JC69"
 TREES = ROOT / "results" / EXP / "trees"
 
 
+# Both shapes use the SAME internal-branch fraction (10% of TL); they differ
+# only in the pendant arrangement, so the topology axis is clean.  (An earlier
+# version gave the symmetric arm a zero internal branch, i.e. a star, which
+# confounded pendant equality with loss of the internal branch.)
+FI = 0.10
+
+
 def sym(TL: float) -> Node:
-    l = TL / 4.0
-    return trees.quartet(l, l, l, l, 0.0)
+    """Equal pendants."""
+    r = FI * TL
+    l = (TL - r) / 4.0
+    return trees.quartet(l, l, l, l, r)
 
 
 def asym(TL: float) -> Node:
-    """Graded ladder: pendants in ratio 1 : 2 : 3 : 4, internal 10% of TL."""
-    r = 0.10 * TL
+    """Graded ladder: pendants in ratio 1 : 2 : 3 : 4."""
+    r = FI * TL
     rest = TL - r
     w = np.array([1, 2, 3, 4], float)
     p = rest * w / w.sum()
