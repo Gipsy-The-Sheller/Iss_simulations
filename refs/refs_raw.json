@@ -1,0 +1,3290 @@
+{
+ "xia2003": {
+  "entry": {
+   "key": "xia2003",
+   "known_doi": "10.1016/S1055-7903(02)00326-3",
+   "q": "An index of substitution saturation and its application Xia",
+   "title_words": "index substitution saturation application",
+   "authors": [
+    "xia"
+   ],
+   "year": 2003,
+   "journals": [
+    "molecular phylogenetics and evolution"
+   ]
+  },
+  "chosen": {
+   "DOI": "10.1016/S1055-7903(02)00326-3",
+   "_score": "known"
+  },
+  "top": []
+ },
+ "xia_xie2001": {
+  "entry": {
+   "key": "xia_xie2001",
+   "q": "DAMBE data analysis in molecular biology and evolution 2001",
+   "title_words": "DAMBE data analysis molecular biology evolution",
+   "authors": [
+    "xia"
+   ],
+   "year": 2001,
+   "journals": [
+    "journal of heredity"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "4",
+   "DOI": "10.1093/jhered/92.4.371",
+   "type": "journal-article",
+   "page": "371-373",
+   "title": [
+    "DAMBE: Software Package for Data Analysis in Molecular Biology and Evolution"
+   ],
+   "volume": "92",
+   "author": [
+    {
+     "given": "X.",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Journal of Heredity"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2001,
+      7,
+      1
+     ]
+    ]
+   },
+   "_score": 13.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/jhered/92.4.371",
+    "t": "DAMBE: Software Package for Data Analysis in Molecular Biology and Evolution",
+    "y": 2001,
+    "j": "Journal of Heredity",
+    "sc": 13.5
+   },
+   {
+    "DOI": "10.1086/394007",
+    "t": "<i>Data Analysis in Molecular Biology and Evolution</i>. Xuhua Xia",
+    "y": 2001,
+    "j": "The Quarterly Review of Biology",
+    "sc": 7.0
+   },
+   {
+    "DOI": "10.1007/b113439",
+    "t": "Data Analysis in Molecular Biology and Evolution",
+    "y": 2002,
+    "j": "",
+    "sc": 6.0
+   }
+  ]
+ },
+ "xia2013_dambe5": {
+  "entry": {
+   "key": "xia2013_dambe5",
+   "q": "DAMBE5 a comprehensive software package for data analysis in molecular biology and evolution",
+   "title_words": "DAMBE5 comprehensive software package data analysis molecular biology evolution",
+   "authors": [
+    "xia"
+   ],
+   "year": 2013,
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "7",
+   "DOI": "10.1093/molbev/mst064",
+   "type": "journal-article",
+   "page": "1720-1728",
+   "title": [
+    "DAMBE5: A Comprehensive Software Package for Data Analysis in Molecular Biology and Evolution"
+   ],
+   "volume": "30",
+   "author": [
+    {
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2013,
+      4,
+      5
+     ]
+    ]
+   },
+   "_score": 16.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/mst064",
+    "t": "DAMBE5: A Comprehensive Software Package for Data Analysis in Molecular Biology and Evolut",
+    "y": 2013,
+    "j": "Molecular Biology and Evolution",
+    "sc": 16.5
+   },
+   {
+    "DOI": "10.1093/jhered/92.4.371",
+    "t": "DAMBE: Software Package for Data Analysis in Molecular Biology and Evolution",
+    "y": 2001,
+    "j": "Journal of Heredity",
+    "sc": 9.5
+   },
+   {
+    "DOI": "10.1021/acs.jcim.5c01270.s001",
+    "t": "DynamiSpectra: A Python Software Package and Web Platform for Molecular Dynamics Data Anal",
+    "y": null,
+    "j": "",
+    "sc": 6.0
+   }
+  ]
+ },
+ "xia2018_dambe7": {
+  "entry": {
+   "key": "xia2018_dambe7",
+   "q": "DAMBE7 new and improved tools for data analysis in molecular biology and evolution",
+   "title_words": "DAMBE7 new improved tools data analysis molecular biology evolution",
+   "authors": [
+    "xia"
+   ],
+   "year": 2018,
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "6",
+   "DOI": "10.1093/molbev/msy073",
+   "type": "journal-article",
+   "page": "1550-1552",
+   "title": [
+    "DAMBE7: New and Improved Tools for Data Analysis in Molecular Biology and Evolution"
+   ],
+   "volume": "35",
+   "author": [
+    {
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Biology, University of Ottawa, Ottawa, ON, Canada"
+      },
+      {
+       "name": "Ottawa Institute of Systems Biology, University of Ottawa, Ottawa, ON, Canada"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      4,
+      14
+     ]
+    ]
+   },
+   "_score": 15.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msy073",
+    "t": "DAMBE7: New and Improved Tools for Data Analysis in Molecular Biology and Evolution",
+    "y": 2018,
+    "j": "Molecular Biology and Evolution",
+    "sc": 15.5
+   },
+   {
+    "DOI": "10.1101/569129",
+    "t": "Improved CUT&amp;RUN chromatin profiling and analysis tools",
+    "y": 2019,
+    "j": "",
+    "sc": 4.0
+   },
+   {
+    "DOI": "10.1007/b113439",
+    "t": "Data Analysis in Molecular Biology and Evolution",
+    "y": 2002,
+    "j": "",
+    "sc": 3.5
+   }
+  ]
+ },
+ "xia_starless": {
+  "entry": {
+   "key": "xia_starless",
+   "q": "starless bias parameter estimation bias likelihood phylogenetic method Xia",
+   "title_words": "starless bias parameter estimation phylogenetic",
+   "authors": [
+    "xia"
+   ],
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.1101/435412",
+   "title": [
+    "Starless bias and parameter-estimation bias in the likelihood-based phylogenetic method"
+   ],
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-3092-7566",
+     "authenticated-orcid": false,
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      10,
+      5
+     ]
+    ]
+   },
+   "type": "posted-content",
+   "publisher": "openRxiv",
+   "_score": 8.0
+  },
+  "top": [
+   {
+    "DOI": "10.1101/435412",
+    "t": "Starless bias and parameter-estimation bias in the likelihood-based phylogenetic method",
+    "y": 2018,
+    "j": "",
+    "sc": 8.0
+   },
+   {
+    "DOI": "10.3934/genet.2018.4.212",
+    "t": "Starless bias and parameter-estimation bias in the likelihood-based phylogenetic method",
+    "y": 2018,
+    "j": "AIMS Genetics",
+    "sc": 8.0
+   },
+   {
+    "DOI": "10.7717/peerj.18397/fig-6",
+    "t": "Figure 6: Bias in parameter estimation.",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   }
+  ]
+ },
+ "xia2020_book": {
+  "entry": {
+   "key": "xia2020_book",
+   "q": "A Mathematical Primer of Molecular Phylogenetics Xia",
+   "title_words": "mathematical primer molecular phylogenetics",
+   "authors": [
+    "xia"
+   ],
+   "year": 2020,
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.1201/9780429425875",
+   "title": [
+    "A Mathematical Primer of Molecular Phylogenetics"
+   ],
+   "author": [
+    {
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      4,
+      13
+     ]
+    ]
+   },
+   "type": "reference-book",
+   "publisher": "Apple Academic Press",
+   "_score": 9.0
+  },
+  "top": [
+   {
+    "DOI": "10.1201/9780429425875",
+    "t": "A Mathematical Primer of Molecular Phylogenetics",
+    "y": 2020,
+    "j": "",
+    "sc": 9.0
+   },
+   {
+    "DOI": "10.1201/9780429425875-1",
+    "t": "Introduction to Molecular Phylogenetics",
+    "y": 2020,
+    "j": "A Mathematical Primer of Molecular Phylogenet",
+    "sc": 7.0
+   },
+   {
+    "DOI": "10.1201/9780429425875-6",
+    "t": "Maximum Parsimony Method in Phylogenetics",
+    "y": 2020,
+    "j": "A Mathematical Primer of Molecular Phylogenet",
+    "sc": 6.0
+   }
+  ]
+ },
+ "kubatko_review_xia2020": {
+  "entry": {
+   "key": "kubatko_review_xia2020",
+   "q": "book review A Mathematical Primer of Molecular Phylogenetics",
+   "title_words": "book review mathematical primer molecular phylogenetics",
+   "authors": [
+    "kubatko"
+   ],
+   "journals": [
+    "systematic biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "2",
+   "DOI": "10.1093/sysbio/syaa082",
+   "type": "journal-article",
+   "page": "408-411",
+   "title": [
+    "Book Review: A Mathematical Primer of Molecular Phylogenetics, by Xuhua Xia"
+   ],
+   "volume": "70",
+   "author": [
+    {
+     "given": "Laura",
+     "family": "Kubatko",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Statistics, The Ohio State University, Columbus, OH 43210, USA"
+      },
+      {
+       "name": "Department of Evolution, Ecology and Organismal Biology, The Ohio State University, Columbus, OH 43210, USA"
+      }
+     ],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Systematic Biology"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      11,
+      10
+     ]
+    ]
+   },
+   "_score": 11.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/sysbio/syaa082",
+    "t": "Book Review: A Mathematical Primer of Molecular Phylogenetics, by Xuhua Xia",
+    "y": 2020,
+    "j": "Systematic Biology",
+    "sc": 11.5
+   },
+   {
+    "DOI": "10.1201/9780429425875",
+    "t": "A Mathematical Primer of Molecular Phylogenetics",
+    "y": 2020,
+    "j": "",
+    "sc": 4.0
+   },
+   {
+    "DOI": "10.1201/9780429425875-1",
+    "t": "Introduction to Molecular Phylogenetics",
+    "y": 2020,
+    "j": "A Mathematical Primer of Molecular Phylogenet",
+    "sc": 2.0
+   }
+  ]
+ },
+ "phypa2016": {
+  "entry": {
+   "key": "phypa2016",
+   "q": "PhyPA phylogenetic method with pairwise sequence alignment",
+   "title_words": "phypa phylogenetic pairwise sequence alignment",
+   "authors": [
+    "xia"
+   ],
+   "year": 2016,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Elsevier BV",
+   "DOI": "10.1016/j.ympev.2016.07.001",
+   "type": "journal-article",
+   "page": "331-343",
+   "title": [
+    "PhyPA: Phylogenetic method with pairwise sequence alignment outperforms likelihood methods in phylogenetics involving highly diverged sequences"
+   ],
+   "volume": "102",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-3092-7566",
+     "authenticated-orcid": false,
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Phylogenetics and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2016,
+      9
+     ]
+    ]
+   },
+   "_score": 10.0
+  },
+  "top": [
+   {
+    "DOI": "10.1016/j.ympev.2016.07.001",
+    "t": "PhyPA: Phylogenetic method with pairwise sequence alignment outperforms likelihood methods",
+    "y": 2016,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 10.0
+   },
+   {
+    "DOI": "10.1093/hesc/9780190610548.003.0005",
+    "t": "Pairwise Sequence Alignment",
+    "y": 2017,
+    "j": "Concepts in Bioinformatics and Genomics",
+    "sc": 4.0
+   },
+   {
+    "DOI": "10.7717/peerj.17955/supp-3",
+    "t": "Supplemental Information 3: Sequence pairwise alignment",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   }
+  ]
+ },
+ "struck2008_Cvalue": {
+  "entry": {
+   "key": "struck2008_Cvalue",
+   "q": "Struck 2008 saturation 18S 28S Annelida phylogenetic reconstruction",
+   "title_words": "saturation annelida phylogenetic reconstruction",
+   "authors": [
+    "struck"
+   ],
+   "year": 2008,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Elsevier BV",
+   "issue": "2",
+   "DOI": "10.1016/j.ympev.2008.05.015",
+   "type": "journal-article",
+   "page": "628-645",
+   "title": [
+    "Detecting possibly saturated positions in 18S and 28S sequences and their influence on phylogenetic reconstruction of Annelida (Lophotrochozoa)"
+   ],
+   "volume": "48",
+   "author": [
+    {
+     "given": "Torsten H.",
+     "family": "Struck",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Maximilian P.",
+     "family": "Nesnidal",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Günter",
+     "family": "Purschke",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Kenneth M.",
+     "family": "Halanych",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Phylogenetics and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2008,
+      8
+     ]
+    ]
+   },
+   "_score": 8.0
+  },
+  "top": [
+   {
+    "DOI": "10.1016/j.ympev.2008.05.015",
+    "t": "Detecting possibly saturated positions in 18S and 28S sequences and their influence on phy",
+    "y": 2008,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 8.0
+   },
+   {
+    "DOI": "10.1111/j.1439-0469.2004.00265.x",
+    "t": "Phylogenetic inference regarding Parergodrilidae and Hrabeiella periglandulata ('Polychaet",
+    "y": 2004,
+    "j": "Journal of Zoological Systematics and Evoluti",
+    "sc": 3.5
+   },
+   {
+    "DOI": "10.1016/j.ympev.2005.07.010",
+    "t": "Dinophilidae (Annelida) is most likely not a progenetic Eunicida: Evidence from 18S and 28",
+    "y": 2005,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 2.5
+   }
+  ]
+ },
+ "kuck_struck2014_bacoca": {
+  "entry": {
+   "key": "kuck_struck2014_bacoca",
+   "q": "BaCoCa a heuristic software tool for the parallel assessment of sequence biases",
+   "title_words": "BaCoCa heuristic software tool parallel assessment sequence biases",
+   "authors": [
+    "kuck",
+    "struck"
+   ],
+   "year": 2014,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Elsevier BV",
+   "DOI": "10.1016/j.ympev.2013.09.011",
+   "type": "journal-article",
+   "page": "94-98",
+   "title": [
+    "BaCoCa – A heuristic software tool for the parallel assessment of sequence biases in hundreds of gene and taxon partitions"
+   ],
+   "volume": "70",
+   "author": [
+    {
+     "given": "Patrick",
+     "family": "Kück",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Torsten H.",
+     "family": "Struck",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Phylogenetics and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2014,
+      1
+     ]
+    ]
+   },
+   "_score": 13.0
+  },
+  "top": [
+   {
+    "DOI": "10.1016/j.ympev.2013.09.011",
+    "t": "BaCoCa – A heuristic software tool for the parallel assessment of sequence biases in hundr",
+    "y": 2014,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 13.0
+   },
+   {
+    "DOI": "10.1289/isee.2024.1197",
+    "t": "Development of geospatial parallel processing software tool for large-scale geospatial exp",
+    "y": 2024,
+    "j": "ISEE Conference Abstracts",
+    "sc": 2.5
+   },
+   {
+    "DOI": "10.21236/ada303034",
+    "t": "Parallel Software Engineering Assessment.",
+    "y": 1995,
+    "j": "",
+    "sc": 1.5
+   }
+  ]
+ },
+ "struck2014_trespex": {
+  "entry": {
+   "key": "struck2014_trespex",
+   "q": "TreSpEx detection of misleading signal in phylogenetic reconstructions based on tree information",
+   "title_words": "TreSpEx misleading signal phylogenetic reconstructions tree information",
+   "authors": [
+    "struck"
+   ],
+   "year": 2014,
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.4137/ebo.s14239",
+   "title": [
+    "TreSpEx–-Detection of Misleading Signal in Phylogenetic Reconstructions Based on Tree Information"
+   ],
+   "author": [
+    {
+     "given": "Torsten H.",
+     "family": "Struck",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Zoological Research Museum Alexander Koenig, Bonn, Germany."
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2014,
+      1
+     ]
+    ]
+   },
+   "container-title": [
+    "Evolutionary Bioinformatics"
+   ],
+   "type": "journal-article",
+   "publisher": "SAGE Publications",
+   "volume": "10",
+   "_score": 12.0
+  },
+  "top": [
+   {
+    "DOI": "10.4137/ebo.s14239",
+    "t": "TreSpEx–-Detection of Misleading Signal in Phylogenetic Reconstructions Based on Tree Info",
+    "y": 2014,
+    "j": "Evolutionary Bioinformatics",
+    "sc": 12.0
+   },
+   {
+    "DOI": "10.7717/peerj.13241/supp-12",
+    "t": "Supplemental Information 12: The phylogenetic tree and signal peptide of NosZ proteins.",
+    "y": null,
+    "j": "",
+    "sc": 4.0
+   },
+   {
+    "DOI": "10.7717/peerj.13886/fig-5",
+    "t": "Figure 5: Results from ancestral state reconstructions of biogeography against the total e",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   }
+  ]
+ },
+ "jermiin_misof2020": {
+  "entry": {
+   "key": "jermiin_misof2020",
+   "q": "Jermiin Misof 2020 historical signal lambda variable sites",
+   "title_words": "historical signal phylogenetics",
+   "authors": [
+    "jermiin",
+    "misof"
+   ],
+   "year": 2020,
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.1101/2020.01.03.894097",
+   "title": [
+    "Measuring Historical and Compositional Signals in Phylogenetic Data"
+   ],
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-9619-3809",
+     "authenticated-orcid": false,
+     "given": "Lars S",
+     "family": "Jermiin",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0003-4175-6798",
+     "authenticated-orcid": false,
+     "given": "Bernhard",
+     "family": "Misof",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      1,
+      3
+     ]
+    ]
+   },
+   "type": "posted-content",
+   "publisher": "openRxiv",
+   "_score": 10.0
+  },
+  "top": [
+   {
+    "DOI": "10.1101/2020.01.03.894097",
+    "t": "Measuring Historical and Compositional Signals in Phylogenetic Data",
+    "y": 2020,
+    "j": "",
+    "sc": 10.0
+   },
+   {
+    "DOI": "10.1101/2020.01.15.907733",
+    "t": "A minimum reporting standard for multiple sequence alignments",
+    "y": 2020,
+    "j": "",
+    "sc": 8.0
+   },
+   {
+    "DOI": "10.1093/nargab/lqaa024",
+    "t": "A minimum reporting standard for multiple sequence alignments",
+    "y": 2020,
+    "j": "NAR Genomics and Bioinformatics",
+    "sc": 8.0
+   }
+  ]
+ },
+ "fleming_struck2023_nrcfv": {
+  "entry": {
+   "key": "fleming_struck2023_nrcfv",
+   "q": "nRCFV dataset-size-independent metric compositional heterogeneity nucleotide amino acid",
+   "title_words": "nRCFV dataset size independent metric compositional heterogeneity",
+   "authors": [
+    "fleming",
+    "struck"
+   ],
+   "year": 2023,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Springer Science and Business Media LLC",
+   "issue": "1",
+   "DOI": "10.1186/s12859-023-05270-8",
+   "type": "journal-article",
+   "title": [
+    "nRCFV: a new, dataset-size-independent metric to quantify compositional heterogeneity in nucleotide and amino acid datasets"
+   ],
+   "volume": "24",
+   "author": [
+    {
+     "given": "James F.",
+     "family": "Fleming",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Torsten H.",
+     "family": "Struck",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "BMC Bioinformatics"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2023,
+      4,
+      12
+     ]
+    ]
+   },
+   "_score": 15.0
+  },
+  "top": [
+   {
+    "DOI": "10.1186/s12859-023-05270-8",
+    "t": "nRCFV: a new, dataset-size-independent metric to quantify compositional heterogeneity in n",
+    "y": 2023,
+    "j": "BMC Bioinformatics",
+    "sc": 15.0
+   },
+   {
+    "DOI": "10.21203/rs.3.rs-2354937/v1",
+    "t": "nRCFV: A new, dataset-size-independent metric to quantify compositional heterogeneity in n",
+    "y": 2022,
+    "j": "",
+    "sc": 14.0
+   },
+   {
+    "DOI": "10.7717/peerj.9772/fig-1",
+    "t": "Figure 1: Amino acid compositional changes in transit peptides.",
+    "y": null,
+    "j": "",
+    "sc": 1.0
+   }
+  ]
+ },
+ "struck2024_saturation": {
+  "entry": {
+   "key": "struck2024_saturation",
+   "q": "SatuRation saturation index compositional heterogeneity Struck",
+   "title_words": "saturation",
+   "authors": [
+    "struck"
+   ],
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.1101/729103",
+   "title": [
+    "Six-state amino acid recoding is not an effective strategy to offset the effects of compositional heterogeneity and saturation in phylogenetic analyses"
+   ],
+   "author": [
+    {
+     "given": "Alexandra M.",
+     "family": "Hernandez",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Joseph F.",
+     "family": "Ryan",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2019,
+      8,
+      8
+     ]
+    ]
+   },
+   "type": "posted-content",
+   "publisher": "openRxiv",
+   "_score": 1.0
+  },
+  "top": [
+   {
+    "DOI": "10.1101/729103",
+    "t": "Six-state amino acid recoding is not an effective strategy to offset the effects of compos",
+    "y": 2019,
+    "j": "",
+    "sc": 1.0
+   },
+   {
+    "DOI": "10.7717/peerj.11737/supp-2",
+    "t": "Supplemental Information 2: Comparison of the index of substitution saturation (ISS) with ",
+    "y": null,
+    "j": "",
+    "sc": 1.0
+   },
+   {
+    "DOI": "10.7717/peerj.1403/supp-12",
+    "t": "Table S2: Saturation test with DAMBE5 where Iss is the Index of Saturation as defined by X",
+    "y": null,
+    "j": "",
+    "sc": 1.0
+   }
+  ]
+ },
+ "satute2025": {
+  "entry": {
+   "key": "satute2025",
+   "q": "SatuTe branch-wise substitution saturation test phylogenetic Manuel",
+   "title_words": "saturation test branch",
+   "authors": [
+    "manuel"
+   ],
+   "year": 2025,
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "5",
+   "DOI": "10.1093/molbev/msaf090",
+   "type": "journal-article",
+   "title": [
+    "When the Past Fades: Detecting Phylogenetic Signal with SatuTe"
+   ],
+   "volume": "42",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-6297-4762",
+     "authenticated-orcid": false,
+     "given": "Cassius",
+     "family": "Manuel",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna, Medical University of Vienna , Dr. Bohr Gasse 9, Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0009-0009-5027-2470",
+     "authenticated-orcid": false,
+     "given": "Enes",
+     "family": "Sakalli",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna, Medical University of Vienna , Dr. Bohr Gasse 9, Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      },
+      {
+       "name": "Vienna BioCenter PhD Program, Doctoral School of the University of Vienna and Medical University of Vienna , Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0002-2311-8592",
+     "authenticated-orcid": false,
+     "given": "Heiko A",
+     "family": "Schmidt",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna, Medical University of Vienna , Dr. Bohr Gasse 9, Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0009-0001-5904-5962",
+     "authenticated-orcid": false,
+     "given": "Carme",
+     "family": "Viñas",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Faculty of Mathematics and Statistics, Polytechnic University of Catalonia , Barcelona ,",
+       "place": [
+        "Spain"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0002-3366-4458",
+     "authenticated-orcid": false,
+     "given": "Arndt",
+     "family": "von Haeseler",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna, Medical University of Vienna , Dr. Bohr Gasse 9, Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      },
+      {
+       "name": "Ludwig Boltzmann Institute for Network Medicine, University of Vienna , Augasse 2-6, Vienna A-1090 ,",
+       "place": [
+        "Austria"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0003-2539-0394",
+     "authenticated-orcid": false,
+     "given": "Christiane",
+     "family": "Elgert",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna, Medical University of Vienna , Dr. Bohr Gasse 9, Vienna A-1030 ,",
+       "place": [
+        "Austria"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2025,
+      4,
+      30
+     ]
+    ]
+   },
+   "_score": 7.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msaf090",
+    "t": "When the Past Fades: Detecting Phylogenetic Signal with SatuTe",
+    "y": 2025,
+    "j": "Molecular Biology and Evolution",
+    "sc": 7.5
+   },
+   {
+    "DOI": "10.1093/molbev/mst062",
+    "t": "The Branch-Site Test of Positive Selection Is Surprisingly Robust but Lacks Power under Sy",
+    "y": 2013,
+    "j": "Molecular Biology and Evolution",
+    "sc": 4.0
+   },
+   {
+    "DOI": "10.7287/peerj.preprints.499/supp-4",
+    "t": "",
+    "y": null,
+    "j": "Supplemental Information 4: Model test result",
+    "sc": 0.0
+   }
+  ]
+ },
+ "duchene2021_phylomad": {
+  "entry": {
+   "key": "duchene2021_phylomad",
+   "q": "Duchene 2021 model adequacy phylogenetic analysis Systematic Biology",
+   "title_words": "model adequacy phylogenetic",
+   "authors": [
+    "duchene"
+   ],
+   "year": 2021,
+   "journals": [
+    "systematic biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "2",
+   "DOI": "10.1093/sysbio/syy048",
+   "type": "journal-article",
+   "page": "358-364",
+   "title": [
+    "Phylodynamic Model Adequacy Using Posterior Predictive Simulations"
+   ],
+   "volume": "68",
+   "author": [
+    {
+     "given": "Sebastian",
+     "family": "Duchene",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Biochemistry and Molecular Biology, Bio21 Molecular Science and Biotechnology Institute, University of Melbourne, Melbourne, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Remco",
+     "family": "Bouckaert",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Centre for Computational Evolution, University of Auckland, Auckland, New Zealand"
+      },
+      {
+       "name": "Max Planck Institute for the Science of Human History, Jena, Germany"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "David A",
+     "family": "Duchene",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "School of Life and Environmental Sciences, University of Sydney, Sydney, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Tanja",
+     "family": "Stadler",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Department of Biosystems Science and Engineering, ETH Zurich, Basel, Switzerland"
+      },
+      {
+       "name": "Swiss Institute of Bioinformatics, Lausanne, Switzerland"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Alexei J",
+     "family": "Drummond",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Centre for Computational Evolution, University of Auckland, Auckland, New Zealand"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Systematic Biology"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      6,
+      25
+     ]
+    ]
+   },
+   "_score": 6.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/sysbio/syy048",
+    "t": "Phylodynamic Model Adequacy Using Posterior Predictive Simulations",
+    "y": 2018,
+    "j": "Systematic Biology",
+    "sc": 6.0
+   },
+   {
+    "DOI": "10.1101/255596",
+    "t": "Phylodynamic model adequacy using posterior predictive simulations",
+    "y": 2018,
+    "j": "",
+    "sc": 3.5
+   },
+   {
+    "DOI": "10.2307/2413662",
+    "t": "Coding Chromosomal Data for Phylogenetic Analysis: Phylogenetic Resolution of the Pan-Homo",
+    "y": 1995,
+    "j": "Systematic Biology",
+    "sc": 2.0
+   }
+  ]
+ },
+ "duchene2018_phylomad_soft": {
+  "entry": {
+   "key": "duchene2018_phylomad_soft",
+   "q": "PhyloMAd efficient assessment of phylogenomic model adequacy",
+   "title_words": "PhyloMAd assessment phylogenomic model adequacy",
+   "authors": [
+    "duchene"
+   ],
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "13",
+   "DOI": "10.1093/bioinformatics/bty103",
+   "type": "journal-article",
+   "page": "2300-2301",
+   "title": [
+    "PhyloMAd: efficient assessment of phylogenomic model adequacy"
+   ],
+   "volume": "34",
+   "author": [
+    {
+     "given": "David A",
+     "family": "Duchêne",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "School of Life and Environmental Sciences, University of Sydney, Sydney, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Sebastian",
+     "family": "Duchêne",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Bio21 Molecular Science and Biotechnology Institute, University of Melbourne, Melbourne, VIC, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Simon Y W",
+     "family": "Ho",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "School of Life and Environmental Sciences, University of Sydney, Sydney, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Bioinformatics"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      2,
+      21
+     ]
+    ]
+   },
+   "_score": 5.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/bioinformatics/bty103",
+    "t": "PhyloMAd: efficient assessment of phylogenomic model adequacy",
+    "y": 2018,
+    "j": "Bioinformatics",
+    "sc": 5.0
+   },
+   {
+    "DOI": "10.1093/gbe/evy094",
+    "t": "Differences in Performance among Test Statistics for Assessing Phylogenomic Model Adequacy",
+    "y": 2018,
+    "j": "Genome Biology and Evolution",
+    "sc": 3.0
+   },
+   {
+    "DOI": "10.2307/2533866",
+    "t": "Assessment of Model Adequacy for Markov Regression Time Series Models",
+    "y": 1998,
+    "j": "Biometrics",
+    "sc": 3.0
+   }
+  ]
+ },
+ "townsend2007_pi": {
+  "entry": {
+   "key": "townsend2007_pi",
+   "q": "Profiling phylogenetic informativeness Townsend",
+   "title_words": "profiling phylogenetic informativeness",
+   "authors": [
+    "townsend"
+   ],
+   "year": 2007,
+   "journals": [
+    "systematic biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "2",
+   "DOI": "10.1080/10635150701311362",
+   "type": "journal-article",
+   "page": "222-231",
+   "title": [
+    "Profiling Phylogenetic Informativeness"
+   ],
+   "volume": "56",
+   "author": [
+    {
+     "given": "Jeffrey P.",
+     "family": "Townsend",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Ecology and Evolutionary Biology, Yale University New Haven, Connecticut 06520, USA E-mail: Jeffrey.Townsend@Yale.edu"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Systematic Biology"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2007,
+      4,
+      1
+     ]
+    ]
+   },
+   "_score": 10.5
+  },
+  "top": [
+   {
+    "DOI": "10.1080/10635150701311362",
+    "t": "Profiling Phylogenetic Informativeness",
+    "y": 2007,
+    "j": "Systematic Biology",
+    "sc": 10.5
+   },
+   {
+    "DOI": "10.1186/1471-2148-11-152",
+    "t": "PhyDesign: an online application for profiling phylogenetic informativeness",
+    "y": 2011,
+    "j": "BMC Evolutionary Biology",
+    "sc": 4.5
+   },
+   {
+    "DOI": "10.1016/j.ympev.2012.09.035",
+    "t": "Response to: The relative utility of sequence divergence and phylogenetic informativeness ",
+    "y": 2013,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 4.5
+   }
+  ]
+ },
+ "verbruggen2007": {
+  "entry": {
+   "key": "verbruggen2007",
+   "q": "Verbruggen 2007 Molecular Phylogenetics and Evolution substitution saturation",
+   "title_words": "",
+   "authors": [
+    "verbruggen"
+   ],
+   "year": 2007,
+   "journals": [
+    "molecular phylogenetics and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Elsevier BV",
+   "issue": "3",
+   "DOI": "10.1016/j.ympev.2007.04.016",
+   "type": "journal-article",
+   "page": "1237-1256",
+   "title": [
+    "Molecular phylogeny of the Siphonocladales (Chlorophyta: Cladophorophyceae)"
+   ],
+   "volume": "44",
+   "author": [
+    {
+     "given": "Frederik",
+     "family": "Leliaert",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Olivier",
+     "family": "De Clerck",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Heroen",
+     "family": "Verbruggen",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Christian",
+     "family": "Boedeker",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Eric",
+     "family": "Coppejans",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Phylogenetics and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2007,
+      9
+     ]
+    ]
+   },
+   "_score": 7.5
+  },
+  "top": [
+   {
+    "DOI": "10.1016/j.ympev.2007.04.016",
+    "t": "Molecular phylogeny of the Siphonocladales (Chlorophyta: Cladophorophyceae)",
+    "y": 2007,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 7.5
+   },
+   {
+    "DOI": "10.1016/j.ympev.2006.07.006",
+    "t": "Modeling amino acid substitution patterns in orthologous and paralogous genes",
+    "y": 2007,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 4.5
+   },
+   {
+    "DOI": "10.1016/j.ympev.2024.108197",
+    "t": "Reticulate evolution: Detection and utility in the phylogenomics era",
+    "y": 2024,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": 4.0
+   }
+  ]
+ },
+ "bmcevolbiol2011_rrna": {
+  "entry": {
+   "key": "bmcevolbiol2011_rrna",
+   "q": "substitution saturation is not a site-intrinsic property phylogenetic level rRNA 2011 BMC",
+   "title_words": "substitution saturation phylogenetic",
+   "year": 2011,
+   "journals": [
+    "bmc evolutionary biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Springer Science and Business Media LLC",
+   "issue": "1",
+   "DOI": "10.1186/1471-2148-11-17",
+   "type": "journal-article",
+   "title": [
+    "Site-specific time heterogeneity of the substitution process and its impact on phylogenetic inference"
+   ],
+   "volume": "11",
+   "author": [
+    {
+     "given": "Béatrice",
+     "family": "Roure",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Hervé",
+     "family": "Philippe",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "BMC Evolutionary Biology"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2011,
+      1,
+      14
+     ]
+    ]
+   },
+   "_score": 6.5
+  },
+  "top": [
+   {
+    "DOI": "10.1186/1471-2148-11-17",
+    "t": "Site-specific time heterogeneity of the substitution process and its impact on phylogeneti",
+    "y": 2011,
+    "j": "BMC Evolutionary Biology",
+    "sc": 6.5
+   },
+   {
+    "DOI": "10.1186/1471-2148-11-341",
+    "t": "Diversification of land plants: insights from a family-level phylogenetic analysis",
+    "y": 2011,
+    "j": "BMC Evolutionary Biology",
+    "sc": 5.5
+   },
+   {
+    "DOI": "10.7717/peerj.17425/fig-10",
+    "t": "Figure 10: Maximum-likelihood phylogenetic tree of\n                      <i>Isognomon</i>\n",
+    "y": null,
+    "j": "",
+    "sc": 2.0
+   }
+  ]
+ },
+ "amb_apriori_review": {
+  "entry": {
+   "key": "amb_apriori_review",
+   "q": "a priori assessment of data quality for phylogenetic analysis algorithms for molecular biology",
+   "title_words": "data quality phylogenetic",
+   "journals": [
+    "algorithms for molecular biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Springer Science and Business Media LLC",
+   "issue": "1",
+   "DOI": "10.1186/s13015-014-0022-4",
+   "type": "journal-article",
+   "title": [
+    "A priori assessment of data quality in molecular phylogenetics"
+   ],
+   "volume": "9",
+   "author": [
+    {
+     "given": "Bernhard",
+     "family": "Misof",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Karen",
+     "family": "Meusemann",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Björn M",
+     "family": "von Reumont",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Patrick",
+     "family": "Kück",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Sonja J",
+     "family": "Prohaska",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    {
+     "given": "Peter F",
+     "family": "Stadler",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Algorithms for Molecular Biology"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2014,
+      1
+     ]
+    ]
+   },
+   "_score": 5.5
+  },
+  "top": [
+   {
+    "DOI": "10.1186/s13015-014-0022-4",
+    "t": "A priori assessment of data quality in molecular phylogenetics",
+    "y": 2014,
+    "j": "Algorithms for Molecular Biology",
+    "sc": 5.5
+   },
+   {
+    "DOI": "10.1186/1748-7188-8-7",
+    "t": "Ultrametric networks: a new tool for phylogenetic analysis",
+    "y": 2013,
+    "j": "Algorithms for Molecular Biology",
+    "sc": 3.5
+   },
+   {
+    "DOI": "10.1186/1748-7188-5-3",
+    "t": "Phylogenetic comparative assembly",
+    "y": 2010,
+    "j": "Algorithms for Molecular Biology",
+    "sc": 3.5
+   }
+  ]
+ },
+ "robust_phylogenetics2025": {
+  "entry": {
+   "key": "robust_phylogenetics2025",
+   "q": "Robust Phylogenetics circularity tree-dependent methods fast-evolving sites",
+   "title_words": "robust phylogenetics circularity",
+   "year": 2025,
+   "journals": []
+  },
+  "chosen": {
+   "DOI": "10.1017/9781316882313.010",
+   "title": [
+    "Statistical Gene Tree Estimation Methods"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      null
+     ]
+    ]
+   },
+   "container-title": [
+    "Computational Phylogenetics"
+   ],
+   "type": "book-chapter",
+   "publisher": "Cambridge University Press",
+   "page": "145-177",
+   "_score": 0.0
+  },
+  "top": [
+   {
+    "DOI": "10.1017/9781316882313.010",
+    "t": "Statistical Gene Tree Estimation Methods",
+    "y": null,
+    "j": "Computational Phylogenetics",
+    "sc": 0.0
+   },
+   {
+    "DOI": "10.1017/9781316882313.007",
+    "t": "Distance-based Tree Estimation Methods",
+    "y": null,
+    "j": "Computational Phylogenetics",
+    "sc": 0.0
+   },
+   {
+    "DOI": "10.1016/j.ympev.2022.107438",
+    "t": "Exclusion of fast evolving genes or fast evolving sites produces different archaean phylog",
+    "y": 2022,
+    "j": "Molecular Phylogenetics and Evolution",
+    "sc": -1.5
+   }
+  ]
+ },
+ "iqtree2": {
+  "entry": {
+   "key": "iqtree2",
+   "q": "IQ-TREE 2 new models and efficient methods for phylogenetic inference in the genomic era",
+   "title_words": "IQ-TREE 2 new models efficient methods phylogenetic inference genomic era",
+   "authors": [
+    "minh"
+   ],
+   "year": 2020,
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "5",
+   "DOI": "10.1093/molbev/msaa015",
+   "type": "journal-article",
+   "page": "1530-1534",
+   "title": [
+    "IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in the Genomic Era"
+   ],
+   "volume": "37",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-5535-6560",
+     "authenticated-orcid": false,
+     "given": "Bui Quang",
+     "family": "Minh",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Research School of Computer Science, Australian National University, Canberra, ACT, Australia"
+      },
+      {
+       "name": "Department of Ecology and Evolution, Research School of Biology, Australian National University, Canberra, ACT, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Heiko A",
+     "family": "Schmidt",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna and Medical University of Vienna, Vienna, Austria"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Olga",
+     "family": "Chernomor",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna and Medical University of Vienna, Vienna, Austria"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Dominik",
+     "family": "Schrempf",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna and Medical University of Vienna, Vienna, Austria"
+      },
+      {
+       "name": "Department of Biological Physics, Eötvös Lórand University, Budapest, Hungary"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Michael D",
+     "family": "Woodhams",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Discipline of Mathematics, University of Tasmania, Hobart, TAS, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Arndt",
+     "family": "von Haeseler",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Center for Integrative Bioinformatics Vienna, Max Perutz Labs, University of Vienna and Medical University of Vienna, Vienna, Austria"
+      },
+      {
+       "name": "Bioinformatics and Computational Biology, Faculty of Computer Science, University of Vienna, Vienna, Austria"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Robert",
+     "family": "Lanfear",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Ecology and Evolution, Research School of Biology, Australian National University, Canberra, ACT, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      2,
+      3
+     ]
+    ]
+   },
+   "_score": 14.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msaa015",
+    "t": "IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in the Genomic Era",
+    "y": 2020,
+    "j": "Molecular Biology and Evolution",
+    "sc": 14.5
+   },
+   {
+    "DOI": "10.1093/molbev/msaa131",
+    "t": "Corrigendum to: IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in ",
+    "y": 2020,
+    "j": "Molecular Biology and Evolution",
+    "sc": 14.5
+   },
+   {
+    "DOI": "10.1101/849372",
+    "t": "IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era",
+    "y": 2019,
+    "j": "",
+    "sc": 11.0
+   }
+  ]
+ },
+ "alisim": {
+  "entry": {
+   "key": "alisim",
+   "q": "AliSim a fast and versatile phylogenetic sequence simulator for the genomic era",
+   "title_words": "AliSim fast versatile phylogenetic sequence simulator genomic era",
+   "authors": [
+    "ly-trong",
+    "minh"
+   ],
+   "year": 2022,
+   "journals": [
+    "systematic biology"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "5",
+   "DOI": "10.1093/molbev/msac092",
+   "type": "journal-article",
+   "title": [
+    "AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era"
+   ],
+   "volume": "39",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0001-5668-5027",
+     "authenticated-orcid": false,
+     "given": "Nhan",
+     "family": "Ly-Trong",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "School of Computing, College of Engineering and Computer Science, Australian National University , Canberra, ACT 2600, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Suha",
+     "family": "Naser-Khdour",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Ecology and Evolution, Research School of Biology, College of Science, Australian National University , Canberra, ACT 2600, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Robert",
+     "family": "Lanfear",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Ecology and Evolution, Research School of Biology, College of Science, Australian National University , Canberra, ACT 2600, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0002-5535-6560",
+     "authenticated-orcid": false,
+     "given": "Bui Quang",
+     "family": "Minh",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "School of Computing, College of Engineering and Computer Science, Australian National University , Canberra, ACT 2600, Australia"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2022,
+      5,
+      1
+     ]
+    ]
+   },
+   "_score": 15.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msac092",
+    "t": "AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era",
+    "y": 2022,
+    "j": "Molecular Biology and Evolution",
+    "sc": 15.0
+   },
+   {
+    "DOI": "10.1101/2021.12.16.472905",
+    "t": "AliSim: A Fast and Versatile Phylogenetic Sequence Simulator For the Genomic Era",
+    "y": 2021,
+    "j": "",
+    "sc": 14.0
+   },
+   {
+    "DOI": "10.1101/2023.01.15.524158",
+    "t": "AliSim-HPC: parallel sequence simulator for phylogenetics",
+    "y": 2023,
+    "j": "",
+    "sc": 11.0
+   }
+  ]
+ },
+ "paml4": {
+  "entry": {
+   "key": "paml4",
+   "q": "PAML 4 phylogenetic analysis by maximum likelihood Yang",
+   "title_words": "PAML 4 phylogenetic analysis maximum likelihood",
+   "authors": [
+    "yang"
+   ],
+   "year": 2007,
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "8",
+   "DOI": "10.1093/molbev/msm088",
+   "type": "journal-article",
+   "page": "1586-1591",
+   "title": [
+    "PAML 4: Phylogenetic Analysis by Maximum Likelihood"
+   ],
+   "volume": "24",
+   "author": [
+    {
+     "given": "Z.",
+     "family": "Yang",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2007,
+      4,
+      18
+     ]
+    ]
+   },
+   "_score": 12.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msm088",
+    "t": "PAML 4: Phylogenetic Analysis by Maximum Likelihood",
+    "y": 2007,
+    "j": "Molecular Biology and Evolution",
+    "sc": 12.5
+   },
+   {
+    "DOI": "10.1093/bioinformatics/13.5.555",
+    "t": "PAML: a program package for phylogenetic analysis by maximum likelihood",
+    "y": 1997,
+    "j": "Bioinformatics",
+    "sc": 6.5
+   },
+   {
+    "DOI": "10.7717/peerj.15696/fig-6",
+    "t": "Figure 6: Phylogenetic analysis by maximum likelihood.",
+    "y": null,
+    "j": "",
+    "sc": 4.0
+   }
+  ]
+ },
+ "phylobayes": {
+  "entry": {
+   "key": "phylobayes",
+   "q": "PhyloBayes MPI phylogenetic reconstruction with infinite mixtures of profile Dirichlet processes Lartillot",
+   "title_words": "PhyloBayes MPI phylogenetic reconstruction infinite mixtures",
+   "authors": [
+    "lartillot"
+   ],
+   "year": 2009,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "17",
+   "DOI": "10.1093/bioinformatics/btp368",
+   "type": "journal-article",
+   "page": "2286-2288",
+   "title": [
+    "PhyloBayes 3: a Bayesian software package for phylogenetic reconstruction and molecular dating"
+   ],
+   "volume": "25",
+   "author": [
+    {
+     "given": "Nicolas",
+     "family": "Lartillot",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "1 Département de Biochimie, Université de Montréal, Montréal, Québec, Canada and 2 Département d'Informatique, LIRMM, Montpellier, France"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Thomas",
+     "family": "Lepage",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "1 Département de Biochimie, Université de Montréal, Montréal, Québec, Canada and 2 Département d'Informatique, LIRMM, Montpellier, France"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Samuel",
+     "family": "Blanquart",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "1 Département de Biochimie, Université de Montréal, Montréal, Québec, Canada and 2 Département d'Informatique, LIRMM, Montpellier, France"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Bioinformatics"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2009,
+      6,
+      17
+     ]
+    ]
+   },
+   "_score": 8.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/bioinformatics/btp368",
+    "t": "PhyloBayes 3: a Bayesian software package for phylogenetic reconstruction and molecular da",
+    "y": 2009,
+    "j": "Bioinformatics",
+    "sc": 8.0
+   },
+   {
+    "DOI": "10.1093/sysbio/syt022",
+    "t": "PhyloBayes MPI: Phylogenetic Reconstruction with Infinite Mixtures of Profiles in a Parall",
+    "y": 2013,
+    "j": "Systematic Biology",
+    "sc": 6.5
+   },
+   {
+    "DOI": "10.1093/bioinformatics/btn445",
+    "t": "Empirical profile mixture models for phylogenetic reconstruction",
+    "y": 2008,
+    "j": "Bioinformatics",
+    "sc": 6.0
+   }
+  ]
+ },
+ "beast1.10": {
+  "entry": {
+   "key": "beast1.10",
+   "q": "Bayesian phylogenetic and phylodynamic data integration using BEAST 1.10",
+   "title_words": "bayesian phylogenetic phylodynamic data integration BEAST",
+   "authors": [
+    "suchard"
+   ],
+   "year": 2018,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "1",
+   "DOI": "10.1093/ve/vey016",
+   "type": "journal-article",
+   "title": [
+    "Bayesian phylogenetic and phylodynamic data integration using BEAST 1.10"
+   ],
+   "volume": "4",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0001-9818-479X",
+     "authenticated-orcid": false,
+     "given": "Marc A",
+     "family": "Suchard",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Biomathematics, David Geffen School of MedicineUniversity of California, Los Angeles, 621 Charles E. Young Dr., South, Los Angeles, CA, 90095 USA"
+      },
+      {
+       "name": "Department of Biostatistics, Fielding School of Public HealthUniversity of California, Los Angeles, 650 Charles E, Young Dr., South, Los Angeles, CA, 90095 USA"
+      },
+      {
+       "name": "Department of Human Genetics, David Geffen School of Medicine, University of California, Los Angeles, 695 Charles E. Young Dr., South, Los Angeles, CA, 90095 USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0003-2826-5353",
+     "authenticated-orcid": false,
+     "given": "Philippe",
+     "family": "Lemey",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Department of Microbiology and Immunology, Rega Institute, KU Leuven, Herestraat 49, 3000 Leuven, Belgium"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Guy",
+     "family": "Baele",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Department of Microbiology and Immunology, Rega Institute, KU Leuven, Herestraat 49, 3000 Leuven, Belgium"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Daniel L",
+     "family": "Ayres",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Center for Bioinformatics and Computational Biology, University of Maryland, College Park, 125 Biomolecular Science Bldg #296, College Park, MD 20742 USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Alexei J",
+     "family": "Drummond",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Department of Computer Science, University of Auckland, 303/38 Princes St., Auckland, 1010 NZ"
+      },
+      {
+       "name": "Centre for Computational Evolution, University of Auckland, 303/38 Princes St., Auckland, 1010 NZ"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0003-4337-3707",
+     "authenticated-orcid": false,
+     "given": "Andrew",
+     "family": "Rambaut",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Institute of Evolutionary Biology, University of Edinburgh, Ashworth Laboratories, Edinburgh, EH9 3FL UK"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Virus Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      1,
+      1
+     ]
+    ]
+   },
+   "_score": 11.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/ve/vey016",
+    "t": "Bayesian phylogenetic and phylodynamic data integration using BEAST 1.10",
+    "y": 2018,
+    "j": "Virus Evolution",
+    "sc": 11.0
+   },
+   {
+    "DOI": "10.7717/peerj.17018/fig-1",
+    "t": "Figure 1: Phylogenetic tree of 47 African leopard (\n                      <i>Panthera pard",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   },
+   {
+    "DOI": "10.7717/peerj.17018/supp-1",
+    "t": "Supplemental Information 1: Phylogenetic tree of 244 African leopard (\n                   ",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   }
+  ]
+ },
+ "treetime": {
+  "entry": {
+   "key": "treetime",
+   "q": "TreeTime maximum-likelihood phylodynamic analysis Sagulenko",
+   "title_words": "TreeTime maximum likelihood phylodynamic analysis",
+   "authors": [
+    "sagulenko"
+   ],
+   "year": 2018,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "1",
+   "DOI": "10.1093/ve/vex042",
+   "type": "journal-article",
+   "title": [
+    "TreeTime: Maximum-likelihood phylodynamic analysis"
+   ],
+   "volume": "4",
+   "author": [
+    {
+     "given": "Pavel",
+     "family": "Sagulenko",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Vadim",
+     "family": "Puller",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "ORCID": "https://orcid.org/0000-0003-2525-1407",
+     "authenticated-orcid": false,
+     "given": "Richard A",
+     "family": "Neher",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Virus Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      1,
+      1
+     ]
+    ]
+   },
+   "_score": 10.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/ve/vex042",
+    "t": "TreeTime: Maximum-likelihood phylodynamic analysis",
+    "y": 2018,
+    "j": "Virus Evolution",
+    "sc": 10.0
+   },
+   {
+    "DOI": "10.1101/153494",
+    "t": "TreeTime: maximum likelihood phylodynamic analysis",
+    "y": 2017,
+    "j": "",
+    "sc": 9.0
+   },
+   {
+    "DOI": "10.7717/peerj.15696/fig-6",
+    "t": "Figure 6: Phylogenetic analysis by maximum likelihood.",
+    "y": null,
+    "j": "",
+    "sc": 3.0
+   }
+  ]
+ },
+ "nextstrain": {
+  "entry": {
+   "key": "nextstrain",
+   "q": "Nextstrain real-time tracking of pathogen evolution Hadfield",
+   "title_words": "Nextstrain real time tracking pathogen evolution",
+   "authors": [
+    "hadfield"
+   ],
+   "year": 2018,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "23",
+   "DOI": "10.1093/bioinformatics/bty407",
+   "type": "journal-article",
+   "page": "4121-4123",
+   "title": [
+    "Nextstrain: real-time tracking of pathogen evolution"
+   ],
+   "volume": "34",
+   "author": [
+    {
+     "given": "James",
+     "family": "Hadfield",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Colin",
+     "family": "Megill",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Sidney M",
+     "family": "Bell",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      },
+      {
+       "name": "Molecular and Cellular Biology Program, University of Washington, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "John",
+     "family": "Huddleston",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      },
+      {
+       "name": "Molecular and Cellular Biology Program, University of Washington, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Barney",
+     "family": "Potter",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Charlton",
+     "family": "Callender",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Pavel",
+     "family": "Sagulenko",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Max Planck Institute for Developmental Biology, Tübingen, Germany"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Trevor",
+     "family": "Bedford",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "Richard A",
+     "family": "Neher",
+     "sequence": "additional",
+     "affiliation": [
+      {
+       "name": "Max Planck Institute for Developmental Biology, Tübingen, Germany"
+      },
+      {
+       "name": "Biozentrum, University of Basel, Basel, Switzerland"
+      },
+      {
+       "name": "SIB Swiss Institute of Bioinformatics, Basel, Switzerland"
+      }
+     ],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Bioinformatics"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      5,
+      22
+     ]
+    ]
+   },
+   "_score": 11.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/bioinformatics/bty407",
+    "t": "Nextstrain: real-time tracking of pathogen evolution",
+    "y": 2018,
+    "j": "Bioinformatics",
+    "sc": 11.0
+   },
+   {
+    "DOI": "10.1101/224048",
+    "t": "Nextstrain: real-time tracking of pathogen evolution",
+    "y": 2017,
+    "j": "",
+    "sc": 10.0
+   },
+   {
+    "DOI": "10.1101/2020.06.02.129395",
+    "t": "Real-time tracking of Tomato brown rugose fruit virus (ToBRFV) outbreaks in the Netherland",
+    "y": 2020,
+    "j": "",
+    "sc": 2.5
+   }
+  ]
+ },
+ "trad_xia": {
+  "entry": {
+   "key": "trad_xia",
+   "q": "Xia virus substitution rate dating divergence time estimator TRAD",
+   "title_words": "virus substitution rate dating",
+   "authors": [
+    "xia"
+   ],
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "MDPI AG",
+   "issue": "3",
+   "DOI": "10.3390/v15030684",
+   "type": "journal-article",
+   "page": "684",
+   "title": [
+    "Rooting and Dating Large SARS-CoV-2 Trees by Modeling Evolutionary Rate as a Function of Time"
+   ],
+   "volume": "15",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-3092-7566",
+     "authenticated-orcid": false,
+     "given": "Xuhua",
+     "family": "Xia",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Biology, University of Ottawa, Marie-Curie Private, Ottawa, ON K1N 9A7, Canada"
+      },
+      {
+       "name": "Ottawa Institute of Systems Biology, University of Ottawa, Ottawa, ON K1H 8M5, Canada"
+      }
+     ],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Viruses"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2023,
+      3,
+      5
+     ]
+    ]
+   },
+   "_score": 5.0
+  },
+  "top": [
+   {
+    "DOI": "10.3390/v15030684",
+    "t": "Rooting and Dating Large SARS-CoV-2 Trees by Modeling Evolutionary Rate as a Function of T",
+    "y": 2023,
+    "j": "Viruses",
+    "sc": 5.0
+   },
+   {
+    "DOI": "10.1101/2020.07.09.195487",
+    "t": "Using a GTR+Γ substitution model for dating sequence divergence when stationarity and time",
+    "y": 2020,
+    "j": "",
+    "sc": 2.0
+   },
+   {
+    "DOI": "10.1093/bioinformatics/btaa820",
+    "t": "Using a GTR+Γ substitution model for dating sequence divergence when stationarity and time",
+    "y": 2020,
+    "j": "Bioinformatics",
+    "sc": 2.0
+   }
+  ]
+ },
+ "mbe40th": {
+  "entry": {
+   "key": "mbe40th",
+   "q": "Molecular Biology and Evolution 40th anniversary software phylogenetic",
+   "title_words": "anniversary",
+   "journals": [
+    "molecular biology and evolution"
+   ]
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "6",
+   "DOI": "10.1093/molbev/msae102",
+   "type": "journal-article",
+   "title": [
+    "40th Anniversary Virtual Issues: Evolutionary Impacts of Endosymbiosis"
+   ],
+   "volume": "41",
+   "author": [
+    {
+     "ORCID": "https://orcid.org/0000-0002-9204-083X",
+     "authenticated-orcid": false,
+     "given": "Casey",
+     "family": "McGrath",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2024,
+      6,
+      1
+     ]
+    ]
+   },
+   "_score": 3.5
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/msae102",
+    "t": "40th Anniversary Virtual Issues: Evolutionary Impacts of Endosymbiosis",
+    "y": 2024,
+    "j": "Molecular Biology and Evolution",
+    "sc": 3.5
+   },
+   {
+    "DOI": "10.1093/molbev/msae159",
+    "t": "40th Anniversary Virtual Issues: Genomic Innovations in Extremophiles",
+    "y": 2024,
+    "j": "Molecular Biology and Evolution",
+    "sc": 3.5
+   },
+   {
+    "DOI": "10.1093/molbev/msy098",
+    "t": "MEGA Software Celebrates Silver Anniversary",
+    "y": 2018,
+    "j": "Molecular Biology and Evolution",
+    "sc": 3.5
+   }
+  ]
+ },
+ "mafft": {
+  "entry": {
+   "key": "mafft",
+   "q": "MAFFT multiple sequence alignment software version 7 Katoh Standley",
+   "title_words": "MAFFT multiple sequence alignment software version 7",
+   "authors": [
+    "katoh"
+   ],
+   "year": 2013,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "4",
+   "DOI": "10.1093/molbev/mst010",
+   "type": "journal-article",
+   "page": "772-780",
+   "title": [
+    "MAFFT Multiple Sequence Alignment Software Version 7: Improvements in Performance and Usability"
+   ],
+   "volume": "30",
+   "author": [
+    {
+     "given": "K.",
+     "family": "Katoh",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    },
+    {
+     "given": "D. M.",
+     "family": "Standley",
+     "sequence": "additional",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Molecular Biology and Evolution"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2013,
+      1,
+      16
+     ]
+    ]
+   },
+   "_score": 11.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/molbev/mst010",
+    "t": "MAFFT Multiple Sequence Alignment Software Version 7: Improvements in Performance and Usab",
+    "y": 2013,
+    "j": "Molecular Biology and Evolution",
+    "sc": 11.0
+   },
+   {
+    "DOI": "10.1093/nar/gki198",
+    "t": "MAFFT version 5: improvement in accuracy of multiple sequence alignment",
+    "y": 2005,
+    "j": "Nucleic Acids Research",
+    "sc": 6.5
+   },
+   {
+    "DOI": "10.1007/978-1-62703-646-7_8",
+    "t": "MAFFT: Iterative Refinement and Additional Methods",
+    "y": 2013,
+    "j": "Methods in Molecular Biology",
+    "sc": 6.0
+   }
+  ]
+ },
+ "muscle": {
+  "entry": {
+   "key": "muscle",
+   "q": "MUSCLE multiple sequence alignment with high accuracy and high throughput Edgar",
+   "title_words": "MUSCLE multiple sequence alignment high accuracy high throughput",
+   "authors": [
+    "edgar"
+   ],
+   "year": 2004,
+   "journals": []
+  },
+  "chosen": {
+   "publisher": "Oxford University Press (OUP)",
+   "issue": "5",
+   "DOI": "10.1093/nar/gkh340",
+   "type": "journal-article",
+   "page": "1792-1797",
+   "title": [
+    "MUSCLE: multiple sequence alignment with high accuracy and high throughput"
+   ],
+   "volume": "32",
+   "author": [
+    {
+     "given": "R. C.",
+     "family": "Edgar",
+     "sequence": "first",
+     "affiliation": [],
+     "role": [
+      {
+       "vocabulary": "crossref",
+       "role": "author"
+      }
+     ]
+    }
+   ],
+   "container-title": [
+    "Nucleic Acids Research"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2004,
+      3,
+      8
+     ]
+    ]
+   },
+   "_score": 13.0
+  },
+  "top": [
+   {
+    "DOI": "10.1093/nar/gkh340",
+    "t": "MUSCLE: multiple sequence alignment with high accuracy and high throughput",
+    "y": 2004,
+    "j": "Nucleic Acids Research",
+    "sc": 13.0
+   },
+   {
+    "DOI": "10.1186/1471-2105-5-113",
+    "t": "MUSCLE: a multiple sequence alignment method with reduced time and space complexity",
+    "y": 2004,
+    "j": "BMC Bioinformatics",
+    "sc": 9.0
+   },
+   {
+    "DOI": "10.1109/csb.2004.1332560",
+    "t": "MUSCLE: multiple sequence alignment with improved accuracy and speed",
+    "y": null,
+    "j": "Proceedings. 2004 IEEE Computational Systems ",
+    "sc": 8.0
+   }
+  ]
+ },
+ "phyml": {
+  "entry": {
+   "key": "phyml",
+   "q": "New algorithms and methods to estimate maximum-likelihood phylogenies assessing the performance of PhyML 3.0",
+   "title_words": "new algorithms methods estimate maximum likelihood phylogenies PhyML",
+   "authors": [
+    "guindon"
+   ],
+   "year": 2010,
+   "journals": []
+  },
+  "chosen": null,
+  "top": []
+ }
+}

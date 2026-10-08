@@ -1,0 +1,58 @@
+# ---- simulation output (large, regenerable) ----
+results/**
+!results/**/summary.csv
+!results/**/README.md
+logs/
+work/
+scratch/
+*.fa
+*.fasta
+*.phy
+*.phylip
+*.nex
+*.treefile
+*.contree
+*.ckp.gz
+*.gz
+*.tar
+*.tar.gz
+
+# ---- iqtree / alisim scratch ----
+*.iqtree
+*.log
+!logs/.gitkeep
+*.state
+*.mldist
+*.splits.nex
+*.bionj
+.alisim*
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.env
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# ---- data cache ----
+.cache/
+
+# ---- editors / os ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- keep these despite the rules above ----
+!docs/**
+!refs/**
+!figures/**
+!conf/**

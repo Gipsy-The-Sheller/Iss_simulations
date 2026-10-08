@@ -1,0 +1,34 @@
+xia2003                  known  -> 10.1016/S1055-7903(02)00326-3  
+xia_xie2001              13.5   -> 10.1093/jhered/92.4.371  DAMBE: Software Package for Data Analysis in Molecular Biology and Evo
+xia2013_dambe5           16.5   -> 10.1093/molbev/mst064  DAMBE5: A Comprehensive Software Package for Data Analysis in Molecula
+xia2018_dambe7           15.5   -> 10.1093/molbev/msy073  DAMBE7: New and Improved Tools for Data Analysis in Molecular Biology 
+xia_starless             8.0    -> 10.1101/435412  Starless bias and parameter-estimation bias in the likelihood-based ph
+xia2020_book             9.0    -> 10.1201/9780429425875  A Mathematical Primer of Molecular Phylogenetics
+kubatko_review_xia2020   11.5   -> 10.1093/sysbio/syaa082  Book Review: A Mathematical Primer of Molecular Phylogenetics, by Xuhu
+phypa2016                10.0   -> 10.1016/j.ympev.2016.07.001  PhyPA: Phylogenetic method with pairwise sequence alignment outperform
+struck2008_Cvalue        8.0    -> 10.1016/j.ympev.2008.05.015  Detecting possibly saturated positions in 18S and 28S sequences and th
+kuck_struck2014_bacoca   13.0   -> 10.1016/j.ympev.2013.09.011  BaCoCa – A heuristic software tool for the parallel assessment of sequ
+struck2014_trespex       12.0   -> 10.4137/ebo.s14239  TreSpEx–-Detection of Misleading Signal in Phylogenetic Reconstruction
+jermiin_misof2020        10.0   -> 10.1101/2020.01.03.894097  Measuring Historical and Compositional Signals in Phylogenetic Data
+fleming_struck2023_nrcfv 15.0   -> 10.1186/s12859-023-05270-8  nRCFV: a new, dataset-size-independent metric to quantify compositiona
+struck2024_saturation    1.0    -> 10.1101/729103  Six-state amino acid recoding is not an effective strategy to offset t
+satute2025               7.5    -> 10.1093/molbev/msaf090  When the Past Fades: Detecting Phylogenetic Signal with SatuTe
+duchene2021_phylomad     6.0    -> 10.1093/sysbio/syy048  Phylodynamic Model Adequacy Using Posterior Predictive Simulations
+duchene2018_phylomad_soft 5.0    -> 10.1093/bioinformatics/bty103  PhyloMAd: efficient assessment of phylogenomic model adequacy
+townsend2007_pi          10.5   -> 10.1080/10635150701311362  Profiling Phylogenetic Informativeness
+verbruggen2007           7.5    -> 10.1016/j.ympev.2007.04.016  Molecular phylogeny of the Siphonocladales (Chlorophyta: Cladophorophy
+bmcevolbiol2011_rrna     6.5    -> 10.1186/1471-2148-11-17  Site-specific time heterogeneity of the substitution process and its i
+amb_apriori_review       5.5    -> 10.1186/s13015-014-0022-4  A priori assessment of data quality in molecular phylogenetics
+robust_phylogenetics2025 0.0    -> 10.1017/9781316882313.010  Statistical Gene Tree Estimation Methods
+iqtree2                  14.5   -> 10.1093/molbev/msaa015  IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference
+alisim                   15.0   -> 10.1093/molbev/msac092  AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the G
+paml4                    12.5   -> 10.1093/molbev/msm088  PAML 4: Phylogenetic Analysis by Maximum Likelihood
+phylobayes               8.0    -> 10.1093/bioinformatics/btp368  PhyloBayes 3: a Bayesian software package for phylogenetic reconstruct
+beast1.10                11.0   -> 10.1093/ve/vey016  Bayesian phylogenetic and phylodynamic data integration using BEAST 1.
+treetime                 10.0   -> 10.1093/ve/vex042  TreeTime: Maximum-likelihood phylodynamic analysis
+nextstrain               11.0   -> 10.1093/bioinformatics/bty407  Nextstrain: real-time tracking of pathogen evolution
+trad_xia                 5.0    -> 10.3390/v15030684  Rooting and Dating Large SARS-CoV-2 Trees by Modeling Evolutionary Rat
+mbe40th                  3.5    -> 10.1093/molbev/msae102  40th Anniversary Virtual Issues: Evolutionary Impacts of Endosymbiosis
+mafft                    11.0   -> 10.1093/molbev/mst010  MAFFT Multiple Sequence Alignment Software Version 7: Improvements in 
+muscle                   13.0   -> 10.1093/nar/gkh340  MUSCLE: multiple sequence alignment with high accuracy and high throug
+phyml                    NONE   -> -  *** NOT FOUND ***

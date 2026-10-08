@@ -1,0 +1,222 @@
+=== PAGE 1 ===
+From Iss to I-distance: Quantifying DNA Evolution with Information Theory 
+ 
+Zhi-Jie Xu 
+College of Biological Science & Medical Engineering, Donghua University, Shanghai 
+201620, People’s Republic of China. e-mail. zjxmolls@mail.dhu.edu.cn 
+ 
+Abstract. The DNA evolutionary process is traditionally inferred by evaluating certain 
+substitution models for homologous sequences, which is often computationally intensive and 
+black-box. Here, we report that the Information-based index of substitution saturation (Iss), 
+conventionally used as a mere index for substitution saturation diagnosis, in fact is a universal 
+informational-theoretic ruler for genetic divergence. Through extensive evolutionary 
+simulations, we demonstrate that Iss exhibits a precise, model-dependent relationship with p-
+distance, effectively decoding the hidden evolutionary signature embedded within sequence 
+alignments. Consequently, we repurpose Iss from a saturation watchdog into a powerful and 
+model-agnostic statistics and purpose for a new name, informational distance (abbr. i-distance). 
+Furthermore, we show that a combined use of i-distance and traditional statistics can directly 
+distinguish evolutionary models (e.g., JC69, K2P, GTR), diagnose topology biases, and even 
+signal the presence of mixed evolutionary processes. This discovery bridges information theory, 
+statistics, and molecular phylogenetics, laying the foundation for a new paradigm, 
+Informational Molecular Evolution, that allows for the visual and quantitative dissection of 
+evolutionary forces directly from sequence data. 
+ 
+Keywords. Molecular phylogenetics, molecular evolution, information theory, informational 
+distance, evolutionary simulation, substitution saturation. 
+ 
+Introduction 
+Unraveling the history and mechanisms of molecular evolution relies on comparing 
+homologous sequence alignments. In the past 60 years’ development of computational 
+molecular evolution, the only path of this effort is the selection of an appropriate substitution 
+model, which is inherently a statistical model-fitting problem. Current approaches, based on 
+likelihood maximization and information criteria, or the Markov Chain Monte Carlo, while 
+powerful, operate as "black boxes". While outputting a best-fit model, they offer limited 
+intuitive insight into why that model best fits or how the evolutionary process visibly manifests 
+in the data. Moreover, the analysis of saturated sequences remains a big challenge, as standard 
+genetic distance estimates become indeterminate or completely invalid facing saturated 
+alignments. 
+The Index of substitution saturation (Iss) statistic, introduced by Xia et al.[1, 2] in 2003, was 
+designed to address the latter problem. It measures the degree of saturation by comparing the 
+average informational entropy of observed substitutions (Hm) to the maximum possible 
+entropy of the observed base (Hfss). For over two decades, its utility has only been confined to 
+a simple decision: whether sequences are too saturated for reliable phylogenetic inference. The 
+critical value for this decision (Iss.c) is derived from complex simulations, making the function 
+hard to reproduce and underlying richness of Iss overlooked. 
+
+=== PAGE 2 ===
+In this work, we demonstrate that this conventional view represents a profound underutilization 
+of the Iss statistic. We show that Iss is not merely a gatekeeper but a versatile informational-
+theoretic descriptor of sequence polymorphism relevant to multiple variables of the substitution 
+process. This redefinition unlocks an entirely new suite of its applications, transforming Iss 
+into a powerful and intuitive tool for diagnosing multiple perspectives of the very evolutionary 
+processes that traditional methods seek to model. 
+ 
+Results 
+ 
+1. Establishing the Fundamental Behavior of Iss 
+We began by systematically replicating and extending the original framework for calculating 
+Iss.c. Large-scale simulations were automatically completed under various models (JC69, K2P, 
+F81, F84, HKY85, TN93, GTR), model rate and base frequency parameters, gamma 
+distribution parameters, tree topologies, and branch lengths, with their Iss values automatically 
+calculated. We noticed that Iss can be influenced by all variables in our simulations, and 
+monotonically increases to tree lengths (Figure 1), and an amazing pattern emerged: Under 
+same tree topologies and other model parameters, the median of Iss distribution is irrelevant to 
+sequence lengths, but increases with the growth of tree lengths, while its deviation narrows 
+with the increase of sequence lengths (Figure 2A). What is even better, across all models, Iss 
+formed a smooth, continuous curve when plotted against the mean p-distance of the 4-sequence 
+set (Figure 2B). This robust, monotonic relationship revealed that Iss is a precise proxy for 
+genetic divergence, a role far exceeding its original binary saturation-detection purpose. 
+When in 2-sequence case, each site’s entropy is restricted to zero (same bases) or one (divergent 
+bases), indicating the degeneration of Hm to the common pairwise p-distance (Figure 3B), 
+while the base-frequency information included in Hfss makes the scatter points of Iss rising a 
+bit when base frequencies are unequal (Figure 3A), despite its general strong correlation to 
+pairwise p-distance. This is also observed in our simulation. 
+It is worth noting that by definition, Iss is lower than one in an ideal situation, but its systematic 
+variation, as deducted by Xia’s work, may let it be beyond this limit when being observed. 
+ 
+2. Unveiling the Dual Nature of Iss: An Informational-Theoretic Measure of DNA 
+polymorphism 
+We discovered that the point of maximum saturation (Iss = 1) corresponds precisely to the 
+theoretical maximum p-distance under a given model (e.g., ~0.75 for JC69), which can also be 
+deducted with the Markov chain steady states of base frequencies. This critical finding bridges 
+the informational-theoretic definition of Iss with the statistical concept of p-distance and the 
+steady-state of nucleotide substitution Markov processes. It reveals that Iss encapsulates the 
+same core information—sequence polymorphism—as p-distance, but through a model-latent 
+and informational-theoretic lens. This dual nature explains its fundamental behavior and 
+provides a theoretical anchor for its application. 
+ 
+3. Decoding the Hidden Layer: Iss as a Reservoir of Evolutionary Information and 
+Model-Specific Signatures 
+Having established Iss's model-decoding capacity, we now redefine it as Informational distance 
+
+=== PAGE 3 ===
+(i-distance), a term better fitting its role as an evolutionary divergence measure. We 
+hypothesized that if i-distance captures divergence, its relationship with p-distance might be 
+shaped by the underlying evolutionary model. We decomposed the p-distance into its 
+constituent components (e.g., transition vs. transversion p-distance for K2P; all six 
+substitution-type distances for more complex models, e.g. GTR). Plotting i-distance against 
+these components revealed model-specific fingerprints: nearly identical trajectories for JC69, 
+two distinct clusters for K2P, and six unique trajectories for an unconstrained GTR model 
+(Figure 4). 
+ 
+Furthermore, Xia’s work revealed that Iss.c is sensitive to tree topology, with asymmetric 
+topologies having lower Iss.c value than symmetric ones, indicating that Iss itself may be 
+impacted by tree topology. Our work further proved that asymmetric trees yield systematically 
+higher Iss values than symmetric trees of equal total length, revealing a previously hidden 
+signature of evolutionary history. 
+ 
+Discussion 
+We have demonstrated that the Iss statistic is a rich, information-theoretic measure of 
+evolutionary divergence, not a simple threshold. This redefinition transforms it from a simple 
+tool into a core diagnostic for molecular evolution with great empirical potential. The ability 
+to visually distinguish between evolutionary models and to detect heterogeneity directly from 
+Iss-p plots indicates a paradigm shift from only black-box model-fitting to its collaboration 
+with transparent model-diagnosis. Also, we propose renaming the Iss statistic as ‘Informational 
+distance’ (i-distance) to better reflect its role as an information-theoretical measure of DNA 
+polymorphism and sequence divergence, corresponding to proportional distance (p-distance). 
+This work bridges the fields of information theory, statistics, and evolutionary biology. The Iss 
+statistic acts as a translator, converting the statistical patterns of sequence alignment into 
+informational terms, which we show are exquisitely sensitive to the parameters and processes 
+of evolution. 
+We propose that these findings establish the foundation for a new sub-discipline: Informational 
+Molecular Evolution. This framework leverages information-theoretic[3] quantities to directly 
+visualize, quantify, and diagnose evolutionary forces. Future applications are vast, including 
+illuminating topological biases, resolving recombination and hybrids, analyzing saturated 
+sequences, and developing information-based distance metrics immune to overflow. By 
+looking at sequences through this new perspective, we gain an intuitive, powerful, and 
+fundamentally different way to understand the molecular evolutionary process. 
+We argue that this new paradigm must be bipedal, supported by its left and right arms: the basic 
+statistics of information theory and the generative power of evolutionary simulation. In an era 
+of abundant computing power, the path forward can be fully empirical: simulate under 
+hypothesis, and compare the informational statistics of simulated outcomes to real data. This 
+is the core of a powerful new hypothesis-testing framework. By looking at sequences through 
+this informational lens, we gain an intuitive and profoundly different way to understand 
+molecular evolution. 
+ 
+Methods 
+
+=== PAGE 4 ===
+Large-scale simulations were performed using Evolver in PAML v4.10.7[4] to generate 
+sequence alignments under multiple models (JC69, K2P, HKY, F81, F84, TN93, GTR[5]), 
+gamma distributions, tree topologies (symmetric or asymmetric), and branch lengths, with the 
+Iss statistic and p-distances calculated according to the definition in Xia et al. in a custom 
+Python pipeline. All analysis code, simulation scripts, and plotting routines are available on 
+Github. The heatmap was generated with matplotlib’s imshow function, and other plots in this 
+work were generated with plotnine in Python.  
+ 
+Data Avaliability 
+All source codes of python scripts are available on the Github depository: 
+https://github.com/Gipsy-The-Sheller/Iss-simulation-scripts. 
+The TAR packages of all simulation results , vector graphs of individual plots (in SVG format) 
+and partial corresponding bitmaps (in PNG format) are available on Zenodo via DOI: 
+https://doi.org/10.5281/zenodo.17071721. 
+ 
+Acknowledgements 
+I sincerely thank Prof. Xu-Hua Xia (University of Ottawa, Canada) for his foundational, 
+prospective and inspiring work on substitution saturation testing. 
+ 
+ 
+
+=== PAGE 5 ===
+ 
+Figure 1: Iss can be impacted by various evolutionary variables. 
+Line charts were plotted by plotting Iss median values of single simulations versus tree lengths, 
+under a 4-leaf symmetric topology.  
+ 
+ 
+ 
+
+=== PAGE 6 ===
+ 
+ 
+Figure 2: Iss is an information-theoretic measure of DNA polymorphism. 
+A. Heatmap of Iss values from simulations under HKY85 model and both symmetric and 
+asymmetric topologies, showing a smooth gradient of with increasing sequence length (y-axis) 
+and increasing tree length (x-axis). 
+B. Scatter plot of Iss versus mean p-distance for sequences evolved under JC69 model. Above 
+is a schematic diagram of JC69 Markov chain and the relationship between JC69 distance and 
+p-distance. 
+ 
+ 
+
+=== PAGE 7 ===
+ 
+Figure 3: Behavior of Iss and Hm vs p-distance curves when the number of sequences is 
+two under JC69 model. 
+A. pairwise Iss vs pairwise p-distances. 
+B. pairwise Hm is equal to pairwise p-distances. 
+ 
+ 
+
+=== PAGE 8 ===
+ 
+Figure 4: I-distance (informational distance, evolved from Iss) decodes evolutionary 
+model signatures. 
+left. I-distance vs. 6 p-distances of different substitutions under JC69, K80 and GTR model. 
+middle. I-distance vs. overall mean p-distances. Vertical auxiliary lines show expected p-
+distances of fully saturated sequences based on stationary base frequencies of models’ Markov 
+chains. 
+right. PCA plot based on mean I-distance and p-distance values for different substitution types, 
+with transitions marked as blue points and transversions marked as green points, and partial 
+substitution rate matrix of model parameters used in simulations. 
+ 
+ 
+
+=== PAGE 9 ===
+References 
+ 
+1. 
+Xia, X., et al., An index of substitution saturation and its application. Molecular 
+phylogenetics and evolution, 2003. 26: p. 1-7. 
+2. 
+Xia, X. and P. Lemey, Assesing substitution saturation with DAMBE. 2009. p. 611-626. 
+3. 
+Shannon, C.E., A mathematical theory of communication. The Bell System Technical 
+Journal, 1948. 27(3): p. 379-423. 
+4. 
+Yang, Z., PAML: A program package for phylogenetic analysis by maximum likelihood. 
+Computer applications in the biosciences : CABIOS, 1997. 13: p. 555-6. 
+5. 
+Tavaré, S., Some Probabilistic and Statistical Problems in the Analysis of DNA 
+Sequences. Lect Math Life Sci, 1985. 17. 
+ 

@@ -1,0 +1,43 @@
+==============================================================================
+I. Which Gamma discretisation did the note use?  target E[e^{-4tr/3}]
+==============================================================================
+ alpha      t continuous      k4-mean    k4-median     k4-midpt     note k=4
+  0.50   0.50    0.65465      0.63684      0.62705          nan      0.62705
+        k=64 mean 0.65454   k=64 median 0.65279   (note k=64: see table 2.6)
+  1.00   2.00    0.27273      0.26143      0.24807          nan      0.24807
+        k=64 mean 0.27268   k=64 median 0.27163   (note k=64: see table 2.6)
+  4.00   2.00    0.12960      0.12272      0.11510          nan      0.11510
+        k=64 mean 0.12951   k=64 median 0.12892   (note k=64: see table 2.6)
+  note's k=1024 values (0.65453 / 0.27266 / 0.12957) vs continuous (0.65465 / 0.27273 / 0.12960):
+    a=0.5 t=0.5  cont=0.65465  k1024-mean=0.65465  k1024-median=0.65453
+    a=1.0 t=2.0  cont=0.27273  k1024-mean=0.27273  k1024-median=0.27266
+    a=4.0 t=2.0  cont=0.12960  k1024-mean=0.12960  k1024-median=0.12957
+
+==============================================================================
+II. Star N=16, alpha=1: which Gamma4 reproduces the note's 'exact' column?
+==============================================================================
+     d   note exact      k4-mean    k4-median   continuous
+   0.2       0.3450       0.3394       0.3450       0.3260
+   0.8       0.6579       0.6453       0.6579       0.6251
+   3.2       0.8581       0.8519       0.8581       0.8178
+
+==============================================================================
+III. Affine identity, tested ALGEBRAICALLY on  X=<trP>-1  vs  pbar
+     (avoids the O(N^-2) Taylor noise of the exact E[Iss])
+==============================================================================
+  pi uniform, JC69/F81 (kappa=1)             slope= -4.0000 int=  3.0000  max|res|=1.11e-15  R2=1.00000000
+  pi uniform, kappa=5       -> expect EXACT line slope= -4.0000 int=  3.0000  max|res|=1.33e-15  R2=1.00000000
+  pi uniform, kappa=20      -> expect EXACT line slope= -4.0000 int=  3.0000  max|res|=6.66e-16  R2=1.00000000
+  pi skewed, kappa=1 (F81)  -> expect EXACT line slope= -4.2254 int=  3.0000  max|res|=1.11e-15  R2=1.00000000
+  pi skewed, kappa=5        -> expect CURVE  slope= -4.2424 int=  2.9677  max|res|=4.66e-02  R2=0.99932106
+  pi skewed, kappa=20       -> expect CURVE  slope= -4.3522 int=  2.9581  max|res|=1.01e-01  R2=0.99810544
+
+==============================================================================
+IV. Gumbel fit of the note's Table 3.4 -> TL_c and the multipliers
+==============================================================================
+  homog  gumbel a=21.488 b=41.613  TLc=-24.17  (SSE=0.6264)  linear-interp=6.73
+  a=4    gumbel a=23.672 b=25.523  TLc=-4.33  (SSE=0.4043)  linear-interp=8.97
+  a=1    gumbel a=56.970 b=41.987  TLc=10.90  (SSE=0.1214)  linear-interp=26.28
+  a=0.5  gumbel a=215.771 b=79.873  TLc=128.14  (SSE=0.0001)  linear-interp=128.00
+  ratios to homogeneous: a=4 0.18x   a=1 -0.45x   a=0.5 -5.30x
+  note claims 1.4x / 2.8x / 18x

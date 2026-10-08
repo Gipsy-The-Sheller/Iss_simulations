@@ -1,0 +1,569 @@
+; refs_iss.ris -- 由 verify/make_refs.py 从 Crossref 自动生成，请勿手改。
+; 覆盖两份 .md 中点名的全部文献。抓取日期 2026-10-08。
+
+
+; ======================= A 核心对象：Xia / DAMBE =======================
+
+TY  - JOUR
+AU  - Xia, Xuhua
+AU  - Xie, Zheng
+AU  - Salemi, Marco
+AU  - Chen, Lu
+AU  - Wang, Yong
+TI  - An index of substitution saturation and its application
+VL  - 26
+IS  - 1
+SP  - 1
+EP  - 7
+PY  - 2003
+PB  - Elsevier BV
+DO  - 10.1016/S1055-7903(02)00326-3
+UR  - https://doi.org/10.1016/s1055-7903(02)00326-3
+N1  - 批判对象原文。汇总 §1.2、记录 §1  [xia2003iss]
+ER  - 
+TY  - JOUR
+AU  - Xia, X.
+TI  - DAMBE: Software Package for Data Analysis in Molecular Biology and Evolution
+VL  - 92
+IS  - 4
+SP  - 371
+EP  - 373
+PY  - 2001
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/jhered/92.4.371
+UR  - https://doi.org/10.1093/jhered/92.4.371
+N1  - DAMBE 初版；记录 §8 被引量  [xia2001dambe]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - DAMBE5: A Comprehensive Software Package for Data Analysis in Molecular Biology and Evolution
+VL  - 30
+IS  - 7
+SP  - 1720
+EP  - 1728
+PY  - 2013
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/mst064
+UR  - https://doi.org/10.1093/molbev/mst064
+N1  - DAMBE5；记录 §8  [xia2013dambe5]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - DAMBE7: New and Improved Tools for Data Analysis in Molecular Biology and Evolution
+VL  - 35
+IS  - 6
+SP  - 1550
+EP  - 1552
+PY  - 2018
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msy073
+UR  - https://doi.org/10.1093/molbev/msy073
+N1  - DAMBE7；记录 §8  [xia2018dambe7]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - Starless bias and parameter-estimation bias in the likelihood-based phylogenetic method
+VL  - 05
+IS  - 04
+SP  - 212
+EP  - 223
+PY  - 2018
+PB  - Georg Thieme Verlag KG
+DO  - 10.3934/genet.2018.4.212
+UR  - https://doi.org/10.3934/genet.2018.4.212
+N1  - starless bias；汇总 §3.6、记录 §3.3（α 与拓扑强混淆）  [xia2018starless]
+ER  - 
+TY  - GEN
+AU  - Xia, Xuhua
+TI  - A Mathematical Primer of Molecular Phylogenetics
+PY  - 2020
+PB  - Apple Academic Press
+DO  - 10.1201/9780429425875
+UR  - https://doi.org/10.1201/9780429425875
+N1  - Xia 教科书；记录 §8  [xia2020primer]
+ER  - 
+TY  - JOUR
+AU  - Kubatko, Laura
+TI  - Book Review: A Mathematical Primer of Molecular Phylogenetics, by Xuhua Xia
+VL  - 70
+IS  - 2
+SP  - 408
+EP  - 411
+PY  - 2020
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/sysbio/syaa082
+UR  - https://doi.org/10.1093/sysbio/syaa082
+N1  - Kubatko 书评；记录 §8  [kubatko2021review]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - PhyPA: Phylogenetic method with pairwise sequence alignment outperforms likelihood methods in phylogenetics involving highly diverged sequences
+VL  - 102
+SP  - 331
+EP  - 343
+PY  - 2016
+PB  - Elsevier BV
+DO  - 10.1016/j.ympev.2016.07.001
+UR  - https://doi.org/10.1016/j.ympev.2016.07.001
+N1  - PhyPA；记录 §8（无第三方评测）  [xia2016phypa]
+ER  - 
+
+; ======================= B 替代与对照诊断量 =======================
+
+TY  - JOUR
+AU  - Struck, Torsten H.
+AU  - Nesnidal, Maximilian P.
+AU  - Purschke, Günter
+AU  - Halanych, Kenneth M.
+TI  - Detecting possibly saturated positions in 18S and 28S sequences and their influence on phylogenetic reconstruction of Annelida (Lophotrochozoa)
+VL  - 48
+IS  - 2
+SP  - 628
+EP  - 645
+PY  - 2008
+PB  - Elsevier BV
+DO  - 10.1016/j.ympev.2008.05.015
+UR  - https://doi.org/10.1016/j.ympev.2008.05.015
+N1  - C 值原始文献；汇总 §8.1  [struck2008cfactor]
+ER  - 
+TY  - JOUR
+AU  - Kück, Patrick
+AU  - Struck, Torsten H.
+TI  - BaCoCa – A heuristic software tool for the parallel assessment of sequence biases in hundreds of gene and taxon partitions
+VL  - 70
+SP  - 94
+EP  - 98
+PY  - 2014
+PB  - Elsevier BV
+DO  - 10.1016/j.ympev.2013.09.011
+UR  - https://doi.org/10.1016/j.ympev.2013.09.011
+N1  - BaCoCa 实现；汇总 §8.1、§10.2  [kuck2014bacoca]
+ER  - 
+TY  - JOUR
+AU  - Struck, Torsten H.
+TI  - TreSpEx–-Detection of Misleading Signal in Phylogenetic Reconstructions Based on Tree Information
+VL  - 10
+SP  - EBO.S14239
+PY  - 2014
+PB  - SAGE Publications
+DO  - 10.4137/EBO.S14239
+UR  - https://doi.org/10.4137/ebo.s14239
+N1  - TreSpEx；汇总 §10.2  [struck2014trespex]
+ER  - 
+TY  - UNPB
+AU  - Jermiin, Lars S
+AU  - Misof, Bernhard
+TI  - Measuring Historical and Compositional Signals in Phylogenetic Data
+PY  - 2020
+PB  - openRxiv
+DO  - 10.1101/2020.01.03.894097
+UR  - https://doi.org/10.1101/2020.01.03.894097
+N1  - λ 历史信号/组成距离；汇总 §8.2、§11.7（注：仅 bioRxiv 预印本）  [jermiin2020signal]
+ER  - 
+TY  - JOUR
+AU  - Fleming, James F.
+AU  - Struck, Torsten H.
+TI  - nRCFV: a new, dataset-size-independent metric to quantify compositional heterogeneity in nucleotide and amino acid datasets
+VL  - 24
+IS  - 1
+SP  - 145
+PY  - 2023
+PB  - Springer Science and Business Media LLC
+DO  - 10.1186/s12859-023-05270-8
+UR  - https://doi.org/10.1186/s12859-023-05270-8
+N1  - nRCFV；汇总 §11.7、记录 §2.3  [fleming2023nrcfv]
+ER  - 
+TY  - JOUR
+AU  - Manuel, Cassius
+AU  - Sakalli, Enes
+AU  - Schmidt, Heiko A
+AU  - Viñas, Carme
+AU  - von Haeseler, Arndt
+AU  - Elgert, Christiane
+TI  - When the Past Fades: Detecting Phylogenetic Signal with SatuTe
+VL  - 42
+IS  - 5
+SP  - msaf090
+PY  - 2025
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msaf090
+UR  - https://doi.org/10.1093/molbev/msaf090
+N1  - SatuTe；汇总 §9.1（分支级饱和检验，本文正面落点）  [manuel2025satute]
+ER  - 
+TY  - JOUR
+AU  - Duchêne, David A
+AU  - Mather, Niklas
+AU  - Van Der Wal, Cara
+AU  - Ho, Simon Y W
+TI  - Excluding Loci With Substitution Saturation Improves Inferences From Phylogenomic Data
+VL  - 71
+IS  - 3
+SP  - 676
+EP  - 689
+PY  - 2021
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/sysbio/syab075
+UR  - https://doi.org/10.1093/sysbio/syab075
+N1  - 汇总 §10.3、§11.7 —— 对 √N 与 L 回归，模拟按'长树长'操作化饱和  [duchene2021saturation]
+ER  - 
+TY  - JOUR
+AU  - Duchêne, David A
+AU  - Duchêne, Sebastian
+AU  - Ho, Simon Y W
+TI  - PhyloMAd: efficient assessment of phylogenomic model adequacy
+VL  - 34
+IS  - 13
+SP  - 2300
+EP  - 2301
+PY  - 2018
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/bioinformatics/bty103
+UR  - https://doi.org/10.1093/bioinformatics/bty103
+N1  - PhyloMAd 软件论文；汇总 §7、§9.1  [duchene2018phylomad]
+ER  - 
+TY  - JOUR
+AU  - Townsend, Jeffrey P.
+TI  - Profiling Phylogenetic Informativeness
+VL  - 56
+IS  - 2
+SP  - 222
+EP  - 231
+PY  - 2007
+PB  - Oxford University Press (OUP)
+DO  - 10.1080/10635150701311362
+UR  - https://doi.org/10.1080/10635150701311362
+N1  - phylogenetic informativeness；记录 §7 替代方案表  [townsend2007pi]
+ER  - 
+
+; ======================= C 先例与相关综述 =======================
+
+TY  - JOUR
+AU  - Verbruggen, Heroen
+AU  - Leliaert, Frederik
+AU  - Maggs, Christine A.
+AU  - Shimada, Satoshi
+AU  - Schils, Tom
+AU  - Provan, Jim
+AU  - Booth, David
+AU  - Murphy, Sue
+AU  - De Clerck, Olivier
+AU  - Littler, Diane S.
+AU  - Littler, Mark M.
+AU  - Coppejans, Eric
+TI  - Species boundaries and phylogenetic relationships within the green algal genus Codium (Bryopsidales) based on plastid DNA sequences
+VL  - 44
+IS  - 1
+SP  - 240
+EP  - 254
+PY  - 2007
+PB  - Elsevier BV
+DO  - 10.1016/j.ympev.2007.01.009
+UR  - https://doi.org/10.1016/j.ympev.2007.01.009
+N1  - 汇总 §3.1、§11.7 —— Iss.c 依赖 taxa 数与 L、无法制表  [verbruggen2007codium]
+ER  - 
+TY  - JOUR
+AU  - Letsch, Harald O
+AU  - Kjer, Karl M
+TI  - Potential pitfalls of modelling ribosomal RNA data in phylogenetic tree reconstruction: Evidence from case studies in the Metazoa
+VL  - 11
+IS  - 1
+SP  - 146
+PY  - 2011
+PB  - Springer Science and Business Media LLC
+DO  - 10.1186/1471-2148-11-146
+UR  - https://doi.org/10.1186/1471-2148-11-146
+N1  - 汇总 §11.7 —— 饱和非位点固有属性，取决于系统发育层级  [letsch2011rrna]
+ER  - 
+TY  - JOUR
+AU  - Misof, Bernhard
+AU  - Meusemann, Karen
+AU  - von Reumont, Björn M
+AU  - Kück, Patrick
+AU  - Prohaska, Sonja J
+AU  - Stadler, Peter F
+TI  - A priori assessment of data quality in molecular phylogenetics
+VL  - 9
+IS  - 1
+SP  - 22
+PY  - 2014
+PB  - Springer Science and Business Media LLC
+DO  - 10.1186/s13015-014-0022-4
+UR  - https://doi.org/10.1186/s13015-014-0022-4
+N1  - 汇总 §9.4 —— 同塑性检测不得预设待推导的树  [amb2014apriori]
+ER  - 
+TY  - UNPB
+AU  - Liu, Qin
+AU  - Minh, Bui Quang
+AU  - Lanfear, Robert
+AU  - Charleston, Michael A.
+AU  - Richards, Shane A.
+AU  - Holland, Barbara R.
+TI  - Robust Phylogenetics
+PY  - 2025
+PB  - openRxiv
+DO  - 10.1101/2025.04.01.646540
+UR  - https://doi.org/10.1101/2025.04.01.646540
+N1  - 汇总 §9.4 —— 树依赖方法的循环性  [liu2025robustphylo]
+ER  - 
+TY  - UNPB
+TI  - The Substitution Saturation Threshold: Phylogenetic Signal Becomes Unrecoverable Beyond 0.8 Substitutions Per Site for Protein-Coding Genes
+PY  - 2026
+PB  - clawRxiv
+UR  - https://www.clawrxiv.io/abs/2604.01176
+N1  - 汇总 §11.7、记录 §9 —— 非主流预印本平台，无 DOI [clawrxiv260401176]
+ER  - 
+TY  - JOUR
+AU  - Russo, Claudia A M
+AU  - Eyre-Walker, Adam
+AU  - Katz, Laura A
+AU  - Gaut, Brandon S
+TI  - Forty Years of Inferential Methods in the Journals of the Society for Molecular Biology and Evolution
+VL  - 41
+IS  - 1
+SP  - msad264
+PY  - 2024
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msad264
+UR  - https://doi.org/10.1093/molbev/msad264
+N1  - 记录 §8 —— DAMBE 与 PAML/IQ-TREE/SEAVIEW 并列的出处  [russo2024forty]
+ER  - 
+
+; ======================= D 软件与工具 =======================
+
+TY  - JOUR
+AU  - Minh, Bui Quang
+AU  - Schmidt, Heiko A
+AU  - Chernomor, Olga
+AU  - Schrempf, Dominik
+AU  - Woodhams, Michael D
+AU  - von Haeseler, Arndt
+AU  - Lanfear, Robert
+TI  - IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in the Genomic Era
+VL  - 37
+IS  - 5
+SP  - 1530
+EP  - 1534
+PY  - 2020
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msaa015
+UR  - https://doi.org/10.1093/molbev/msaa015
+N1  - 汇总 §11.8 推断引擎  [minh2020iqtree2]
+ER  - 
+TY  - JOUR
+AU  - Ly-Trong, Nhan
+AU  - Naser-Khdour, Suha
+AU  - Lanfear, Robert
+AU  - Minh, Bui Quang
+TI  - AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era
+VL  - 39
+IS  - 5
+SP  - msac092
+PY  - 2022
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msac092
+UR  - https://doi.org/10.1093/molbev/msac092
+N1  - 汇总 §11.8 模拟引擎（确定性种子）  [lytrong2022alisim]
+ER  - 
+TY  - JOUR
+AU  - Yang, Z.
+TI  - PAML 4: Phylogenetic Analysis by Maximum Likelihood
+VL  - 24
+IS  - 8
+SP  - 1586
+EP  - 1591
+PY  - 2007
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/msm088
+UR  - https://doi.org/10.1093/molbev/msm088
+N1  - 汇总 §1.4 EVOLVER / PAML  [yang2007paml4]
+ER  - 
+TY  - JOUR
+AU  - Lartillot, Nicolas
+AU  - Lepage, Thomas
+AU  - Blanquart, Samuel
+TI  - PhyloBayes 3: a Bayesian software package for phylogenetic reconstruction and molecular dating
+VL  - 25
+IS  - 17
+SP  - 2286
+EP  - 2288
+PY  - 2009
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/bioinformatics/btp368
+UR  - https://doi.org/10.1093/bioinformatics/btp368
+N1  - 记录 §7 后验预测检验  [lartillot2009phylobayes]
+ER  - 
+TY  - JOUR
+AU  - Suchard, Marc A
+AU  - Lemey, Philippe
+AU  - Baele, Guy
+AU  - Ayres, Daniel L
+AU  - Drummond, Alexei J
+AU  - Rambaut, Andrew
+TI  - Bayesian phylogenetic and phylodynamic data integration using BEAST 1.10
+VL  - 4
+IS  - 1
+PY  - 2018
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/ve/vey016
+UR  - https://doi.org/10.1093/ve/vey016
+N1  - 记录 §8 病毒定年生态  [suchard2018beast]
+ER  - 
+TY  - JOUR
+AU  - Sagulenko, Pavel
+AU  - Puller, Vadim
+AU  - Neher, Richard A
+TI  - TreeTime: Maximum-likelihood phylodynamic analysis
+VL  - 4
+IS  - 1
+PY  - 2018
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/ve/vex042
+UR  - https://doi.org/10.1093/ve/vex042
+N1  - 记录 §8 病毒定年生态  [sagulenko2018treetime]
+ER  - 
+TY  - JOUR
+AU  - Hadfield, James
+AU  - Megill, Colin
+AU  - Bell, Sidney M
+AU  - Huddleston, John
+AU  - Potter, Barney
+AU  - Callender, Charlton
+AU  - Sagulenko, Pavel
+AU  - Bedford, Trevor
+AU  - Neher, Richard A
+TI  - Nextstrain: real-time tracking of pathogen evolution
+VL  - 34
+IS  - 23
+SP  - 4121
+EP  - 4123
+PY  - 2018
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/bioinformatics/bty407
+UR  - https://doi.org/10.1093/bioinformatics/bty407
+N1  - 记录 §8 病毒定年生态  [hadfield2018nextstrain]
+ER  - 
+TY  - JOUR
+AU  - Guindon, Stéphane
+AU  - Dufayard, Jean-François
+AU  - Lefort, Vincent
+AU  - Anisimova, Maria
+AU  - Hordijk, Wim
+AU  - Gascuel, Olivier
+TI  - New Algorithms and Methods to Estimate Maximum-Likelihood Phylogenies: Assessing the Performance of PhyML 3.0
+VL  - 59
+IS  - 3
+SP  - 307
+EP  - 321
+PY  - 2010
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/sysbio/syq010
+UR  - https://doi.org/10.1093/sysbio/syq010
+N1  - 汇总 §8 记录 §8 —— DAMBE 建树模块封装对象  [guindon2010phyml]
+ER  - 
+TY  - JOUR
+AU  - Katoh, K.
+AU  - Standley, D. M.
+TI  - MAFFT Multiple Sequence Alignment Software Version 7: Improvements in Performance and Usability
+VL  - 30
+IS  - 4
+SP  - 772
+EP  - 780
+PY  - 2013
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/molbev/mst010
+UR  - https://doi.org/10.1093/molbev/mst010
+N1  - 同上（比对）  [katoh2013mafft]
+ER  - 
+TY  - JOUR
+AU  - Edgar, R. C.
+TI  - MUSCLE: multiple sequence alignment with high accuracy and high throughput
+VL  - 32
+IS  - 5
+SP  - 1792
+EP  - 1797
+PY  - 2004
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/nar/gkh340
+UR  - https://doi.org/10.1093/nar/gkh340
+N1  - 同上（比对）  [edgar2004muscle]
+ER  - 
+
+; ======================= E 病毒定年 (TRAD) =======================
+
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - Dating the Common Ancestor from an NCBI Tree of 83688 High-Quality and Full-Length SARS-CoV-2 Genomes
+VL  - 13
+IS  - 9
+SP  - 1790
+PY  - 2021
+PB  - MDPI AG
+DO  - 10.3390/v13091790
+UR  - https://doi.org/10.3390/v13091790
+N1  - TRAD 原始（恒定速率）；记录 §8  [xia2021trad]
+ER  - 
+TY  - CHAP
+AU  - Xia, Xuhua
+TI  - Improved Method for Rooting and Tip-Dating a Viral Phylogeny
+T2  - Springer Handbooks of Computational Statistics
+SP  - 397
+EP  - 410
+PY  - 2022
+PB  - Springer Berlin Heidelberg
+DO  - 10.1007/978-3-662-65902-1_19
+UR  - https://doi.org/10.1007/978-3-662-65902-1_19
+N1  - TRAD 改进（速率随时间线性）；记录 §8  [xia2022tradimproved]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - Rooting and Dating Large SARS-CoV-2 Trees by Modeling Evolutionary Rate as a Function of Time
+VL  - 15
+IS  - 3
+SP  - 684
+PY  - 2023
+PB  - MDPI AG
+DO  - 10.3390/v15030684
+UR  - https://doi.org/10.3390/v15030684
+N1  - TRAD 应用；记录 §8  [xia2023trad]
+ER  - 
+TY  - JOUR
+AU  - Xia, Xuhua
+TI  - On Rooting and Dating Viral Trees With a Changing Evolutionary Rate Following Host-Switching
+VL  - 17
+IS  - 7
+SP  - evaf134
+PY  - 2025
+PB  - Oxford University Press (OUP)
+DO  - 10.1093/gbe/evaf134
+UR  - https://doi.org/10.1093/gbe/evaf134
+N1  - TRAD 最新（S 形速率，宿主转换）  [xia2025tradhostswitch]
+ER  - 
+
+; ======================= F 补充（核验新增，直接承重） =======================
+
+TY  - CHAP
+AU  - Xia, Xuhua
+AU  - Lemey, Philippe
+TI  - Assessing substitution saturation with DAMBE
+T2  - The Phylogenetic Handbook
+SP  - 615
+EP  - 630
+PY  - 2009
+PB  - Cambridge University Press
+DO  - 10.1017/CBO9780511819049.022
+UR  - https://doi.org/10.1017/cbo9780511819049.022
+N1  - 【补充】Iss.c 的规范引用（The Phylogenetic Handbook 章），两份 md 均未引  [xia2009handbook]
+ER  - 
+TY  - JOUR
+AU  - Yang, Ziheng
+TI  - Maximum likelihood phylogenetic estimation from DNA sequences with variable rates over sites: Approximate methods
+VL  - 39
+IS  - 3
+SP  - 306
+EP  - 314
+PY  - 1994
+PB  - Springer Science and Business Media LLC
+DO  - 10.1007/BF00160154
+UR  - https://doi.org/10.1007/bf00160154
+N1  - 【补充】离散 Γ 的标准等概率均值离散化出处 —— 见核验报告 A1  [yang1994discretegamma]
+ER  - 
