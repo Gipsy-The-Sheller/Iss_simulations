@@ -32,7 +32,7 @@ def star_E_H(N: int, d: float, Q: np.ndarray, pi, rates, weights,
     pi = np.asarray(pi, dtype=float)
     acc = 0.0
     for rc, wc in zip(rates, weights):
-        Pm = P_matrix(Q, rc * d)[0]
+        Pm = P_matrix(Q, rc * d)
         for rho in range(len(pi)):
             acc += pi[rho] * wc * multinomial_entropy(N, Pm[rho], base)
     return float(acc)
@@ -43,7 +43,7 @@ def star_E_H2(N: int, d: float, Q: np.ndarray, pi, rates, weights) -> float:
     pi = np.asarray(pi, dtype=float)
     acc = 0.0
     for rc, wc in zip(rates, weights):
-        Pm = P_matrix(Q, rc * d)[0]
+        Pm = P_matrix(Q, rc * d)
         for rho in range(len(pi)):
             acc += pi[rho] * wc * _multinomial_h2(N, Pm[rho])
     return float(acc)
@@ -105,7 +105,7 @@ def tree_patterns(node: Node, Q: np.ndarray, pi, rates, weights) -> Dict[Tuple[i
 
     out: Dict[Tuple[int, ...], float] = {}
     for rc, wc in zip(rates, weights):
-        Pm = {id(c): P_matrix(Q, rc * c.length)[0] for c in _all_children(node)}
+        Pm = {id(c): P_matrix(Q, rc * c.length) for c in _all_children(node)}
         for pattern in product(range(K), repeat=N):
             p = float(np.dot(pi, recurse(node, pattern, Pm)))
             if p:

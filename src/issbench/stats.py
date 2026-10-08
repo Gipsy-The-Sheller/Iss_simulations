@@ -39,16 +39,25 @@ def site_counts(M: np.ndarray, K: int = 4) -> np.ndarray:
     """(n_sites, K) count matrix; sites containing ambiguity codes are dropped."""
     bad = (M < 0).any(axis=0)
     M = M[:, ~bad]
-    out = np.zeros((M.shape[1], K), dtype=np.int32)
-    for j in range(M.shape[1]):
-        out[j] = np.bincount(M[:, j], minlength=K)
-    return out
+    return np.stack([(M == k).sum(axis=0) for k in range(K)], axis=1).astype(np.int32)
+
+
+def _entropy_matrix(C: np.ndarray, base: str = "nats") -> np.ndarray:
+    """Per-row Shannon entropy of a count matrix, vectorised."""
+    P = C / C.sum(axis=1, keepdims=True)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        T = np.where(P > 0, P * np.log(P), 0.0)
+    if base == "bits":
+        T = T / np.log(2.0)
+    return -T.sum(axis=1)
 
 
 def h_bar(M: np.ndarray, K: int = 4, base: str = "nats") -> float:
-    """Mean per-site entropy H_bar."""
+    """Mean per-site entropy H_bar (vectorised over sites)."""
     C = site_counts(M, K)
-    return float(np.mean([h_from_counts(c, base) for c in C])) if len(C) else float("nan")
+    if len(C) == 0:
+        return float("nan")
+    return float(_entropy_matrix(C, base).mean())
 
 
 def pi_hat(M: np.ndarray, K: int = 4) -> np.ndarray:
@@ -76,12 +85,9 @@ def mean_p_distance(M: np.ndarray) -> float:
     n, L = M.shape
     if n < 2:
         return float("nan")
-    tot, cnt = 0.0, 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            tot += float(np.mean(M[i] != M[j]))
-            cnt += 1
-    return tot / cnt
+    iu = np.triu_indices(n, k=1)
+    diffs = (M[iu[0]] != M[iu[1]]).mean(axis=1)
+    return float(diffs.mean())
 
 
 def c_value(M: np.ndarray) -> float:

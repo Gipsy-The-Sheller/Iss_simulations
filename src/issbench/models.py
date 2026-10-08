@@ -81,9 +81,14 @@ def build_Q(model: ModelName, pi=None, kappa: float = 1.0, **kw) -> np.ndarray:
 
 
 def P_matrix(Q: np.ndarray, t) -> np.ndarray:
-    """Transition matrix at time t, vectorised over t."""
-    t = np.atleast_1d(np.asarray(t, dtype=float))
-    return np.stack([expm(Q * ti) for ti in t]) if t.size > 1 else expm(Q * float(t[0]))
+    """Transition matrix at time t.
+
+    Scalar t -> a (K,K) matrix;  1-D array t -> a (len(t), K, K) stack.
+    """
+    t = np.asarray(t, dtype=float)
+    if t.ndim == 0:
+        return expm(Q * float(t))
+    return np.stack([expm(Q * float(ti)) for ti in t])
 
 
 def spectrum(Q: np.ndarray) -> np.ndarray:
