@@ -9,7 +9,7 @@ tex = (ROOT / "manuscript.tex").read_text(encoding="utf-8")
 bib = (ROOT / "refs" / "refs_iss_clean.bib").read_text(encoding="utf-8")
 
 BS = chr(92)
-BSR = chr(92) * 2   # regex-escaped backslash
+BSR = chr(92) * 2                      # regex-escaped backslash
 keys = set(re.findall(r"^@\w+\{([^,]+),", bib, re.M))
 
 used: set[str] = set()
@@ -19,12 +19,17 @@ for m in re.finditer(BSR + "cite[pt]?\{([^}]*)\}", tex):
 print("cited but missing from bib :", sorted(used - keys) or "none")
 print("bib entries / cited        :", len(keys), "/", len(used))
 print("unused bib entries         :", len(keys - used))
-
 print("brace balance              :", tex.count("{") - tex.count("}"))
 
 body = tex.split(BS + "begin{document}")[1]
-body = re.sub(r"\$[^$]*\$", "", body)          # drop inline math
-body = re.sub(r"%[^\n]*", "", body)            # drop comments
+body = re.sub(r"\$[^$]*\$", "", body)                       # inline math
+for env in ("equation", "align", "gather", "eqnarray", "multline"):
+    for star in ("", "*"):
+        pat = (re.escape(BS + "begin{%s%s}" % (env, star)) + ".*?"
+               + re.escape(BS + "end{%s%s}" % (env, star)))
+        body = re.sub(pat, "", body, flags=re.S)            # display math
+body = re.sub(r"%[^\n]*", "", body)                         # comments
+
 for ch in ("_", "&", "#"):
     hits = [ln for ln in body.split("\n") if ch in ln]
     print(f"unescaped {ch!r}             : {len(hits)} line(s)")
