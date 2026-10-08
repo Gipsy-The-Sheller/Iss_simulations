@@ -9,7 +9,9 @@ Three criteria, all of which reduce to choosing one of three splits:
 """
 from __future__ import annotations
 
+import os
 import re
+import shutil
 import subprocess
 from itertools import product
 from pathlib import Path
@@ -17,6 +19,10 @@ from pathlib import Path
 import numpy as np
 
 from .alisim import iqtree_path
+
+MPBOOT_DEFAULT = os.environ.get(
+    "MPBOOT",
+    "E:/Codes/YRTools/plugins/YR-MPE/YR_MPE/bin/mpboot/mpboot.exe")
 
 LABELS = ("A", "B", "C", "D")
 SPLITS = {"AB|CD": (0, 1, 2, 3), "AC|BD": (0, 2, 1, 3), "AD|BC": (0, 3, 1, 2)}
@@ -27,20 +33,63 @@ TRUE_SPLIT = "AB|CD"
 def iqtree_ml(msa: Path, model: str = "JC69", seed: int = 1,
               workdir: Path | None = None, timeout: int = 900) -> str | None:
     """Return the ML tree as Newick, or None on failure."""
-    msa = Path(msa)
-    workdir = Path(workdir or msa.parent)
-    prefix = workdir / (msa.stem + ".ml")
-    cmd = [iqtree_path(), "-s", str(msa), "-m", model, "-pre", str(prefix),
+    msa = Path(msa).resolve()
+    workdir = Path(workdir or msa.parent).resolve()
+    stem = msa.name
+    prefix = msa.stem + ".ml"
+    cmd = [iqtree_path(), "-s", stem, "-m", model, "-pre", prefix,
            "--seed", str(seed), "-T", "1", "--quiet", "-redo"]
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
                            errors="replace", timeout=timeout, cwd=str(workdir))
     except subprocess.TimeoutExpired:
         return None
-    tf = Path(str(prefix) + ".treefile")
+    tf = workdir / (prefix + ".treefile")
     if r.returncode != 0 or not tf.exists():
         return None
     return tf.read_text(encoding="utf-8").strip()
+
+
+def mpboot_path() -> str:
+    import os
+    p = os.environ.get("MPBOOT", MPBOOT_DEFAULT)
+    if Path(p).exists():
+        return p
+    found = shutil.which("mpboot")
+    if not found:
+        raise FileNotFoundError(f"MPBoot not found; set $MPBOOT (tried {p!r})")
+    return found
+
+
+def mpboot_mp(msa: Path, seed: int = 1, workdir: Path | None = None,
+              timeout: int = 900) -> str | None:
+    """Maximum-parsimony tree from MPBoot (Hoang et al. 2018).
+
+    Preferred over the in-process Fitch implementation for anything reported:
+    MPBoot is the standard tool and its ratchet/SPR search explores more than a
+    four-taxon enumeration can.  The in-process version is kept as `mp_split`
+    for a free consistency check.
+    """
+    msa = Path(msa).resolve()
+    workdir = Path(workdir or msa.parent).resolve()
+    # MPBoot resolves -s and -pre relative to the CWD, and we already set cwd to
+    # workdir; passing a path that also contains workdir doubles it up and the
+    # run dies with "Cannot read file".  Bare names only, and cwd absolute.
+    stem = msa.name
+    prefix = msa.stem + ".mpb"
+    cmd = [mpboot_path(), "-s", stem, "-pre", prefix,
+           "-seed", str(seed), "-st", "DNA"]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", timeout=timeout, cwd=str(workdir))
+    except subprocess.TimeoutExpired:
+        return None
+    if r.returncode != 0:
+        return None
+    for cand in (workdir / (prefix + ".treefile"), workdir / (prefix + ".tree")):
+        if cand.exists():
+            return cand.read_text(encoding="utf-8").strip()
+    return None
 
 
 def split_of_newick(nwk: str | None) -> str | None:
@@ -136,6 +185,8 @@ def ptrue(paths, method: str, model: str = "JC69", seed0: int = 1,
         else:
             if method == "ML":
                 s = split_of_newick(iqtree_ml(f, model, seed0 + k, workdir))
+            elif method == "MPB":
+                s = split_of_newick(mpboot_mp(f, seed0 + k, workdir))
             else:
                 M = read_fasta(f)[1]
                 s = {"MP": mp_split, "NJ": nj_split,

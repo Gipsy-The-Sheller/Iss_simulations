@@ -126,6 +126,48 @@ def run_sim():
     print(f"\n{EXP}: {total} new replicate rows")
 
 
+def recovery_targets(methods=("MPB", "MP")):
+    """Second pass over the alignments already on disk: recovery under tools
+    that need a separate run (MPBoot) or a cheap in-process rule.
+
+    Incremental -- one row per (cell, rep, method); re-running costs only the
+    missing cells.  MPBoot is a subprocess per alignment, so on Windows the
+    process-spawn overhead, not the search, dominates.
+    """
+    import pandas as pd
+    from issbench.infer import (TRUE_SPLIT, mp_split, mpboot_mp, split_of_newick)
+    from issbench.runner import work_dir
+
+    out = out_path(EXP).parent / "recovery_targets.csv"
+    done = set()
+    if out.exists():
+        prev = pd.read_csv(out)
+        done = set(zip(prev["cell"], prev["rep"].astype(int), prev["method"]))
+    wd_root = ROOT / "work" / EXP
+    n_new = 0
+    files = sorted(wd_root.glob("*/*_r*.fa"))
+    print(f"found {len(files)} alignments under {wd_root}", flush=True)
+    for i, f in enumerate(files):
+        cell = f.parent.name
+        rep = int(f.stem.rsplit("_r", 1)[1])
+        need = [m for m in methods if (cell, rep, m) not in done]
+        if not need:
+            continue
+        row = dict(cell=cell, rep=rep)
+        for m in need:
+            if m == "MPB":
+                s = split_of_newick(mpboot_mp(f, seed=1 + rep, workdir=f.parent))
+            else:
+                s = mp_split(read_fasta(f)[1])
+            row[m] = int(s == TRUE_SPLIT)
+        pd.DataFrame([row]).to_csv(out, mode="a", header=not out.exists(),
+                                   index=False)
+        n_new += 1
+        if n_new % 500 == 0:
+            print(f"  {n_new} new  ({i+1}/{len(files)})", flush=True)
+    print(f"wrote {out}  ({n_new} new rows)", flush=True)
+
+
 def analyze():
     """Fit logit(Y) ~ f(pbar) and ~ f(pbar) + f(Iss) on held-out halves."""
     import pandas as pd
@@ -137,9 +179,14 @@ def analyze():
     d = out_path(EXP).parent
     cells_df = pd.read_csv(d / "cells.csv")
     targ = pd.read_csv(d / "targets.csv")
+    rt = d / "recovery_targets.csv"
+    if rt.exists():
+        r = pd.read_csv(rt)
+        targ = targ.merge(r, on=["cell", "rep"], how="left")
     df = targ.merge(cells_df[["cell", "rep", "pbar", "iss_A", "iss_B"]],
                     on=["cell", "rep"], how="inner")
-    print(f"merged {len(df)} rows")
+    print(f"merged {len(df)} rows; recovery columns: "
+          f"{[c for c in ('MPB','MP') if c in df.columns]}")
 
     def fit(cols, y):
         X = df[cols].to_numpy(float)
@@ -150,7 +197,11 @@ def analyze():
                                scoring="roc_auc").mean()
 
     out = []
-    for y in ("Ptrue_4P",):
+    targets = ["Ptrue_4P"] + [c for c in ("MPB", "MP") if c in df.columns]
+    for y in targets:
+        if df[y].isna().any() or df[y].nunique() < 2:
+            print(f"  {y}: skipped (missing values or a single class)")
+            continue
         auc_p = fit(["pbar"], y)
         auc_pi = fit(["pbar", "iss_A"], y)
         out.append(dict(target=y, auc_pbar=auc_p, auc_pbar_plus_iss=auc_pi,
@@ -183,11 +234,14 @@ def analyze():
     out.append(dict(target="pi_site_fraction", auc_pbar=r2_p,
                     auc_pbar_plus_iss=r2_pi, delta=r2_pi - r2_p))
     pd.DataFrame(out).to_csv(d / "condindep.csv", index=False)
+    pd.DataFrame(out).to_csv(d / "condindep.csv", index=False)
     print(f"wrote {d/'condindep.csv'}")
 
 
 if __name__ == "__main__":
     if "--analyze" in sys.argv:
         analyze()
+    elif "--recovery" in sys.argv:
+        recovery_targets()
     else:
         run_sim()

@@ -42,6 +42,7 @@ N_T = 17         # points along the path
 N_REPS = 200
 L = 1000
 MODEL = "JC69"
+METHODS = ("ML", "MPB", "MP", "NJ", "4P")
 
 
 def cells():
@@ -62,30 +63,41 @@ def recovery():
     at N_T=17 and n_reps=200 that is 3400 IQ-TREE runs of 4 taxa, minutes each
     in aggregate on one core.  MP / NJ / 4P are computed in-process.
     """
-    rows = []
+    out = out_path(EXP).parent / "recovery.csv"
+    # incremental: one row per (t, method), so adding a method or re-running
+    # after an interruption costs only the missing cells.  ML dominates the
+    # cost (~0.7 s per alignment against ~0.01 s for MPBoot), so this matters.
+    done = set()
+    if out.exists():
+        prev = pd.read_csv(out)
+        done = set(zip(prev["t"].round(6), prev["method"]))
+        rows = prev.to_dict("records")
+    else:
+        rows = []
     for k, t in enumerate(np.linspace(0.0, P - Q, N_T)):
+        need = [m for m in METHODS if (round(float(t), 6), m) not in done]
+        if not need:
+            continue
         wd = work_dir(EXP, f"t{k:02d}", ROOT)
-        files = sorted(wd.glob(f"t{k:02d}*.fa"))
+        files = sorted(wd.glob(f"t{k:02d}_r*.fa"))   # explicit: not t{k}.fa
         if not files:
             print(f"  [t{k:02d}] no alignments found, skipping", flush=True)
             continue
-        rec = dict(t=t)
-        for meth in ("ML", "MP", "NJ", "4P"):
-            rec[f"Ptrue_{meth}"] = ptrue(files, meth, MODEL, workdir=wd)
-        rows.append(rec)
-        print(f"  t={t:.3f}  " + "  ".join(
-            f"{m}={rec[f'Ptrue_{m}']:.3f}" for m in ("ML", "MP", "NJ", "4P")),
-            flush=True)
-    if rows:
-        pd.DataFrame(rows).to_csv(out_path(EXP).parent / "recovery.csv",
-                                  index=False)
-        print(f"wrote {out_path(EXP).parent / 'recovery.csv'}")
+        got = []
+        for meth in need:
+            val = ptrue(files, meth, MODEL, workdir=wd)
+            rows.append(dict(t=float(t), method=meth, Ptrue=val,
+                             n_alignments=len(files)))
+            got.append(f"{meth}={val:.3f}")
+        print(f"  t={t:.3f}  " + "  ".join(got), flush=True)
+        pd.DataFrame(rows).to_csv(out, index=False)
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":
     build_Q("JC69")
     dump_meta(EXP, dict(item=3, P=P, Q=Q, R=R, n_t=N_T, n_reps=N_REPS,
-                        L=L, model=MODEL, methods=["ML", "MP", "NJ", "4P"]))
+                        L=L, model=MODEL, methods=list(METHODS)))
     n = run_cells(EXP, cells(), ROOT)
     print(f"\n{EXP}: {n} new replicate rows; now measuring recovery")
     recovery()
