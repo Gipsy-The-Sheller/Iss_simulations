@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """
 Independent numerical verification of the analytic claims in
@@ -286,5 +287,5 @@ for k,v in cols.items():
       % (k, ("%.2f"%t) if t else "not reached (<128)", ("%.2f"%(t/base)) if t else "-"))
 p("    note claims ratios ~1.4 / 2.8 / 18 (via Gumbel fits)")
 
-open("verify_out.txt","w",encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out.txt"),"w",encoding="utf-8").write("\n".join(OUT))
 print("written", len(OUT), "lines")

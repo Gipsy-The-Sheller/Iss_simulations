@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """H_FSS 口径核对：Xia et al. 2003 Eq.(3) 究竟定义的是哪一个？
 
@@ -123,5 +124,5 @@ for N in (4,8,16,32):
 p("  汇总称 DAMBE 打印 1.65–1.85 bits（N<=32）-> 与 N=16/32 行的口径 A 相符；")
 p("  但 N=4 时口径 A 会低到 ~1.4 bits，故该旁证只能在 N 较大时成立。")
 
-open("verify_out_hfss.txt", "w", encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out_hfss.txt"), "w", encoding="utf-8").write("\n".join(OUT))
 print("\n".join(OUT))

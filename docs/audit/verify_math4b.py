@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """Is the note's steep Gamma plateau (P_true=1.000 up to TL=32) a property of
    the DATA or of the INFERENCE MODEL?  Compare NJ(JC), homogeneous ML and
@@ -107,5 +108,5 @@ p("    TL=16 : a=inf 0.343 | a=1 1.000 | a=0.5 1.000")
 p("    TL=32 : a=inf 0.343 | a=1 0.867 | a=0.5 1.000")
 p("    TL=64 : a=inf 0.397 | a=1 0.400 | a=0.5 0.997")
 p("    TL=128: a=inf 0.373 | a=1 0.383 | a=0.5 0.950")
-open("verify_out4.txt","w",encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out4.txt"),"w",encoding="utf-8").write("\n".join(OUT))
 print("ok")

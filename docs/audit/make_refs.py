@@ -2,7 +2,7 @@
 """Build refs_iss.bib + refs_iss.ris for every work named in the two .md files.
 Metadata is pulled live from Crossref (api.crossref.org/works/{doi}) so nothing
 is typed from memory."""
-import json, urllib.request, urllib.parse, time, re, html
+import os, json, urllib.request, urllib.parse, time, re, html
 
 UA = {"User-Agent": "IssCritiqueBib/1.0 (mailto:researcher@example.org)"}
 NOTE = {  # where the .md files mention it / why it is in the list
@@ -95,7 +95,7 @@ ENTRIES = [
  ("F 补充（核验新增，直接承重）", "yang1994discretegamma", "10.1007/BF00160154"),
 ]
 
-CACHE_PATH = "d:/Iss_rebench/verify/crossref_cache.json"
+CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossref_cache.json")
 try:
     CACHE = json.load(open(CACHE_PATH, encoding="utf-8"))
 except Exception:
@@ -208,6 +208,6 @@ for group, key, doi in ENTRIES:
     risout.append(ris(key, m, note))
     time.sleep(0.2)
 
-open(r"d:/Iss_rebench/refs_iss.bib", "w", encoding="utf-8").write("\n\n".join(bib) + "\n")
-open(r"d:/Iss_rebench/refs_iss.ris", "w", encoding="utf-8").write("\n".join(risout) + "\n")
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","refs","refs_iss.bib"), "w", encoding="utf-8").write("\n\n".join(bib) + "\n")
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","refs","refs_iss.ris"), "w", encoding="utf-8").write("\n".join(risout) + "\n")
 print("wrote %d BibTeX entries" % (len([1 for g, k, d in ENTRIES]) + 1))

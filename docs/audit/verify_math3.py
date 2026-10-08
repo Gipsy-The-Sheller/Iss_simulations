@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """Third pass: (a) does the Gamma4 discrepancy matter for Iss?
    (b) independent P_true simulation for the N=4 zone/alpha table."""
@@ -113,5 +114,5 @@ p("    TL=16  : homog 0.343 | a=4 0.533 | a=1 1.000 | a=0.5 1.000")
 p("    TL=32  : homog 0.343 | a=4 0.370 | a=1 0.867 | a=0.5 1.000")
 p("    TL=128 : homog 0.373 | a=4 0.357 | a=1 0.383 | a=0.5 0.950")
 
-open("verify_out3.txt","w",encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out3.txt"),"w",encoding="utf-8").write("\n".join(OUT))
 print("ok",len(OUT))

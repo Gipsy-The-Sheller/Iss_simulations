@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Resolve every work named in the two .md files to a DOI via Crossref, then
 pull BibTeX + RIS by content negotiation.  Writes refs_raw.json + a review log."""
-import json, time, urllib.parse, urllib.request, re, sys, os
+import os, json, time, urllib.parse, urllib.request, re, sys, os
 
 UA = "IssCritiqueBib/1.0 (mailto:researcher@example.org)"
 BASE = "https://api.crossref.org/works"

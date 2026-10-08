@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """改用 Xia 口径 (H_FSS = E_Mult[h]) 之后，逐条检查哪些推导结论变、哪些不变。"""
 import numpy as np
@@ -134,5 +135,5 @@ for N in (4,16):
 p("  -> 口径 A 下 Iss>1 在饱和处就是 ~50% 概率的正常涨落，")
 p("     但 L>=1000 时 SD<=2%，1.49 远超噪声 -> §6.2 的 gap/5-state 解释仍成立。")
 
-open("verify_out_multinomial.txt","w",encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out_multinomial.txt"),"w",encoding="utf-8").write("\n".join(OUT))
 print("\n".join(OUT))

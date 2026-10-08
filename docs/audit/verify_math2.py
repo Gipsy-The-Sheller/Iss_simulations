@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """Second pass: chase the Gamma4 discrepancy, test affinity algebraically,
 fit Gumbel TL_c, and run a small P_true sanity simulation."""
@@ -148,5 +149,5 @@ p("  ratios to homogeneous: a=4 %.2fx   a=1 %.2fx   a=0.5 %.2fx"
   %(res["a=4"]/res["homog"],res["a=1"]/res["homog"],res["a=0.5"]/res["homog"]))
 p("  note claims 1.4x / 2.8x / 18x")
 
-open("verify_out2.txt","w",encoding="utf-8").write("\n".join(OUT))
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"verify_out2.txt"),"w",encoding="utf-8").write("\n".join(OUT))
 print("ok",len(OUT))
