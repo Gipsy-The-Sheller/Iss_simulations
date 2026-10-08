@@ -3,15 +3,18 @@
 %  Build:  pdflatex manuscript && bibtex manuscript && pdflatex manuscript x2
 %  Bibliography: refs/refs_iss_clean.bib (auto-generated, see scripts/)
 %
-%  STRUCTURE follows Zhang & Mirarab (2022) MBE 39(12):msac215
-%  ("Weighting by Gene Tree Uncertainty..."): numbered top-level sections,
-%  the derivations carried inside Results as 2.1 / 2.1.1 / 2.1.2, Methods
-%  late, front/back matter as Data Availability / Acknowledgments / References.
-%  [Confirmed from the published text: "2 Result", "2.1 Weighted ASTRAL
-%   Algorithm", "2.1.1 Weight definitions", "2.1.2 Optimization algorithm",
-%   "Material and Methods", "Evaluation Criteria". The exact top-level order
-%   beyond that could not be verified from here (PMC/bioRxiv fetch blocked);
-%   adjust section 3 below if it differs.]
+%  STRUCTURE follows Zhang & Mirarab (2022) MBE 39(12):msac215, verified against
+%  the published PDF (msac215.pdf).  Top level, in order, UNNUMBERED:
+%     Abstract, Introduction, Result, Discussion, Material and Methods,
+%     Supplementary Material, Acknowledgment, Data Availability, References
+%  Subsections, unnumbered:
+%     Result   : Weighted ASTRAL Algorithm / Simulation Results / Biological Data
+%     Discussion: Further Observations Based on the Results / Limits and Future Work
+%     Material and Methods: Common Notations and Background / Theoretical Results /
+%                Optimization Algorithm / Branch Support / Datasets /
+%                Evaluation Criteria
+%  This file keeps LaTeX's numbering (as the bioRxiv preprint does) for
+%  cross-referencing; switch to \section* if the venue wants it unnumbered.
 %
 %  Title candidates:
 %    (i)   What the index of substitution saturation measures, and why its
@@ -294,7 +297,7 @@ the sensitivity is design-dependent, small for long internal branches and
 large for short ones, so the correct statement is scoped, not retracted.}
 
 % =====================================================================
-\section{Evaluation criteria}
+% (folded into Material and methods, per msac215)
 \todo{Either a short section or a subsection of Results, following the target
 venue. Content: how $\Iss$, mean $p$-distance, the $C$ value
 \citep{struck2008cfactor} and $\lambda$ \citep{jermiin2020signal} are compared,
@@ -374,13 +377,25 @@ measurable and to our knowledge unmeasured. Data sets whose indices cluster
 near the ceiling are in the robust regime; those that do not are not.
 
 % =====================================================================
-\section{Materials and methods}
-\todo{Simulation (AliSim, IQ-TREE 3.0.1, explicit seeds, custom Newick input);
+\section{Material and methods}
+
+\subsection{Common notations and background}
+\todo{Notation table; the two $H_{FSS}$ conventions of Eq.~\eqref{eq:conventions}.}
+
+\subsection{Theoretical results}
+\todo{Proofs to accompany Results \S2.2--2.6; or defer to an appendix.}
+
+\subsection{Simulation}
+\todo{AliSim (IQ-TREE 3.0.1) with explicit seeds and custom Newick input;
 the uniform-$\Iss$ sampling density $p_s(s)\propto\mu'(s)$ with
 $Z=\mu(s_{\max})-\mu(s_{\min})$; the four-taxon transfer
 $(a,b,c,d)=(L-t,S,L,S+t)$, $t\in[0,L-S]$, reporting $\Iss$ and
-$\Pr[\hat{\mathcal T}=\mathcal T]$ for ML, MP and NJ; and the definitions used
-for the $C$ value and $\lambda$, each cited to its source.}
+$\Pr[\hat{\mathcal T}=\mathcal T]$ for ML, MP and NJ.}
+
+\subsection{Evaluation criteria}
+\todo{How $\Iss$, mean $p$-distance, the $C$ value \citep{struck2008cfactor} and
+$\lambda$ \citep{jermiin2020signal} are compared, one parameter at a time, with
+trends reported and no composite power index; definitions cited to source.}
 
 % =====================================================================
 \section*{Data availability}
