@@ -5,7 +5,7 @@
 PY      := python
 IQTREE  ?= E:/Codes/YRTools/plugins/YR-MPE/YR_MPE/bin/iqtree3/iqtree3.exe
 
-.PHONY: help gate design exp1 exp2 exp3 exp4 figs bib clean \
+.PHONY: help gate design exp1 exp2 exp3 exp4 exp6 figs bib clean \
         ms ms-watch check
 
 help:
@@ -16,6 +16,7 @@ help:
 	@echo "make exp2     - Item 2: Iss vs p-distance, closed-form overlay"
 	@echo "make exp3     - Item 3: Felsenstein->Farris transfer"
 	@echo "make exp4     - Item 4: one-at-a-time perturbation trends"
+	@echo "make exp6     - Item 6: conditional independence Pr(Y|pbar,Iss) vs Pr(Y|pbar)"
 	@echo "make figs     - Item 5: plates in the ref style"
 	@echo "make check    - static checks on manuscript.tex (no LaTeX needed)"
 	@echo "make ms       - build manuscript.pdf (requires pdflatex + bibtex)"
@@ -39,8 +40,12 @@ exp3:
 exp4:
 	$(PY) scripts/s05_perturb.py
 
+exp6:
+	$(PY) scripts/s06_condindep.py
+	$(PY) scripts/s06_condindep.py --analyze
+
 figs:
-	$(PY) scripts/s06_figures.py
+	$(PY) scripts/s07_figures.py
 
 # ------------------------------------------------------------------ manuscript
 bib:

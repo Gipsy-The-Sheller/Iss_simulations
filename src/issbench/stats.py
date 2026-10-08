@@ -109,3 +109,19 @@ def lam(M: np.ndarray) -> float:
     DEFINITION TO BE PINNED DOWN against the preprint before use.
     """
     raise NotImplementedError("pin the definition against Jermiin & Misof 2020 first")
+
+
+def parsimony_informative_fraction(M: np.ndarray, K: int = 4) -> float:
+    """Fraction of sites that are parsimony-informative.
+
+    For K=4 the informative pattern is exactly 2:2 (two states, two sequences
+    each): 2:1:1 is informative for some tree shapes but not unrooted-quartet
+    informative, and 3:1 / 4:0 never are.  Used as the target Y in the
+    conditional-independence test.
+    """
+    C = site_counts(M, K)
+    if len(C) == 0:
+        return float("nan")
+    n_seq = M.shape[0]
+    two_two = (C.max(axis=1) == n_seq // 2) & ((C > 0).sum(axis=1) == 2)
+    return float(np.mean(two_two))

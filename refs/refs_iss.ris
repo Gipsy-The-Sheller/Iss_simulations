@@ -327,6 +327,34 @@ DO  - 10.1093/molbev/msad264
 UR  - https://doi.org/10.1093/molbev/msad264
 N1  - 记录 §8 —— DAMBE 与 PAML/IQ-TREE/SEAVIEW 并列的出处  [russo2024forty]
 ER  - 
+TY  - JOUR
+AU  - Steel, M. A.
+AU  - Lockhart, P. J.
+AU  - Penny, D.
+TI  - Confidence in evolutionary trees from biological sequence data
+VL  - 364
+IS  - 6436
+SP  - 440
+EP  - 442
+PY  - 1993
+PB  - Springer Science and Business Media LLC
+DO  - 10.1038/364440a0
+UR  - https://doi.org/10.1038/364440a0
+N1  - Xia 2003 四类方法中的第四类；manuscript §4.1 引  [steel1993confidence]
+ER  - 
+TY  - JOUR
+AU  - Halanych, Kenneth M.
+TI  - The Phylogenetic Position of the Pterobranch Hemichordates Based on 18S rDNA Sequence Data
+VL  - 4
+IS  - 1
+SP  - 72
+EP  - 76
+PY  - 1995
+PB  - Elsevier BV
+DO  - 10.1006/mpev.1995.1007
+UR  - https://doi.org/10.1006/mpev.1995.1007
+N1  - 同上  [steel1995frequency]
+ER  - 
 
 ; ======================= D 软件与工具 =======================
 

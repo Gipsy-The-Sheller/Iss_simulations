@@ -43,6 +43,8 @@ NOTE = {  # where the .md files mention it / why it is in the list
  "xia2023trad": "TRAD 应用；记录 §8",
  "xia2025tradhostswitch": "TRAD 最新（S 形速率，宿主转换）",
  "russo2024forty": "记录 §8 —— DAMBE 与 PAML/IQ-TREE/SEAVIEW 并列的出处",
+ "steel1993confidence": "Xia 2003 四类方法中的第四类；manuscript §4.1 引",
+ "steel1995frequency": "同上",
  "xia2009handbook": "【补充】Iss.c 的规范引用（The Phylogenetic Handbook 章），两份 md 均未引",
  "yang1994discretegamma": "【补充】离散 Γ 的标准等概率均值离散化出处 —— 见核验报告 A1",
 }
@@ -74,6 +76,8 @@ ENTRIES = [
  ("C 先例与相关综述", "liu2025robustphylo", "10.1101/2025.04.01.646540"),
  ("C 先例与相关综述", "clawrxiv260401176", None),
  ("C 先例与相关综述", "russo2024forty", "10.1093/molbev/msad264"),
+ ("C 先例与相关综述", "steel1993confidence", "10.1038/364440a0"),
+ ("C 先例与相关综述", "steel1995frequency", "10.1006/mpev.1995.1007"),
  # ---- D 软件与工具 ----
  ("D 软件与工具", "minh2020iqtree2", "10.1093/molbev/msaa015"),
  ("D 软件与工具", "lytrong2022alisim", "10.1093/molbev/msac092"),

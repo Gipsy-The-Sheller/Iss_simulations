@@ -251,18 +251,39 @@ proof is one line and never mentions whether the spectrum is degenerate.
 \begin{remark}[Scope of the collapse]
 \label{rem:scope}
 The one-line argument fails exactly when the $\Pi$-average on some non-trivial
-eigenspace departs from the global mean $1/K$. Two boundary cases must be
-stated. (i)~For nucleotides the departure is small but not zero: with
+eigenspace departs from the global mean $1/K$. Three qualifications must be
+stated, and the third is the strongest.
+\emph{(i)}~For nucleotides the departure is small but not zero: with
 non-uniform composition and a non-degenerate spectrum the deviation of $\Iss$
 from the $p$-distance prediction is $0.014$ (least-squares) to $0.022$ (chord),
 which is $4\%$ to $44\%$ of the separation between the symmetrical and
 asymmetrical critical values, depending on the number of taxa --- the figure is
-\emph{not} a single number. (ii)~The criterion depends on the stationary
-composition of the \emph{model}; a uniform-frequency model in any alphabet
-satisfies it. In practice nucleotide compositions are close to uniform while
-amino-acid compositions are not, so the collapse is a nucleotide-scale result;
-on amino-acid data the index retains a coordinate that is compositional rather
-than phylogenetic.
+\emph{not} a single number.
+\emph{(ii)}~The criterion depends on the stationary composition of the
+\emph{model}; a uniform-frequency model in any alphabet satisfies it. In
+practice nucleotide compositions are close to uniform while amino-acid
+compositions are not, so the collapse is a nucleotide-scale result.
+\emph{(iii)}~The decomposition above is \emph{second order}, and it would be
+wrong to read it as a general statement that everything $\Iss$ adds beyond
+$p$-distance is composition. At second order $\E[\Iss]$ depends on
+$\Var(\hat p_j)$ alone, hence only on pairwise identity
+$\langle P_{jj}\rangle$; beyond second order it depends on third and fourth
+moments of the site-pattern distribution, which pairwise identity does \emph{not}
+determine. The site patterns carry structure that the mean mismatch proportion
+cannot see --- for $K=4$ a $2\!:\!2$ site is parsimony-informative while a
+$3\!:\!1$ site is not, and the two have different entropies. The magnitude of
+this higher-order channel is measurable and is reported in
+Section~\ref{sec:simulation}; whether it is phylogenetically informative rather
+than merely compositional is a separate question, answered by testing
+conditional independence:
+\begin{equation}
+  \Pr\bigl(Y \mid \bar p,\, \Iss\bigr)\quad\text{versus}\quad
+  \Pr\bigl(Y \mid \bar p\bigr),
+  \qquad Y\in\{\text{parsimony-informative fraction},\ \text{recovery}\}.
+  \label{eq:condindep}
+\end{equation}
+That test, and not the correlation between the two statistics, is what
+adjudicates redundancy.
 \end{remark}
 
 \subsection{The critical value depends on sequence length}
@@ -331,21 +352,48 @@ for insufficient resolution is more data or more taxa, not fewer sites.
 \subsection{What the 2003 paper got right}
 \label{sec:right}
 
-The critique above should not obscure three things. First, the problem was
-real: before 2003, saturation was assessed by plotting transition/transversion
-ratios against distance, or by permutation and skewness tests, both of which
-report signal in a data set containing two closely related species and an
-arbitrary number of fully saturated ones --- a defect the paper states
-explicitly for the first three of the four approaches it reviews. Second, and
-most durably, the paper's central observation is correct: sequences fail to
-recover the true tree long before $I_{ss}$ reaches $1$, so the quantity of
-interest is a critical value, not the full-saturation limit. That observation
-is what motivated later work to re-estimate critical values by ROC analysis
-against the number of taxa and sequence length \citep{duchene2021saturation}.
+The critique above should not obscure four things.
+
+First, the problem was real: before 2003, saturation was assessed by plotting
+transition/transversion ratios against distance, or by permutation and skewness
+tests, both of which report signal in a data set containing two closely related
+species and an arbitrary number of fully saturated ones --- a defect the paper
+states explicitly, and attributes to the first three of the four approaches it
+reviews (the fourth, \citet{steel1993confidence,steel1995frequency}, is faulted
+on different grounds: clumsy beyond four taxa, parsimony-specific, undeveloped).
+The 2003 paper's own entrance is that the fourth approach's diagnostics had not
+been developed further; that assessment has aged well.
+
+Second, and most durably, the paper's central observation is correct: sequences
+fail to recover the true tree long before $\Iss$ reaches $1$, so the quantity of
+interest is a critical value, not the full-saturation limit. That observation is
+what motivated later work to re-estimate critical values by ROC analysis against
+the number of taxa and sequence length
+\citep{duchene2021saturation}. It should also be said that the critical tree
+length is defined \emph{two different ways} in the original: for the symmetrical
+topology it is the tree length at which $P_{\mathrm{true}}=0.95$, whereas for the
+asymmetrical topology, where the maximum recovery probability need not reach
+$1$, it is the tree length at which $P_{\mathrm{true}}$ falls to $95\%$ \emph{of
+its own maximum}. The two are not comparable, and every departure below is
+measured on the first; the tabulated asymmetrical values therefore carry an
+additional, unquantified source of drift.
+
 Third, the simulation grid --- F84, transition/transversion ratio from 1 to 10,
 base frequencies from 0.1 to 0.9, 4 to 32 taxa, two extreme topologies, 100
-replicates per point --- is a serious design for its time, and the paper
-reports the grid it used.
+replicates per point --- is a serious design for its time, and the paper reports
+the grid it used, together with the finding that composition and
+transition/transversion ratio are negligible relative to topology, taxon number
+and sequence length.
+
+Fourth, the discussion section does not ignore rate heterogeneity. It treats the
+rates-across-sites and covarion models at length, notes that the test applies to
+the $(1-P)$ fraction of sites, and states that assuming $P=0$ when $P>0$ makes
+the test \emph{conservative}. That claim is correct --- invariable sites depress
+$\bar H$, hence $\Iss$, hence the rate of rejection --- and it is the same
+channel as the $+I$ under-detection noted in Section~\ref{sec:collapse}. The
+defensible criticism is narrower than "heterogeneity was overlooked": the
+numerical calibration of the critical value does not carry $\alpha$ as a
+coordinate, even though the surrounding text acknowledges that it should.
 
 The failures are of a different kind: a normalisation whose entropy form
 implies more than the second-order expectation delivers, a calibration whose
@@ -386,6 +434,7 @@ near the ceiling are in the robust regime; those that do not are not.
 \todo{Proofs to accompany Results \S2.2--2.6; or defer to an appendix.}
 
 \subsection{Simulation}
+\label{sec:simulation}
 \todo{AliSim (IQ-TREE 3.0.1) with explicit seeds and custom Newick input;
 the uniform-$\Iss$ sampling density $p_s(s)\propto\mu'(s)$ with
 $Z=\mu(s_{\max})-\mu(s_{\min})$; the four-taxon transfer
