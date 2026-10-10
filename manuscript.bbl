@@ -1,0 +1,146 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Duchêne et~al.(2022)Duchêne, Mather, Van Der~Wal, and
+  Ho]{duchene2022saturation}
+David~A Duchêne, Niklas Mather, Cara Van Der~Wal, and Simon Y~W Ho.
+\newblock Excluding loci with substitution saturation improves inferences from
+  phylogenomic data.
+\newblock \emph{Systematic Biology}, 71\penalty0 (3):\penalty0 676--689, 2022.
+\newblock \doi{10.1093/sysbio/syab075}.
+
+\bibitem[Felsenstein(1978)]{felsenstein1978cases}
+J.~Felsenstein.
+\newblock Cases in which parsimony or compatibility methods will be positively
+  misleading.
+\newblock \emph{Systematic Zoology}, 27\penalty0 (4):\penalty0 401--410, 1978.
+\newblock \doi{10.2307/2412923}.
+
+\bibitem[Halanych(1995)]{steel1995frequency}
+Kenneth~M. Halanych.
+\newblock The phylogenetic position of the pterobranch hemichordates based on
+  18s rdna sequence data.
+\newblock \emph{Molecular Phylogenetics and Evolution}, 4\penalty0
+  (1):\penalty0 72--76, 1995.
+\newblock \doi{10.1006/mpev.1995.1007}.
+
+\bibitem[Hendy and Penny(1989)]{hendy1989unrooted}
+Michael~D. Hendy and David Penny.
+\newblock A framework for the quantitative study of evolutionary trees.
+\newblock \emph{Systematic Zoology}, 38\penalty0 (4):\penalty0 297--309, 1989.
+\newblock \doi{10.2307/2992396}.
+
+\bibitem[Hoang et~al.(2018)Hoang, Vinh, Flouri, Stamatakis, von Haeseler, and
+  Minh]{hoang2018mpboot}
+Diep~Thi Hoang, Le~Sy Vinh, Tom\'a\v{s} Flouri, Alexandros Stamatakis, Arndt
+  von Haeseler, and Bui~Quang Minh.
+\newblock Mpboot: fast phylogenetic maximum parsimony tree inference and
+  bootstrap approximation.
+\newblock \emph{BMC Evolutionary Biology}, 18\penalty0 (1):\penalty0 11, 2018.
+\newblock \doi{10.1186/s12862-018-1131-3}.
+
+\bibitem[Jarvis et~al.(2014)Jarvis, Mirarab, Aberer, Li, Houde, Li, Ho,
+  Faircloth, Nabholz, Howard, et~al.]{jarvis2014whole}
+Erich~D. Jarvis, Siavash Mirarab, Andre~J. Aberer, Bo~Li, Peter Houde, Cai Li,
+  Simon Y.~W. Ho, Brant~C. Faircloth, Benoit Nabholz, Jason~T. Howard, et~al.
+\newblock Whole-genome analyses resolve early branches in the tree of life of
+  modern birds.
+\newblock \emph{Science}, 346\penalty0 (6215):\penalty0 1320--1331, 2014.
+\newblock \doi{10.1126/science.1253451}.
+
+\bibitem[Jermiin and Misof(2020)]{jermiin2020signal}
+Lars~S Jermiin and Bernhard Misof.
+\newblock Measuring historical and compositional signals in phylogenetic data,
+  2020.
+
+\bibitem[Letsch and Kjer(2011)]{letsch2011rrna}
+Harald~O Letsch and Karl~M Kjer.
+\newblock Potential pitfalls of modelling ribosomal rna data in phylogenetic
+  tree reconstruction: Evidence from case studies in the metazoa.
+\newblock \emph{BMC Evolutionary Biology}, 11\penalty0 (1):\penalty0 146, 2011.
+\newblock \doi{10.1186/1471-2148-11-146}.
+
+\bibitem[Ly-Trong et~al.(2022)Ly-Trong, Naser-Khdour, Lanfear, and
+  Minh]{lytrong2022alisim}
+Nhan Ly-Trong, Suha Naser-Khdour, Robert Lanfear, and Bui~Quang Minh.
+\newblock Alisim: A fast and versatile phylogenetic sequence simulator for the
+  genomic era.
+\newblock \emph{Molecular Biology and Evolution}, 39\penalty0 (5):\penalty0
+  msac092, 2022.
+\newblock \doi{10.1093/molbev/msac092}.
+
+\bibitem[Manuel et~al.(2025)Manuel, Sakalli, Schmidt, Viñas, von Haeseler, and
+  Elgert]{manuel2025satute}
+Cassius Manuel, Enes Sakalli, Heiko~A Schmidt, Carme Viñas, Arndt von
+  Haeseler, and Christiane Elgert.
+\newblock When the past fades: Detecting phylogenetic signal with satute.
+\newblock \emph{Molecular Biology and Evolution}, 42\penalty0 (5):\penalty0
+  msaf090, 2025.
+\newblock \doi{10.1093/molbev/msaf090}.
+
+\bibitem[Minh et~al.(2020)Minh, Schmidt, Chernomor, Schrempf, Woodhams, von
+  Haeseler, and Lanfear]{minh2020iqtree2}
+Bui~Quang Minh, Heiko~A Schmidt, Olga Chernomor, Dominik Schrempf, Michael~D
+  Woodhams, Arndt von Haeseler, and Robert Lanfear.
+\newblock Iq-tree 2: New models and efficient methods for phylogenetic
+  inference in the genomic era.
+\newblock \emph{Molecular Biology and Evolution}, 37\penalty0 (5):\penalty0
+  1530--1534, 2020.
+\newblock \doi{10.1093/molbev/msaa015}.
+
+\bibitem[Steel et~al.(1993)Steel, Lockhart, and Penny]{steel1993confidence}
+M.~A. Steel, P.~J. Lockhart, and D.~Penny.
+\newblock Confidence in evolutionary trees from biological sequence data.
+\newblock \emph{Nature}, 364\penalty0 (6436):\penalty0 440--442, 1993.
+\newblock \doi{10.1038/364440a0}.
+
+\bibitem[Struck et~al.(2008)Struck, Nesnidal, Purschke, and
+  Halanych]{struck2008cfactor}
+Torsten~H. Struck, Maximilian~P. Nesnidal, Günter Purschke, and Kenneth~M.
+  Halanych.
+\newblock Detecting possibly saturated positions in 18s and 28s sequences and
+  their influence on phylogenetic reconstruction of annelida (lophotrochozoa).
+\newblock \emph{Molecular Phylogenetics and Evolution}, 48\penalty0
+  (2):\penalty0 628--645, 2008.
+\newblock \doi{10.1016/j.ympev.2008.05.015}.
+
+\bibitem[Verbruggen et~al.(2007)Verbruggen, Leliaert, Maggs, Shimada, Schils,
+  Provan, Booth, Murphy, De~Clerck, Littler, Littler, and
+  Coppejans]{verbruggen2007codium}
+Heroen Verbruggen, Frederik Leliaert, Christine~A. Maggs, Satoshi Shimada, Tom
+  Schils, Jim Provan, David Booth, Sue Murphy, Olivier De~Clerck, Diane~S.
+  Littler, Mark~M. Littler, and Eric Coppejans.
+\newblock Species boundaries and phylogenetic relationships within the green
+  algal genus codium (bryopsidales) based on plastid dna sequences.
+\newblock \emph{Molecular Phylogenetics and Evolution}, 44\penalty0
+  (1):\penalty0 240--254, 2007.
+\newblock \doi{10.1016/j.ympev.2007.01.009}.
+
+\bibitem[Xia and Lemey(2009)]{xia2009handbook}
+Xuhua Xia and Philippe Lemey.
+\newblock Assessing substitution saturation with dambe.
+\newblock In \emph{The Phylogenetic Handbook}, pages 615--630. Cambridge
+  University Press, 2009.
+\newblock ISBN 9780521877107.
+\newblock \doi{10.1017/CBO9780511819049.022}.
+
+\bibitem[Xia et~al.(2003)Xia, Xie, Salemi, Chen, and Wang]{xia2003iss}
+Xuhua Xia, Zheng Xie, Marco Salemi, Lu~Chen, and Yong Wang.
+\newblock An index of substitution saturation and its application.
+\newblock \emph{Molecular Phylogenetics and Evolution}, 26\penalty0
+  (1):\penalty0 1--7, 2003.
+\newblock \doi{10.1016/S1055-7903(02)00326-3}.
+
+\bibitem[Yang(1994)]{yang1994discretegamma}
+Ziheng Yang.
+\newblock Maximum likelihood phylogenetic estimation from dna sequences with
+  variable rates over sites: Approximate methods.
+\newblock \emph{Journal of Molecular Evolution}, 39\penalty0 (3):\penalty0
+  306--314, 1994.
+\newblock \doi{10.1007/BF00160154}.
+
+\end{thebibliography}

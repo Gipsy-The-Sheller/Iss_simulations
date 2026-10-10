@@ -1,0 +1,11 @@
+{
+ "item": 2,
+ "model": "JC69",
+ "alpha": "inf",
+ "n_reps": 200,
+ "N_spot": [
+  4,
+  8,
+  16
+ ]
+}

@@ -7,8 +7,8 @@ from typing import Sequence
 
 from .entropy import h, h_from_counts, multinomial_entropy
 
-CODES = {"A": 0, "C": 1, "G": 2, "T": 3,
-         "a": 0, "c": 1, "g": 2, "t": 3}
+CODES = {"A": 0, "C": 1, "G": 2, "T": 3, "U": 3,
+         "a": 0, "c": 1, "g": 2, "t": 3, "u": 3}
 
 
 def read_fasta(path: str | Path) -> tuple[list[str], np.ndarray]:

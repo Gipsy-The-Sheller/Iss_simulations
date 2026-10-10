@@ -14,8 +14,10 @@ tree shape (internal-branch fraction, pendant arrangement), composition, and
 model.  All three are varied here.
 
 TARGETS.  Y1 = parsimony-informative site fraction (exact, no inference).
-Y2 = recovery under the uncorrected four-point rule (in-process, cheap).
-ML recovery can be added by pointing Y2 at issbench.infer.ptrue(..., "ML").
+Y2 = recovery under maximum parsimony, via MPBoot (see --recovery).  A third
+target, ML recovery by IQ-TREE, can be added by pointing Y2 at
+issbench.infer.ptrue(..., "ML"); it costs one IQ-TREE run per alignment and
+was not run at the full 108,000.
 """
 from __future__ import annotations
 
@@ -28,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from issbench import trees                                             # noqa: E402
+from issbench.results import res                                       # noqa: E402
 from issbench.models import build_Q                                    # noqa: E402
 from issbench.runner import append_rows, dump_meta, load_done, out_path  # noqa: E402
 from issbench.sim import simulate, cell_key                            # noqa: E402
@@ -81,13 +84,12 @@ def cells():
 
 def run_sim():
     import pandas as pd
-    from issbench.infer import TRUE_SPLIT, four_point_split
     from issbench.sim import score_cell
 
     dump_meta(EXP, dict(item=6, n_reps=N_REPS, L=L, fis=FIS,
                         conds=[c[0] for c in CONDS],
                         s_grid=[float(x) for x in S_GRID],
-                        targets=["pi_site_fraction", "Ptrue_4P"],
+                        targets=["pi_site_fraction", "MPB"],
                         note="crossed design: shape x composition x model x scale"))
     d = out_path(EXP).parent
     path = out_path(EXP)
@@ -107,6 +109,10 @@ def run_sim():
             continue
 
         rows = score_cell(files)
+        if len(rows) != len(todo):
+            raise RuntimeError(
+                f"[{c['tag']}] scored {len(rows)} alignments for {len(todo)} "
+                f"pending replicates; a zip() here would mislabel the reps")
         targets = []
         for r, f, rep in zip(rows, files, todo):
             r.update(exp=EXP, cell=c["tag"], rep=rep, seed=seed,
@@ -115,8 +121,7 @@ def run_sim():
             targets.append(dict(exp=EXP, cell=c["tag"], rep=rep,
                                 cond=c["cond"], fi=c["fi"], ratio=c["ratio"],
                                 s=c["s"],
-                                pi_site=parsimony_informative_fraction(M),
-                                Ptrue_4P=int(four_point_split(M) == TRUE_SPLIT)))
+                                pi_site=parsimony_informative_fraction(M)))
         append_rows(path, rows)
         ex = d / "targets.csv"
         pd.DataFrame(targets).to_csv(ex, mode="a", header=not ex.exists(),
@@ -126,42 +131,52 @@ def run_sim():
     print(f"\n{EXP}: {total} new replicate rows")
 
 
-def recovery_targets(methods=("MPB", "MP")):
-    """Second pass over the alignments already on disk: recovery under tools
-    that need a separate run (MPBoot) or a cheap in-process rule.
+def recovery_targets(methods=("MPB",)):
+    """Second pass over the alignments already on disk: recovery under
+    maximum parsimony as implemented by MPBoot.
 
     Incremental -- one row per (cell, rep, method); re-running costs only the
     missing cells.  MPBoot is a subprocess per alignment, so on Windows the
     process-spawn overhead, not the search, dominates.
     """
     import pandas as pd
-    from issbench.infer import (TRUE_SPLIT, mp_split, mpboot_mp, split_of_newick)
-    from issbench.runner import work_dir
+    from issbench.infer import (TRUE_SPLIT, mpboot_mp, split_of_newick)
 
     out = out_path(EXP).parent / "recovery_targets.csv"
+    cols = ["cell", "rep", *methods]
+    # The file is WIDE -- one column per method -- and done-ness is per
+    # (cell, rep, method), because a row may carry a value for one method and
+    # be missing the other.  It used to be read as long format
+    # (prev["method"]), which crashed on the first restart: the job could only
+    # ever run start-to-finish in one pass.
     done = set()
     if out.exists():
         prev = pd.read_csv(out)
-        done = set(zip(prev["cell"], prev["rep"].astype(int), prev["method"]))
+        for m in methods:
+            if m not in prev.columns:
+                continue
+            ok = prev[m].notna()
+            done |= {(c, int(r), m) for c, r in
+                     zip(prev.loc[ok, "cell"], prev.loc[ok, "rep"])}
     wd_root = ROOT / "work" / EXP
     n_new = 0
     files = sorted(wd_root.glob("*/*_r*.fa"))
-    print(f"found {len(files)} alignments under {wd_root}", flush=True)
+    print(f"found {len(files)} alignments under {wd_root}; "
+          f"{len(done)} (cell, rep, method) targets already done", flush=True)
     for i, f in enumerate(files):
         cell = f.parent.name
         rep = int(f.stem.rsplit("_r", 1)[1])
         need = [m for m in methods if (cell, rep, m) not in done]
         if not need:
             continue
-        row = dict(cell=cell, rep=rep)
+        row = {"cell": cell, "rep": rep}
         for m in need:
-            if m == "MPB":
-                s = split_of_newick(mpboot_mp(f, seed=1 + rep, workdir=f.parent))
-            else:
-                s = mp_split(read_fasta(f)[1])
+            s = split_of_newick(mpboot_mp(f, seed=1 + rep, workdir=f.parent))
             row[m] = int(s == TRUE_SPLIT)
-        pd.DataFrame([row]).to_csv(out, mode="a", header=not out.exists(),
-                                   index=False)
+        # explicit column order: a row for only one method would otherwise be
+        # written under the other method's header
+        pd.DataFrame([row], columns=cols).to_csv(
+            out, mode="a", header=not out.exists(), index=False)
         n_new += 1
         if n_new % 500 == 0:
             print(f"  {n_new} new  ({i+1}/{len(files)})", flush=True)
@@ -169,71 +184,95 @@ def recovery_targets(methods=("MPB", "MP")):
 
 
 def analyze():
-    """Fit logit(Y) ~ f(pbar) and ~ f(pbar) + f(Iss) on held-out halves."""
+    """Does Iss add anything beyond pbar?  Compare out-of-sample fits.
+
+    THE BASELINE MUST BE FLEXIBLE.  Comparing a spline-or-quadratic fit in pbar
+    against the same plus Iss is only meaningful if the pbar-only fit is a fair
+    summary of what pbar alone can do.  A degree-2 polynomial is not: in the
+    transition band pbar in [0.63, 0.70] its cross-validated AUC is 0.37, i.e.
+    *worse than chance*, because the quadratic is non-monotone and inverts the
+    ordering there.  Against that baseline Iss looks like it hurts overall
+    (delta = -0.010) while in fact it is repairing a mis-specified competitor.
+    We therefore use a cubic spline in pbar throughout, and report the
+    transition band separately from the full range, because the two answer
+    different questions: over the full range pbar alone already separates
+    almost perfectly and there is nothing left to add, whereas in the band
+    where the recovery decision is actually made pbar alone is nearly useless.
+
+    A third model adds the internal-branch fraction to identify the mechanism:
+    it is a property of the true tree that no user observes, so it is not a
+    competitor to Iss but a probe of what Iss is proxying for.
+    """
     import pandas as pd
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.model_selection import cross_val_score
+    from sklearn.linear_model import LogisticRegression, RidgeCV
+    from sklearn.model_selection import KFold, cross_val_score
     from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+    from sklearn.preprocessing import SplineTransformer, StandardScaler
 
     d = out_path(EXP).parent
-    cells_df = pd.read_csv(d / "cells.csv")
-    targ = pd.read_csv(d / "targets.csv")
-    rt = d / "recovery_targets.csv"
+    cells_df = pd.read_csv(res(d, "cells.csv"),
+                           usecols=["cell", "rep", "pbar", "iss_A"])
+    targ = pd.read_csv(res(d, "targets.csv"))
+    rt = res(d, "recovery_targets.csv")
     if rt.exists():
-        r = pd.read_csv(rt)
-        targ = targ.merge(r, on=["cell", "rep"], how="left")
-    df = targ.merge(cells_df[["cell", "rep", "pbar", "iss_A", "iss_B"]],
-                    on=["cell", "rep"], how="inner")
-    print(f"merged {len(df)} rows; recovery columns: "
-          f"{[c for c in ('MPB','MP') if c in df.columns]}")
+        targ = targ.merge(pd.read_csv(rt), on=["cell", "rep"], how="left")
+    ml = res(d, "recovery_ml.csv")
+    if ml.exists():
+        targ = targ.merge(pd.read_csv(ml), on=["cell", "rep"], how="left")
+    df = targ.merge(cells_df, on=["cell", "rep"], how="inner")
+    # cell tag = <cond>_<fi>_<ratio>_<s>; fi is the internal fraction
+    parts = df["cell"].str.rsplit("_", n=3, expand=True)
+    df["fi"] = parts[1].astype(float)
+    have = [c for c in ("MPB", "ML") if c in df.columns]
+    print(f"merged {len(df)} rows; recovery columns: {have}")
 
-    def fit(cols, y):
-        X = df[cols].to_numpy(float)
-        m = make_pipeline(PolynomialFeatures(2, include_bias=False),
+    KNOTS = 16
+    BAND = (0.63, 0.70)
+
+    def score(kind, cols, y, sub):
+        X = sub[cols].to_numpy(float)
+        yy = sub[y].to_numpy(int if kind == "auc" else float)
+        if kind == "auc":
+            m = make_pipeline(SplineTransformer(n_knots=KNOTS, degree=3),
+                              StandardScaler(), LogisticRegression(max_iter=5000))
+            return float(cross_val_score(m, X, yy, cv=5,
+                                         scoring="roc_auc").mean())
+        m = make_pipeline(SplineTransformer(n_knots=KNOTS, degree=3),
                           StandardScaler(),
-                          LogisticRegression(max_iter=5000))
-        return cross_val_score(m, X, df[y].to_numpy(int), cv=5,
-                               scoring="roc_auc").mean()
+                          RidgeCV(alphas=np.logspace(-3, 3, 13)))
+        return float(cross_val_score(m, X, yy,
+                                     cv=KFold(5, shuffle=True, random_state=0),
+                                     scoring="r2").mean())
 
+    band = df[(df.pbar >= BAND[0]) & (df.pbar <= BAND[1])]
+    print(f"transition band pbar in {BAND}: n={len(band)}")
     out = []
-    targets = ["Ptrue_4P"] + [c for c in ("MPB", "MP") if c in df.columns]
-    for y in targets:
-        if df[y].isna().any() or df[y].nunique() < 2:
-            print(f"  {y}: skipped (missing values or a single class)")
+    for y, kind in ([(c, "auc") for c in have]
+                    + [("pi_site", "r2")]):
+        n_na = int(df[y].isna().sum())
+        if n_na:
+            print(f"  {y}: skipped -- {n_na}/{len(df)} missing "
+                  f"(recovery pass still running?)")
             continue
-        auc_p = fit(["pbar"], y)
-        auc_pi = fit(["pbar", "iss_A"], y)
-        out.append(dict(target=y, auc_pbar=auc_p, auc_pbar_plus_iss=auc_pi,
-                        delta=auc_pi - auc_p))
-        print(f"  {y}: AUC(pbar)={auc_p:.4f}  AUC(pbar,Iss)={auc_pi:.4f}"
-              f"  delta={auc_pi-auc_p:+.4f}")
-    # Continuous target, treated the SAME way as the binary one: compare
-    # out-of-sample R^2 of  f(pbar)  against  f(pbar) + Iss, with polynomial
-    # features so that pbar enters flexibly.  Two ad-hoc conditioning
-    # statistics (binned residual vs partial correlation) disagreed in sign on
-    # this data, which is why the fit comparison is the one that is reported.
-    from sklearn.linear_model import RidgeCV
-    from sklearn.model_selection import KFold, cross_val_score
-    from scipy.stats import spearmanr
+        full = df.dropna(subset=[y])
+        bnd = band.dropna(subset=[y])
+        r = dict(target=y)
+        for tag, sub in (("full", full), ("band", bnd)):
+            r[f"{tag}_pbar"] = score(kind, ["pbar"], y, sub)
+            r[f"{tag}_pbar_iss"] = score(kind, ["pbar", "iss_A"], y, sub)
+            r[f"{tag}_delta"] = r[f"{tag}_pbar_iss"] - r[f"{tag}_pbar"]
+        # mechanism probe, band only
+        r["band_pbar_fi"] = score(kind, ["pbar", "fi"], y, bnd)
+        r["band_pbar_fi_iss"] = score(kind, ["pbar", "fi", "iss_A"], y, bnd)
+        out.append(r)
+        print(f"  {y}:")
+        print(f"    full  pbar={r['full_pbar']:.4f}  +Iss={r['full_pbar_iss']:.4f}"
+              f"  delta={r['full_delta']:+.4f}")
+        print(f"    band  pbar={r['band_pbar']:.4f}  +Iss={r['band_pbar_iss']:.4f}"
+              f"  delta={r['band_delta']:+.4f}")
+        print(f"    band  +fi ={r['band_pbar_fi']:.4f}  +fi+Iss="
+              f"{r['band_pbar_fi_iss']:.4f}")
 
-    y = df["pi_site"].to_numpy(float)
-    r_p_spear = spearmanr(df["pbar"], y).correlation
-
-    def r2(cols):
-        X = df[cols].to_numpy(float)
-        m = make_pipeline(PolynomialFeatures(2, include_bias=False),
-                          StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 13)))
-        kf = KFold(5, shuffle=True, random_state=0)
-        return float(cross_val_score(m, X, y, cv=kf, scoring="r2").mean())
-
-    r2_p = r2(["pbar"])
-    r2_pi = r2(["pbar", "iss_A"])
-    print(f"  pi_site: rho(pbar)={r_p_spear:+.4f}  CV R2(pbar)={r2_p:.4f}"
-          f"  CV R2(pbar,Iss)={r2_pi:.4f}  delta={r2_pi-r2_p:+.4f}")
-    out.append(dict(target="pi_site_fraction", auc_pbar=r2_p,
-                    auc_pbar_plus_iss=r2_pi, delta=r2_pi - r2_p))
-    pd.DataFrame(out).to_csv(d / "condindep.csv", index=False)
     pd.DataFrame(out).to_csv(d / "condindep.csv", index=False)
     print(f"wrote {d/'condindep.csv'}")
 

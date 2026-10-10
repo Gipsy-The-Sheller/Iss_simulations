@@ -1,0 +1,6 @@
+partition,n_ref,n_got,n_shared,rf
+all,5,5,5,0
+pos1,5,5,5,0
+pos2,5,5,4,2
+pos3,5,5,4,2
+pos1+2,5,5,5,0

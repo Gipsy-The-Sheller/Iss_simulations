@@ -29,6 +29,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{microtype}
 \usepackage{natbib}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
@@ -75,34 +76,33 @@
 The index of substitution saturation $\Iss=\Hbar/\HFSS$
 \citep{xia2003iss} is used to decide, before any tree is built, whether an
 alignment retains phylogenetic signal. We show that the entropy construction
-enters $\E[\Iss]$ only through the spectrum of the rate matrix: resolving the
-transition matrix on the eigenbasis of the symmetrised generator
-$S=\Pi^{1/2}Q\Pi^{-1/2}$ reduces the index to a linear functional of the
-coordinates $\xi_\mu=\langle e^{\mu d}\rangle$, and $\Iss$ is an affine
-function of the mean pairwise $p$-distance precisely when
-$\tau_\mu/w_\mu$ is constant across the distinct non-zero eigenvalues of $Q$
-($\tau_\mu$ the algebraic multiplicity, $w_\mu=\tr(\Pi P_\mu)$, $P_\mu$ the
-spectral projector). The criterion holds for every reversible model under
-uniform base frequencies --- where the affine relation is exact --- and for
-every composition when the spectrum is degenerate; for non-uniform composition
-with a non-degenerate spectrum, $\Iss$ retains one further coordinate, a
-composition-weighted term that peaks at intermediate divergence. Whether the criterion holds or not,
-$\Iss$ reads nothing about the number of substitutions actually realised
-beyond what the uncorrected proportion of differing sites already carries, and
-therefore inherits that quantity's saturation. The critical value fails for
-reasons unrelated to the spectrum. Being per-site, $\Iss$ is intensive, its
-distribution invariant to sequence length to $O(L^{-1})$, whereas $\Issc$
-increases with $L$, so that the associated test statistic grows as
-$\sqrt{L}$: significance becomes a statement about how many sites were
-sequenced. In the near-saturated region the index is pinned within a few
-percent of its upper bound, so its critical value is nearly invariant not only
-to rate heterogeneity but to arbitrary changes in the underlying divergence ---
-apparent robustness that is an artefact of boundedness rather than a
-calibration. A four-taxon transfer of long branches at fixed patristic total
-illustrates the consequence: $\Iss$ is constant along the path to $O(r)$,
-while the probability of recovering the true topology spans nearly its full
-range. Passing the test remains evidence against saturation; failing it is
-weak evidence.
+enters $\E[\Iss]$ only through the spectrum of the rate matrix. On the
+eigenbasis of the symmetrised generator the index becomes a linear functional
+of the coordinates $\langle e^{\mu d}\rangle$, singling out when it collapses
+onto mean pairwise $p$-distance: the ratio of each non-zero eigenvalue's
+algebraic multiplicity to its composition weight must be constant across
+distinct eigenvalues. It
+holds for every reversible model at uniform composition, and for every
+composition when the spectrum is degenerate; it fails for non-uniform
+composition with a non-degenerate spectrum, the regime it was calibrated in.
+Wherever it holds, the index reads nothing about the number of
+substitutions realised that the uncorrected proportion of differing sites
+does not already supply. The mean of $\lambda$, the other tree-free
+index in use, reduces the same way.
+
+The critical value fails separately. It carries no
+rate-heterogeneity coordinate, and in the near-saturated region the index is
+pinned within a few percent of its upper bound: a fifteen-fold change in the
+tree length needed to make the topology unrecoverable moves it by less than
+one percent, so it cannot distinguish moderate from severe saturation. A four-taxon transfer of long branches at fixed patristic total
+makes the consequence direct --- the index is constant along the path while
+recovery spans its full range.
+
+Real data occupy both regimes: on the data set that introduced the
+index the saturated codon partition falls between two readings of its own
+threshold; a genome-scale avian alignment, an order of magnitude below both.
+Passing the test is evidence against saturation, failing it is weak evidence,
+neither is evidence of resolution.
 \end{abstract}
 
 % =====================================================================
@@ -172,9 +172,14 @@ on any data set by
   c=\frac{h(\hat{\mathbf p})}{\HFSS^{(A)}},\qquad c\in(1,\,1.08]\ \text{for }N\ge16 .
   \label{eq:convention}
 \end{equation}
-The convention rescales the index but changes neither which of two alignments
-is more saturated nor, as \S\ref{sec:criterion} shows, whether the affine
-relation holds.
+Because $c$ depends on $\hat{\mathbf p}$ and not on the tree, it is a constant
+within any one alignment: the convention rescales the index but does not
+change whether the affine relation holds
+(Section~\ref{sec:criterion}), nor which of two alignments is more saturated
+when they share a composition. Across data sets with different base
+frequencies $c$ differs, so the two conventions need not even agree on the
+ordering; the ratio moves by at most $8\%$ over the nucleotide range for
+$N\ge16$, but by $51\%$ at $N=4$, where $c=1/0.6620$.
 
 \subsection{Spectral resolution}
 
@@ -192,37 +197,211 @@ orthonormal and the spectral projectors are orthogonal:
   w_\mu=\tr(\Pi P_\mu)=\sum_j\pi_j(P_\mu)_{jj}.
   \label{eq:projectors}
 \end{equation}
-\todo{State Lemma 9 (spectral resolution
-$P_{ij}(t)=\pi_j+\sum_{k\ge2}A^{(k)}_{ij}e^{\lambda_kt}$) and Lemma 10, and
-prove $\tau_\mu=$ algebraic multiplicity. Use the orthogonal projector
-Eq.~\eqref{eq:projectors}, \emph{not} the Lagrange form
-$P_\mu=\prod_{\nu\neq\mu}(S-\nu I)/(\mu-\nu)$: the latter is numerically
-unusable for $K>4$ (at $K=20$ it returns $\sum_\mu\tau_\mu\approx34$ instead
-of $19$, and $w_\mu$ errors of order $10^0$; the orthogonal form is exact).
-Note that $K=4$ is the last state space for which the non-zero eigenvalues are
-given by radicals (degree $K-1=3$, Cardano); the criterion itself does not
-depend on radical solvability, only the explicit closed form does.}
+\begin{lemma}[Spectral resolution]
+\label{lem:spectral}
+$Q=\Pi^{-1/2}U\Lambda U^{\!\top}\Pi^{1/2}$ and $P(t)=e^{Qt}$, hence
+\begin{equation}
+  P_{ij}(t)=\pi_j+\sum_{k\ge2}A^{(k)}_{ij}e^{\lambda_kt},\qquad
+  A^{(k)}_{ij}=\pi_i^{-1/2}u_{ki}u_{kj}\pi_j^{1/2},\qquad
+  A^{(k)}_{jj}=u_{kj}^2 .
+\end{equation}
+\end{lemma}
 
-All quantities of interest are linear functionals of the \emph{same} vector
-$\bxi$ with $\xi_\mu=\langle e^{\mu d}\rangle$, averaged over leaf pairs and
-rate classes:
+\begin{proof}
+$P(t)=\Pi^{-1/2}Ue^{\Lambda t}U^{\!\top}\Pi^{1/2}$ gives the entries directly.
+For $k=1$, $\lambda_1=0$ and $\mathbf u_1=\sqrt{\bpi}$ --- indeed
+$S\sqrt{\bpi}=\Pi^{1/2}Q\mathbf 1=\mathbf 0$ --- so
+$A^{(1)}_{ij}=\pi_i^{-1/2}\sqrt{\pi_i}\sqrt{\pi_j}\,\pi_j^{1/2}=\pi_j$.
+\end{proof}
+
+Because $S$ is symmetric its eigenvectors are orthonormal, so
+$\tau_k=\sum_ju_{kj}^2=1$ for every $k$: the grouped coefficient
+$\tau_\mu$ in Eq.~\eqref{eq:projectors} \emph{is} the algebraic multiplicity,
+with no separate argument needed. In particular
+$\tr P(t)-1=\sum_{\mu\ne0}\tau_\mu e^{\mu t}$, so the phylogenetic term
+$\Psi=\langle\tr P\rangle-1$ weights each eigenvalue by how many times it
+occurs. This is the reason the criterion below is a statement about
+\emph{multiplicities} rather than about individual eigenvalues.
+
+\begin{lemma}[The three scalars]
+\label{lem:scalars}
+With $\langle\cdot\rangle$ averaging over ordered leaf pairs and rate classes,
+and $\xi_\mu=\langle e^{\mu d}\rangle$,
 \begin{equation}
   \Psi=\sum_{\mu\ne0}\tau_\mu\,\xi_\mu,\qquad
   \wp=\Bigl(1-\sum_j\pi_j^2\Bigr)-\sum_{\mu\ne0}w_\mu\,\xi_\mu,\qquad
-  \Delta=\sum_{\mu\ne0}\Bigl(w_\mu-\tfrac{\tau_\mu}{K}\Bigr)\xi_\mu .
+  \Delta=\sum_{\mu\ne0}\Bigl(w_\mu-\tfrac{\tau_\mu}{K}\Bigr)\xi_\mu ,
   \label{eq:scalars}
 \end{equation}
-Here $\wp$ is the mean pairwise $p$-distance and $\Psi=\langle\tr P\rangle-1$.
+where $\wp$ is the mean pairwise $p$-distance and
+$\Delta=\sum_j(\pi_j-1/K)(\langle P_{jj}\rangle-\pi_j)$ is the
+composition-leakage term of Theorem~\ref{thm:affine}.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:spectral},
+$\langle P_{jj}\rangle=\pi_j+\sum_{\mu\ne0}(P_\mu)_{jj}\xi_\mu$. Summing over
+$j$ gives $\Psi=\sum_j\langle P_{jj}\rangle-1=\sum_{\mu\ne0}\tau_\mu\xi_\mu$;
+weighting by $\pi_j$ gives
+$\sum_j\pi_j\langle P_{jj}\rangle=\sum_j\pi_j^2+\sum_{\mu\ne0}w_\mu\xi_\mu$,
+and $1$ minus that is $\wp$. Finally
+$\langle P_{jj}\rangle-\pi_j=\sum_{\mu\ne0}(P_\mu)_{jj}\xi_\mu$, so
+$\Delta=\sum_{\mu\ne0}\bigl(w_\mu-\tau_\mu/K\bigr)\xi_\mu$ on substituting
+$\sum_j(P_\mu)_{jj}=\tau_\mu$ and $\sum_j\pi_j(P_\mu)_{jj}=w_\mu$.
+\end{proof}
+
+Everything the index can see about the tree enters through the single vector
+$\bxi$; what distinguishes the three scalars is only how the spectrum is
+weighted --- unweighted for $\Psi$, composition-weighted for $\wp$ and
+$\Delta$. Section~\ref{sec:criterion} shows that the index collapses onto
+$\wp$ exactly when those two weightings agree up to scale.
 
 \subsection{Exact and second-order closed forms}
 
-\todo{Part I Theorem 1 (second order) and Theorem 2 (exact, star tree), with
-Lemma 5. Include the $O(N^{-2})$ bookkeeping explicitly: at $N=16$ the exact
-multinomial entropy at uniform composition is $1.285617$ nats against the
-second-order $\ln4-3/32=1.292544$, i.e.\ $0.927377$ against $0.932374$ after
-normalisation. This is an $O(N^{-2})$ term, not $O(3)$, and at $N=4$ it is
-large: the exact ceiling is $\E_{\Mult(4,\mathrm{unif})}[h]/h(\bpi)=0.6620$
-against the second-order $0.7295$.}
+The index has two closed forms, one asymptotic and one exact on star trees.
+
+\begin{lemma}[Entropy expansion]
+\label{lem:entropy}
+For $\hat{\mathbf p}$ with $\E[\hat{\mathbf p}]=\bpi$, lying in a compact
+neighbourhood of $\bpi$ bounded away from the simplex boundary,
+\begin{equation}
+  \E\bigl[h(\hat{\mathbf p})\bigr]
+  =h(\bpi)-\frac12\sum_j\frac{\Var(\hat p_j)}{\pi_j}+R_3,
+  \qquad
+  |R_3|\le\frac16\sum_j\frac{\E\bigl[|\hat p_j-\pi_j|^3\bigr]}{\min(\pi_j,\hat p_j)^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\partial h/\partial p_j=-(\ln p_j+1)$, $\partial^2h/\partial p_j^2=-1/p_j$,
+$\partial^3h/\partial p_j^3=1/p_j^2$, and the mixed partials vanish. Taylor
+expansion at $\bpi$ with Lagrange remainder; the linear term vanishes because
+$\E[\hat p_j]=\pi_j$.
+\end{proof}
+
+\begin{lemma}[Variance aggregation]
+\label{lem:varagg}
+$\Var(\hat p_j)=\dfrac{\pi_j(1-\pi_j)}{N}+\dfrac{N-1}{N}\pi_j
+\bigl(\langle P_{jj}\rangle-\pi_j\bigr)$, hence
+$\displaystyle\sum_j\frac{\Var(\hat p_j)}{\pi_j}
+=\frac{K-1}{N}+\frac{N-1}{N}\Psi .$
+\end{lemma}
+
+\begin{proof}
+$\Pr(X_i=j,X_{i'}=j)=\pi_jP_{jj}(d_{ii'})$ for leaves $i\ne i'$ by
+reversibility and Chapman--Kolmogorov. Summing the $N(N-1)$ ordered
+covariances $\pi_jP_{jj}(d_{ii'})-\pi_j^2$ and dividing by $N^2$ gives the
+first display; dividing by $\pi_j$ and summing gives
+$\sum_j(1-\pi_j)/N=(K-1)/N$ and
+$\frac{N-1}{N}\sum_j(\langle P_{jj}\rangle-\pi_j)=\frac{N-1}{N}\Psi$.
+\end{proof}
+
+\begin{theorem}[Second-order closed form]
+\label{thm:secondorder}
+Under the assumptions above,
+\begin{equation}
+  \E[\Iss]=1-\frac{1}{2h(\bpi)}\biggl[\frac{K-1}{N}
+  +\frac{N-1}{N}\,\bigl\langle\tr P(rd)-1\bigr\rangle\biggr]+O(3).
+  \label{eq:secondorder}
+\end{equation}
+Under JC69 in particular,
+$\E[\Iss]=1-\frac{1}{2\ln4}\bigl[\frac3N+\frac{N-1}{N}\,3\,\E_r e^{-8rd/3}\bigr]+O(3)$.
+\end{theorem}
+
+\begin{proof}
+Sites are independent, so $\E[\Hbar]=\E[h(\hat{\mathbf p})]$ for one site.
+Apply Lemma~\ref{lem:entropy} and substitute Lemma~\ref{lem:varagg}; divide by
+$\HFSS$. For JC69, $h(\bpi)=\ln4$ and $\Psi=3\E_r e^{-8rd/3}$ by
+Lemma~\ref{lem:spectral} with $t=2rd$.
+\end{proof}
+
+The remainder $R_3$ vanishes as some $n_j\to0$ does not occur, i.e.\ as
+divergence grows and every site becomes informative; Eq.~\eqref{eq:secondorder}
+is therefore asymptotically exact in exactly the regime the index is used, and
+degrades at low divergence. The expansion is also unnecessary on a star tree,
+where the leaves are conditionally i.i.d.\ given the root.
+
+\begin{lemma}[Exact multinomial entropy]
+\label{lem:multinomial}
+For $\mathbf n\sim\Mult(N,\mathbf q)$,
+\begin{equation}
+  \E\bigl[h(\mathbf n/N)\bigr]=\ln N-\frac1N\sum_j\sum_{m=1}^{N}
+  m\ln m\binom Nm q_j^{m}(1-q_j)^{N-m}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$h(\mathbf n/N)=\ln N-\frac1N\sum_jn_j\ln n_j$ since $\sum_jn_j=N$. Take
+expectations with $\Pr(n_j=m)=\binom Nm q_j^mq_j'^{N-m}$, the $m=0$ term
+contributing $0$.
+\end{proof}
+
+\begin{theorem}[Exact closed form on a star tree]
+\label{thm:exact}
+For a star with $N$ leaves, root-to-leaf length $d$, rate distribution
+$\{(r_c,w_c)\}$ and $e_c=e^{-4r_cd/3}$,
+\begin{equation}
+  \E[\Iss]=\frac{1}{h(\bpi)}\sum_c w_c\sum_\rho\pi_\rho
+  \Bigl[\ln N-\frac1N\sum_j\sum_{m=1}^{N}m\ln m\binom Nm
+  q_{\rho j}^{m}(1-q_{\rho j})^{N-m}\Bigr],
+\end{equation}
+where $q_{\rho\rho}=\tfrac14+\tfrac34e_c$ and $q_{\rho j}=\tfrac{1-e_c}{4}$
+for $j\ne\rho$. Under rate homogeneity the outer sum degenerates to $r=1$.
+\end{theorem}
+
+\begin{proof}
+Given the root state $\rho$ and rate class $c$ the $N$ leaf states are
+i.i.d.\ with law $\mathbf q_\rho=P_{\rho\cdot}(r_cd)$, which by
+Lemma~\ref{lem:spectral} has the stated entries. Apply
+Lemma~\ref{lem:multinomial}, average over $\rho$ and $c$, divide by $h(\bpi)$.
+\end{proof}
+
+\begin{corollary}[The ceiling is a function of $N$ in one convention only]
+\label{cor:ceiling}
+To the accuracy of Eq.~\eqref{eq:secondorder},
+$\E[\Iss]\le1-\frac{K-1}{2Nh(\bpi)}$, since $\Psi\ge0$. In the saturation
+limit every $\xi_\mu\to0$, so $\E[\Hbar]\to\E_{\Mult(N,\bpi)}[h]$ and
+\begin{equation}
+  \lim_{d\to\infty}\E[\Iss^{(A)}]=1\quad\text{for every }N,
+  \qquad
+  \lim_{d\to\infty}\E[\Iss^{(B)}]
+  =\frac{\E_{\Mult(N,\bpi)}[h]}{h(\bpi)},
+\end{equation}
+the latter equal to $1-\frac{K-1}{2N\ln K}+O(N^{-2})$.
+\end{corollary}
+
+\begin{proof}
+$\HFSS^{(A)}=\E_{\Mult(N,\hat{\mathbf p})}[h]$ and
+$\hat{\mathbf p}\to\bpi$ by the law of large numbers, so numerator and
+denominator coincide in the limit. For $(B)$, $\HFSS^{(B)}=h(\bpi)$ does not
+depend on $N$ while the numerator retains the finite-sample deficit. The
+expansion is the Miller--Basharin term.
+\end{proof}
+
+We prove the bound only to second order. A non-asymptotic version would
+compare $\E[h]$ under the exchangeable, positively correlated site law with
+the multinomial law in convex order; we do not attempt it, and the
+application does not need it --- observed values of $\Iss$ exceeding $1$ are
+explained by state-space mismatch rather than by the slack in the bound, since
+the excursions reported in the literature ($1.49$) exceed any $O(3)$ or
+$O(N^{-2})$ term by two orders of magnitude.
+
+Numerically, the exact ceiling under $(B)$ is $0.661995$ ($N=4$), $0.840643$
+($N=8$) and $0.927377$ ($N=16$). The $O(N^{-2})$ bookkeeping matters: at
+$N=16$ the exact multinomial entropy at uniform composition is $1.285617$ nats
+against the second-order $\ln4-3/32=1.292544$, and the normalised ceilings are
+$0.927377$ against $0.932374$. The discrepancy is $O(N^{-2})$, not $O(3)$, but
+at $N=4$ it is large --- exact $0.6620$, second order $0.7295$.
+
+Corollary~\ref{cor:ceiling} is the first place the two conventions separate.
+It is not confined to the limit: at $\bar p=0.599$, where
+Eq.~\eqref{eq:secondorder} applies with a remainder under $10^{-3}$, the exact
+star values are $0.7770$, $0.7810$ and $0.7983$ under $(A)$ for $N=4,8,16$,
+against $0.5144$, $0.6566$ and $0.7403$ under $(B)$. Between $N=4$ and $N=16$
+convention $(A)$ moves by $2.7\%$ of its value and convention $(B)$ by $44\%$.
+Xia's normalisation is not merely a rescaling: it removes the leading
+finite-sample dependence on the number of taxa, which the plug-in entropy does
+not. The simulation reproduces both families to within $0.0006$.
 
 \begin{remark}[Second-order accuracy varies strongly with $N$]
 \label{rem:accuracy}
@@ -234,11 +413,113 @@ affine identity is qualitatively robust and quantitatively poor at small $N$;
 all numerical claims about it should be made at $N\ge16$ or computed exactly.
 \end{remark}
 
+\subsubsection*{Rate heterogeneity}
+
+\begin{lemma}[$\Gamma$ transform and monotonicity]
+\label{lem:gamma-monotone}
+For $r\sim\Gamma(\alpha,\text{scale}=1/\alpha)$ and $\lambda<0$,
+\begin{equation}
+  \E_r\bigl[e^{\lambda rt}\bigr]=\Bigl(1-\frac{\lambda t}{\alpha}\Bigr)^{-\alpha},
+\end{equation}
+and $\alpha\mapsto\E_r[e^{\lambda rt}]$ is strictly decreasing for every
+$t>0$, with limit $e^{\lambda t}$ as $\alpha\to\infty$. Consequently
+$\Psi_\alpha=3\bigl(1+\frac{8d}{3\alpha}\bigr)^{-\alpha}$ on a star under
+JC69, strictly decreasing in $\alpha$, so $\E[\Iss]$ is strictly increasing
+in $\alpha$.
+\end{lemma}
+
+\begin{proof}
+The moment generating function of $\Gamma(\alpha,\alpha)$ is
+$(\alpha/(\alpha-s))^{\alpha}$ for $s<\alpha$; set $s=\lambda t<0$. Writing
+$g(\alpha)=-\alpha\ln(1+u)$ with $u=-\lambda t/\alpha>0$, we get
+$g'(\alpha)=-\ln(1+u)+u/(1+u)<0$ because $\ln(1+u)>u/(1+u)$ for all $u>0$;
+and $-\alpha\ln(1-\lambda t/\alpha)\to\lambda t$ as $\alpha\to\infty$. Since
+$\E[\Iss]$ is decreasing in $\Psi$ by Eq.~\eqref{eq:secondorder}, the last
+claim follows.
+\end{proof}
+
+The homogeneous case decays as $e^{-8d/3}$, exponentially; rate heterogeneity
+gives a \emph{power law} $\Psi_\alpha\sim3(3\alpha/8d)^{\alpha}$ as
+$d\to\infty$. A power-law tail is heavier than any exponential, so
+heterogeneity retards the approach of $\E[\Iss]$ to its ceiling at a rate set
+by $\alpha$, not by any small perturbation.
+
+\begin{proposition}[Non-identifiability of the critical value]
+\label{prop:nonident}
+Let $\Issc=\Iss(TL_c)$ with $TL_c$ the tree length at which
+$\Pr[\hat{\mathcal T}=\mathcal T]$ falls to $0.95$. Then $\Issc$ is a strictly
+monotone function of $\alpha$, and the tabulated values, computed under rate
+homogeneity, correspond to $\alpha=\infty$ alone.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:gamma-monotone} the map $\alpha\mapsto\Iss(TL;\alpha)$ is
+strictly increasing, with range
+\[
+  \bigl[\Iss(TL;0^+),\ \Iss(TL;\infty)\bigr].
+\]
+The level set $\{\,TL:\Iss(TL;\alpha)=\theta\,\}$ --- and hence both $TL_c$
+and $\Iss(TL_c)$ --- therefore depends on $\alpha$.
+\end{proof}
+
+The dependence is not, by itself, fatal, and Section~\ref{sec:collapse} shows
+that it is weaker than it sounds: over the range of $\alpha$ that matters,
+$TL_c$ moves by a factor of $18$ while $\Issc$ moves by less than $0.01$. The
+charge is therefore not that the threshold is unusable but that it is
+mis-calibrated in a way its user cannot detect: the critical tree length does
+depend strongly on $\alpha$, the index does not carry that dependence, and a
+table with no $\alpha$ coordinate silently maps one onto the other.
+
 \subsection{When the index collapses onto \texorpdfstring{$p$}{p}-distance}
 \label{sec:criterion}
 
-\todo{Part II Theorem 6 with Corollaries 6.1--6.3 and Lemma 11.
-State the failure condition as $\Delta\not\propto\Psi$, not $\Delta\neq0$.}
+\begin{definition}[Scaling family]
+Fix a topology with branch-length vector $\mathbf d^0$ and a rate
+distribution, and scale $\mathbf d(s)=s\,\mathbf d^0$. The family is
+\emph{exponentially non-degenerate} if the functions
+$\{s\mapsto\xi_\mu(s)\}$, one per distinct non-zero eigenvalue, together with
+the constant function, are linearly independent on the family.
+\end{definition}
+
+This holds generically. On a star under $\Gamma$-rates,
+$\xi_\mu(s)=(1-2\mu s d^0/\alpha)^{-\alpha}$, and functions with distinct
+$\mu$ have distinct singularities in the complex plane.
+
+\begin{theorem}[Criterion]
+\label{thm:affine}
+For an exponentially non-degenerate scaling family the following are
+equivalent:
+\begin{enumerate}
+\item $\Psi$ is an affine function of $\wp$ along the family;
+\item $\Delta$ is an affine function of $\Psi$ along the family;
+\item there is a constant $B$ with $\tau_{[\mu]}+B\,w_{[\mu]}=0$ for every
+      distinct non-zero eigenvalue $\mu$.
+\end{enumerate}
+When (3) holds, $\Psi=B\wp-B\bigl(1-\sum_j\pi_j^2\bigr)$.
+\end{theorem}
+
+\begin{proof}
+$(1)\Rightarrow(3)$: suppose $\Psi=A+B\wp$. By Lemma~\ref{lem:scalars},
+$\sum_\mu\tau_\mu\xi_\mu=A+B(1-\sum_j\pi_j^2)-B\sum_\mu w_\mu\xi_\mu$, i.e.\
+$\sum_\mu(\tau_\mu+Bw_\mu)\xi_\mu$ is constant. Exponential non-degeneracy
+forces each coefficient to vanish, and summing within a distinct eigenvalue
+gives $(3)$. $(3)\Rightarrow(1)$ is the same computation read backwards.
+$(2)\Leftrightarrow(3)$: $\Delta$ and $\Psi$ are affinely related iff
+$w_\mu-\tau_\mu/K=c\,\tau_\mu$ for a constant $c$, which is $(3)$ with
+$B=-(c+1/K)^{-1}$.
+\end{proof}
+
+The failure condition is therefore $\Delta\not\propto\Psi$, \emph{not}
+$\Delta\ne0$. A nonzero composition term is harmless as long as it is
+proportional to the phylogenetic one; this distinction is the difference
+between a model that satisfies the criterion and one that does not, as the
+F81 and HKY rows below show. To the accuracy of
+Eq.~\eqref{eq:secondorder} the deviation of $\E[\Iss]$ from the $p$-distance
+prediction is $-\frac{N-1}{2Nh(\bpi)}\Delta+O(3)$, so $\Delta$ measures the
+size of the failure and Theorem~\ref{thm:affine} measures its shape. Both
+statements are second-order; beyond it $\E[\Iss]$ depends on third and fourth
+moments of the site-pattern distribution, which pairwise identity does not
+determine, and Remark~\ref{rem:scope} below states what follows from that.
 
 \begin{corollary}[Uniform composition]
 \label{cor:uniform}
@@ -247,6 +528,127 @@ $\mu$ and $\tau_\mu/w_\mu=K$ identically --- for \emph{every} reversible $Q$,
 every topology, every branch-length vector and every rate distribution. The
 proof is one line and never mentions whether the spectrum is degenerate.
 \end{corollary}
+
+\begin{corollary}[Degenerate spectrum]
+\label{cor:degenerate}
+If $Q$ has a single distinct non-zero eigenvalue $\mu$ --- JC69, F81, and any
+model whose generator is a function of a single rank-one matrix --- the
+identity holds for \emph{every} composition, with
+$B=-\tau_{[\mu]}/w_{[\mu]}$.
+\end{corollary}
+
+\begin{proof}
+There is only one grouped pair to satisfy, so (3) is solved by any $B$.
+For F81, $P(t)=e^{-t}I+(1-e^{-t})\mathbf 1\bpi^{\!\top}$, so
+$P_{jj}(t)=\pi_j+(1-\pi_j)e^{-t}$, $\mu=-1$, $\tau_{[\mu]}=K-1$,
+$w_{[\mu}]=\sum_j\pi_j(1-\pi_j)=1-\sum_j\pi_j^2$, and
+$\wp=(1-\sum_j\pi_j^2)(1-\langle e^{-d}\rangle)$.
+\end{proof}
+
+\begin{corollary}[Generic failure]
+\label{cor:failure}
+If $\bpi$ is non-uniform \emph{and} $Q$ has at least two distinct non-zero
+eigenvalues with $\tau_{[\mu]}/w_{[\mu]}$ varying across $\mu$, then $\E[\Iss]$
+is a genuinely higher-dimensional function of $\bxi$ and cannot be recovered
+from $\wp$.
+\end{corollary}
+
+Xia et al.~\citep{xia2003iss} calibrate under F84 with
+$\kappa\in[1,10]$ and base frequencies in $[0.1,0.9]$ --- with non-uniform
+composition and a non-degenerate spectrum, this is squarely inside the failure
+region. Table~\ref{tab:criterion} evaluates the ratio for the models at issue.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccc}
+\toprule
+model & $\bpi$ & $\#$ distinct $\mu$ & $\lambda_k$
+      & $\tau_{[\mu]}$ & $w_{[\mu]}$ & affine? \\
+\midrule
+JC69            & uniform          & 1 & $-1.3333^{\times3}$ & $[3]$ & $[0.75]$ & yes \\
+F81             & $(.4,.3,.2,.1)$  & 1 & $-1.4286^{\times3}$ & $[3]$ & $[0.70]$ & yes \\
+HKY $\kappa{=}5$& uniform          & 2 & $-0.5714,\,-1.7143^{\times2}$ & $[1,2]$ & $[0.25,0.50]$ & yes \\
+HKY $\kappa{=}5$& $(.4,.3,.2,.1)$  & 3 & $-0.6329,\,-1.6456,\,-2.1519$ & $[1,1,1]$ & $[.2833,.1500,.2667]$ & no \\
+GTR             & uniform          & 3 & $-0.6224,\,-1.2568,\,-2.1209$ & $[1,1,1]$ & $[.25,.25,.25]$ & yes \\
+GTR             & $(.4,.3,.2,.1)$  & 3 & $-0.5418,\,-1.1829,\,-2.1807$ & $[1,1,1]$ & $[.1228,.3260,.2512]$ & no \\
+\bottomrule
+\end{tabular}
+\caption{The criterion of Theorem~\ref{thm:affine} under six models. The
+ratios $\tau_{[\mu]}/w_{[\mu]}$ are constant exactly in the rows marked
+\emph{yes}. Two rows carry the content: GTR with three distinct eigenvalues
+and uniform composition is affine, confirming
+Corollary~\ref{cor:uniform} where the spectrum is fully non-degenerate; and
+F81 with strongly skewed composition is affine, confirming
+Corollary~\ref{cor:degenerate}.}
+\label{tab:criterion}
+\end{table}
+
+\begin{lemma}[Shape of the failure]
+\label{lem:delta}
+$\Delta(0)=1/K-\sum_j\pi_j^2$, $\Delta(\infty)=0$, and $\Delta$ need not be
+monotone.
+\end{lemma}
+
+\begin{proof}
+At $\xi_\mu\equiv1$, $\Delta=\sum_\mu(w_\mu-\tau_\mu/K)=(1-\sum_j\pi_j^2)-(K-1)/K=1/K-\sum_j\pi_j^2$;
+at $\xi_\mu\to0$, $\Delta\to0$. Non-monotonicity: $\Delta$ is a signed mixture
+of exponentials with distinct rates, and the coefficients
+$w_\mu-\tau_\mu/K$ change sign across $\mu$.
+
+Numerically, for HKY with $\kappa=5$ and $\bpi=(.4,.3,.2,.1)$ the ratio
+$\Delta/\Psi$ sweeps from $-0.0155$ to $+0.0333$ as $d$ runs over
+$[0.05,8]$, so the identity fails; for F81 with the same composition it is
+constant at $w/\tau-1/K=0.70/3-0.25=-0.016667$ to all printed digits, so the
+identity holds even though $\Delta\ne0$. The HKY extremum falls near
+$d\approx1$, in the mid-divergence region where the critical values are
+calibrated.
+\end{proof}
+
+Theorem~\ref{thm:affine} constrains $\Psi$ and $\wp$, and the choice of those
+two scalars rather than $\E[\Iss]$ is not cosmetic. $\Psi$ and $\wp$ are exact
+linear functionals of the spectral coordinates, whereas $\E[\Iss]$ is not: by
+Eq.~\eqref{eq:secondorder} it carries the composition term $\Delta$ plus an
+$O(3)$ remainder, and a test performed on it measures those as much as it
+measures the criterion. An earlier version of this check did exactly that and
+returned its \emph{largest} residual for the model whose criterion holds ---
+the signature of a test aimed at the wrong quantity. Figure~\ref{fig:theorem13}
+separates the two levels. Panel A evaluates $\Psi$ against $\wp$ from the
+spectral decomposition alone, on a star of root-to-leaf length $d$ scanned
+over $d\in[0.02,1.5]$, for models exercising all three corollaries. Where the
+criterion holds, the relation is affine to machine precision: the largest
+departure from the best-fit line is $1.8\times10^{-15}$ for HKY with uniform
+composition and $2.2\times10^{-15}$ for F81 with $\bpi=(.4,.3,.2,.1)$, which
+is double-precision residue rather than residual structure. Where it fails ---
+HKY with $\kappa=5$ and the same skewed composition, the model of the last row
+of Table~\ref{tab:criterion} --- the departure reaches $1.3\times10^{-2}$ in
+$\Psi$ units, or $4.9\times10^{-3}$ in the units of $\Iss$ at $N=16$.
+Panel B then evaluates the same three models in $\E[\Iss]$ instead, and there
+the criterion-holding and criterion-failing models are indistinguishable: all
+three depart from a straight line by $10$--$15\%$ of the range of $\E[\Iss]$,
+and the failing model sits in the middle of that pack rather than at its edge.
+The $O(3)$ channel moves the index by some twenty times what the criterion's
+failure moves it. The practical consequence is that the failure cannot be
+diagnosed by plotting $\Iss$ against $\bar p$, because at nucleotide skew it
+is buried under the higher-order terms; the diagnostic is the ratio
+$\tau_{[\mu]}/w_{[\mu]}$, which is read off the model and requires no data.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig10_theorem13.png}
+\caption{Theorem~\ref{thm:affine} evaluated at the two levels it distinguishes.
+(A)~$\Psi$ against the mean $p$-distance, computed exactly from the spectral
+decomposition on a star ($d\in[0.02,1.5]$; dashed lines are the best fits).
+The two models whose criterion holds lie on their fits to $10^{-15}$; HKY with
+$\kappa=5$ and $\bpi=(.4,.3,.2,.1)$ does not. (B)~The same departures
+multiplied by $(N-1)/2Nh(\bpi)$ at $N=16$, i.e.\ expressed in the units of the
+index itself. The criterion-failing model is not distinguished at this level:
+the $O(3)$ remainder of Eq.~\eqref{eq:secondorder} exceeds the affinity
+failure by a factor of $18$ to $27$ depending on the model, which is why the
+criterion must be checked on $\Psi$ rather than on $\E[\Iss]$.}
+\label{fig:theorem13}
+\end{figure}
 
 \begin{remark}[Scope of the collapse]
 \label{rem:scope}
@@ -273,7 +675,7 @@ determine. The site patterns carry structure that the mean mismatch proportion
 cannot see --- for $K=4$ a $2\!:\!2$ site is parsimony-informative while a
 $3\!:\!1$ site is not, and the two have different entropies. The magnitude of
 this higher-order channel is measurable and is reported in
-Section~\ref{sec:simulation}; whether it is phylogenetically informative rather
+Section~\ref{sec:simresults}; whether it is phylogenetically informative rather
 than merely compositional is a separate question, answered by testing
 conditional independence:
 \begin{equation}
@@ -288,41 +690,869 @@ adjudicates redundancy.
 
 \subsection{The critical value depends on sequence length}
 
-\todo{Part II Theorem 8 and Corollary 8.1. Report $T\propto\sqrt L$ explicitly:
-with Xia's own worked example ($\Iss=0.5573$, $\Issc=0.8093$,
-$\mathrm{SE}=0.01830$, $\mathrm{DF}=731$) the test statistic is
-$T=13.77$, and $\mathrm{Var}(\Iss)=\Theta(L^{-1})$ gives $T=\Theta(\sqrt L)$:
-$T=43.55$ at $L=7320$ and $137.70$ at $L=73200$. Significance tracks the
-number of sites, not the degree of saturation.}
+\begin{theorem}[Length invariance and its price]
+\label{thm:length}
+With $\Hbar=\frac1L\sum_iH_i$ and $B=h(\hat{\mathbf p})$,
+\begin{enumerate}
+\item $\E[\Hbar]=\mu(s)$ exactly, for every $L$;
+\item $\Var(\Hbar)=\sigma^2(s)/L$ with $\sigma^2=\Var(H_1)$;
+\item $\Var(\Iss)=\Theta(L^{-1})$;
+\item $\E[\Iss]=\Iss^\infty+c/L+O(L^{-2})$, with
+      $\Iss^\infty=\mu/h(\bpi)$ and
+      $c=\dfrac{\mu\,\Var(B)}{h(\bpi)^3}-\dfrac{\Cov(\Hbar,B)}{h(\bpi)^2}$
+      after rescaling by $L$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1)--(2) Sites are i.i.d., so $\Hbar$ is an i.i.d.\ mean. (3)--(4): expand
+$B^{-1}$ about $h(\bpi)$ to second order,
+\[
+  \E[\Hbar B^{-1}]=\frac{\mu}{\mu_B}
+  -\frac{\Cov(\Hbar,B)}{\mu_B^2}
+  +\frac{\mu\Var(B)}{\mu_B^3}+O(L^{-2}),
+\]
+and
+\[
+  \Var(\Iss)=\Bigl(\frac{\mu}{\mu_B}\Bigr)^2
+  \Bigl[\frac{\Var(\Hbar)}{\mu^2}
+  -\frac{2\Cov(\Hbar,B)}{\mu\,\mu_B}
+  +\frac{\Var(B)}{\mu_B^2}\Bigr];
+\]
+all three terms are $\Theta(L^{-1})$ because $\hat{\mathbf p}$ is pooled over
+$NL$ observations while $\Hbar$ fluctuates at $L^{-1/2}$.
+\end{proof}
+
+Theorem~\ref{thm:length} is the analytic content of an empirical fact the
+original paper already reports. Figure~3 of \citet{xia2003iss} is titled
+\emph{The critical index of substitution saturation depends on the sequence
+length and the number of OTUs}, and the surrounding text uses that dependence
+as advice --- a user with an asymmetrical topology and $\Iss=0.73$ at $N=8$ is
+told to exceed $500$~bp if the tree is symmetrical and $3000$~bp if it is
+strongly asymmetrical. Their Figure~2 likewise reports that
+$\Pr[\hat{\mathcal T}=\mathcal T]$ depends on sequence length. The dependence
+is therefore not overlooked, and the threshold being $L$-indexed is a
+deliberate design decision rather than an error.
+
+What Theorem~\ref{thm:length} supplies is why the dependence has the form it
+does. $\Iss$ is an average over sites and cannot depend on $L$ except through
+finite-sample noise; $\HFSS$ is pooled over $NL$ observations and is
+$\sqrt N$ better determined than $\Hbar$; so $\Var(\Iss)=\Theta(L^{-1})$
+exactly, and the critical value must move with $L$ at rate $L^{-1/2}$ to hold
+a decision threshold fixed. That is the mechanism behind Figure~3, and it
+fixes the functional form of the tabulated surface rather than merely
+exhibiting it.
+
+\begin{corollary}[A fixed margin does not stay fixed]
+\label{cor:length}
+Since $\mathrm{SE}=\Theta(L^{-1/2})$, the statistic
+$T=(\Issc-\Iss)/\mathrm{SE}$ satisfies $T=\Theta(\sqrt L)$ for any
+\emph{fixed} margin. A user who reads a tabulated $\Issc$ for the wrong $L$,
+or who compares a margin across data sets of different length, is reading a
+number whose significance changes with the site count.
+\end{corollary}
+
+Xia et al.'s own worked example makes the scale concrete: their
+$\Iss=0.5573$, $\Issc=0.8093$, $\mathrm{SE}=0.01830$ on $\mathrm{DF}=731$ give
+$T=13.77$, and the same margin at ten and a hundred times the length gives
+$T=43.55$ and $T=137.70$. This is a property of any consistent test whose
+statistic has an $L^{-1/2}$ standard error --- it is not peculiar to $\Iss$ ---
+but it does mean the threshold is only meaningful jointly with the length it
+was tabulated for.
+
+The dependence is visible in published regressions without any theory at all.
+\citet{duchene2022saturation} fit the entropy $t$-statistic against six
+simulation variables, the variable-site count and all two-way interactions,
+over roughly $3{,}100$ simulations per coefficient. Sequence length is the
+only main effect with a substantial positive coefficient ($+38.7$,
+$t=89.5$); every other variable enters negatively (tree length $-14.6$,
+variable sites $-29.0$, stemminess $-5.7$, proportion of invariable sites
+$-6.1$, imbalance $-4.1$, number of taxa $-1.1$). A statistic whose value is
+driven up by more sites and down by everything else is the $T=\Theta(\sqrt L)$
+of Corollary~\ref{cor:length} read off an empirical fit. It is also the
+sharper form of the observation: the tabulated threshold is not merely
+indexed by $L$, it is dominated by it.
+
+\begin{remark}
+Theorem~\ref{thm:length}(4) also shows the \emph{mean} carrying an $O(L^{-1})$
+bias that the median does not, since the median is unaffected by the monotone
+per-site structure. The median still fluctuates at $O(L^{-1/2})$, so this is
+not a claim of noise-freeness; it is that the $1/L$ term, which has no
+phylogenetic content, is absent from the median and present in the mean. That
+makes the two a clean contrast for detecting it.
+\end{remark}
 
 \subsection{Resolution collapse in the near-saturated region}
 \label{sec:collapse}
 
-\par\noindent\textbf{TODO --- this section is new and carries the paper.}
-\todo{Write up the ceiling-gap result. $I_{ss}$ is bounded above by
-$I_{ss}^{\max}=\E_{\Mult(N,\mathrm{unif})}[h]/h(\bpi)$, and at the critical
-tree length it lies close to that bound, so \emph{both} the rate-heterogeneity
-sensitivity \emph{and} the sensitivity to the underlying divergence are
-confined to the top few percent of the index range. Concretely, at $N=4$,
-$L=1000$: the exact expectation at the critical tree lengths reported for
-$\alpha=\infty,4,1,0.5$ spans only $0.010$ across four quartet shapes, while
-the tree lengths themselves span a factor of $18$. The sensitivity to
-$\alpha$ is governed not by any property of the index but by where the
-critical point falls,
-$|d\ln \Issc/d\ln\Psi_c|=\frac{N-1}{2Nh}\,\Psi_c/\Issc$, which vanishes as the
-critical value approaches the ceiling. Consequence to state plainly: across the
-range of rate heterogeneity the tabulated threshold appears nearly invariant,
-and this invariance is an artefact of boundedness, not evidence of calibration.
-Do \emph{not} phrase this as withdrawal of the rate-heterogeneity critique:
-the sensitivity is design-dependent, small for long internal branches and
-large for short ones, so the correct statement is scoped, not retracted.}
+The index is bounded above, and the critical value sits close to that bound.
+The two facts together do more than either alone.
+
+\begin{corollary}[Where the critical value sits]
+\label{cor:ceilinggap}
+$\E[\Iss]\le\Iss^{\max}$ with
+$\Iss^{\max}=\E_{\Mult(N,\bpi)}[h]/h(\bpi)$ under convention $(B)$ and
+$\Iss^{\max}=1$ under $(A)$, and the bound is approached as $\Psi\to0$. The
+sensitivity of the index to any parameter that acts through $\Psi$ is
+\begin{equation}
+  \left|\frac{d\ln\Iss}{d\ln\Psi}\right|=\frac{N-1}{2Nh(\bpi)}\cdot\frac{\Psi}{\Iss},
+  \label{eq:sensitivity}
+\end{equation}
+which vanishes as $\Psi\to0$: the closer the critical point lies to the
+ceiling, the more inert the index is to everything that produced it.
+\end{corollary}
+
+\begin{proof}
+Both parts follow from Eq.~\eqref{eq:secondorder} by differentiation;
+$\partial\Iss/\partial\Psi=-(N-1)/(2Nh(\bpi))$ is a constant, so the
+logarithmic derivative is that constant times $\Psi/\Iss$.
+\end{proof}
+
+\begin{sloppypar}
+The corollary has a quantitative consequence that is easy to overlook, and
+because it carries the section it is worth setting out exactly how each
+number is obtained. Take $N=4$, $L=1000$, and a quartet with $35\%$ of its
+length in the internal branch. In a dedicated experiment
+(Figure~\ref{fig:tlc}) the critical tree lengths at which
+$\Pr[\hat{\mathcal T}=\mathcal T]$ falls to $0.95$ under maximum likelihood
+are
+
+\begin{equation}
+\begin{array}{l|rrrrrr}
+\toprule
+\alpha & \infty & 8 & 4 & 2 & 1 & 0.5 \\
+\midrule
+TL_c      & 7.19 & 7.78 & 10.04 & 13.02 & 25.47 & 107.72 \\
+\Issc     & 0.9807 & 0.9735 & 0.9782 & 0.9718 & 0.9692 & 0.9715 \\
+\bottomrule
+\end{array}
+\label{eq:tlc}
+\end{equation}
+
+so the tree length runs over a factor of $15$ end to end while the index
+spans $0.0115$. Recovery is by IQ-TREE rather than by our own code, at $150$
+replicates per point; the crossings are bracketed by the grid and located by
+interpolation in $\log TL$, and the brackets are reported in the archived
+output.
+
+The $\Issc$ row is exact, not simulated and not taken from the second-order
+form. At $N=4$ the transition matrix has only $4^4$ site patterns, so
+Lemma~\ref{lem:multinomial} can be evaluated by exhaustive enumeration over
+the count vectors of an internal branch; those are the values of
+Theorem~\ref{thm:exact}, extended from the star to a quartet by that
+enumeration. The convention matters and is stated: these are convention $(A)$
+values, where the ceiling is $1$. Under $(B)$ at $N=4$ the exact ceiling is
+$0.6620$ (Corollary~\ref{cor:ceiling}) and the same points read
+$0.64$--$0.65$; the collapse is a statement about the width of the window,
+not about its location, and it appears under either convention with the span
+little changed.
+
+Because the index is so flat there, the six critical points are not even
+ordered by $\alpha$ --- $0.9735$ at $\alpha=8$ sits below $0.9782$ at
+$\alpha=4$ --- and the small non-monotonicity is the grid and replicate noise
+of the crossing, not a property of the index. That is what a quantity with
+nothing left to move looks like.
+
+The span depends on the tree shape, as
+Eq.~\eqref{eq:sensitivity} implies it must, but it does not approach the
+width of a tabulated row in either shape we tried.
+Equation~\eqref{eq:sensitivity} evaluates to $0.005$ or less throughout. That
+equation is a second-order statement (Remark~\ref{rem:accuracy}), and it is
+quoted only for the scale; the conclusion it supports does not need it, since
+the denominator of Eq.~\eqref{eq:sensitivity} is bounded below by
+$1-\Iss^{\max}$ while the derivative $\partial\E[\Iss]/\partial\Psi$ is
+bounded above by a constant, so the sensitivity to any parameter acting
+through $\Psi$ vanishes at the ceiling whether or not the second-order form is
+accurate there.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig9_tlc_alpha.png}
+\caption{The critical point against rate heterogeneity.
+\textbf{A}, recovery of the true quartet under maximum likelihood against
+tree length, one curve per $\Gamma$ shape, $N=4$, $L=1000$, $150$ replicates
+per point; the dashed line is $0.95$. \textbf{B}, the tree length at which
+each curve crosses it. \textbf{C}, the exact expected index at those tree
+lengths, on the same $0$--$1$ scale as the index itself. A fifteen-fold
+change in the first has no visible effect on the second: the threshold is
+nearly invariant to rate heterogeneity because the index is nearly at its
+ceiling, not because it is well calibrated.}
+\label{fig:tlc}
+\end{figure}
+
+This is the resolution collapse. A fifteen-fold change in the tree length
+needed to make the true topology unrecoverable moves the index by less than
+one percent. Across the range of rate heterogeneity the tabulated threshold
+therefore appears nearly invariant --- and that appearance is an artefact of
+boundedness, not evidence of calibration. The same mechanism explains why
+$\Iss$ is insensitive to the divergence itself: the quantity has nowhere left
+to go.
+
+Two qualifications on the scope. First, the sensitivity in
+Eq.~\eqref{eq:sensitivity} is proportional to $\Psi_c/\Issc$, and $\Psi_c$
+depends on the tree shape: it is small for a quartet with a long internal
+branch and larger for one with a short internal branch, so the collapse is
+sharpest for the configurations where saturation matters most and weakest
+where the internal branch is short. Second, the argument concerns the
+\emph{level} of the threshold, not its \emph{ordering}: the critical value
+still moves monotonically with $\alpha$ (Lemma~\ref{lem:gamma-monotone}), just
+not by enough to be usable as a coordinate. The rate-heterogeneity
+mis-calibration established by Proposition~\ref{prop:nonident} stands; what
+this section adds is that a user who tries to detect it by comparing tabulated
+thresholds will not see it.
 
 % =====================================================================
-% (folded into Material and methods, per msac215)
-\todo{Either a short section or a subsection of Results, following the target
-venue. Content: how $\Iss$, mean $p$-distance, the $C$ value
-\citep{struck2008cfactor} and $\lambda$ \citep{jermiin2020signal} are compared,
-one parameter at a time, with trends reported and no composite power index.}
+\subsection{Simulation: the design}
+\label{sec:design}
+
+Every claim below is checked against alignments simulated with AliSim
+\citep{lytrong2022alisim} inside IQ-TREE~3.0.1 \citep{minh2020iqtree2}, under
+a custom Newick topology, explicit seeds, and base frequencies and rate
+categories set per arm. The one design decision worth
+stating is how the tree length is chosen. Sampling $s$ uniformly wastes the
+budget in the saturated plateau, where the index is pinned; sampling it from
+\begin{equation}
+  p_s(s)=\frac{\mu'(s)}{Z},\qquad Z=\mu(s_{\max})-\mu(s_{\min}),
+  \label{eq:design}
+\end{equation}
+where $\mu(s)=\E[\Iss]$, makes $\Iss$ uniform on
+$[\mu(s_{\min}),\mu(s_{\max})]$ exactly, since the induced density is
+$p_s/\lvert\mu'\rvert=1/Z$. The normalising constant is the increment of
+$\mu$ itself and $\mu'$ is analytic, so no pilot run is needed. Panel C of
+Figure~\ref{fig:design} is the check: the induced density is flat at
+$1/Z\approx1.56$ for all four configurations. The same panel shows why the
+second-order form is not adequate for this purpose --- its induced density
+drifts between $1.15$ and $1.5$ rather than staying flat.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig0_design_density.png}
+\caption{The uniform-$\Iss$ sampling design of Eq.~\eqref{eq:design}.
+\textbf{A}, the design curve $\mu(s)$ for four quartet configurations, exact
+(solid) against the second-order form (dotted); the dotted curves are shown
+past their range of validity, where they exceed the ceiling. \textbf{B}, the
+resulting sampling density on $s$. \textbf{C}, the density induced on $\Iss$,
+which is flat exactly when the sampler returns a uniform index; dotted is the
+second-order version.}
+\label{fig:design}
+\end{figure}
+
+\subsection{Simulation: location and scale}
+\label{sec:locscale}
+
+Figure~\ref{fig:lmap} maps the median and the standard deviation of $\Iss$
+over a grid of total tree lengths and sequence lengths, $N=4$, $200$
+replicates per cell. The two halves of the picture behave differently, and
+that difference is the content of Theorem~\ref{thm:length}.
+
+The median is a function of tree length alone. Reading across any row of
+panel A, it is flat in $L$: over a hundredfold range of sequence length the
+median moves by $0.5$--$2.0\%$ of its value, at every tree length tested.
+This is the $L$-invariance of the location, and it is exact in expectation
+rather than approximate --- Theorem~\ref{thm:length}(1) says $\E[\Hbar]$
+carries no $L$ at all.
+
+The standard deviation is a function of sequence length alone, and it is
+where the $L$-dependence goes. Panel B shows the column-wise structure: SD
+depends on $L$ and is nearly independent of tree length within a
+$2.5$-decade range, falling as $L^{-1/2}$ --- the ratio
+$\mathrm{SD}(L)\sqrt L$ is constant to within $12\%$ across the whole grid.
+An intensive statistic with an $L^{-1/2}$ standard error is exactly what makes
+the test statistic grow as $\sqrt L$, and this is that fact in simulation
+form. Figure~\ref{fig:lmapb} reads the same grid along its axes, so the
+flatness in $L$ and the $L^{-1/2}$ decline can be seen directly rather than
+through a colour scale.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_Lmap_heatmaps.png}
+\caption{Location and scale of $\Iss$ over (total tree length) $\times$
+(sequence length), JC69, $N=4$, $200$ replicates per cell.
+\textbf{A1}, median with equal pendants; \textbf{A2}, median with pendants
+graded in a fixed ratio. \textbf{B1}, standard deviation over the same grid
+with equal pendants; \textbf{B2}, graded. The colour scale is separate for
+each row, since the median spans the whole range while the SD does not.}
+\label{fig:lmap}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1b_Lmap_profiles.png}
+\caption{The same grid read along its axes. \textbf{A}, median $\Iss$ against
+$L$ at five tree lengths, with the interquartile band; the curves are flat.
+\textbf{B}, SD against $L$; the dashed line is $L^{-1/2}$.
+\textbf{C}, the full distribution against tree length.}
+\label{fig:lmapb}
+\end{figure}
+
+\subsection{Simulation: the affine relation and the role of $N$}
+
+Figure~\ref{fig:isspdist} is the direct test of
+Theorem~\ref{thm:affine} and Corollary~\ref{cor:ceiling}. Panels A and B use
+the same shape at three taxon counts --- star trees at $N=4,8,16$ --- so that
+$N$ is the only variable, and overlay the exact expectation of
+Theorem~\ref{thm:exact} on every cloud. The agreement is to $0.0006$ at every
+one of the twenty-four cells, $200$ replicates each; the closed form needs no
+fitting and no correction.
+
+Against that baseline the two conventions separate. Under convention $(A)$
+the three exact curves lie almost on top of one another, and under $(B)$ they
+fan apart, with $N=16$ above $N=4$ by $0.23$ at $\bar p=0.6$. The numbers are
+in the caption to Figure~\ref{fig:isspdist}; the mechanism is
+Corollary~\ref{cor:ceiling}. Xia's normalisation is not a cosmetic rescaling:
+$\HFSS^{(A)}$ is itself a finite-sample quantity, and dividing by it removes
+the leading dependence on the number of taxa that the plug-in entropy retains.
+
+Panel C shows the main arm, a quartet with a $35\%$ internal branch at $N=4$,
+where both conventions track their exact curves across four decades of tree
+length. The affine relation of Theorem~\ref{thm:affine} is a property of the
+process, not of the star.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_iss_vs_pdist.png}
+\caption{$\Iss$ against mean pairwise $p$-distance. Lines are exact
+(Theorem~\ref{thm:exact}); points are simulated. \textbf{A}, star trees under
+convention $(A)$; the three exact curves are within $0.022$ of one another
+over the whole range. \textbf{B}, the same under convention $(B)$, where they
+separate. At $\bar p=0.599$ the exact values are $0.7770$, $0.7810$ and
+$0.7983$ under $(A)$ for $N=4,8,16$, against $0.5144$, $0.6566$ and $0.7403$
+under $(B)$. \textbf{C}, the $N=4$ quartet with a $35\%$ internal branch,
+both conventions.}
+\label{fig:isspdist}
+\end{figure}
+
+\subsection{Simulation: the Felsenstein--Farris transfer}
+\label{sec:transfer}
+
+The sharpest illustration of what the index does and does not measure is a
+one-parameter family that leaves the index fixed while moving the difficulty
+of the problem through its entire range. Take the unrooted quartet
+$((A,B),(C,D))$ with pendant lengths
+\begin{equation}
+  (a,b,c,d)=(p-t,\;q,\;p,\;q+t),\qquad t\in[0,\,p-q],
+  \label{eq:transfer}
+\end{equation}
+so that at $t=0$ the two long branches are separated by the internal branch
+--- the Felsenstein zone \citep{felsenstein1978cases} --- and at $t=p-q$ they
+are adjacent, the Farris zone \citep{hendy1989unrooted}. The sum of the six pairwise distances is $6p+6q+4r$, independent of
+$t$; and at $r=0$ the endpoint distance multisets coincide exactly, so $\Iss$
+is identical at the two ends.
+
+Figure~\ref{fig:zone} confirms both halves and shows what they cost. Along the path the
+mean index varies between $0.6506$ and $0.6967$, a range of $0.046$; the
+exact $O(r)$ endpoint gap at the simulated $r=0.02$ is $0.0024$. Over the same
+path MPBoot goes from recovering the true topology $0$ times in $200$ to
+$200$ times in $200$. The index does not track this at all: for $\Iss$
+between $0.64$ and $0.70$ --- a band $4\%$ as wide as the index's own range
+--- MPBoot takes the value $0$ at some points on the path and $1$ at others,
+while maximum likelihood over the same band never exceeds $0.68$ and never
+falls below $0.38$. The three criteria span $[0,1]$ between them across an
+index interval narrower than the precision with which the index is usually
+reported. This is Corollary~\ref{cor:failure} made concrete: an index
+that is affine in mean $p$-distance cannot distinguish configurations that
+the mean $p$-distance itself does not distinguish, and these configurations
+differ by the full range of attainable outcomes.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_zone_transfer.png}
+\caption{The transfer of Eq.~\eqref{eq:transfer}, $N=4$, $L=1000$, $200$
+replicates per point, JC69. \textbf{A}, recovery of the true topology against
+the transfer parameter, for three criteria. \textbf{B}, the same path in
+$\Iss$ coordinates: the exact expectation is a shallow arc rising to $0.696$
+at mid-path, with an exact endpoint gap of $0.0024=O(r)$ at $r=0.02$.
+\textbf{C}, recovery against $\Iss$: over a band of index values $4\%$ as wide
+as the index's own range, MPBoot takes both extreme values while maximum
+likelihood stays between $0.38$ and $0.68$.}
+\label{fig:zone}
+\end{figure}
+
+\subsection{Simulation: one parameter at a time}
+\label{sec:sweeps}
+
+Figure~\ref{fig:perturb} moves one knob at a time from a common baseline and
+records $\Iss$, with no composite index and no power calculation --- the aim
+is to show the shape of each dependence, not to rank tests.
+
+Two knobs dominate. Total tree length moves the index across most of its
+range, from $0.280$ to $0.929$ --- unsurprising, and the point of the index.
+Rate heterogeneity is next: $\alpha=4$ gives $0.673$ against the homogeneous
+$0.717$, and $\alpha=0.25$ gives $0.387$, so the transition/transversion
+ratio and rate heterogeneity are comparable in effect at this scale. The
+transition/transversion ratio moves the index from $0.719$ to $0.574$ over
+$\kappa\in[1,20]$.
+
+The remaining knobs are weak. The internal fraction moves it between $0.678$
+and $0.723$ over a sixfold range, base composition between $0.572$ and
+$0.607$ across uniform to strongly AT-rich, and sequence length between
+$0.7175$ and $0.7229$ over a hundredfold range --- the last being the
+$L$-invariance again, from a second and independent design.
+
+The ordering is the result. Of the five knobs a user might vary, two move the
+index substantially and three barely move it, and the three that barely move
+it are precisely the ones that govern whether the topology can be recovered.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_perturbation.png}
+\caption{One parameter at a time from a common baseline (JC69 quartet,
+$TL=2$, $L=1000$, $200$ replicates), with no composite power index.
+\textbf{A}, rate heterogeneity $\alpha$; \textbf{B},
+transition/transversion ratio; \textbf{C}, internal-branch fraction;
+\textbf{D}, total tree length; \textbf{E}, base composition. Error bars are
+$\pm1$ SD across replicates.}
+\label{fig:perturb}
+\end{figure}
+
+\subsection{Conditional independence}
+\label{sec:simresults}
+
+Remark~\ref{rem:scope}(iii) leaves open whether the higher-order channel ---
+the part of the site-pattern distribution that the mean mismatch proportion
+cannot see --- carries anything beyond composition. Reading it off a
+correlation between $\Iss$ and $\bar p$ cannot answer that, because two
+statistics can be strongly correlated and still not be redundant. The
+question is whether $\Iss$ predicts a phylogenetic outcome \emph{after}
+$\bar p$ is accounted for,
+\begin{equation}
+  \Pr\bigl(Y\mid\bar p,\Iss\bigr)\quad\text{versus}\quad
+  \Pr\bigl(Y\mid\bar p\bigr),
+\end{equation}
+and it is answered by comparing the two out-of-sample.
+
+The design must be crossed for the question to be meaningful: if tree scale
+is the only knob then $\Iss$ and $\bar p$ are deterministically linked to
+second order and there is nothing to condition on. We therefore vary shape
+(internal-branch fraction and pendant arrangement), composition, and model
+jointly, giving $720$ cells $\times$ $150$ replicates $= 108{,}000$
+alignments in which $\Iss$ and $\bar p$ are not in one-to-one correspondence.
+
+Figure~\ref{fig:condindep} shows the comparison. Three targets are reported.
+The fraction of parsimony-informative sites is
+exact and requires no inference. Recovery of the true quartet is measured
+twice, by MPBoot and by maximum likelihood in IQ-TREE --- two programs we did
+not write. All fits use a cubic spline in $\bar p$ rather than a polynomial,
+for a reason worth stating: a quadratic in $\bar p$ is worse than chance in
+the transition band below, and comparing against it makes $\Iss$ look
+harmful over the full range when it is merely redundant there.
+
+The full range and the transition band answer different questions, and we
+report both. Over the full range $\bar p$ alone already separates almost
+perfectly (AUC $0.889$ for MPBoot, $0.914$ for ML) and there is nothing left
+to add: $\Delta\mathrm{AUC}=+0.001$ and $+0.002$. The
+parsimony-informative fraction is different --- it is a compositional
+statistic that $\bar p$ summarises poorly, and there $\Iss$ raises
+cross-validated $R^2$ from $0.227$ to $0.297$.
+
+Restrict to the band $\bar p\in[0.63,0.70]$, where the recovery probability
+is neither $0$ nor $1$ and the decision is actually made, and the picture
+inverts. There $\bar p$ alone is nearly useless --- AUC $0.555$ (MPBoot) and
+$0.604$ (ML) --- and $\Iss$ lifts it to $0.724$ and $0.785$, gains of $+0.17$
+and $+0.18$. Used on its own, with no $\bar p$ term at all, $\Iss$ reaches
+AUC $0.750$ and $0.800$ in the band, and a single threshold at
+$\Iss\approx0.98$ classifies $80\%$ and $83\%$ of the alignments correctly.
+
+So the index is not information-free, and the honest statement is stronger
+than "it is redundant". Two things bound what that information is.
+
+First, the window in which it operates is a sliver at the top of the scale.
+Across the band, which spans a $0.07$ range of $\bar p$ covering the whole
+transition from reliable to unreliable recovery, $\Iss$ varies only between
+$0.79$ and $1.03$, with the interquartile range $0.87$ to $0.97$. The index
+discriminates recovery only within a few percent of its ceiling --- which is
+precisely the regime Section~\ref{sec:collapse} identifies as one where it
+cannot discriminate divergence. The information is real, but it is not
+saturation information: the quantity that moves $\Iss$ within that window is
+not the amount of substitution.
+
+Second, part of that information is tree shape. The internal-branch fraction
+--- a property of the true tree, which no user observes --- reaches AUC
+$0.759$ in the band for MPBoot, better than $\Iss$'s $0.724$; and over the
+full range adding it raises AUC from $0.889$ to $0.923$, after which $\Iss$
+adds nothing. For ML the ordering reverses ($0.753$ against $0.785$), and in
+all three targets $\Iss$ retains something after the shape is included, so
+the two are not substitutes. The defensible summary is that $\Iss$ carries
+genuine predictive information about recovery, that the information lives in
+a narrow band at the ceiling rather than across the range, and that it
+overlaps substantially with the shape of the tree that generated the data.
+
+\subsection{Empirical: where real data sit}
+\label{sec:empirical}
+
+Everything above is about the statistic. Whether any of it bites in practice
+depends on where real alignments place the index, and that is measurable. We
+use the data set \citet{xia2009handbook} introduce the index with:
+eight vertebrate mitochondrial COI sequences, $1512$~nt, no gaps or
+ambiguity, with a reference topology shipped alongside. The alignment is
+analysed whole and by codon position, which is how the index is normally
+applied to a protein-coding gene.
+
+The results are in Table~\ref{tab:empirical} and Figure~\ref{fig:empirical}.
+Third codon positions carry an index of $0.715$, first and second positions
+$0.137$ and $0.038$, and the whole alignment $0.270$. The source reports this
+same partition, through DAMBE, as $\Iss=0.7145$: the two conventions agree to
+$0.0005$ here, and the agreement is not a coincidence but a consequence of
+the difference being confined to the treatment of invariable sites, which
+this partition does not have.
+
+Read against the boundary the source itself reports for it ---
+$\Issc=0.7518$ for a symmetrical topology and $0.6401$ for an asymmetrical
+one, both at $N=8$ and $L\approx500$ --- the partition \emph{passes} one and
+\emph{fails} the other, by $0.037$ and $0.075$ respectively. The verdict is a
+property of which of the two definitions of the critical tree length is
+read, and both are in the table.
+
+That is the resolution collapse of Section~\ref{sec:collapse} appearing in
+real data. The partition every practitioner would identify as the saturated
+one sits between the two readings of its own threshold, so that the answer to
+``is this saturated?'' is decided by a convention rather than by the
+alignment. The tabulated surface is also computed from $100$ replicates per
+point with no interval reported, so margins of a few percent are not
+distinguishable from zero.
+
+One caveat on comparing our columns with DAMBE's, since it is the reason the
+agreement above is worth checking rather than assuming. DAMBE's index divides
+the mean entropy by $1-P_{\mathrm{inv}}$ when an invariant-site proportion is
+supplied, so the numerator becomes the mean entropy \emph{per variable site}
+while the denominator is unchanged. For the first and second codon positions
+of this alignment, where $P_{\mathrm{inv}}=0.74$ was estimated and entered,
+that inflates the index from $0.087$ to the $0.3335$ the source reports --- a
+factor of $1/(1-P_{\mathrm{inv}})$, exactly. Both are legitimate readings of
+the same construction and they answer different questions: ours asks how
+saturated the alignment is, theirs how saturated its variable sites are.
+Because $P_{\mathrm{inv}}$ is estimated, a threshold on their scale is
+implicitly a threshold on an estimated quantity, and is not comparable across
+data sets with different rates of invariance.
+
+The informative-site counts make the point sharper. Second codon positions
+hold $2$ parsimony-informative sites out of $504$ and $466$ constant sites;
+maximum likelihood cannot recover the reference topology from them, and the
+index calls the partition emphatically unsaturated at $0.038$. First
+positions, with $4$ informative sites, do recover it. So the ordering the
+index produces --- second positions safest, third positions worst --- is the
+opposite of the ordering by signal, and the partition it clears most
+confidently is the one carrying least.
+
+One qualification, because a sparse partition and a saturated one are
+different regimes that both end up with few informative sites. Second
+positions are sparse: $466$ of $504$ sites are constant, so there is little
+signal because there is little variation, and the index correctly reports
+that by returning a low value. A saturated locus is the opposite kind of
+case: many variable sites of which few are parsimony-informative, so the
+index rises while informativeness falls. That is the association reported by
+\citet{duchene2022saturation}, whose loci flagged as saturated tend to be
+those with few informative sites, and it is the same association measured in
+Section~\ref{sec:simresults}. Both regimes are unresolvable, the index
+separates them, and only one of them is saturation. Passing the test is evidence against
+saturation, as the original paper claims; on this data set it is not evidence
+of resolution.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+partition & sites & $\bar p$ & $\Iss^{(A)}$ & $\Iss^{(B)}$
+          & informative sites & RF \\
+\midrule
+second positions      & 504  & 0.0295 & 0.038 & 0.031 & 2  & 2 \\
+first $+$ second      & 1008 & 0.0712 & 0.087 & 0.073 & 6  & 0 \\
+first positions       & 504  & 0.1129 & 0.137 & 0.115 & 4  & 0 \\
+all sites             & 1512 & 0.2181 & 0.270 & 0.226 & 42 & 0 \\
+third positions       & 504  & 0.5120 & 0.715 & 0.594 & 36 & 2 \\
+\bottomrule
+\end{tabular}
+\caption{Vertebrate mitochondrial COI, eight taxa, whole alignment and codon
+partitions. RF is the Robinson--Foulds distance between the maximum-likelihood
+tree under GTR$+\Gamma$ and the reference topology supplied with the data
+(zero means recovered). The tabulated boundaries at $N=8$ and $L\approx500$
+are $\Issc=0.7518$ and $0.6401$, symmetrical and asymmetrical; the
+third-position partition passes the first by $0.037$ and fails the second by
+$0.075$. Note that second positions, which the index clears by the widest
+margin, hold two parsimony-informative sites. Our $\Iss$ values use the
+per-site convention throughout; the source's $\Iss=0.7145$ for third
+positions agrees with ours to $0.0005$, and its larger values for the
+conserved partitions reflect the $1/(1-P_{\mathrm{inv}})$ normalisation
+described in the text.}
+\label{tab:empirical}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig5_condindep.png}
+\caption{Conditional independence: does $\Iss$ predict a target beyond the
+mean $p$-distance? \textbf{A}--\textbf{C}, within each bin of $\bar p$ the
+alignments are split at the bin's median $\Iss$ and the outcome is plotted
+for the lower and upper halves; the targets are the parsimony-informative
+fraction, MPBoot recovery and maximum-likelihood recovery, and the mean
+separation between the two curves is $0.025$, $0.058$ and $0.055$
+respectively. A gap is information that $\bar p$ does not supply, and the
+gap opening in the transition region is what the cross-validated fits below
+measure. \textbf{D}, what $\Iss$ adds out of sample, over the full range
+against the transition band $\bar p\in[0.63,0.70]$. The full-range gains for
+recovery are indistinguishable from zero, which is what a naive comparison
+reports; the band gains are an order of magnitude larger and are confined to
+the only region where the recovery decision is in doubt.}
+\label{fig:condindep}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig6_empirical.png}
+\caption{The vertebrate COI data set. \textbf{A}, the index by partition,
+against both tabulated boundaries the source reports for it, $0.7518$
+symmetrical and $0.6401$ asymmetrical, which it falls between; green
+partitions recover the reference topology, red ones do not. \textbf{B}, the index is not
+a function of how much parsimony-informative signal a partition carries.
+\textbf{C}, recovery against the index: the two failures lie at opposite ends
+of the scale, for opposite reasons --- third positions are saturated, second
+positions are empty.}
+\label{fig:empirical}
+\end{figure}
+
+\subsection{Empirical: a genome-scale alignment}
+\label{sec:jarvis}
+
+The COI alignment is eight taxa and one gene. The opposite end of the range
+is available: the largest source in the survey of
+\citet{duchene2022saturation} is the avian data set of
+\citet{jarvis2014whole}, whose ExaML concatenation is distributed through
+GigaDB and covers $51$ taxa over $322{,}150{,}876$ aligned sites. We index
+that file directly, streaming the $4.6$~GB archive rather than expanding it,
+by accumulating the per-site count vector over the four states --- which is
+all the index needs, and which fits in memory where the alignment does not.
+
+The alignment is sparse: $90.1\%$ of sites carry a gap or an ambiguity code
+in at least one taxon. The $9.9\%$ that do not --- $31{,}962{,}462$ sites ---
+are complete columns with all $51$ taxa present, and those are what the index
+is computed on. Over them $\bar p=0.0786$, $\bar H=0.1595$, and
+\begin{equation}
+  \Iss^{(A)}=0.119,\qquad \Iss^{(B)}=0.116 .
+\end{equation}
+Splitting the concatenation into $31{,}962$ windows of $1000$ complete sites
+gives a distribution from $0.006$ to $0.230$, and not one window exceeds
+$0.5$, let alone the tabulated boundary.
+
+The restriction that \citet{duchene2022saturation} recommend --- computing the
+entropy on parsimony-informative sites only, $37.0\%$ of the complete columns
+--- raises the whole distribution without moving it into the interesting
+region. Those $11{,}833$ windows give $\Iss^{(A)}=0.268$ for the subset as a
+whole and a window range of $0.221$ to $0.393$; still no window reaches $0.5$.
+Panels C and D of Figure~\ref{fig:jarvis} show it. The modification is doing
+what it was designed to do, doubling the index by removing the constant and
+near-constant sites that dilute it, and the verdict on this alignment is
+unchanged either way: it is not saturated under either reading, by a wide
+margin.
+
+The value is corroborated by the theory rather than merely plausible. A JC69
+star with the same mean $p$-distance and $N=51$ predicts
+$\E[\Iss^{(A)}]=0.134$ exactly; the observed $0.119$ is a little below that,
+which is the right sign and roughly the right size, since a real tree at a
+fixed mean $p$-distance is less saturated than the star that maximises the
+number of paths between leaves. Nothing about the number is anomalous; the
+alignment is simply not saturated by this measure.
+
+Read against Section~\ref{sec:empirical}, the two data sets bracket the
+problem. The third codon positions of vertebrate COI sit at $0.715$, between
+the two readings of their own threshold: the index is at its ceiling and the
+resolution collapse of Section~\ref{sec:collapse} applies. A genome-scale avian alignment sits at
+$0.119$, an order of magnitude below the boundary, where the collapse does
+not apply and the index is behaving as intended. Both regimes are real, which
+is why the question of where a given matrix sits has to be answered rather
+than assumed --- and it is answerable, from the alignment, before any tree is
+built.
+
+One caveat governs the magnitude. Complete columns are the conserved
+fraction, so $0.119$ is a lower bound on what the alignment would give if
+gaps were treated as missing rather than dropped; how much lower depends on
+how the gap-containing sites are handled, and we do not settle that here.
+The direction of the finding does not depend on it, since the boundary is
+six times the observed value and the windows span an eightfold range about
+it.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig7_jarvis.png}
+\caption{The avian genome-scale alignment of \citet{jarvis2014whole},
+$51$ taxa over $322$ million sites, indexed directly from the compressed
+archive. \textbf{A} and \textbf{B}: all complete columns, $31{,}962$ windows
+of $1000$ sites, against the whole-alignment value and the threshold the index
+is normally read against, then in the $(\bar p,\Iss)$ plane with the exact
+expectation for a JC69 star at $N=51$. Orange lines mark the vertebrate COI
+partitions of Section~\ref{sec:empirical}, one of which sits at the boundary.
+\textbf{C} and \textbf{D}: the same restricted to parsimony-informative sites,
+the modification \citet{duchene2022saturation} recommend, which shifts the
+whole distribution from $0.119$ to $0.268$ and leaves the conclusion intact.}
+\label{fig:jarvis}
+\end{figure}
+
+\subsection{The other tree-free indices}
+\label{sec:alternatives}
+
+Two other indices are computed from an alignment alone and are therefore
+available at exactly the point where $\Iss$ is used: the $C$ (convergence) value of
+\citet{struck2008cfactor} and $\lambda$ of \citet{jermiin2020signal}. We
+compute both on the alignments above, and the comparison turns out to be
+analytic rather than merely numerical for one of them.
+
+$\lambda$ is defined per pair as
+\begin{equation}
+  \lambda_{ij}=\frac{\delta_{\mathrm{obs}}(ij)}{\delta_{\mathrm{ran}}(ij)},
+  \qquad
+  \delta_{\mathrm{ran}}(ij)=1-\sum_k f_{ik}f_{jk},
+  \label{eq:lambda}
+\end{equation}
+where $f_{ik}$ is the frequency of state $k$ in sequence $i$. The denominator
+is a counterfactual: the divergence expected of two sequences that have
+evolved independently to equilibrium. It is not a reshuffling of the observed
+sites but an independent stationary process, and the endpoints are
+$\lambda=0$ when the variable sites agree and $\lambda=1$ when the pair is
+random with respect to itself.
+
+The semantics decide how the quantity can be used, and they are not the
+semantics of a substitution count. $\lambda=0$ does not mean no substitutions
+occurred, only that the variable sites are identical; $\lambda=1$ does not
+mean every site has substituted repeatedly, only that the pair has become
+random. What $\lambda$ measures is how much of the \emph{historical} signal
+remains --- information attributable to the order and timing of divergences
+--- which is a different question from how many substitutions produced the
+data. We take the framing from the source, which is explicit that $\lambda$
+quantifies ``loss of historical signal'' and that $\lambda=0$ and $\lambda=1$
+are definitional endpoints rather than decision thresholds; it supplies no
+critical value, no standard error and no test.
+
+$\delta_{\mathrm{ran}}$ also has a reading this paper already contains.
+Setting $\xi_\mu\to0$ in Lemma~\ref{lem:scalars} gives
+$\wp(\infty)=1-\sum_j\pi_j^2$, the value the mean $p$-distance approaches
+under saturation for any reversible model. That is the same quantity, reached
+from an independence argument on one side and from the spectral decomposition
+on the other. The familiar upper bound of $3/4$ is therefore not a constant
+of nature but the value of $1-\sum_kq_k^2$ at uniform composition: it is
+$0.700$ at $(.40,.30,.20,.10)$, $0.590$ at $(.45,.45,.05,.05)$ and $0.932$
+for amino-acid data. For the third codon positions of the COI alignment it is
+$0.684$, so the rule of thumb $\bar p/0.75$ reports that partition as $32\%$
+short of saturation while $\lambda$ reports three quarters of the historical
+signal gone. Both follow from the same arithmetic; the constant is answering
+the wrong question, by an amount that grows with compositional skew --- and in
+the other direction, by $+0.18$, for protein data.
+
+Now the part that bears on this paper. If the sequences share a composition
+--- $f_{ik}=q_k$ for every $i$, the second-order regime the rest of this
+paper works in --- then $\delta_{\mathrm{ran}}$ is the \emph{same} constant
+for every pair, so $\lambda$ is the pairwise $p$-distance multiplied by a
+constant and
+
+\begin{proposition}[The mean $\lambda$ is the mean $p$-distance rescaled]
+\label{prop:lambda}
+If every sequence has composition $\mathbf q$, then
+$\lambda_{ij}=p_{ij}/(1-\sum_k q_k^2)$ for every pair, and therefore
+$\bar\lambda=\bar p/(1-\sum_k q_k^2)$.
+\end{proposition}
+
+\begin{proof}
+$\delta_{\mathrm{obs}}(ij)$ is by construction the proportion of differing
+sites between $i$ and $j$, i.e.\ $p_{ij}$; $\delta_{\mathrm{ran}}(ij)$ reduces
+to $1-\sum_kq_k^2$ under the stated condition. Average over pairs.
+\end{proof}
+
+This is not an approximation that happens to hold here.
+Table~\ref{tab:indices} evaluates it on seven alignments spanning $\Iss$ from
+$0.038$ to $0.749$, and the right-hand side reproduces the observed
+$\bar\lambda$ to four decimal places on every one of them; across the seven
+$\bar\lambda$ correlates with $\bar p$ at $r=0.999$ and with $\Iss$ at
+$r=0.998$. As a single scalar, then, $\bar\lambda$ carries what $\bar p$
+carries and inherits everything Theorem~\ref{thm:affine} establishes about it.
+
+The scope of that is narrower than it looks, and we state it because the
+opposite reading is available. It is a statement about the \emph{mean over
+pairs}, and the mean is not what $\lambda$ is for. $\lambda$ is defined
+pairwise, the source's own tooling plots the matrix as a heat map rather than
+a summary, and the resolution among pairs is the point: no global number can
+say \emph{which} sequences are the problem. Figure~\ref{fig:lambda} is a case
+in point. Six taxa, one of them on a long pendant, gamma rates, $4000$ sites:
+the global summaries are unremarkable --- $\Iss=0.348$, $\bar\lambda=0.370$,
+neither near anything --- while the matrix separates the five pairs involving
+the long-branch taxon at $0.71$--$0.72$ from the other ten at
+$0.12$--$0.22$. Proposition~\ref{prop:lambda} holds exactly on these data, the
+ratio being constant as it must be, and the structure that matters is
+invisible to it. The index of this paper shares that blindness and more so:
+being a ratio of two entropies, it has no pairwise form at all.
+
+Two limitations belong alongside, both of which the source acknowledges in
+part. $\lambda$ is built on the uncorrected $p$-distance and carries no
+standard error, so near the bound its decisions are close to coin flips: at
+the bound, $\Pr(\hat p\ge 1-\sum_kq_k^2)$ is near one half at every length we
+tried, from $200$ sites to $20000$. The source notes that $\lambda>1$ occurs
+occasionally and attributes it to finite alignment length or to sequencing and
+alignment error, which is the same admission without the magnitude. And the
+advantage claimed for it --- using each sequence's own composition makes
+$\lambda$ ``less likely to be overestimated'' when lineages diverge under
+different conditions --- has a cost that neither the source nor we had stated:
+once composition varies, $\delta_{\mathrm{ran}}$ is no longer the model's
+saturation bound but an empirical baseline, and the equivalence between
+$\lambda<1$ and the existence of an interior maximum-likelihood estimate no
+longer follows. The index of this paper does not enter that regime, since it
+assumes a single stationary composition throughout.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.62\textwidth]{figures/fig8_lambda_matrix.png}
+\caption{$\lambda$ on six taxa with one long pendant ($1.6$ expected
+substitutions against $0.05$ elsewhere), gamma rates $\alpha=1$, $4000$ sites,
+averaged over three replicates. The global summaries are unremarkable ---
+$\Iss=0.348$, $\bar\lambda=0.370$ --- while the pairwise matrix isolates the
+five comparisons involving the long-branch taxon. This resolution among pairs
+is what $\lambda$ is for, and it is what the mean, and any single global
+index, discards.}
+\label{fig:lambda}
+\end{figure}
+
+The $C$ value behaves differently. It is
+$\sigma(\mathrm{ti/tv})/\sigma(p)$ over all pairwise comparisons, a ratio of
+two spreads rather than a ratio of two divergences, and it does not track
+$\Iss$: across the same seven alignments the correlation is $-0.29$, and the
+ordering it produces is not the ordering by signal. On the COI partitions it
+ranks second positions ($C=55.8$, $\Iss=0.038$) as \emph{more} saturated than
+first positions ($C=115.3$, $\Iss=0.137$), while third positions --- the ones
+everyone agrees are saturated --- come bottom at $C=43.1$. A statistic built
+from the transition/transversion ratio is measuring the substitution process,
+not the amount of it, and the two come apart on conserved partitions where
+there is little of either. We report $C$ because it is in use, and because it
+is the one of the three that is genuinely independent of the $p$-distance; we
+do not claim the criterion above applies to it.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+alignment & sites & $\Iss^{(A)}$ & $\lambda$ & $C$
+          & $\lambda/\bar p$ \\
+\midrule
+vertebrate COI, 2nd positions        & 504        & 0.038 & 0.041 & 55.8  & 1.404 \\
+vertebrate COI, 1st $+$ 2nd          & 1008       & 0.087 & 0.096 & 221.8 & 1.344 \\
+avian genome-scale, complete columns & 31,962,462 & 0.119 & 0.108 & 7.1   & 1.345 \\
+vertebrate COI, 1st positions        & 504        & 0.137 & 0.151 & 115.3 & 1.339 \\
+avian genome-scale, informative      & 11,833,701 & 0.268 & 0.253 & 4.0   & 1.338 \\
+vertebrate COI, all sites            & 1512       & 0.270 & 0.294 & 101.8 & 1.350 \\
+vertebrate COI, 3rd positions        & 504        & 0.715 & 0.749 & 43.1  & 1.462 \\
+\bottomrule
+\end{tabular}
+\caption{The three tree-free indices on the same alignments. $\lambda$ is the
+mean over all pairs, and it tracks $\Iss$ closely, as
+Proposition~\ref{prop:lambda} requires; the last column is its ratio to the
+mean $p$-distance, which is $1/(1-\sum_kq_k^2)$ and therefore nearly constant.
+That column also gives the saturation bound for each alignment, which is
+$0.75$ only where the composition is uniform. The mean is a compression of
+$\lambda$ rather than its definition, and the compression is what makes the
+proposition apply; Figure~\ref{fig:lambda} shows what it discards. $C$ does
+not track $\Iss$, and in particular does not place the saturated third codon
+positions at the top of its scale.}
+\label{tab:indices}
+\end{table}
 
 % =====================================================================
 \section{Discussion}
@@ -340,36 +1570,39 @@ follows: the index resolves true divergence at the rate the uncorrected
 distance does, exponentially under rate homogeneity and as a power law under
 $\Gamma$-distributed rates.
 
-The critical value, meanwhile, is $L$-dependent, so that significance is a
-statement about how many sites were sequenced; and in the region where the test
-is actually applied the index is close enough to its upper bound that the
-threshold cannot distinguish moderate from severe saturation. The practical
-consequence is asymmetric. Passing the test is evidence against saturation ---
-the index would be near its ceiling if the data were saturated. Failing it is
-weak evidence, and is not by itself grounds for discarding sites; the remedy
-for insufficient resolution is more data or more taxa, not fewer sites.
+The critical value, meanwhile, is tabulated without a rate-heterogeneity
+coordinate, and in the region where the test is actually applied the index is
+close enough to its upper bound that the threshold cannot distinguish moderate
+from severe saturation. Its dependence on the sequence length, by contrast, is
+deliberate and necessary: the threshold must move with $L$ because the
+statistic's standard error shrinks as $L^{-1/2}$, and the original paper
+reports that dependence and reasons from it. The practical consequence is
+asymmetric. Passing the test is evidence against saturation --- the index
+would be near its ceiling if the data were saturated. Failing it is weak
+evidence, and is not by itself grounds for discarding sites; the remedy for
+insufficient resolution is more data or more taxa, not fewer sites.
 
 \subsection{What the 2003 paper got right}
 \label{sec:right}
 
 The critique above should not obscure four things.
 
-First, the problem was real: before 2003, saturation was assessed by plotting
-transition/transversion ratios against distance, or by permutation and skewness
-tests, both of which report signal in a data set containing two closely related
-species and an arbitrary number of fully saturated ones --- a defect the paper
-states explicitly, and attributes to the first three of the four approaches it
-reviews (the fourth, \citet{steel1993confidence,steel1995frequency}, is faulted
-on different grounds: clumsy beyond four taxa, parsimony-specific, undeveloped).
-The 2003 paper's own entrance is that the fourth approach's diagnostics had not
-been developed further; that assessment has aged well.
+First, the problem was real. Before 2003, saturation was assessed by plotting
+transition\slash transversion ratios against distance, or by permutation and
+skewness tests. Both report signal in a data set that contains two closely
+related species and an arbitrary number of fully saturated ones. The paper
+states that defect explicitly and attributes it to the first three of the four
+approaches it reviews. The fourth is faulted on different grounds --- clumsy
+beyond four taxa, parsimony-specific, undeveloped
+\citep{steel1993confidence,steel1995frequency}. The 2003 paper's own point of
+entry is that the fourth approach's diagnostics had not been developed
+further, and that assessment has aged well.
 
 Second, and most durably, the paper's central observation is correct: sequences
 fail to recover the true tree long before $\Iss$ reaches $1$, so the quantity of
 interest is a critical value, not the full-saturation limit. That observation is
-what motivated later work to re-estimate critical values by ROC analysis against
-the number of taxa and sequence length
-\citep{duchene2021saturation}. It should also be said that the critical tree
+what motivated later work to rebuild the test around it
+\citep{duchene2022saturation}. It should also be said that the critical tree
 length is defined \emph{two different ways} in the original: for the symmetrical
 topology it is the tree length at which $P_{\mathrm{true}}=0.95$, whereas for the
 asymmetrical topology, where the maximum recovery probability need not reach
@@ -405,56 +1638,237 @@ verdict the index issues unsupported.
 \subsection{Relation to other approaches}
 \label{sec:related}
 
-\todo{States as substance, not as defence: earlier warnings
-\citep{verbruggen2007codium,letsch2011rrna} question the threshold while
-accepting the index, whereas we characterise the index itself. Duch\^ene et al.
-\citep{duchene2021saturation} operationalise saturation as long tree length and
-re-estimate the threshold by regression on $\sqrt{\#\text{taxa}}$ and sequence
-length; their empirical finding is the phenomenological shadow of
-Corollary~8.1. A posteriori branch-level tests \citep{manuel2025satute} are a
-different construction, and given a tree and a model saturation is identifiable
-per branch; what is not identifiable is saturation before the tree is
-committed to.}
+The index has been questioned before, and the earlier objections are
+different in kind from the one made here. \citet{verbruggen2007codium} and
+\citet{letsch2011rrna} report cases where the tabulated threshold gives the
+wrong verdict; both accept the construction and dispute the calibration.
+That is a disagreement about a number, and it leaves open the possibility that
+a better-calibrated threshold would work. The argument above is about the
+statistic: $\E[\Iss]$ is an affine function of the mean pairwise $p$-distance
+under conditions that hold for every reversible model at uniform composition
+and for every composition with a degenerate spectrum, so no threshold, however
+calibrated, can make it carry resolution the $p$-distance does not carry. The
+two critiques agree on the practical verdict and disagree on what would fix
+it.
+
+The most substantial recent development touches the argument at an
+unexpected point. \citet{duchene2022saturation} keep the entropy construction
+but restrict it to parsimony-informative sites, on the grounds that constant
+and slowly evolving sites distort the base-composition measurement on which
+the index depends. That is the same channel Section~\ref{sec:simresults}
+isolates from the other direction: of the three targets we test, the
+parsimony-informative fraction is the one $\Iss$ predicts beyond the mean
+$p$-distance, and their empirical finding that saturated loci are those with
+few informative sites is the same association read as a diagnostic. They also
+report that the tests are sensitive to sequence length and to short internal
+branches, which is Theorem~\ref{thm:length} and the shape term of
+Section~\ref{sec:collapse} respectively, arrived at by simulation.
+
+What none of this changes is that the quantity being thresholded still reads
+only apparent divergence. Modifying which sites enter the entropy changes the
+statistic, but the modified statistic remains a function of the same
+site-pattern composition, and no choice of sites makes it a function of the
+number of substitutions that produced them.
+
+Posterior branch-level tests such as \citet{manuel2025satute} are a different
+construction and not subject to the criterion above. Given a tree and a model,
+saturation is identifiable per branch, and estimating it there is the right
+thing to do: the branch length and the number of substitutions implied by it
+are both in hand. What is not identifiable is saturation \emph{before} a tree
+is committed to, which is the only regime in which a tree-free index is
+needed. The distinction is worth stating plainly because it delimits the
+critique: we are not arguing against measuring saturation, only against
+measuring it with this statistic and at that point in the workflow.
 
 \subsection{Open question}
 \label{sec:open}
 
 Whether the rate-heterogeneity mis-calibration bites in practice depends on
-where real data place the critical point on the index curve, which is
-measurable and to our knowledge unmeasured. Data sets whose indices cluster
-near the ceiling are in the robust regime; those that do not are not.
+where real data place the critical point on the index curve, and the two
+alignments we measure answer it in opposite directions. The saturated
+partition of the COI alignment
+(Section~\ref{sec:empirical}) lands between the two readings of its own
+threshold --- inside the collapse, where the threshold cannot discriminate. The
+genome-scale avian alignment
+(Section~\ref{sec:jarvis}) sits at $0.119$, an order of magnitude below the
+boundary, where the index is behaving as designed and the collapse is
+irrelevant.
+
+So the collapse is neither universal nor a limiting case that real data
+avoid. It is a property of where a particular matrix sits, which is
+measurable from the alignment before any tree is built --- and measuring it
+is cheap, since the index is cheap. Two alignments chosen for their
+prominence in the literature disagree about which regime genomics is in, and
+that is the argument for reporting the value rather than the verdict: a
+threshold that is decisive for one matrix and inert for another is not
+carrying the information its framing implies. A survey across markers rather
+than two cases would establish which regime is typical, and we have not
+attempted one here.
 
 % =====================================================================
 \section{Material and methods}
 
 \subsection{Common notations and background}
-\todo{Notation table; the two $H_{FSS}$ conventions of Eq.~\eqref{eq:conventions}.}
+\label{sec:notation}
+
+$N$ sequences of length $L$ related by a tree $\mathcal T$; leaf states
+generated by a reversible rate matrix $Q$ stationary with respect to $\bpi$,
+normalised so that $-\sum_j\pi_jQ_{jj}=1$; $K$ the number of states;
+$\Pi=\operatorname{diag}(\bpi)$; $S=\Pi^{1/2}Q\Pi^{-1/2}$ the symmetrised
+generator with eigenvalues $0=\lambda_1>\lambda_2\ge\cdots\ge\lambda_K$;
+$P_\mu$ the spectral projector onto the eigenspace of $\mu$;
+$\tau_\mu=\tr P_\mu$ its multiplicity and $w_\mu=\tr(\Pi P_\mu)$ its
+composition weight; $d$ a branch or path length and
+$\langle\cdot\rangle$ an average over ordered leaf pairs and rate classes.
+
+The two conventions for $\HFSS$ are Eq.~\eqref{eq:conventions}. Convention
+$(A)$, $\E_{\Mult(N,\hat{\mathbf p})}[h]$, is the one used by Xia et al.\ and
+by DAMBE; convention $(B)$, $h(\hat{\mathbf p})$, is the plug-in composition
+entropy. They are related on any data set by Eq.~\eqref{eq:convention}.
 
 \subsection{Theoretical results}
-\todo{Proofs to accompany Results \S2.2--2.6; or defer to an appendix.}
+
+All proofs are given inline with their statements in Results. The two
+numerically delicate points are worth recording here. First, the spectral
+projectors must be evaluated in the orthogonal form of
+Eq.~\eqref{eq:projectors}, $P_\mu=\sum_k u_ku_k^{\!\top}$, and not as the
+Lagrange interpolant $\prod_{\nu\ne\mu}(S-\nu I)/(\mu-\nu)$: at $K=20$ the
+latter returns $\sum_\mu\tau_\mu\approx34$ where the trace must be $19$, with
+errors in $w_\mu$ of order $10^0$, because the interpolant is numerically
+unstable precisely when eigenvalues are close. The orthogonal form is exact,
+and we verified it against \texttt{expm} to $10^{-16}$. Second, $\tau_\mu$ is
+the algebraic multiplicity as a consequence of orthonormality rather than by
+a separate argument, so no care is needed in grouping eigenvalues. $K=4$ is
+the last state space for which the non-zero eigenvalues have closed forms in
+radicals; the criterion itself does not depend on this, only the explicit
+expressions do.
 
 \subsection{Simulation}
-\label{sec:simulation}
-\todo{AliSim (IQ-TREE 3.0.1) with explicit seeds and custom Newick input;
-the uniform-$\Iss$ sampling density $p_s(s)\propto\mu'(s)$ with
-$Z=\mu(s_{\max})-\mu(s_{\min})$; the four-taxon transfer
-$(a,b,c,d)=(L-t,S,L,S+t)$, $t\in[0,L-S]$, reporting $\Iss$ and
-$\Pr[\hat{\mathcal T}=\mathcal T]$ for ML, MP and NJ.}
+\label{sec:simulation-methods}
+
+Alignments were generated with AliSim \citep{lytrong2022alisim} as
+implemented in IQ-TREE~3.0.1 \citep{minh2020iqtree2}. Every cell stores its
+seed, so any alignment is reproducible bit for bit; trees are supplied as
+Newick so that branch lengths are controlled exactly; base frequencies and
+discrete $\Gamma$ rate categories are set per arm. We use the AliSim
+mean-rate $\Gamma$ discretisation \citep{yang1994discretegamma}, which is the
+convention the closed forms assume: the closed form and the simulator agree
+to $4\times10^{-4}$ under it and disagree at $6\times10^{-3}$ under the median
+discretisation.
+
+Two designs are used. The first is the uniform-$\Iss$ sampler of
+Eq.~\eqref{eq:design}, applied per configuration with $s$ obtained by
+inverting $\mu(s)=\mu_{\min}+UZ$ analytically. The second is the
+Felsenstein--Farris transfer of Eq.~\eqref{eq:transfer}.
+
+Tree shape is parameterised by the internal fraction $f_i$, the proportion of
+total tree length assigned to the internal branch, with pendants either equal
+or graded in a fixed ratio. Sequence lengths range over $100$ to $10{,}000$,
+tree lengths over roughly $0.2$ to $100$ expected substitutions per site, and
+replicates number $150$ to $200$ per cell.
+
+The critical tree lengths of Section~\ref{sec:collapse} come from a separate
+sweep: the $f_i=0.35$ quartet at $N=4$ and $L=1000$, six $\Gamma$ shapes from
+$\alpha=\infty$ to $0.5$, and a geometric grid of fourteen tree lengths from
+$2$ to $320$ chosen to bracket the crossing at every shape, at $150$
+replicates per point. Each crossing is located by linear interpolation of
+$P_{\mathrm{true}}$ in $\log TL$ between the last grid point at or above
+$0.95$ and the first below it; the bracketing pairs are in the archived
+output, so the interpolation can be checked or redone. The index values
+reported alongside them are exact and do not come from this simulation.
+
+Recovery of the true topology is measured by three criteria. Maximum
+likelihood uses IQ-TREE with the generating model; maximum parsimony uses
+MPBoot \citep{hoang2018mpboot}. Both are established, independently published
+programs, and no searching criterion is computed from our own code: the search
+is the part of the pipeline where an unrecognised defect would be hardest to
+detect, and where a vetted program exists it is used. The third criterion is
+neighbour joining, which on a four-taxon quartet reduces to evaluating a
+deterministic function of the six pairwise distances --- no search, no
+heuristic, and short enough to be checked by inspection. All three are used
+in the transfer experiment of Section~\ref{sec:transfer}; the
+conditional-independence experiment of Section~\ref{sec:simresults} uses the
+two searching criteria only, since recovering a quartet from a
+$p$-distance criterion is not what the index's critical value is calibrated
+against. For its
+JC-corrected distance we cap $p$ at $0.74$, since the correction diverges at
+$p=3/4$ and returning $\infty$ would make the split sums arbitrary --- a real
+limitation of distance methods in the saturated regime, reported as such.
+
+\subsection{Empirical data}
+\label{sec:empirical-methods}
+
+The empirical alignment is \texttt{VertebrateMtCOI.FAS} as distributed with
+DAMBE and used by \citet{xia2009handbook} to introduce the index: eight
+vertebrate mitochondrial cytochrome oxidase~I sequences, $1512$~nt, in an RNA
+alphabet, with no gaps or ambiguity codes and no length variation. It ships
+with a reference topology, which we take as given rather than re-estimating.
+Codon partitions are taken by position modulo three from the reading frame
+supplied in the file. Sequence length is the same across codons, so no
+partition truncation is needed.
+
+The index, the mean pairwise $p$-distance and the parsimony-informative count
+are computed on each partition exactly as in the simulations. Recovery uses
+IQ-TREE \citep{minh2020iqtree2} under GTR$+\Gamma$, and is scored by the
+Robinson--Foulds distance between the inferred topology and the reference,
+over the five non-trivial splits of an eight-taxon tree (so the maximum is
+ten, and zero means the tree is recovered).
 
 \subsection{Evaluation criteria}
-\todo{How $\Iss$, mean $p$-distance, the $C$ value \citep{struck2008cfactor} and
-$\lambda$ \citep{jermiin2020signal} are compared, one parameter at a time, with
-trends reported and no composite power index; definitions cited to source.}
+\label{sec:eval}
+
+The numerical comparison reported here is $\Iss$ against mean pairwise
+$p$-distance, one parameter at a time. No composite power index is
+constructed and no power calculation is reported: the aim is to exhibit the
+shape of each dependence, not to rank tests by a summary statistic, and a
+composite index would require committing to a loss function that the
+application does not supply.
+
+Two other tree-free \emph{a~priori} indices are in use and are the natural
+extension of the comparison: the $C$ value of
+Struck et al.~\citep{struck2008cfactor}, defined as
+$\sigma(\mathrm{ti/tv})/\sigma(p)$ over all pairwise comparisons, and
+$\lambda$ of Jermiin \& Misof~\citep{jermiin2020signal}, defined pairwise by
+Eq.~\eqref{eq:lambda}. Both are computed here on the same alignments as
+$\Iss$, from their published definitions, and compared in
+Section~\ref{sec:alternatives} and Table~\ref{tab:indices}.
+
+For the conditional-independence test of Section~\ref{sec:simresults} we
+compare out-of-sample performance of a model in $\bar p$ alone against one in
+$\bar p$ and $\Iss$ jointly, with a cubic spline in $\bar p$ (16 knots) and
+five-fold cross-validation. The spline is not cosmetic: a quadratic in
+$\bar p$ is worse than chance in the transition region, so it understates what
+$\bar p$ alone achieves and makes $\Iss$ look harmful there. For a binary
+target we report cross-validated AUC; for a continuous one, cross-validated
+$R^2$. Correlation between $\Iss$ and $\bar p$ is reported for context but is
+not evidence either way.
+
+Two caveats on the conditional-independence numbers. The transition band
+$\bar p\in[0.63,0.70]$ and the single-threshold value $\Iss\approx0.98$ were
+both chosen by inspecting the full data, not nested inside the
+cross-validation, so the in-band gains are descriptive rather than unbiased
+estimates of out-of-sample performance; the full-range numbers are unaffected
+because they involve no such choice. And the two AUCs quoted for $\Iss$ alone
+in the band are not comparable to the full-range AUC of $\bar p$: they are
+fitted and evaluated on a restricted sample where recovery is genuinely in
+doubt, than which nothing in the full-range fit is harder.
 
 % =====================================================================
 \section*{Data availability}
 \addcontentsline{toc}{section}{Data availability}
-\todo{Code and configuration; archived with a DOI. Note that every simulated
-alignment is reproducible from a stored seed.}
+All simulation code, the scripts that generate every figure and table, the
+per-cell parameter records and the stored seeds are archived with the paper.
+Each of the $108{,}000$ alignments in the conditional-independence experiment,
+and every other alignment reported here, can be regenerated bit for bit from
+its stored seed and cell key. The empirical alignment and reference topology
+of Section~\ref{sec:empirical} are redistributed with DAMBE and are included
+unmodified in the archive, with their provenance recorded.
 
 \section*{Acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
-\todo{...}
+We thank the developers of IQ-TREE and of MPBoot for making AliSim and the
+parsimony search available in a form that can be scripted, and the maintainers
+of TeX Live and of the Python scientific stack.
 
 % =====================================================================
 % NOTE (do not reintroduce): three corrections agreed during drafting.

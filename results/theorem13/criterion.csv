@@ -1,0 +1,4 @@
+model,ratios,affine
+"HKY, uniform","[4.0, 4.0]",True
+"F81, skewed",[4.286],True
+"HKY, skewed","[3.75, 6.667, 3.529]",False

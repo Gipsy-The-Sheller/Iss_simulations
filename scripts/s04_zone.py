@@ -9,10 +9,10 @@ The true topology ((A,B),(C,D)) never changes; the sum of pairwise distances is
 constant along the path (3(a+b+c+d)+4r); and at the endpoints the distance
 multisets coincide exactly as r -> 0, so Iss is identical there.
 
-Recovery is measured three ways -- ML (IQ-TREE), MP (Fitch) and NJ (both
-JC-corrected and the uncorrected four-point rule) -- because the point is
-precisely that recovery depends on the branch-length arrangement while Iss does
-not.
+Recovery is measured three ways -- ML (IQ-TREE), MP (MPBoot) and NJ
+(JC-corrected) -- because the point is precisely that recovery depends on the
+branch-length arrangement while Iss does not.  The two searching criteria run
+through published programs; only NJ is computed here.
 """
 from __future__ import annotations
 
@@ -42,7 +42,9 @@ N_T = 17         # points along the path
 N_REPS = 200
 L = 1000
 MODEL = "JC69"
-METHODS = ("ML", "MPB", "MP", "NJ", "4P")
+METHODS = ("ML", "MPB", "NJ")   # parsimony is MPBoot only; every searching
+                                # criterion we report is a peer-reviewed
+                                # implementation, not our own
 
 
 def cells():
@@ -61,7 +63,7 @@ def recovery():
 
     ML shells out to IQ-TREE once per replicate, so this is the expensive half:
     at N_T=17 and n_reps=200 that is 3400 IQ-TREE runs of 4 taxa, minutes each
-    in aggregate on one core.  MP / NJ / 4P are computed in-process.
+    in aggregate on one core.  NJ is computed in-process.
     """
     out = out_path(EXP).parent / "recovery.csv"
     # incremental: one row per (t, method), so adding a method or re-running

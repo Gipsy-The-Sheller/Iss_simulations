@@ -28,7 +28,7 @@ EXP = "exp2_iss_pdist"
 TREES = ROOT / "results" / EXP / "trees"
 N_REPS = 200
 MODEL = "JC69"
-N_SPOT = (8, 16)
+N_SPOT = (4, 8, 16)   # N=4 is a star, so the N-comparison is shape-controlled
 N_SPOT_POINTS = 8
 
 

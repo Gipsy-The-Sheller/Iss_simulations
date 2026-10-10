@@ -29,6 +29,11 @@ def out_path(exp: str, root: Path | None = None) -> Path:
 
 
 def load_done(path: Path) -> set:
+    # Through res(), so that a table archived as cells.csv.gz is still seen:
+    # returning the empty set there would silently re-run every cell and
+    # append a second copy of the experiment.
+    from .results import res
+    path = res(Path(path).parent, Path(path).name)
     if not Path(path).exists():
         return set()
     try:

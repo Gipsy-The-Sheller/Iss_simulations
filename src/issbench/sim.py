@@ -34,10 +34,17 @@ def simulate(tree_file: Path, model: str, length: int, n_reps: int,
     outs = run_alisim(prefix, tree_file, model, length=int(length),
                       n_alignments=int(n_reps), seed=int(seed),
                       threads=threads, log=workdir / f"{tag}.log")
+    # AliSim writes one file per replicate unless --single-output is honoured,
+    # in which case the single file is a concatenation of all n_reps
+    if len(outs) == 1 and n_reps > 1:
+        outs = _split_single(outs[0], n_reps, workdir, tag)
     if len(outs) != n_reps:
-        # AliSim writes one file per replicate unless --single-output is honoured
-        if len(outs) == 1 and n_reps > 1:
-            return _split_single(outs[0], n_reps, workdir, tag)
+        # never return a short list: the caller zips it against replicate
+        # indices, and a short list silently mislabels every replicate after
+        # the missing one
+        raise RuntimeError(
+            f"AliSim returned {len(outs)} file(s) for n_reps={n_reps} "
+            f"(tag={tag}, dir={workdir}); refusing to record a partial cell")
     return outs
 
 
@@ -59,6 +66,9 @@ def _split_single(path: Path, n: int, workdir: Path, tag: str) -> list[Path]:
             for nm in names:
                 fh.write(f">{nm}\n{seqs[nm][i]}\n")
         out.append(f)
+    # the concatenation is superseded by the per-replicate files; leaving it
+    # around only creates something for a later glob to trip over
+    Path(path).unlink(missing_ok=True)
     return out
 
 

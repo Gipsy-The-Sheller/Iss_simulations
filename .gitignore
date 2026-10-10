@@ -1,7 +1,15 @@
-# ---- simulation output (large, regenerable) ----
+# ---- simulation output ----
+# The tables under results/ are the evidence for the paper and are tracked;
+# the dense ones are archived gzipped (scripts/s20_pack_results.py).  Everything
+# else in there is regenerable scratch.
 results/**
-!results/**/summary.csv
+!results/**/
+!results/**/*.csv
+!results/**/*.csv.gz
+!results/**/*.json
 !results/**/README.md
+results/**/trees/
+results/**/*.part*.csv
 logs/
 work/
 scratch/
@@ -13,7 +21,6 @@ scratch/
 *.treefile
 *.contree
 *.ckp.gz
-*.gz
 *.tar
 *.tar.gz
 
@@ -41,6 +48,13 @@ venv/
 build/
 dist/
 
+# ---- latex build artefacts (manuscript.bbl is kept: arXiv wants it) ----
+*.aux
+*.blg
+*.out
+*.synctex.gz
+latex.out/
+
 # ---- data cache ----
 .cache/
 
@@ -56,3 +70,16 @@ desktop.ini
 !refs/**
 !figures/**
 !conf/**
+
+# ---- third-party material, deliberately not redistributed ----
+# Other people's alignments, supplementary files and published PDFs.  These are
+# needed to reproduce the empirical sections, but they are fetched by the
+# scripts (see scripts/s09_fetch_gigadb.py and data/README.txt) rather than
+# shipped; the rules are last so that they beat the keep-rules above.
+data/
+docs/duchene2022_si/
+*.pdf
+5131558.json
+5131558.zip
+ref.png
+ref2.png
