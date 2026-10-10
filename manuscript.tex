@@ -60,8 +60,8 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
-\title{What the index of substitution saturation measures,\\
-       and why its critical value is a power threshold}
+\title{Revisiting Xia's Index of Substitution Saturation\\
+       from a Mathematical Perspective}
 \author{Zhi-Jie Xu\thanks{College of Biological Science \& Medical Engineering,
         Donghua University, Shanghai 201620, China.}}
 \date{\today}
@@ -1437,6 +1437,34 @@ one, both at $N=8$ and $L\approx500$ --- the partition \emph{passes} one and
 property of which of the two definitions of the critical tree length is
 read, and both are in the table.
 
+Those two numbers are not free constants of the index, and it is worth saying
+what they are a property of, because the source says it. They are the
+recovery threshold of a particular inference engine applied to a particular
+generator: the calibration simulated under F84 and reconstructed with
+neighbour joining on F84 distances and with maximum likelihood under the same
+F84 model for $4$, $8$ and $16$ taxa, and --- quoting the methods --- ``only
+the neighbour-joining method is used for reconstructing topologies with
+NOTU${}>16$'' \citep{xia2003iss}. The tabulated surface is therefore indexed
+by a coordinate that is set by the software rather than by the data, and
+never listed as a condition of use. The later manual states the consequence
+itself: ``establishing the existence of phylogenetic information in the
+sequences does not mean that the true tree can be recovered by any
+tree-building algorithm'' \citep{xia2009handbook}. A quantity defined as the
+point at which recovery fails inherits the engine that failed.
+
+We can measure the size of that inheritance on our own quartet, and report
+that it is small here, which is the honest way to record a check that could
+have gone the other way. Rescoring the $150$ replicates per tree length of
+Section~\ref{sec:collapse} with neighbour joining on JC distances in place of
+maximum likelihood in IQ-TREE gives a critical tree length of $7.31$ against
+$7.19$ and an $\Issc$ of $0.9817$ against $0.9807$ --- a difference of
+$0.001$, against the $0.0115$ the $\alpha$ sweep spans. Two engines that
+differ substantially in how they recover a quartet happen to agree here on
+\emph{when} they stop, so the engine is a provenance fact in this comparison
+rather than a measured effect. It remains a coordinate the table does not
+carry, and for the larger taxon counts, where the source switches to neighbour
+joining alone, it is the same coordinate the user cannot vary.
+
 That is the resolution collapse of Section~\ref{sec:collapse} appearing in
 real data. The partition every practitioner would identify as the saturated
 one sits between the two readings of its own threshold, so that the answer to
@@ -1603,21 +1631,12 @@ is why the question of where a given matrix sits has to be answered rather
 than assumed --- and it is answerable, from the alignment, before any tree is
 built.
 
-One caveat governs the magnitude, and it is worth bounding rather than
-waving at, because complete columns are the conserved fraction: the
-$31{,}962{,}462$ sites kept are $9.9\%$ of the alignment, so $0.119$ is a
-lower bound on what the whole alignment would give if gaps were treated as
-missing. How much lower depends on how the gap-containing sites are handled,
-which we do not settle. What the bound buys is a limit on how much it
-matters. The value the boundary is defined against is $0.6401$, and reaching
-it from $0.119$ at $9.9\%$ of the sites requires the remaining $90.1\%$ to
-sit at $0.697$ --- within a tenth of the index's own ceiling, and close to
-six times the value the complete columns show. The windows over the full
-$322$~Mbp range from $0.006$ to $0.230$ with a median of $0.119$, spanning
-an eightfold range about their own median, so a gap-containing fraction
-saturated three times over would still leave the whole alignment below the
-boundary. The conclusion is a bound, not a measurement, and it is a bound
-tight enough to carry the section.
+One caveat on the magnitude: complete columns are the conserved fraction, so
+$0.119$ is a lower bound on what the alignment would give if the gap-containing
+columns were treated as missing. Sites with gaps or ambiguity codes are
+excluded rather than imputed, which is what DAMBE does as well, so the
+treatment matches the practice the comparison is drawn against; what it does
+not settle is what those columns would have carried.
 
 \begin{figure}[t]
 \centering
@@ -1886,15 +1905,46 @@ the grid it used, together with the finding that composition and
 transition/transversion ratio are negligible relative to topology, taxon number
 and sequence length.
 
-Fourth, the discussion section does not ignore rate heterogeneity. It treats the
-rates-across-sites and covarion models at length, notes that the test applies to
-the $(1-P)$ fraction of sites, and states that assuming $P=0$ when $P>0$ makes
-the test \emph{conservative}. That claim is correct --- invariable sites depress
-$\bar H$, hence $\Iss$, hence the rate of rejection --- and it is the same
-channel as the $+I$ under-detection noted in Section~\ref{sec:collapse}. The
-defensible criticism is narrower than "heterogeneity was overlooked": the
-numerical calibration of the critical value does not carry $\alpha$ as a
-coordinate, even though the surrounding text acknowledges that it should.
+Fourth, the discussion section does not ignore rate heterogeneity, but what it
+does with it is worth setting out precisely, because the usual reading --- that
+the author was aware of the problem and the calibration simply predates it ---
+is more generous than the text supports.
+
+The section defines the rates-across-sites model as two halves: ``A typical RAS
+model includes a proportion ($P$) of invariable sites \ldots and the rest of
+sites evolving at the $\Gamma$-distributed rates''. It then argues that the test
+is applicable to the $(1-P)$ fraction, that DAMBE can estimate $P$, and that
+assuming $P=0$ when $P>0$ makes the test conservative. That argument is correct,
+and it is correct about the first half only: invariable sites depress $\bar H$,
+hence $\Iss$, hence the rate of rejection, which is the same channel as the
+$+I$ under-detection of Section~\ref{sec:collapse}. The second half --- the
+sites that do evolve, at $\Gamma$-distributed rates --- never enters the
+argument, and the calibration that produced the table is rate-homogeneous.
+Conservativeness with respect to $P$ says nothing about it, and a reader who
+takes the paragraph as covering the RAS model has been told something the
+paragraph does not show.
+
+What makes this more than an omission of scope is the sentence two lines
+earlier, in the same paragraph: the RAS model ``has been studied recently in
+relation to phylogenetic reconstruction \ldots\ because most commonly used
+phylogenetic methods fail to recover the true tree when sequences evolved
+according to the RAS model''. The source of that claim is a simulation under
+unequal rates \citep{kuhner1994simulation}, which is the regime the table was
+built in --- and the table is precisely a statement about when commonly used
+methods recover the true tree. The observation was available, in the paragraph,
+and was used to motivate the RAS discussion rather than to question the
+homogeneous grid. The criticism here is not that a 2003 paper failed to
+anticipate 2005 practice; it is that the applicability limit was stated as a
+property of $P$ when the model it was stated about has two parameters.
+
+The covarion discussion has the same shape in miniature. It concludes that the
+covarion process ``does not seem to cause any complication in our test'', on the
+grounds that sequences evolving under covarion are much less susceptible to
+saturation than under RAS \citep{penny2001mathematical}. Susceptibility to
+saturation is a property of the data; what the test needs is a statement about
+the statistic, and less saturation is not the same as a preserved relation
+between $\Iss$ and the tree length at which recovery fails. The conclusion may
+be right --- we have not tested it --- but the premise does not reach it.
 
 The failures are of a different kind: a normalisation whose entropy form
 implies more than the second-order expectation delivers, a calibration whose

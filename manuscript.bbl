@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -57,6 +57,14 @@ Lars~S Jermiin and Bernhard Misof.
 \newblock Measuring historical and compositional signals in phylogenetic data,
   2020.
 
+\bibitem[Kuhner and Felsenstein(1994)]{kuhner1994simulation}
+Mary~K. Kuhner and Joseph Felsenstein.
+\newblock A simulation comparison of phylogeny algorithms under equal and
+  unequal evolutionary rates.
+\newblock \emph{Molecular Biology and Evolution}, 11\penalty0 (3):\penalty0
+  459--468, 1994.
+\newblock \doi{10.1093/oxfordjournals.molbev.a040126}.
+
 \bibitem[Letsch and Kjer(2011)]{letsch2011rrna}
 Harald~O Letsch and Karl~M Kjer.
 \newblock Potential pitfalls of modelling ribosomal rna data in phylogenetic
@@ -100,6 +108,15 @@ Bui~Quang Minh, Heiko~A Schmidt, Olga Chernomor, Dominik Schrempf, Michael~D
 \newblock \emph{Molecular Biology and Evolution}, 37\penalty0 (5):\penalty0
   1530--1534, 2020.
 \newblock \doi{10.1093/molbev/msaa015}.
+
+\bibitem[Penny et~al.(2001)Penny, McComish, Charleston, and
+  Hendy]{penny2001mathematical}
+David Penny, Bennet~J. McComish, Michael~A. Charleston, and Michael~D. Hendy.
+\newblock Mathematical elegance with biochemical realism: the covarion model of
+  molecular evolution.
+\newblock \emph{Journal of Molecular Evolution}, 53\penalty0 (6):\penalty0
+  711--723, 2001.
+\newblock \doi{10.1007/s002390010258}.
 
 \bibitem[Steel et~al.(1993)Steel, Lockhart, and Penny]{steel1993confidence}
 M.~A. Steel, P.~J. Lockhart, and D.~Penny.
