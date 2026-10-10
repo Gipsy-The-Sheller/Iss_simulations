@@ -84,14 +84,17 @@ def run() -> None:
     f = OUT / "pilot.csv"
     if f.exists():
         prev = pd.read_csv(f)
-        done = set(zip(prev.tag, prev.tl))
+        # round before matching: the grid is rebuilt from alpha on every run
+        # and the CSV round-trip is not bit-exact (1100.861740811548 came back
+        # as ...5479), which silently re-runs a point and appends it twice
+        done = set(zip(prev.tag, prev.tl.round(6)))
         rows = prev.to_dict("records")
     t0 = time.time()
     for a in ALPHAS:
         tag = alpha_tag(a)
         m = model_for(a)
         for tl in grid_for(a):
-            if (tag, float(tl)) in done:
+            if (tag, round(float(tl), 6)) in done:
                 continue
             node = tree_for(float(tl))
             nwk = OUT / "trees" / f"{tag}_{tl:.4g}.nwk"
@@ -114,24 +117,47 @@ def run() -> None:
             print(f"  {tag:5s} TL={tl:>6g}  P_true={p:.3f}  "
                   f"({time.time() - t0:.0f}s)", flush=True)
 
-    # critical tree length by linear interpolation on the log tree length,
-    # which is how P_true falls; report the bracketing points too
+    analyze(rows)
+    print(f"\ntotal {time.time() - t0:.0f}s")
+
+
+def analyze(rows: list[dict] | None = None) -> pd.DataFrame:
+    """Critical tree length per alpha, by interpolation in log TL.
+
+    The crossing is taken as the FIRST downward one in tree length, not as
+    "the last point above 0.95 against the first point below it".  The two
+    differ whenever P_true is not monotone in TL, and below alpha ~ 0.25 it is
+    not: at alpha = 0.2 recovery falls to 0.81 at TL = 307 and then climbs back
+    to 1.00 by TL = 2559, because once the fastest rate classes have saturated
+    they stop swamping the signal from the slower ones.  The old rule paired
+    TL = 7905 with TL = 559 and produced a critical tree length of 4261 for
+    alpha = 0.15, where the actual first crossing is at 333.
+
+    Where no downward crossing exists the record is left at NaN, which is the
+    right answer rather than a missing one: it means the quartet is recovered
+    at every tree length sampled, so the alpha has no critical length in the
+    range probed.
+    """
+    if rows is None:
+        rows = pd.read_csv(OUT / "pilot.csv").to_dict("records")
+    Q = build_Q("JC69")
     d = pd.DataFrame(rows).sort_values(["tag", "tl"])
     cres = []
     for tag, g in d.groupby("tag", sort=False):
-        g = g.sort_values("tl")
-        above = g[g.ptrue >= 0.95]
-        below = g[g.ptrue < 0.95]
-        rec = dict(tag=tag, alpha=float(g.alpha.iloc[0]))
-        if len(above) and len(below):
-            lo, hi = above.iloc[-1], below.iloc[0]
-            x = np.log([lo.tl, hi.tl]); y = [lo.ptrue, hi.ptrue]
-            tl_c = float(np.exp(np.interp(0.95, y[::-1], x[::-1])))
-            rec.update(tl_c=tl_c, tl_lo=float(lo.tl), tl_hi=float(hi.tl),
-                       p_lo=float(lo.ptrue), p_hi=float(hi.ptrue))
-        else:
+        g = g.drop_duplicates(subset="tl").sort_values("tl")
+        tl = g.tl.to_numpy(); p = g.ptrue.to_numpy()
+        rec = dict(tag=tag, alpha=float(g.alpha.iloc[0]), n_pts=len(p),
+                   rises=int((np.diff(p) > 0).sum()))
+        i = next((k for k in range(len(p) - 1)
+                  if p[k] >= 0.95 > p[k + 1]), None)
+        if i is None:
             rec.update(tl_c=np.nan)
-        # exact E[Iss] at that tree length, by enumeration at N=4
+        else:
+            x = np.log(tl[i:i + 2])              # increasing
+            y = p[i:i + 2]                       # decreasing across the cross
+            tl_c = float(np.exp(np.interp(0.95, y[::-1], x[::-1])))
+            rec.update(tl_c=tl_c, tl_lo=float(tl[i]), tl_hi=float(tl[i + 1]),
+                       p_lo=float(p[i]), p_hi=float(p[i + 1]))
         if not np.isnan(rec.get("tl_c", np.nan)):
             node = tree_for(rec["tl_c"])
             rates = (np.array([1.0]) if np.isinf(rec["alpha"])
@@ -144,8 +170,11 @@ def run() -> None:
     c.to_csv(OUT / "critical.csv", index=False)
     print()
     print(c.to_string(index=False))
-    print(f"\ntotal {time.time() - t0:.0f}s")
+    return c
 
 
 if __name__ == "__main__":
-    run()
+    if "--analyze" in sys.argv:
+        analyze()
+    else:
+        run()

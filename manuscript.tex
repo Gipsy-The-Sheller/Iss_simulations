@@ -92,9 +92,9 @@ index in use, reduces the same way.
 
 The critical value fails separately. It carries no
 rate-heterogeneity coordinate, and in the near-saturated region the index is
-pinned within a few percent of its upper bound: a fifteen-fold change in the
-tree length needed to make the topology unrecoverable moves it by less than
-one percent, so it cannot distinguish moderate from severe saturation. A four-taxon transfer of long branches at fixed patristic total
+pinned within a few percent of its upper bound: a two-hundred-fold change in
+the tree length needed to make the topology unrecoverable moves it by less
+than one percent, so it cannot distinguish moderate from severe saturation. A four-taxon transfer of long branches at fixed patristic total
 makes the consequence direct --- the index is constant along the path while
 recovery spans its full range.
 
@@ -464,7 +464,7 @@ and $\Iss(TL_c)$ --- therefore depends on $\alpha$.
 
 The dependence is not, by itself, fatal, and Section~\ref{sec:collapse} shows
 that it is weaker than it sounds: over the range of $\alpha$ that matters,
-$TL_c$ moves by a factor of $18$ while $\Issc$ moves by less than $0.01$. The
+$TL_c$ moves by a factor of $240$ while $\Issc$ moves by less than $0.01$. The
 charge is therefore not that the threshold is unusable but that it is
 mis-calibrated in a way its user cannot detect: the critical tree length does
 depend strongly on $\alpha$, the index does not carry that dependence, and a
@@ -818,22 +818,26 @@ $\Pr[\hat{\mathcal T}=\mathcal T]$ falls to $0.95$ under maximum likelihood
 are
 
 \begin{equation}
-\begin{array}{l|rrrrrr}
+\begin{array}{l|rrrrrrrr}
 \toprule
-\alpha & \infty & 8 & 4 & 2 & 1 & 0.5 \\
+\alpha & \infty & 32 & 8 & 4 & 2 & 1 & 0.5 & 0.25 \\
 \midrule
-TL_c      & 7.19 & 7.78 & 10.04 & 13.02 & 25.47 & 107.72 \\
-\Issc     & 0.9807 & 0.9735 & 0.9782 & 0.9718 & 0.9692 & 0.9715 \\
+TL_c      & 7.19 & 7.32 & 7.78 & 10.04 & 13.02 & 25.47 & 107.72 & 1716.11 \\
+\Issc     & 0.9807 & 0.9788 & 0.9735 & 0.9782 & 0.9718 & 0.9692 & 0.9715 & 0.9719 \\
 \bottomrule
 \end{array}
 \label{eq:tlc}
 \end{equation}
 
-so the tree length runs over a factor of $15$ end to end while the index
+so the tree length runs over a factor of $240$ end to end while the index
 spans $0.0115$. Recovery is by IQ-TREE rather than by our own code, at $150$
 replicates per point; the crossings are bracketed by the grid and located by
 interpolation in $\log TL$, and the brackets are reported in the archived
-output.
+output. The sweep is denser than the table shows, and the density is the
+point: $\alpha=64,32,24,16,12,8$ are all run, and from $\alpha=\infty$ down to
+$\alpha=8$ the critical tree length does not leave $7.1$--$7.8$, a band one
+grid step wide. Rate heterogeneity has to reach $\alpha\approx4$ before the
+threshold notices it at all.
 
 The $\Issc$ row is exact, not simulated and not taken from the second-order
 form. At $N=4$ the transition matrix has only $4^4$ site patterns, so
@@ -847,11 +851,29 @@ $0.64$--$0.65$; the collapse is a statement about the width of the window,
 not about its location, and it appears under either convention with the span
 little changed.
 
-Because the index is so flat there, the six critical points are not even
-ordered by $\alpha$ --- $0.9735$ at $\alpha=8$ sits below $0.9782$ at
-$\alpha=4$ --- and the small non-monotonicity is the grid and replicate noise
-of the crossing, not a property of the index. That is what a quantity with
-nothing left to move looks like.
+Because the index is so flat there, the critical points are not even ordered
+by $\alpha$ --- $0.9735$ at $\alpha=8$ sits below $0.9782$ at $\alpha=4$ ---
+and the small non-monotonicity is the grid and replicate noise of the
+crossing, not a property of the index. That is what a quantity with nothing
+left to move looks like.
+
+There is a further breakdown at the other end, and it is worth stating
+because it removes the object the tabulated threshold refers to. Below
+$\alpha\approx0.2$ the recovery curve stops being monotone in tree length.
+With most sites nearly invariable and a minority evolving very fast, the fast
+sites saturate first and stop carrying the split, while the slow sites go on
+accumulating signal; recovery therefore \emph{rises} again as the tree
+lengthens. At $\alpha=0.2$ it reaches $0.81$ at $TL=308$ and $1.00$ at
+$TL=2559$ without ever crossing $0.95$ downwards in the range probed; at
+$\alpha=0.15$ it crosses at $TL=406$ and is back above $0.95$ by $TL=7905$.
+Under the naive rule that pairs the last point above with the first point
+below, $\alpha=0.15$ reports a critical tree length of $4261$ instead of
+$406$ --- the two bracketing points would not even be in the right order.
+There is no single tree length at which these configurations stop being
+recoverable, so for them the tabulated critical value has nothing to be
+compared against. This is the same collapse seen from the other side: the
+threshold is a point on a curve, and at strong rate heterogeneity the curve
+is not one.
 
 The span depends on the tree shape, as
 Eq.~\eqref{eq:sensitivity} implies it must, but it does not approach the
@@ -864,6 +886,7 @@ $1-\Iss^{\max}$ while the derivative $\partial\E[\Iss]/\partial\Psi$ is
 bounded above by a constant, so the sensitivity to any parameter acting
 through $\Psi$ vanishes at the ceiling whether or not the second-order form is
 accurate there.
+\end{sloppypar}
 
 \begin{figure}[t]
 \centering
@@ -872,21 +895,24 @@ accurate there.
 \textbf{A}, recovery of the true quartet under maximum likelihood against
 tree length, one curve per $\Gamma$ shape, $N=4$, $L=1000$, $150$ replicates
 per point; the dashed line is $0.95$. \textbf{B}, the tree length at which
-each curve crosses it. \textbf{C}, the exact expected index at those tree
-lengths, on the same $0$--$1$ scale as the index itself. A fifteen-fold
-change in the first has no visible effect on the second: the threshold is
-nearly invariant to rate heterogeneity because the index is nearly at its
-ceiling, not because it is well calibrated.}
+each curve crosses it, on axes that put $\alpha=\infty$ one doubling beyond
+the largest finite shape. \textbf{C}, the exact expected index at those tree
+lengths, on the same $0$--$1$ scale as the index itself. A $240$-fold change
+in the first has no visible effect on the second above $\alpha=0.25$: the
+threshold is nearly invariant to rate heterogeneity because the index is
+nearly at its ceiling, not because it is well calibrated. At $\alpha\leq0.2$
+recovery is not monotone in tree length and the crossing is not defined, which
+is why the last two points of panel C leave the band.}
 \label{fig:tlc}
 \end{figure}
 
-This is the resolution collapse. A fifteen-fold change in the tree length
+This is the resolution collapse. A $240$-fold change in the tree length
 needed to make the true topology unrecoverable moves the index by less than
-one percent. Across the range of rate heterogeneity the tabulated threshold
-therefore appears nearly invariant --- and that appearance is an artefact of
-boundedness, not evidence of calibration. The same mechanism explains why
-$\Iss$ is insensitive to the divergence itself: the quantity has nowhere left
-to go.
+one percent. Across the range of rate heterogeneity where the crossing is
+defined at all, the tabulated threshold therefore appears nearly invariant ---
+and that appearance is an artefact of boundedness, not evidence of
+calibration. The same mechanism explains why $\Iss$ is insensitive to the
+divergence itself: the quantity has nowhere left to go.
 
 Two qualifications on the scope. First, the sensitivity in
 Eq.~\eqref{eq:sensitivity} is proportional to $\Psi_c/\Issc$, and $\Psi_c$

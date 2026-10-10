@@ -712,9 +712,9 @@ def fig_lambda():
 def fig_tlc_alpha():
     """Critical tree length against rate heterogeneity, and the index at it.
 
-    Section 2.6's claim in one picture: as alpha goes from infinity to 0.5 the
-    tree length at which the quartet stops being recoverable moves by an order
-    of magnitude, while the index at that point barely moves.
+    Section 2.6's claim in one picture.  Seventeen values of alpha span four
+    orders of magnitude, from no gamma at all to alpha = 0.1, with the
+    no-gamma end sampled densely enough to show where the curve leaves it.
     """
     d = res(RES / "exp7_tlc_alpha", "pilot.csv")
     c = res(RES / "exp7_tlc_alpha", "critical.csv")
@@ -724,10 +724,9 @@ def fig_tlc_alpha():
     p = pd.read_csv(d)
     cr = pd.read_csv(c).sort_values("alpha")
 
-    # Twelve alpha values spanning four orders of magnitude: a categorical
-    # palette runs out of distinguishable colours, so the ordering is carried
-    # by a two-hue gradient instead and the scale by a colour bar.  The
-    # position uses 1/alpha, which sends alpha = infinity to the light end and
+    # Seventeen categories is far past what a qualitative palette can carry, so
+    # the ordering is a two-hue gradient and the scale a colour bar.  The
+    # position uses 1/alpha, which puts alpha = infinity at the light end and
     # spreads the small values out.
     def pos(a: float) -> float:
         return 0.0 if not np.isfinite(a) else float(np.log10(1.0 + 1.0 / a))
@@ -736,19 +735,35 @@ def fig_tlc_alpha():
     pmax = max(pos(a) for a in alphas) or 1.0
     cmap = LinearSegmentedColormap.from_list("alpha", [C["blue"], C["red"]])
     norm = Normalize(0.0, pmax)
+    col = {a: cmap(norm(pos(a))) for a in alphas}
     alab = {a: (r"$\alpha=\infty$" if not np.isfinite(a) else rf"$\alpha={a:g}$")
             for a in alphas}
     # only a handful of traces get a legend entry; the rest are read off the bar
     named = {np.inf, 1.0, 0.5, 0.25, 0.1}
 
+    def bar(ax):
+        # every alpha on the bar would be seventeen labels in an inch; the
+        # intermediate values are read off the position, and named traces in
+        # the legend anchor the scale
+        sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+        cb = fig.colorbar(sm, ax=ax, fraction=0.05, pad=0.02)
+        # 16 is left off: pos(16) = 0.026 sits on top of pos(infinity) = 0
+        tick = [a for a in alphas if not np.isfinite(a) or a in (4.0, 1.0, 0.25, 0.1)]
+        cb.set_ticks([pos(a) for a in tick])
+        cb.set_ticklabels([("∞" if not np.isfinite(a) else f"{a:g}")
+                           for a in tick])
+        cb.ax.tick_params(labelsize=6.5)
+        cb.set_label(r"$\alpha$", fontsize=8)
+
     fig, axes = plt.subplots(1, 3, figsize=(13.8, 4.2))
     ax = axes[0]
+    # drawn from the light end up, so the wide curves at small alpha stay on top
     for a in alphas:
         sel = p[np.isclose(p.alpha, a)] if np.isfinite(a) else p[np.isinf(p.alpha)]
-        g = sel.sort_values("tl")
+        g = sel.drop_duplicates(subset="tl").sort_values("tl")
         if g.empty:
             continue
-        ax.plot(g.tl, g.ptrue, "o-", ms=3, lw=1.4, color=cmap(norm(pos(a))),
+        ax.plot(g.tl, g.ptrue, "o-", ms=2.6, lw=1.3, color=col[a],
                 label=alab[a] if a in named else None)
     ax.axhline(0.95, color=C["grey"], ls="--", lw=1.2)
     ax.set_xscale("log")
@@ -756,34 +771,74 @@ def fig_tlc_alpha():
     ax.set_ylabel(r"$\Pr[\hat{T}=T]$  (ML)")
     ax.legend(fontsize=6.8, loc="lower left", title=r"$\Gamma$ shape",
               title_fontsize=7)
-    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
-    cb = fig.colorbar(sm, ax=ax, fraction=0.046, pad=0.02)
-    cb.set_ticks([pos(a) for a in alphas])
-    cb.set_ticklabels([("∞" if not np.isfinite(a) else f"{a:g}") for a in alphas])
-    cb.ax.tick_params(labelsize=6.5)
-    cb.set_label(r"$\alpha$", fontsize=8)
     panel(ax, "A")
+    bar(ax)
+
+    # B and C carry the same colours, so a point can be read back to its alpha.
+    # infinity has no position on a log axis and matplotlib drops such points
+    # without a word -- which silently removed the no-gamma reference from
+    # both panels.  It is plotted one doubling beyond alpha = 64 instead, at
+    # the spacing the rest of the ladder uses, and the tick is relabelled.
+    XINF = 128.0
+    ok = cr.dropna(subset=["tl_c"])
+    miss = cr[cr.tl_c.isna()]
+
+    def xa(a: float) -> float:
+        return XINF if not np.isfinite(a) else float(a)
+
+    def ladder(ax):
+        ax.set_xscale("log")
+        tick = [0.1, 0.25, 1.0, 4.0, 16.0, 64.0, XINF]
+        ax.set_xticks(tick)
+        ax.set_xticklabels(["0.1", "0.25", "1", "4", "16", "64",
+                            r"$\infty$"])
+        ax.set_xlabel(r"$\Gamma$ shape $\alpha$")
 
     ax = axes[1]
-    ok = cr.dropna(subset=["tl_c"])
-    ax.plot(ok.alpha, ok.tl_c, "o-", ms=5, lw=1.8, color=C["blue"])
+    ax.plot([xa(a) for a in ok.alpha], ok.tl_c, ls="--", lw=0.9,
+            color=C["grey"], zorder=1)
     for _, r in ok.iterrows():
-        ax.annotate(f"{r.tl_c:.0f}", (r.alpha, r.tl_c), fontsize=7,
-                    textcoords="offset points", xytext=(6, -2))
-    ax.set_xscale("log"); ax.set_yscale("log")
-    ax.set_xlabel(r"$\Gamma$ shape $\alpha$")
+        ax.plot(xa(r.alpha), r.tl_c, "o", ms=5.5, color=col[float(r.alpha)],
+                zorder=3)
+    # the flat run from alpha = 8 to no gamma is one step wide; labelling each
+    # point would collide, so it gets a single note
+    for a in (2.0, 0.5, 0.25, 0.1):
+        for _, r in ok[np.isclose(ok.alpha, a)].head(1).iterrows():
+            ax.annotate(f"{r.tl_c:.0f}", (xa(r.alpha), r.tl_c), fontsize=7,
+                        textcoords="offset points", xytext=(6, -3))
+    flat = ok[ok.alpha >= 8]
+    if len(flat):
+        lo, hi = XINF, 8.0
+        ax.annotate(f"$\\alpha\\geq8$:  {flat.tl_c.min():.1f}--"
+                    f"{flat.tl_c.max():.1f}", (1.0, 6.55), fontsize=7,
+                    color=C["black"], ha="center", va="top")
+    for _, r in miss.iterrows():
+        ax.annotate(rf"$\alpha={r.alpha:g}$: no crossing," "\n"
+                    "      recovery rises with tree length",
+                    (xa(r.alpha), 9.0), fontsize=6.8, color=C["black"],
+                    va="bottom", ha="center")
+    ax.set_yscale("log")
     ax.set_ylabel("critical tree length")
+    ladder(ax)
     panel(ax, "B")
 
     ax = axes[2]
-    ax.plot(ok.alpha, ok.iss_c, "o-", ms=5, lw=1.8, color=C["red"])
+    ax.plot([xa(a) for a in ok.alpha], ok.iss_c, ls="--", lw=0.9,
+            color=C["grey"], zorder=1)
     for _, r in ok.iterrows():
-        ax.annotate(f"{r.iss_c:.4f}", (r.alpha, r.iss_c), fontsize=7,
-                    textcoords="offset points", xytext=(6, -10))
-    ax.set_xscale("log")
-    ax.set_ylim(0, 1.0)
-    ax.set_xlabel(r"$\Gamma$ shape $\alpha$")
+        ax.plot(xa(r.alpha), r.iss_c, "o", ms=5.5, color=col[float(r.alpha)],
+                zorder=3)
+    for a, dx, dy in ((np.inf, -26, 3), (0.25, 4, -12), (0.1, 5, 5)):
+        for _, r in ok[np.isclose(ok.alpha, a)].head(1).iterrows():
+            ax.annotate(f"{r.iss_c:.3f}", (xa(r.alpha), r.iss_c), fontsize=7,
+                        textcoords="offset points", xytext=(dx, dy))
+    ax.annotate("span over $\\alpha\\geq0.25$: 0.0115", (0.55, 0.83),
+                fontsize=7, color=C["black"])
+    ax.annotate("crossing not\nwell defined", (0.105, 0.765), fontsize=6.8,
+                color=C["black"])
+    ax.set_ylim(0.70, 1.0)
     ax.set_ylabel(r"$I_{ss}$ at the critical tree length")
+    ladder(ax)
     panel(ax, "C")
     save(fig, "fig9_tlc_alpha")
 
