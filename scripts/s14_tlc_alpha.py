@@ -1,16 +1,26 @@
 """The critical tree length against rate heterogeneity, and the index at it.
 
-Section 2.6 rests on a comparison that the manuscript currently reports as
-four numbers in a sentence: as alpha goes from infinity to 0.5 the tree length
-at which the true quartet stops being recoverable moves by a factor of 18,
-while the index at that point moves by less than 0.01.  This script produces
-that comparison as a curve.
+Section 2.6 rests on a comparison that the manuscript reports as a row of
+numbers: as alpha goes from infinity (no gamma) down to 0.5 the tree length at
+which the true quartet stops being recoverable runs over a factor of 15, while
+the index at that point moves by less than 0.01.  This script produces that
+comparison as a curve, sampled densely at the no-gamma end so that the
+position of the departure is visible.
 
 Design: the N=4 quartet with the internal fraction used elsewhere in the
 paper (0.35), L=1000, 150 replicates per point, and a geometric grid of tree
 lengths wide enough to bracket the crossing for every alpha.  Recovery is
 maximum likelihood by IQ-TREE, the criterion the critical value is defined
 against, so nothing here is our own inference.
+
+The sweep stops at alpha = 0.5 deliberately.  Below it a discrete gamma with
+four categories stops representing a gamma: the slowest class is drawn from a
+tail that a four-point quadrature resolves as a pile of effectively invariant
+sites, not as a continuum.  Down there the recovery curve turns over and rises
+again with tree length, which is a property of the discretisation rather than
+of the model -- an earlier version of this experiment ran alpha down to 0.1
+and spent a paragraph on that turnover before we recognised it.  A finer
+categorisation would settle it; the point this section makes does not need it.
 
 Two outputs per alpha: the tree length at which P_true crosses 0.95, and the
 exact E[Iss] at that tree length (Theorem exact, evaluated by enumeration, not
@@ -36,29 +46,11 @@ from issbench.sim import simulate                                     # noqa: E4
 
 EXP = "exp7_tlc_alpha"
 OUT = ROOT / "results" / EXP
-ALPHAS = [np.inf, 64.0, 32.0, 24.0, 16.0, 12.0, 8.0, 4.0, 2.0, 1.0, 0.5,
-          0.4, 0.3, 0.25, 0.2, 0.15, 0.1]
+ALPHAS = [np.inf, 64.0, 32.0, 24.0, 16.0, 12.0, 8.0, 4.0, 2.0, 1.0, 0.5]
 TL_GRID = [2, 3, 4.5, 7, 10, 15, 22, 33, 48, 70, 100, 150, 220, 320]
 FI = 0.35
 L = 1000
 N_REPS = 150
-
-
-def grid_for(a: float) -> list[float]:
-    """Tree lengths to sample for this alpha.
-
-    For alpha >= 0.5 the fixed grid is used.  Below that the critical tree
-    length grows steeply -- an order of magnitude per halving, roughly
-    TL_c ~ alpha^-2.08 fitted to the upper row of the grid -- so a single grid
-    cannot bracket every crossing without wasting most of its points in the
-    plateau.  Each smaller alpha gets a geometric grid spanning the predicted
-    crossing by a factor of four below and six above.
-    """
-    if np.isinf(a) or a >= 0.5:
-        return list(TL_GRID)
-    pred = 25.47 * a ** -2.08            # fitted to alpha = 0.5, 1 in the grid
-    lo, hi = pred / 4.0, pred * 6.0
-    return list(np.geomspace(lo, hi, 7))
 
 
 def model_for(a: float) -> str:
@@ -93,7 +85,7 @@ def run() -> None:
     for a in ALPHAS:
         tag = alpha_tag(a)
         m = model_for(a)
-        for tl in grid_for(a):
+        for tl in TL_GRID:
             if (tag, round(float(tl), 6)) in done:
                 continue
             node = tree_for(float(tl))
@@ -126,17 +118,11 @@ def analyze(rows: list[dict] | None = None) -> pd.DataFrame:
 
     The crossing is taken as the FIRST downward one in tree length, not as
     "the last point above 0.95 against the first point below it".  The two
-    differ whenever P_true is not monotone in TL, and below alpha ~ 0.25 it is
-    not: at alpha = 0.2 recovery falls to 0.81 at TL = 307 and then climbs back
-    to 1.00 by TL = 2559, because once the fastest rate classes have saturated
-    they stop swamping the signal from the slower ones.  The old rule paired
-    TL = 7905 with TL = 559 and produced a critical tree length of 4261 for
-    alpha = 0.15, where the actual first crossing is at 333.
-
-    Where no downward crossing exists the record is left at NaN, which is the
-    right answer rather than a missing one: it means the quartet is recovered
-    at every tree length sampled, so the alpha has no critical length in the
-    range probed.
+    coincide only if P_true is monotone, and read off a finite replicate
+    count it never quite is: the old rule paired bracketing points from
+    opposite sides of a rise and put alpha = 0.15 at TL_c = 4261 against a
+    first crossing at 406.  The `rises` column reports how many upward steps
+    each curve has, so the assumption is visible rather than implicit.
     """
     if rows is None:
         rows = pd.read_csv(OUT / "pilot.csv").to_dict("records")
