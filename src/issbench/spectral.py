@@ -63,16 +63,27 @@ class Spectral:
                    wc * np.exp(self.lam * rc * float(d))
         return out
 
+    # The three scalars of Lemma 10 sum over the NON-ZERO eigenvalues.  The
+    # k = 0 term must be dropped by hand: A[0] is the stationary projector
+    # 1 pi^T, so it contributes tau_0 xi_0 = 1 to Psi and w_0 xi_0 = sum(pi^2)
+    # to the composition sum, and the definitions above already subtract
+    # exactly those constants.  Including it shifts Psi by +1 and w_p by
+    # -sum(pi^2), which is invisible in an affine test -- the criterion is
+    # preserved under adding a constant to either side -- but wrong for any
+    # absolute reading, and the residues are what the reader would quote.
     def Psi(self, d, rates=(1.0,), weights=(1.0,)) -> float:
-        return float(np.dot(self.tau, self.xi(d, rates, weights)))
+        """Psi = <tr P> - 1, the phylogenetic term of Lemma 10."""
+        return float(np.dot(self.tau[1:], self.xi(d, rates, weights)[1:]))
 
     def w_p(self, d, rates=(1.0,), weights=(1.0,)) -> float:
-        x = self.xi(d, rates, weights)
-        return float((1.0 - np.sum(self.pi ** 2)) - np.dot(self.w, x))
+        """wp = the mean pairwise p-distance at this divergence."""
+        x = self.xi(d, rates, weights)[1:]
+        return float((1.0 - np.sum(self.pi ** 2)) - np.dot(self.w[1:], x))
 
     def Delta(self, d, rates=(1.0,), weights=(1.0,)) -> float:
-        x = self.xi(d, rates, weights)
-        return float(np.dot(self.w - self.tau / len(self.pi), x))
+        """Delta = the composition-leakage term of Lemma 10."""
+        x = self.xi(d, rates, weights)[1:]
+        return float(np.dot(self.w[1:] - self.tau[1:] / len(self.pi), x))
 
     @property
     def ratios(self) -> np.ndarray:

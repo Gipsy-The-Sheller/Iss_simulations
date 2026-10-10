@@ -221,7 +221,56 @@ def main() -> None:
                              histogram_sensitivity=float(
                                  np.linalg.norm(J0[:, names.index(n)]))))
     pd.DataFrame(rows).to_csv(OUT / "moment_jacobian.csv", index=False)
+    power()
     print(f"\nwrote {OUT}")
+
+
+def power() -> None:
+    """How long an alignment has to be to resolve the span of Sec. 2.6.
+
+    Lemma (exact mean and variance) holds for any tree, not only a star, so
+    the standard error of Hbar can be had exactly on the quartet the alpha
+    sweep uses -- the pattern distribution comes from the same enumeration
+    the exact E[Iss] does.  The leading term of SE(Iss) is
+    sigma / (sqrt(L) H_FSS).
+    """
+    from issbench.trees import quartet
+    from issbench.exact import tree_patterns
+    from issbench.gamma import discrete_gamma_rates
+
+    Q = build_Q("JC69")
+    pi = np.ones(4) / 4
+    hfss = multinomial_entropy(4, pi)
+    span = 0.9807 - 0.9692                 # the Iss.c span of Eq. (tlc)
+    rows = []
+    for alpha, tl in ((np.inf, 7.19), (8.0, 7.78), (2.0, 13.02),
+                      (1.0, 25.47), (0.5, 107.72)):
+        r = tl * 0.35
+        tree = quartet((tl - r) / 4, (tl - r) / 4, (tl - r) / 4,
+                       (tl - r) / 4, r)
+        if np.isinf(alpha):
+            rates, wts = (1.0,), (1.0,)
+        else:
+            rates, wts = tuple(discrete_gamma_rates(alpha, 4)), (0.25,) * 4
+        pats = tree_patterns(tree, Q, pi, rates, wts)
+        P, W = [], []
+        for pat, pr in pats.items():
+            cnt = np.bincount(list(pat), minlength=4)
+            P.append(pr)
+            W.append(h(cnt / 4))
+        P, W = np.array(P), np.array(W)
+        mu = float(W @ P)
+        var = float((W ** 2) @ P) - mu ** 2
+        se = np.sqrt(var) / np.sqrt(1000) / hfss
+        # L at which the span is k standard errors
+        L3 = 1000 * (3 * se / span) ** 2
+        rows.append(dict(alpha=alpha, tl=tl, mu=mu, sigma=np.sqrt(var),
+                         se_L1000=se, L_for_3se=L3))
+        print(f"  alpha {str(alpha):>4} TL {tl:>7}  E[Hbar] {mu:.4f}  "
+              f"sigma {np.sqrt(var):.4f}  SE(Iss) at L=1000 {se:.5f}  "
+              f"L for 3 SE over the span: {L3:.0f}")
+    print(f"  the span it has to resolve is {span:.4f}")
+    pd.DataFrame(rows).to_csv(OUT / "power.csv", index=False)
 
 
 if __name__ == "__main__":
