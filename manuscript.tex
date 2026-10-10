@@ -1000,6 +1000,102 @@ mis-calibration established by Proposition~\ref{prop:nonident} stands; what
 this section adds is that a user who tries to detect it by comparing tabulated
 thresholds will not see it.
 
+\subsection{The index as a moment of the count distribution}
+\label{sec:moment}
+
+Everything so far treats $\Iss$ as a function of the model. It is worth
+writing it as a function of the \emph{data}, because that is the form in
+which it could be used for inference, and that form also shows exactly how
+much of the alignment it uses.
+
+Write $X_1,\dots,X_L$ for the columns, each in $\{A,C,G,T\}^N$, let
+$\hat f_x$ be the observed frequency of pattern $x$, and let
+$c(x)\in\mathbb Z_{\ge0}^{K}$ be its count vector. Then
+
+\begin{equation}
+  \Hbar=\frac1L\sum_{i=1}^L h\!\Bigl(\frac{c(X_i)}{N}\Bigr)
+      =\sum_{x}w(x)\,\hat f_x,
+  \qquad w(x)=h\!\Bigl(\frac{c(x)}{N}\Bigr),
+  \label{eq:linearexpansion}
+\end{equation}
+
+identically --- for every $N$, every alphabet size, every tree, and every
+model, reversible or not. Equation~\eqref{eq:linearexpansion} is what
+``expanded in observable quantities'' means for this statistic, and it has a
+feature that the reader may not expect: \emph{the weights carry no
+parameter}. $w$ is a function of an integer count vector, so it is a known
+constant of the analysis, fixed before any alignment is seen, and $\Hbar$ is
+the sample mean of $W=w(X_1)$.
+
+\begin{lemma}[Exact mean and variance]
+\label{lem:moment}
+$\E[\Hbar]=\mu=\sum_xw(x)P(x)$ and
+$\Var(\Hbar)=\sigma^2/L$ with
+$\sigma^2=\sum_xw(x)^2P(x)-\mu^2$, exactly; $\sigma^2$ is the quantity left
+abstract in Theorem~\ref{thm:length}(2).
+\end{lemma}
+
+\begin{proof}
+$\hat f$ is the empirical law of $X_1,\dots,X_L$ and the columns are
+independent and identically distributed under the model, so $\Hbar$ is an
+i.i.d.\ mean of $w(X_i)$.
+\end{proof}
+
+So the index \emph{is} a moment, in the technical sense, and a well-behaved
+one: $0\le W\le\ln K$ is bounded, so $\mu$ and $\sigma^2$ are finite and
+exact, the central limit theorem
+$\sqrt L(\Hbar-\mu)\Rightarrow\mathcal N(0,\sigma^2)$ holds with no
+regularity beyond independence, and both moments are available from the same
+pattern enumeration as Theorem~\ref{thm:exact}. Nothing prevents the index
+from being used in a method-of-moments, synthetic-likelihood or
+approximate-Bayesian scheme; it carries a computable standard error that
+nobody currently computes, and that is a fair criticism of current practice
+separate from the one this paper makes.
+
+What it cannot do is identify the model, and the reason is visible in the
+same display. The map $\theta\mapsto\mu(\theta)$ is scalar. The space of
+linear functionals of $\hat f$ has dimension $\binom{N+K-1}{K-1}$, of which
+$\Hbar$ is exactly one; and on an equidistant star, where the leaves are
+exchangeable and $P(x)$ depends on $x$ only through $c(x)$, the count
+histogram $\hat g_c=\sum_{x:c(x)=c}\hat f_x$ is \emph{sufficient} with those
+$\binom{N+K-1}{K-1}$ entries. The index is one linear functional --- the
+weight vector $h$ --- of a sufficient statistic with $84$ entries at $N=6$,
+$165$ at $N=8$ and $969$ at $N=16$.
+
+That the discarded directions are not empty is checkable. At $N=6$ on an
+equidistant star under GTR with $\Gamma$ rates, the Jacobian of
+$\theta\mapsto\mathbf g(\theta)$ with respect to the ten parameters
+$\bpi,t_{ij},d,\alpha$ has full rank at both test points, and the elasticities
+$\theta_j\partial\log\mu/\partial\theta_j$ of the index's own moment are
+\begin{equation}
+\begin{array}{l|rrrrrrrrrr}
+\toprule
+ & \pi_A & \pi_C & \pi_G & t_{AC} & t_{AG} & t_{AT} & t_{CG} & t_{CT} & d & \alpha \\
+\midrule
+\alpha=70 & -0.039 & +0.035 & +0.013 & +0.018 & -0.061 & +0.028 & +0.013 & -0.017 & +0.458 & +0.004 \\
+\alpha=1  & -0.037 & +0.031 & +0.018 & +0.014 & -0.048 & +0.023 & +0.010 & -0.015 & +0.418 & +0.189 \\
+\bottomrule
+\end{array}
+\end{equation}
+
+The composition and exchangeability coordinates move the index by at most a
+few per cent while the divergence moves it by more than $40\%$, and the shape
+moves it by $19\%$ at $\alpha=1$ but $0.4\%$ at $\alpha=70$. The information
+that separates those coordinates is present in the alignment --- it is in the
+other $83$ functionals --- and what the index does with it is discard it.
+
+This is not a defect peculiar to $\Iss$; it is the price of being an
+\emph{average of logs}. The sibling statistic on the other side of Jensen is
+the paralinear distance $\hat d=-\frac1K\ln\det\hat F$, where $\hat F$ is the
+observed state-pair matrix: a \emph{log of an average}, hence nonlinear in
+the data and, by Lemma~\ref{lem:spectral}, exactly a sum of the eigenvalues,
+$\E[\hat d]=-\frac1K\ln\det\Pi-\frac{d}{K}\sum_k\lambda_k$
+\citep{lockhart1994recovering}. It is the same spectral decomposition read
+through a determinant instead of a trace, and the difference is that the log
+commutes with the sum on that side. Estimation lives on the log-of-average
+side; the index is on the other, and it is there by construction rather than
+by oversight.
+
 % =====================================================================
 \subsection{Simulation: the design}
 \label{sec:design}
@@ -1841,6 +1937,19 @@ a separate argument, so no care is needed in grouping eigenvalues. $K=4$ is
 the last state space for which the non-zero eigenvalues have closed forms in
 radicals; the criterion itself does not depend on this, only the explicit
 expressions do.
+
+The general reversible case is checked against an independent route.
+Equation~\eqref{eq:exactstar} with $q_{\rho j}$ built from
+$S$ in Eq.~\eqref{eq:revS} is evaluated directly and compared with the
+pattern enumeration of Lemma~\ref{lem:multinomial} at $N=8$: the two agree
+to $10^{-16}$ under both conventions, and the spectral resolution reproduces
+$\exp(Qt)$ to $10^{-16}$ at three values of $t$. The linear expansion of
+Eq.~\eqref{eq:linearexpansion} is likewise checked against the per-site
+computation of $\Hbar$, and the variance of Lemma~\ref{lem:moment} against
+the spread of $4000$ synthetic alignments. Both checks, and the Jacobian
+table, are in the archived scripts. The Jacobian is a central difference, and
+its rank and conditioning are unchanged when the relative step is moved from
+$10^{-4}$ to $10^{-6}$, which is the only numerical care that table needs.
 
 \subsection{Simulation}
 \label{sec:simulation-methods}
