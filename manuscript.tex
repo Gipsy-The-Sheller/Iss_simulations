@@ -339,14 +339,19 @@ contributing $0$.
 \begin{theorem}[Exact closed form on a star tree]
 \label{thm:exact}
 For a star with $N$ leaves, root-to-leaf length $d$, rate distribution
-$\{(r_c,w_c)\}$ and $e_c=e^{-4r_cd/3}$,
+$\{(r_c,w_c)\}$ and \emph{any} reversible $Q$ with stationary distribution
+$\bpi$,
 \begin{equation}
   \E[\Iss]=\frac{1}{h(\bpi)}\sum_c w_c\sum_\rho\pi_\rho
   \Bigl[\ln N-\frac1N\sum_j\sum_{m=1}^{N}m\ln m\binom Nm
   q_{\rho j}^{m}(1-q_{\rho j})^{N-m}\Bigr],
+  \label{eq:exactstar}
 \end{equation}
-where $q_{\rho\rho}=\tfrac14+\tfrac34e_c$ and $q_{\rho j}=\tfrac{1-e_c}{4}$
-for $j\ne\rho$. Under rate homogeneity the outer sum degenerates to $r=1$.
+where $q_{\rho j}=P_{\rho j}(r_cd)$, the $(\rho,j)$ entry of the transition
+matrix --- a finite sum of $K$ exponentials by Lemma~\ref{lem:spectral}.
+Under JC69 this reads $q_{\rho\rho}=\tfrac14+\tfrac34e_c$ and
+$q_{\rho j}=\tfrac{1-e_c}{4}$ for $j\ne\rho$, with $e_c=e^{-4r_cd/3}$; under
+rate homogeneity the outer sum degenerates to $r=1$.
 \end{theorem}
 
 \begin{proof}
@@ -354,7 +359,45 @@ Given the root state $\rho$ and rate class $c$ the $N$ leaf states are
 i.i.d.\ with law $\mathbf q_\rho=P_{\rho\cdot}(r_cd)$, which by
 Lemma~\ref{lem:spectral} has the stated entries. Apply
 Lemma~\ref{lem:multinomial}, average over $\rho$ and $c$, divide by $h(\bpi)$.
+Nothing in the argument uses JC69; the specialisation enters only through the
+entries of $\mathbf q_\rho$.
 \end{proof}
+
+The theorem is stated for JC69 in the literature this paper is about, but its
+proof never asks for it, and the general statement is worth having because it
+answers what the index can be written as when the model is not degenerate.
+Take a REV model: six exchangeabilities $t_{AC},t_{AG},t_{AT},t_{CG},t_{CT},
+t_{GT}$ and four frequencies $\bpi$, with $Q_{ij}=t_{ij}\pi_j$ and
+$c=\sum_{i<j}2\pi_i\pi_jt_{ij}$ so that branch lengths are in expected
+substitutions. The parameters enter Eq.~\eqref{eq:exactstar} only through
+$S=\Pi^{1/2}Q\Pi^{-1/2}$, which for a REV model is the \emph{explicit}
+symmetric matrix
+\begin{equation}
+  S_{ij}=\frac{\sqrt{\pi_i\pi_j}\,t_{ij}}{c}\quad (i\ne j),\qquad
+  S_{ii}=-\frac{1}{c}\sum_{j\ne i}\pi_jt_{ij},
+  \label{eq:revS}
+\end{equation}
+with $S\sqrt{\bpi}=\mathbf 0$ and therefore $S=U\Lambda U^{\!\top}$,
+$U$ orthonormal, $\mathbf u_1=\sqrt{\bpi}$. Nothing else is needed: the three
+non-zero eigenvalues are read off $S$, and
+$q_{\rho j}=\pi_j+\sum_{k\ge2}\pi_\rho^{-1/2}u_{k\rho}u_{kj}\pi_j^{1/2}
+e^{\lambda_kr_cd}$. So Eq.~\eqref{eq:exactstar} \emph{is} the closed form for
+the general reversible model, with no matrix exponential and no iteration; the
+archived implementation evaluates it against the pattern enumeration and
+agrees to machine precision under both conventions.
+
+What it is not is a formula in $\bar p$, and that is the whole point of
+Section~\ref{sec:criterion}. The eight free parameters survive into
+$S$, hence into the eigenvalues and eigenvectors, and reach $\E[\Iss]$ through
+the full vector $\bxi$; the reduction to a function of the mean $p$-distance
+requires $\tau_{[\mu]}/w_{[\mu]}$ to be constant across the distinct non-zero
+eigenvalues. Uniform composition delivers that for \emph{every} exchangeability
+vector, by Corollary~\ref{cor:uniform}, and a degenerate spectrum delivers it
+for every composition, by Corollary~\ref{cor:degenerate}; a generic REV model
+is in neither case. For such a model Eq.~\eqref{eq:exactstar} is therefore not
+a convenient way of writing a function of one variable but the shortest exact
+expression available --- a sum whose every term is a distinct product of
+exponentials.
 
 \begin{corollary}[The ceiling is a function of $N$ in one convention only]
 \label{cor:ceiling}
@@ -874,6 +917,37 @@ by $\alpha$ --- $0.9735$ at $\alpha=8$ sits below $0.9782$ at $\alpha=4$ ---
 and the small non-monotonicity is the grid and replicate noise of the
 crossing, not a property of the index. That is what a quantity with nothing
 left to move looks like.
+
+The collapse also has an estimator-level reading, which is the form in which
+a user would meet it and which is worth stating because it looks like an
+opportunity. On an equal-length star the index is monotone in the tree
+length, so a reading of $\Iss$ can be inverted to a divergence --- once the
+model is fixed. Fixing the model is not a formality. At $N=8$ under
+convention~$(A)$, a reading of $0.75$ implies a root-to-leaf length of
+$0.548$ under JC69, $0.626$ under GTR with uniform composition and $0.616$
+under GTR with $\bpi=(.31,.24,.19,.26)$; the three composition-varying models
+agree to within $15\%$, which is the small size of the leakage term
+established in Remark~\ref{rem:scope}(i). The same reading under the skewed
+GTR with $\Gamma$ rates of shape $0.5$ implies $2.87$ --- a factor of $5$, in
+the same units, for the same reading of the same statistic. At a reading of
+$0.85$ the spread runs from $0.75$ to $6.97$. The model has to be supplied
+before the inversion can be attempted, and it is supplied by a method the
+index cannot check; the resulting inverse is ill-conditioned exactly where
+the index is used, and the conditioning is set by the rate heterogeneity.
+
+This is why the linearity that does exist does not help. By
+Eq.~\eqref{eq:secondorder} the index is an exact affine functional of the
+spectral moments $\xi_\mu=\langle e^{\mu d}\rangle$, so it is a moment
+condition and can be inverted --- but it is \emph{one} moment against a
+parameter vector of eight model parameters plus a tree, and it is a linear
+functional of $\bxi$ rather than of the parameters, since $\bxi$ itself is
+nonlinear in both the branch lengths and the shape. Beyond second order the
+affinity is gone as well: Eq.~\eqref{eq:exactstar} is a polynomial of degree
+$N$ in pattern probabilities that are themselves sums of exponentials of
+$\lambda_k(\bpi,t_{ij})$. The index therefore cannot support an estimation
+scheme, and it does not need to: the likelihood of these models is available
+directly by pruning, and estimating $\bpi$, $t_{ij}$ and $\alpha$ has never
+required $\Iss$.
 
 The span depends on the tree shape, as
 Eq.~\eqref{eq:sensitivity} implies it must, but it does not approach the
