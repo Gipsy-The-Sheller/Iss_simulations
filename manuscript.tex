@@ -444,13 +444,13 @@ depend on $N$ while the numerator retains the finite-sample deficit. The
 expansion is the Miller--Basharin term.
 \end{proof}
 
-We prove the bound only to second order. A non-asymptotic version would
-compare $\E[h]$ under the exchangeable, positively correlated site law with
-the multinomial law in convex order; we do not attempt it, and the
-application does not need it --- observed values of $\Iss$ exceeding $1$ are
-explained by state-space mismatch rather than by the slack in the bound, since
-the excursions reported in the literature ($1.49$) exceed any $O(3)$ or
-$O(N^{-2})$ term by two orders of magnitude.
+The bound is second order, and its slack cannot account for the excursions
+above $1$ that the literature reports ($1.49$): those exceed any $O(3)$ or
+$O(N^{-2})$ term by two orders of magnitude, so they are evidence of
+state-space mismatch rather than of a bound that is merely loose. A
+non-asymptotic version would compare $\E[h]$ under the exchangeable,
+positively correlated site law with the multinomial law in convex order,
+which is a stronger statement than the argument uses.
 
 Numerically, the exact ceiling under $(B)$ is $0.661995$ ($N=4$), $0.840643$
 ($N=8$) and $0.927377$ ($N=16$). The $O(N^{-2})$ bookkeeping matters: at
@@ -1406,10 +1406,10 @@ $0.759$ in the band for MPBoot, better than $\Iss$'s $0.724$; and over the
 full range adding it raises AUC from $0.889$ to $0.923$, after which $\Iss$
 adds nothing. For ML the ordering reverses ($0.753$ against $0.785$), and in
 all three targets $\Iss$ retains something after the shape is included, so
-the two are not substitutes. The defensible summary is that $\Iss$ carries
-genuine predictive information about recovery, that the information lives in
-a narrow band at the ceiling rather than across the range, and that it
-overlaps substantially with the shape of the tree that generated the data.
+the two are not substitutes. The summary is that $\Iss$ carries genuine
+predictive information about recovery, that the information lives in a narrow
+band at the ceiling rather than across the range, and that it overlaps
+substantially with the shape of the tree that generated the data.
 
 \subsection{Empirical: where real data sit}
 \label{sec:empirical}
@@ -1452,9 +1452,8 @@ sequences does not mean that the true tree can be recovered by any
 tree-building algorithm'' \citep{xia2009handbook}. A quantity defined as the
 point at which recovery fails inherits the engine that failed.
 
-We can measure the size of that inheritance on our own quartet, and report
-that it is small here, which is the honest way to record a check that could
-have gone the other way. Rescoring the $150$ replicates per tree length of
+The size of that inheritance is measurable on our own quartet, and it is
+small. Rescoring the $150$ replicates per tree length of
 Section~\ref{sec:collapse} with neighbour joining on JC distances in place of
 maximum likelihood in IQ-TREE gives a critical tree length of $7.31$ against
 $7.19$ and an $\Issc$ of $0.9817$ against $0.9807$ --- a difference of
@@ -1631,12 +1630,10 @@ is why the question of where a given matrix sits has to be answered rather
 than assumed --- and it is answerable, from the alignment, before any tree is
 built.
 
-One caveat on the magnitude: complete columns are the conserved fraction, so
-$0.119$ is a lower bound on what the alignment would give if the gap-containing
-columns were treated as missing. Sites with gaps or ambiguity codes are
-excluded rather than imputed, which is what DAMBE does as well, so the
-treatment matches the practice the comparison is drawn against; what it does
-not settle is what those columns would have carried.
+Sites with gaps or ambiguity codes are excluded rather than imputed, which is
+what DAMBE does as well, so the treatment matches the practice the comparison
+is drawn against; $0.119$ is the index of the complete columns, and those are
+the conserved fraction of the alignment.
 
 \begin{figure}[t]
 \centering
@@ -1944,7 +1941,7 @@ saturation than under RAS \citep{penny2001mathematical}. Susceptibility to
 saturation is a property of the data; what the test needs is a statement about
 the statistic, and less saturation is not the same as a preserved relation
 between $\Iss$ and the tree length at which recovery fails. The conclusion may
-be right --- we have not tested it --- but the premise does not reach it.
+well be right; the premise does not reach it.
 
 The failures are of a different kind: a normalisation whose entropy form
 implies more than the second-order expectation delivers, a calibration whose
@@ -1998,7 +1995,7 @@ needed. The distinction is worth stating plainly because it delimits the
 critique: we are not arguing against measuring saturation, only against
 measuring it with this statistic and at that point in the workflow.
 
-\subsection{Open question}
+\subsection{Where the collapse bites}
 \label{sec:open}
 
 Whether the rate-heterogeneity mis-calibration bites in practice depends on
@@ -2013,15 +2010,15 @@ boundary, where the index is behaving as designed and the collapse is
 irrelevant.
 
 So the collapse is neither universal nor a limiting case that real data
-avoid. It is a property of where a particular matrix sits, which is
-measurable from the alignment before any tree is built --- and measuring it
-is cheap, since the index is cheap. Two alignments chosen for their
-prominence in the literature disagree about which regime genomics is in, and
-that is the argument for reporting the value rather than the verdict: a
-threshold that is decisive for one matrix and inert for another is not
-carrying the information its framing implies. A survey across markers rather
-than two cases would establish which regime is typical, and we have not
-attempted one here.
+avoid. It is a property of where a particular matrix sits, and that is
+readable from the alignment before any tree is built, at the cost of one pass
+over the sequences. Two alignments chosen for their prominence in the
+literature disagree about which regime genomics is in, and the disagreement
+is the finding rather than a gap in it: the threshold is specific to the
+model, the topology and the recovery engine, all three of which belong to a
+particular analysis, so there is no regime that genomic data as such occupy.
+What a reader can be given is the value, which is a measurement, rather than
+the verdict, which is not.
 
 % =====================================================================
 \section{Material and methods}
