@@ -131,6 +131,31 @@ def main() -> None:
               f"{100 * (d.iss.max() - d.iss.min()) / d.iss.mean():.1f}% of "
               f"its value")
 
+    # ----------------------------- the e -> 0 limit is a star, and it drifts
+    # e -> 0 collapses the quartet onto a star, where M = (3/4)(A-D)(B-C) and
+    # the tie is a = d or b = c.  It is tempting to read the e -> 0 end of
+    # the table as a single asymptotic critical value.  It is not: the star
+    # family still has three free lengths and Iss varies over all of them.
+    print("\nthe e -> 0 limit, on the star itself (tie at a = d)")
+    print(f"  {'L':>5} {'S':>6} {'a=d':>7} {'mean p':>8} {'Iss at tie':>11}")
+    rows2 = []
+    for L, S in ((1.0, 0.10), (1.0, 0.02), (1.0, 0.30), (0.5, 0.05),
+                 (2.0, 0.20), (2.0, 0.02), (1.0, 0.50)):
+        a, b_, c, dd = (L + S) / 2, S, L, (L + S) / 2   # tie is a = d
+        iss, wp = iss_at(a, b_, c, dd, 0.0)
+        rows2.append(dict(L=L, S=S, a_equals_d=a, wp=wp, iss=iss))
+        print(f"  {L:5.2f} {S:6.2f} {a:7.3f} {wp:8.4f} {iss:11.4f}")
+    pd.DataFrame(rows2).to_csv(OUT / "star_tie.csv", index=False)
+    e_series = pd.DataFrame(rows2).iss
+    print(f"  the star tie point runs {e_series.min():.4f} to "
+          f"{e_series.max():.4f} -- it is not a constant either, so the")
+    print("  e -> 0 end of the previous table is not an asymptotic critical")
+    print("  value.  And on a star the question the whole construction asks")
+    print("  has no answer: there is no internal edge, so there is no split")
+    print("  for NJ to recover.  What M = 0 marks there is the point where")
+    print("  NJ's choice becomes a coin flip on a tree that has no split to")
+    print("  find -- which is why the limit cannot carry a critical Iss.")
+
     # ------------------------------------ what Xia's own numbers reverse to
     print("\nXia et al. 2003's own critical values, reverse-engineered to xi")
     print("  (the EF-1a example, N=16, SeqLen=350 from the text)")
