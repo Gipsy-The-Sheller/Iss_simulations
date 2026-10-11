@@ -80,6 +80,17 @@ desktop.ini
 !figures/**
 !conf/**
 
+# ---- archives in the repository root ----
+# A `git add -A` in the root swept a 4.6 GB alignment and a 570 MB deposit
+# archive into a commit once; the histories had to be rewritten to get them
+# back out.  Rooted so that the gzipped result tables under results/, which
+# are tracked on purpose, are unaffected.
+/*.gz
+/*.7z
+/*.zip
+/*.tar
+/*.tar.gz
+
 # ---- third-party material, deliberately not redistributed ----
 # Other people's alignments, supplementary files and published PDFs.  These are
 # needed to reproduce the empirical sections, but they are fetched by the

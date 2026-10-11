@@ -1127,6 +1127,7 @@ $\theta\mapsto\mathbf g(\theta)$ with respect to the ten parameters
 $\bpi,t_{ij},d,\alpha$ has full rank at both test points, and the elasticities
 $\theta_j\partial\log\mu/\partial\theta_j$ of the index's own moment are
 \begin{equation}
+\small
 \begin{array}{l|rrrrrrrrrr}
 \toprule
  & \pi_A & \pi_C & \pi_G & t_{AC} & t_{AG} & t_{AT} & t_{CG} & t_{CT} & d & \alpha \\
@@ -2223,18 +2224,21 @@ doubt, than which nothing in the full-range fit is harder.
 \section*{Data availability}
 \addcontentsline{toc}{section}{Data availability}
 All simulation code, the scripts that generate every figure and table, the
-per-cell parameter records and the stored seeds are archived at
+per-cell parameter records and the stored seeds are archived together with
+the result tables this paper quotes. Each of the $108{,}000$ alignments in
+the conditional-independence experiment, and every other alignment reported
+here, can be regenerated bit for bit from its stored seed and cell key. The
+empirical alignment and reference topology of Section~\ref{sec:empirical}
+are redistributed with DAMBE and are included unmodified in the
+supplementary archive, with their provenance recorded. The genome-scale
+alignment of Section~\ref{sec:jarvis} is neither deposited nor redistributed:
+at 4.6\,GB it is fetched, by a script in the code repository, from the
+address recorded in the script.
+
 \begin{center}
-\url{https://github.com/Gipsy-The-Sheller/Iss_simulations}
+supplementary material: \url{https://doi.org/10.5281/zenodo.23293285}\\
+code, results and figures: \url{https://github.com/Gipsy-The-Sheller/Iss_simulations}
 \end{center}
-together with the result tables this paper quotes. Each of the $108{,}000$
-alignments in the conditional-independence experiment, and every other
-alignment reported here, can be regenerated bit for bit from its stored seed
-and cell key. The empirical alignment and reference topology of
-Section~\ref{sec:empirical} are redistributed with DAMBE and are included
-unmodified in the archive, with their provenance recorded; the genome-scale
-alignment of Section~\ref{sec:jarvis} is 4.6\,GB and is fetched by a script
-in the same repository rather than redistributed with it.
 
 \section*{Acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
