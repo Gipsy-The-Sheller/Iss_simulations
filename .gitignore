@@ -65,6 +65,15 @@ latex.out/
 Thumbs.db
 desktop.ini
 
+# ---- loose notes in the repository root ----
+# Working notes, independent-review reports and proof drafts accumulated in the
+# root as the project went on, in several hands and several formats.  They are
+# kept on disk and are not part of the paper; the two root files that are
+# structure rather than notes are listed back in.
+/*.md
+!/README.md
+!/PLAN.md
+
 # ---- keep these despite the rules above ----
 !docs/**
 !refs/**
