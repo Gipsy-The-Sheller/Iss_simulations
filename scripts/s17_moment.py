@@ -38,6 +38,7 @@ from issbench.entropy import h                                        # noqa: E4
 from issbench.exact import multinomial_entropy                        # noqa: E402
 from issbench.gamma import discrete_gamma_rates                       # noqa: E402
 from issbench.models import build_Q                                   # noqa: E402
+from issbench.results import res                                      # noqa: E402
 from issbench.spectral import factorize                               # noqa: E402
 
 OUT = ROOT / "results" / "moment"
@@ -241,10 +242,14 @@ def power() -> None:
     Q = build_Q("JC69")
     pi = np.ones(4) / 4
     hfss = multinomial_entropy(4, pi)
-    span = 0.9807 - 0.9692                 # the Iss.c span of Eq. (tlc)
+    # read the crossings rather than hard-coding them, so the standard errors
+    # cannot drift away from the Eq. (tlc) row they belong to
+    crit = pd.read_csv(res(ROOT / "results" / "exp7_tlc_alpha", "critical.csv"))
+    crit = crit.dropna(subset=["tl_c"])
+    span = float(crit.iss_c.max() - crit.iss_c.min())
     rows = []
-    for alpha, tl in ((np.inf, 7.19), (8.0, 7.78), (2.0, 13.02),
-                      (1.0, 25.47), (0.5, 107.72)):
+    for _, row in crit.sort_values("alpha", ascending=False).iterrows():
+        alpha, tl = float(row.alpha), float(row.tl_c)
         r = tl * 0.35
         tree = quartet((tl - r) / 4, (tl - r) / 4, (tl - r) / 4,
                        (tl - r) / 4, r)

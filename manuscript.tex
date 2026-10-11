@@ -75,34 +75,35 @@
 \noindent
 The index of substitution saturation $\Iss=\Hbar/\HFSS$
 \citep{xia2003iss} decides, before any tree is built, whether an alignment
-retains phylogenetic signal. We show that the entropy enters $\E[\Iss]$ only
-through the spectrum of the rate matrix: the index is a linear functional of
+retains phylogenetic signal. The entropy enters $\E[\Iss]$ only through the
+spectrum of the rate matrix: the index is a linear functional of
 the coordinates $\langle e^{\mu d}\rangle$, collapsing onto mean pairwise
 $p$-distance exactly when each non-zero eigenvalue's
-multiplicity-to-composition-weight ratio is constant across distinct
-eigenvalues. This holds for every reversible model at uniform composition and for
-degenerate spectra; it fails for non-uniform composition
-with a non-degenerate spectrum, the regime it was calibrated in.
-Under the collapse it adds nothing about the number of substitutions realised
-beyond the uncorrected proportion of differing sites; outside it, what it
-adds is the model's composition, which its user has not fixed. The mean of
-$\lambda$ reduces the same way.
+multiplicity-to-composition-weight ratio is constant across eigenvalues. This holds for every reversible model at uniform composition and
+for degenerate spectra; it fails for non-uniform composition with a
+non-degenerate spectrum, the regime it was calibrated in. To second order ---
+the order at which the entropy enters --- the index adds nothing under the
+collapse about the number of substitutions realised beyond the uncorrected
+proportion of differing sites; outside it, what it adds is the model's
+composition, which its user has not fixed. The mean of $\lambda$ reduces the
+same way.
 
 The critical value fails separately: it carries no rate-heterogeneity
 coordinate, and near saturation the index is pinned within a few percent of
-its ceiling, a fifteen-fold change in the tree length at which the topology
-becomes unrecoverable moving it by $1.2\%$. A four-taxon
+its ceiling, a fifteen-fold change in the tree length at which recovery fails
+moving it by $1.2\%$. A four-taxon
 transfer of long branches at fixed patristic total makes this direct: the
 index is constant along the path while recovery spans its full range.
 
 Real data occupy both: the saturated codon partition of the index's
 own data set falls between two readings of its threshold, and a genome-scale
 avian alignment sits five to six times below both. The index is
-not information-free --- in a crossed simulation it predicts recovery in the
-transition band where $p$-distance does not --- but what it adds there tracks the tree's shape and the higher-order composition of sites, not the
-substitution count; its threshold is a power threshold carrying its own
-sequence length. Passing the test is evidence against saturation, failing it is
-weak evidence, neither is evidence of resolution.
+not information-free --- in a crossed simulation it predicts recovery where
+$p$-distance does not --- but what it adds tracks the tree's shape and the
+higher-order composition of sites, not the substitution count; its threshold
+is a power threshold carrying its own sequence length. Passing the test is
+evidence against saturation, failing it is weak evidence, neither is evidence
+of resolution.
 \end{abstract}
 
 % =====================================================================
@@ -651,6 +652,20 @@ Corollary~\ref{cor:degenerate}.}
 \label{tab:criterion}
 \end{table}
 
+The verdict is a property of the model alone, which is the first thing a
+reader will try to falsify and is worth settling before it is. $\tau_{[\mu]}$
+and $w_{[\mu]}$ are read off $\bpi$ and $Q$, so the criterion cannot depend on
+the tree; the only place a topology enters is the vector $\bxi$, and it enters
+$\Psi$ and $\wp$ the same way. We checked the residual on six topologies ---
+an equidistant star, quartets with internal fractions $0.10$, $0.35$ and
+$0.50$, and balanced trees of $8$ and $16$ taxa --- under three models. Where
+the criterion holds the relation is affine to $2\times10^{-15}$ on all six;
+where it fails, the largest departure from a straight line is
+$2.3\times10^{-2}$ to $3.7\times10^{-2}$ in $\Psi$ units, a spread of
+$\pm20\%$ over a range of tree shapes from four taxa to sixteen. The failure
+is a property of the substitution model, and the tree changes its size by an
+amount that does not change what it means.
+
 \begin{lemma}[Shape of the failure]
 \label{lem:delta}
 $\Delta(0)=1/K-\sum_j\pi_j^2$, $\Delta(\infty)=0$, and $\Delta$ need not be
@@ -677,7 +692,7 @@ two scalars rather than $\E[\Iss]$ is not cosmetic. $\Psi$ and $\wp$ are exact
 linear functionals of the spectral coordinates, whereas $\E[\Iss]$ is not: by
 Eq.~\eqref{eq:secondorder} it carries the composition term $\Delta$ plus an
 $O(3)$ remainder, and a test performed on it measures those as much as it
-measures the criterion.ootnote{An earlier version of this check did exactly
+measures the criterion.\footnote{An earlier version of this check did exactly
 that, and returned its \emph{largest} residual for the model whose criterion
 holds --- the signature of a test aimed at the wrong quantity. It is recorded
 here because the mistake is easy to repeat.} Figure~\ref{fig:theorem13}
@@ -890,6 +905,7 @@ are
 \midrule
 TL_c      & 7.19 & 7.32 & 7.78 & 10.04 & 13.02 & 25.47 & 107.72 \\
 \Issc     & 0.9807 & 0.9788 & 0.9735 & 0.9782 & 0.9718 & 0.9692 & 0.9715 \\
+\mathrm{SE} & 0.0096 & 0.0096 & 0.0097 & 0.0096 & 0.0098 & 0.0099 & 0.0098 \\
 \bottomrule
 \end{array}
 \label{eq:tlc}
@@ -899,7 +915,11 @@ so the tree length runs over a factor of $15$ end to end while the index
 spans $0.0115$. Recovery is by IQ-TREE rather than by our own code, at $150$
 replicates per point; the crossings are bracketed by the grid and located by
 interpolation in $\log TL$, and the brackets are reported in the archived
-output. The sweep is denser than the table shows, and the density is the
+output. The last row is the exact standard error of a single reading at
+$L=1000$, from Lemma~\ref{lem:moment}. It is flat across the row, so the
+whole of the $\alpha$ effect that the two rows above describe amounts to
+$1.2$ standard errors at this length, and the row is there so that a reader
+can see that without recomputing it. The sweep is denser than the table shows, and the density is the
 point: $\alpha=64,32,24,16,12$ are all run in addition, and from
 $\alpha=\infty$ down to $\alpha=8$ the critical tree length does not leave
 $7.1$--$7.8$, a band one grid step wide. Rate heterogeneity has to reach
@@ -1015,11 +1035,11 @@ statement about what $\Iss$ is a function of, and it is the one the rest of
 this paper rests on.
 
 The second is a matter of power, and it is weaker. The exact variance of
-Lemma~\ref{lem:moment}, evaluated on this quartet, gives
-$\mathrm{SE}(\Iss)=0.0096$ at $L=1000$ --- so the $0.0115$ span is
-$1.2$ standard errors, which is why it is invisible at this length. Since the
-standard error falls as $L^{-1/2}$, the same span reaches three standard
-errors at $L\approx6200$, and ten at $L\approx7\times10^4$. The insensitivity
+Lemma~\ref{lem:moment}, evaluated on this quartet, gives $\mathrm{SE}(\Iss)$
+between $0.0096$ and $0.0099$ across the $\alpha$ ladder --- so the $0.0115$
+span is $1.2$ standard errors, which is why it is invisible at this length.
+Since the standard error falls as $L^{-1/2}$, the same span reaches three
+standard errors at $L\approx6300$, and ten at $L\approx7\times10^4$. The insensitivity
 is therefore not that the index cannot be resolved, but that resolving it
 costs an alignment long enough that the tree could have been estimated
 directly. Any claim that two partitions differ in $\alpha$ carries an implied
@@ -1612,6 +1632,24 @@ near-constant sites that dilute it, and the verdict on this alignment is
 unchanged either way: it is not saturated under either reading, by a wide
 margin.
 
+That recommendation is not covered by the theory of
+Section~\ref{sec:criterion}, and since this paper repeats it, the gap is
+worth closing. Theorem~\ref{thm:affine} is a statement about columns drawn
+independently from the model; conditioning on a column being
+parsimony-informative changes that law, so Lemma~\ref{lem:varagg} does not
+apply and the criterion is not formally available. What it costs is
+measurable. On an $N=6$ star the residual of $\E[\Hbar]$ against the mean
+$p$-distance is $1.8\%$ of its range for GTR with uniform composition and
+$1.7\%$ for HKY with $\kappa=5$ and skewed composition --- one satisfying the
+criterion, one not --- and $1.4\%$ and $1.7\%$ respectively under the
+restriction. The sharper comparison is between two models that both satisfy
+the criterion exactly: JC69 and GTR with uniform composition disagree by at
+most $1.0\%$ of the range at matched $p$-distance on all columns and $0.9\%$
+on informative ones. The restriction therefore adds no departure beyond the
+$O(3)$ remainder that Section~\ref{sec:moment} already shows masks the
+criterion at the level of $\E[\Iss]$. The criterion is not a theorem there,
+and on this evidence it is also not violated.
+
 The value is corroborated by the theory rather than merely plausible. A JC69
 star with the same mean $p$-distance and $N=51$ predicts
 $\E[\Iss^{(A)}]=0.134$ exactly; the observed $0.119$ is a little below that,
@@ -2185,12 +2223,18 @@ doubt, than which nothing in the full-range fit is harder.
 \section*{Data availability}
 \addcontentsline{toc}{section}{Data availability}
 All simulation code, the scripts that generate every figure and table, the
-per-cell parameter records and the stored seeds are archived with the paper.
-Each of the $108{,}000$ alignments in the conditional-independence experiment,
-and every other alignment reported here, can be regenerated bit for bit from
-its stored seed and cell key. The empirical alignment and reference topology
-of Section~\ref{sec:empirical} are redistributed with DAMBE and are included
-unmodified in the archive, with their provenance recorded.
+per-cell parameter records and the stored seeds are archived at
+\begin{center}
+\url{https://github.com/Gipsy-The-Sheller/Iss_simulations}
+\end{center}
+together with the result tables this paper quotes. Each of the $108{,}000$
+alignments in the conditional-independence experiment, and every other
+alignment reported here, can be regenerated bit for bit from its stored seed
+and cell key. The empirical alignment and reference topology of
+Section~\ref{sec:empirical} are redistributed with DAMBE and are included
+unmodified in the archive, with their provenance recorded; the genome-scale
+alignment of Section~\ref{sec:jarvis} is 4.6\,GB and is fetched by a script
+in the same repository rather than redistributed with it.
 
 \section*{Acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
