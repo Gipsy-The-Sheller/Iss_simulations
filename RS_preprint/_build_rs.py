@@ -44,7 +44,7 @@ SRC = '../manuscript.tex'
 OUT = 'manuscript.tex'
 ABSTRACT_OUT = '_abstract.txt'
 
-EMAIL = 'zhi-jie.xu@dhu.edu.cn'                 # TODO: confirm corresponding e-mail
+EMAIL = 'zjxmolls@outlook.com'
 EMAIL_CLAUSE = '\\\\\n        Correspondence: ' + EMAIL
 
 AUTHOR_OLD = ('\\thanks{College of Biological Science \\& Medical Engineering,\n'

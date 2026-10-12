@@ -19,7 +19,7 @@
 
 1. **删起草注释**：文件头 25 行（结构备注与标题候选）、9 条 `% ====` 分隔线、文末 14 行 `NOTE (do not reintroduce)` 块。原稿里**没有行尾注释**，行内出现的 37 个 `%` 全是转义的 `\%`（百分号），不受影响。
 2. **两处路径**：导言区加 `\graphicspath{{../}}`，正文里 `figures/xxx.png` 的写法不动；`\bibliography{refs/...}` 改为 `../refs/...`。
-3. **作者脚注**补 `Correspondence: zhi-jie.xu@dhu.edu.cn`。
+3. **作者脚注**补 `Correspondence: zjxmolls@outlook.com`。
 4. **摘要第二句加一句新工作定位语**："We characterize the index exactly, and test that characterization in new simulations and in re-analyses of two published data sets."（正文的 `_abstract.txt`、表单里的摘要，与 PDF 一致。）理由见下面「为什么加这句」。**标题未动**——它是这篇稿子的引用身份，要与 MPE 投稿版一致。
 5. **`Use of AI-assisted tools`** 小节，加在 Material and methods 末尾（Research Square 编辑政策 §1.3 要求 LLM 使用须在 Methods 中说明）。措辞为：Claude Code (Anthropic) 用于文稿的撰写与编辑，以及数学结果的推导与检验；作者对内容负责，工具不作为作者。
 6. **三段声明**（Data availability 之后）：CRediT、Declaration of competing interest、Funding。措辞逐字取自 `MPE_sumb/_build_mpe.py`，两版不会各说各话。
@@ -31,7 +31,7 @@
 - [ ] **AI 声明措辞**（§1.3 强制，但要你签字）：现按"写作 + 数学证明的推导与检验"写，未提代码实现。要加点名到具体定理、或要收窄/放宽范围，改 `_build_rs.py` 里的 `AI_DISCLOSURE` 后重跑即可。
 - [ ] **利益冲突**：PDF 里已声明"无"，**表单里还有一处勾选/填写**，两处要一致。
 - [ ] **Funding**：现写"无专项资助"，有基金请替换。
-- [ ] **通讯作者邮箱**：占位 `zhi-jie.xu@dhu.edu.cn`（与 MPE 版同一处待确认）。
+- [x] **通讯作者邮箱**：`zjxmolls@outlook.com`（已确认）。注意 `MPE_sumb` 那份仍是占位 `zhi-jie.xu@dhu.edu.cn`，两版要不要统一由你定。
 - [ ] **时点**：政策 §6 明确"已在期刊发表的稿件不会被接收"。MPE 正在投，挂预印本会不会影响那边，由你判断（Elsevier 一般允许预印本）。
 - [ ] **表单内容与 PDF 一致**：题名、摘要用 `_abstract.txt`，关键词用原稿 `Key words` 那 8 个——表单里填的内容**会原样公开**。摘要 328 词，RS 没有明文上限；若表单卡长度，`MPE_sumb/_abstract.tex`（248 词）是现成的备选。
 - [ ] 若要单独上传 figure files（表单可选），用 `../figures/` 里的 12 张 PNG，均 ≥300 dpi。
