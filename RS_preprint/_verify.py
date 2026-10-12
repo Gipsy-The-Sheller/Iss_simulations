@@ -29,7 +29,8 @@ def norm(t):
 def undo(gen):
     """Remove everything the preprint adds, leaving the source text."""
     out = gen
-    for addition in (b.HEADER, b.GRAPHICSPATH, b.AI_DISCLOSURE, b.DECLARATIONS):
+    for addition in (b.HEADER, b.GRAPHICSPATH, b.POSITIONING_TEX,
+                     b.AI_DISCLOSURE, b.DECLARATIONS):
         if addition not in out:
             sys.exit('documented addition missing from %s:\n%s'
                      % (b.OUT, addition[:200]))
