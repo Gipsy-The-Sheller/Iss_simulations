@@ -31,13 +31,18 @@ import numpy as np
 import pandas as pd
 from scipy.linalg import expm
 
-ROOT = Path(__file__).resolve().parents[1]
+# Part 2.  Inputs that belong to the published preprint (the empirical
+# alignments, the simulated work directory) are read from the
+# repository root; everything this line of work produces is written
+# under Part_2/, so the two cannot be confused.
+PART2 = Path(__file__).resolve().parents[1]
+ROOT = PART2.parent
 sys.path.insert(0, str(ROOT / "src"))
 
 from issbench.models import build_Q                                   # noqa: E402
 from issbench.spectral import factorize                               # noqa: E402
 
-OUT = ROOT / "results" / "rev_screen"
+OUT = PART2 / "results" / "rev_screen"
 UNIF = np.ones(4) / 4
 SKEW = np.array([0.40, 0.30, 0.20, 0.10])
 R_GTR = np.array([2.1, 4.7, 0.9, 1.3, 3.6, 1.0])

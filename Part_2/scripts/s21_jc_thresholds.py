@@ -34,12 +34,17 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+# Part 2.  Inputs that belong to the published preprint (the empirical
+# alignments, the simulated work directory) are read from the
+# repository root; everything this line of work produces is written
+# under Part_2/, so the two cannot be confused.
+PART2 = Path(__file__).resolve().parents[1]
+ROOT = PART2.parent
 sys.path.insert(0, str(ROOT / "src"))
 
 from issbench.stats import read_fasta                                 # noqa: E402
 
-OUT = ROOT / "results" / "jc_threshold"
+OUT = PART2 / "results" / "jc_threshold"
 EMP = ROOT / "results" / "empirical"
 Z = {0.10: 1.2816, 0.05: 1.6449, 0.01: 2.3263}
 

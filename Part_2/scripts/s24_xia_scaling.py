@@ -28,13 +28,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+# Part 2.  Inputs that belong to the published preprint (the empirical
+# alignments, the simulated work directory) are read from the
+# repository root; everything this line of work produces is written
+# under Part_2/, so the two cannot be confused.
+PART2 = Path(__file__).resolve().parents[1]
+ROOT = PART2.parent
 sys.path.insert(0, str(ROOT / "src"))
 
 from issbench import exact, trees                                    # noqa: E402
 from issbench.models import build_Q                                   # noqa: E402
 
-OUT = ROOT / "results" / "xia_scaling"
+OUT = PART2 / "results" / "xia_scaling"
 Q = build_Q("JC69")
 PI = np.ones(4) / 4
 
