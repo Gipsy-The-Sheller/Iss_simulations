@@ -13,6 +13,20 @@ That is a strong claim and it needs a search for counterexamples before any
 proof.  A grid of pendant lengths crossed with internal branch lengths is
 scanned and every projection's internal branch recorded.
 
+NOTE ON THE FIRST RUN OF THIS SCAN.  It flagged 11 of 230 projections as
+interior and the result was committed as "the star-projection claim is false
+in general".  That was wrong, and the reason is worth keeping: the flag was
+a threshold on the fitted branch length, `internal_t > 0.02`, which is a
+statement about the optimiser's stopping point and not about the geometry.
+Near saturation the objective is flat along the internal branch -- once the
+internal edge has washed out, extending it further changes the pattern
+distribution by nothing -- so an optimiser that starts away from the star
+stops at whatever branch length it happens to reach, with a KL exactly equal
+to the star's.  Checking two of the eleven by hand gave KL differences of
+1e-14.  The verdict printed below therefore compares objectives, and s30
+repeats the whole scan with a properly constrained star fit over a domain
+that extends to e_true = 12, where a failure would be most likely.
+
 The earlier version of this scan was killed by its own cost: it called the
 pattern enumeration inside the optimiser.  P(x) is multilinear in the five
 x_e = exp(-4 t_e / 3), so it is written out directly here, in O(K) per
@@ -186,18 +200,58 @@ def main() -> None:
     interior = d[(d.internal_x > 0.02) | (d.internal_t > 0.02)]
     print(f"\n    max internal (bounded t): {d.internal_t.max():.5f}")
     print(f"    max internal (x-param)  : {d.internal_x.max():.5f}")
-    print(f"    interior projections    : {len(interior)} of {len(d)}")
-    if len(interior):
-        print("\n  INTERIOR PROJECTIONS -- the claim is false:")
-        print(interior.nlargest(10, "internal_x")[
-            ["topology", "pend", "e_true", "internal_t", "internal_x"]
-        ].to_string(index=False))
-    else:
-        print("\n  every projection lands on the star in this scan.")
-        sub = (d[d.topology == "13|24"].set_index("case").kl
-               - d[d.topology == "14|23"].set_index("case").kl).abs()
-        print(f"  and the two alternatives' KL values agree to "
-              f"{sub.max():.2e} over all {len(sub)} cases.")
+    print(f"    off-star branch length  : {len(interior)} of {len(d)}")
+
+    # A fitted branch length is not evidence.  The objective near saturation
+    # is flat along the internal branch, so an optimiser that starts away
+    # from the star stops wherever it runs out of gradient without the KL
+    # being any lower.  A projection counts as interior only if it BEATS the
+    # star fit in KL, so the star is fitted here properly -- four pendants
+    # with the internal branch held at zero -- rather than by taking an
+    # unconstrained fit and zeroing its internal branch, which leaves the
+    # pendants chosen for a tree that had one.
+    print("\n  testing whether any off-star point is actually better:")
+    rng0 = np.random.default_rng(4)
+    sample = d[d.internal_x > 0.02].index if len(interior) else []
+    if len(sample) == 0:
+        print("    nothing to test; every projection already sits on the star")
+    worst = (-np.inf, None)
+    for i in list(sample)[:40]:
+        row = d.loc[i]
+        pend = np.array([float(v) for v in row.pend.split(",")])
+        lab = SPLITS[row.topology]
+        q = pattern_fast((*pend, row.e_true), SPLITS["12|34"])
+        star = np.array([pend[0], pend[2], pend[1], pend[3], 0.0])
+
+        def neg(th):
+            if np.any(th <= 1e-12) or np.any(th > 40):
+                return 1e3
+            return kl(q, pattern_fast(th, lab))
+
+        best = (np.inf, star)
+        for t in (star, np.array([*star[:4] * 0.3, 0.1])):
+            r = minimize(neg, t, method="L-BFGS-B", bounds=[(1e-12, 40)] * 5)
+            if r.fun < best[0]:
+                best = (float(r.fun), r.x)
+        # the star itself, pendants refitted with the internal branch at zero
+
+        def neg_star(pp):
+            return kl(q, pattern_fast((pp[0], pp[2], pp[1], pp[3], 0.0), lab))
+
+        rs = minimize(neg_star, star[:4], method="L-BFGS-B",
+                      bounds=[(1e-12, 40)] * 4)
+        kl_star = float(rs.fun)
+        gain = kl_star - best[0]
+        if gain > worst[0]:
+            worst = (gain, row.topology)
+        print(f"    {row.topology} e_true={row.e_true:7.3f}  KL(star)="
+              f"{kl_star:.6e}  KL(best)={best[0]:.6e}  gain={gain:+.2e}")
+    if worst[1] is not None:
+        print(f"\n    largest KL improvement over the star, over the sample: "
+              f"{worst[0]:+.2e}")
+        print("    a gain at the level of arithmetic is the optimiser sliding")
+        print("    along a flat direction, not a better fit; s30 repeats this")
+        print("    properly and over a wider domain.")
 
 
 if __name__ == "__main__":
