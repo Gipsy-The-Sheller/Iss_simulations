@@ -103,3 +103,6 @@ docs/duchene2022_si/
 5131558.zip
 ref.png
 ref2.png
+
+# Zenodo upload bundles built by hand from the tree above
+dist/
