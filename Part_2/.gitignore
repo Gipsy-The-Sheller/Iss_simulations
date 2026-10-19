@@ -1,0 +1,22 @@
+# CASTER working directory: simulated alignments, per-run trees and tool
+# output.  Several gigabytes, all regenerable from the scripts.
+_caster/
+
+# Result tables are the evidence for the paper and are tracked; the dense
+# objects next to them (fragment pools, simulated alignments) are not.
+results/**
+!results/**/
+!results/**/*.csv
+!results/**/*.csv.gz
+!results/**/*.json
+!results/**/README.md
+
+# LaTeX build products.  The .bbl is kept: it pins the bibliography as it was
+# when the version was built.
+*.aux
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.spl

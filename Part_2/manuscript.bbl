@@ -1,0 +1,152 @@
+\begin{thebibliography}{15}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Duch{\^e}ne et~al.(2022)Duch{\^e}ne, Mather, Van Der~Wal and
+  Ho}]{duchene2022saturation}
+\bibinfo{author}{Duch{\^e}ne, D.A.}, \bibinfo{author}{Mather, N.},
+  \bibinfo{author}{Van Der~Wal, C.}, \bibinfo{author}{Ho, S.Y.W.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Excluding loci with substitution saturation improves
+  inferences from phylogenomic data}.
+\newblock \bibinfo{journal}{Systematic Biology} \bibinfo{volume}{71},
+  \bibinfo{pages}{676--689}.
+\newblock \DOIprefix\doi{10.1093/sysbio/syab075}.
+%Type = Article
+\bibitem[{Felsenstein(1978)}]{felsenstein1978}
+\bibinfo{author}{Felsenstein, J.}, \bibinfo{year}{1978}.
+\newblock \bibinfo{title}{Cases in which parsimony or compatibility methods
+  will be positively misleading}.
+\newblock \bibinfo{journal}{Systematic Zoology} \bibinfo{volume}{27},
+  \bibinfo{pages}{401--410}.
+\newblock \DOIprefix\doi{10.2307/2412923}.
+%Type = Article
+\bibitem[{Hendy and Penny(1989)}]{hendy1989}
+\bibinfo{author}{Hendy, M.D.}, \bibinfo{author}{Penny, D.},
+  \bibinfo{year}{1989}.
+\newblock \bibinfo{title}{A framework for the quantitative study of
+  evolutionary trees}.
+\newblock \bibinfo{journal}{Systematic Zoology} \bibinfo{volume}{38},
+  \bibinfo{pages}{297--309}.
+\newblock \DOIprefix\doi{10.2307/2992396}.
+%Type = Misc
+\bibitem[{Jermiin and Misof(2020)}]{jermiin2020signal}
+\bibinfo{author}{Jermiin, L.S.}, \bibinfo{author}{Misof, B.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Measuring historical and compositional signals in
+  phylogenetic data}.
+\newblock \DOIprefix\doi{10.1101/2020.01.03.894097}.
+%Type = Article
+\bibitem[{Leuchtenberger et~al.(2020)Leuchtenberger, Crotty, Drucks, Schmidt,
+  Burgstaller-Muehlbacher and von Haeseler}]{leuchtenberger2020}
+\bibinfo{author}{Leuchtenberger, A.F.}, \bibinfo{author}{Crotty, S.M.},
+  \bibinfo{author}{Drucks, T.}, \bibinfo{author}{Schmidt, H.A.},
+  \bibinfo{author}{Burgstaller-Muehlbacher, S.}, \bibinfo{author}{von Haeseler,
+  A.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Distinguishing felsenstein zone from farris zone
+  using neural networks}.
+\newblock \bibinfo{journal}{Molecular Biology and Evolution}
+  \bibinfo{volume}{37}, \bibinfo{pages}{3632--3641}.
+\newblock \DOIprefix\doi{10.1093/molbev/msaa164}.
+%Type = Article
+\bibitem[{Siddall(1998)}]{siddall1998}
+\bibinfo{author}{Siddall, M.E.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{Success of parsimony in the four-taxon case:
+  Long-branch repulsion by likelihood in the farris zone}.
+\newblock \bibinfo{journal}{Cladistics} \bibinfo{volume}{14},
+  \bibinfo{pages}{209--220}.
+\newblock \DOIprefix\doi{10.1111/j.1096-0031.1998.tb00334.x}.
+%Type = Article
+\bibitem[{Strimmer and von Haeseler(1997)}]{strimmer1997}
+\bibinfo{author}{Strimmer, K.}, \bibinfo{author}{von Haeseler, A.},
+  \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{Likelihood-mapping: A simple method to visualize
+  phylogenetic content of a sequence alignment}.
+\newblock \bibinfo{journal}{Proceedings of the National Academy of Sciences}
+  \bibinfo{volume}{94}, \bibinfo{pages}{6815--6819}.
+\newblock \DOIprefix\doi{10.1073/pnas.94.13.6815}.
+%Type = Article
+\bibitem[{Su and Townsend(2015)}]{su2015}
+\bibinfo{author}{Su, Z.}, \bibinfo{author}{Townsend, J.P.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Utility of characters evolving at diverse rates of
+  evolution to resolve quartet trees with unequal branch lengths: analytical
+  predictions of long-branch effects}.
+\newblock \bibinfo{journal}{BMC Evolutionary Biology} \bibinfo{volume}{15},
+  \bibinfo{pages}{86}.
+\newblock \DOIprefix\doi{10.1186/s12862-015-0364-7}.
+%Type = Article
+\bibitem[{Swofford et~al.(2001)Swofford, Waddell, Huelsenbeck, Foster, Lewis
+  and Rogers}]{swofford2001}
+\bibinfo{author}{Swofford, D.L.}, \bibinfo{author}{Waddell, P.J.},
+  \bibinfo{author}{Huelsenbeck, J.P.}, \bibinfo{author}{Foster, P.G.},
+  \bibinfo{author}{Lewis, P.O.}, \bibinfo{author}{Rogers, J.S.},
+  \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Bias in phylogenetic estimation and its relevance to
+  the choice between parsimony and likelihood methods}.
+\newblock \bibinfo{journal}{Systematic Biology} \bibinfo{volume}{50},
+  \bibinfo{pages}{525--539}.
+\newblock \DOIprefix\doi{10.1080/106351501750435086}.
+%Type = Article
+\bibitem[{Townsend(2007)}]{townsend2007}
+\bibinfo{author}{Townsend, J.P.}, \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Profiling phylogenetic informativeness}.
+\newblock \bibinfo{journal}{Systematic Biology} \bibinfo{volume}{56},
+  \bibinfo{pages}{222--231}.
+\newblock \DOIprefix\doi{10.1080/10635150701311362}.
+%Type = Article
+\bibitem[{Townsend et~al.(2012)Townsend, Su and Tekle}]{townsend2012}
+\bibinfo{author}{Townsend, J.P.}, \bibinfo{author}{Su, Z.},
+  \bibinfo{author}{Tekle, Y.I.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Phylogenetic signal and noise: Predicting the power
+  of a data set to resolve phylogeny}.
+\newblock \bibinfo{journal}{Systematic Biology} \bibinfo{volume}{61},
+  \bibinfo{pages}{835--849}.
+\newblock \DOIprefix\doi{10.1093/sysbio/sys036}.
+%Type = Article
+\bibitem[{Xia et~al.(2003)Xia, Xie, Salemi, Chen and Wang}]{xia2003iss}
+\bibinfo{author}{Xia, X.}, \bibinfo{author}{Xie, Z.}, \bibinfo{author}{Salemi,
+  M.}, \bibinfo{author}{Chen, L.}, \bibinfo{author}{Wang, Y.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{An index of substitution saturation and its
+  application}.
+\newblock \bibinfo{journal}{Molecular Phylogenetics and Evolution}
+  \bibinfo{volume}{26}, \bibinfo{pages}{1--7}.
+\newblock \DOIprefix\doi{10.1016/S1055-7903(02)00326-3}.
+%Type = Misc
+\bibitem[{Xu(2026)}]{xu2026preprint}
+\bibinfo{author}{Xu, Z.J.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Revisiting xia's index of substitution saturation
+  from a mathematical perspective}.
+\newblock \bibinfo{note}{Preprint}.
+%Type = Article
+\bibitem[{Zhang et~al.(2025)Zhang, Nielsen and Mirarab}]{zhang2025caster}
+\bibinfo{author}{Zhang, C.}, \bibinfo{author}{Nielsen, R.},
+  \bibinfo{author}{Mirarab, S.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Caster: Direct species tree inference from
+  whole-genome alignments}.
+\newblock \bibinfo{journal}{Science} \bibinfo{volume}{387},
+  \bibinfo{pages}{eadk9688}.
+\newblock \DOIprefix\doi{10.1126/science.adk9688}.
+%Type = Article
+\bibitem[{Zhang et~al.(2018)Zhang, Rabiee, Sayyari and Mirarab}]{zhang2018}
+\bibinfo{author}{Zhang, C.}, \bibinfo{author}{Rabiee, M.},
+  \bibinfo{author}{Sayyari, E.}, \bibinfo{author}{Mirarab, S.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Astral-iii: polynomial time species tree
+  reconstruction from partially resolved gene trees}.
+\newblock \bibinfo{journal}{BMC Bioinformatics} \bibinfo{volume}{19},
+  \bibinfo{pages}{153}.
+\newblock \DOIprefix\doi{10.1186/s12859-018-2129-y}.
+
+\end{thebibliography}
