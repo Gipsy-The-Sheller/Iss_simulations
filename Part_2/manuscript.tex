@@ -61,23 +61,23 @@ $\Issc$ is used as a decision rule: when $\Iss$ exceeds $\Issc$, the data are
 declared saturated and discarded. The rule cannot carry that weight.
 
 For a four-taxon tree the critical tree is fixed by
-$\Delta(\TL)\sqrt L=z\sqrt{v_2(\TL)}$, with $\Delta$ and $v_2$ exact sums
+$D(\TL)\sqrt L=z\sqrt{v_2(\TL)}$, with $D$ and $v_2$ exact sums
 over the 256 site patterns. Three consequences follow, without simulation.
 First, $\Issc$ does not measure the quantity that decides recoverability:
 permuting taxa within columns preserves $\Iss$ exactly, to
 $3\times10^{-15}$, while destroying the topological signal, and along that
 family the recovery rate sweeps from $0.71$ to $1.00$ to $1/3$ with $\Iss$
 fixed. Second, the length dependence is not a power law with a universal
-exponent; it is $\lam{\Iss}/(2\lam\Delta-\lam{v_2})$, a ratio of two local
+exponent; it is $\lam{\Iss}/(2\lam D-\lam{v_2})$, a ratio of two local
 rates that ranges from $0.061$ to $0.585$ across configurations. Third, for a
 subset of a concatenation the criterion is unreliable for the decision it is
 asked to make.
 
-Running through all three is an identity: $\Delta$ is exactly the
+Running through all three is an identity: $D$ is exactly the
 Kullback--Leibler distance from the tree to its own best star approximation.
 The Farris zone is therefore not a separate mechanism but the region where
 that distance is smallest, and the same number sets both the zone and the
-critical tree; over a controlled family $\Delta$ moves by a factor of $3583$
+critical tree; over a controlled family $D$ moves by a factor of $3583$
 while $\Iss$ moves by $2.6\%$. In the local limit the boundary reduces to one
 number: $\Issc(L)$ is the index of the tree whose KL distance to its own best
 star approximation is $5.41/L$.
@@ -129,7 +129,7 @@ One result deserves flagging before the machinery, because it reorganises the
 subject. The Farris zone and the length dependence of $\Issc$ are usually
 discussed separately --- one as a property of trees, the other as a property
 of the index, and in different literatures. They are the same quantity seen
-twice. The per-site gap $\Delta$ that sets the critical tree is, exactly, the
+twice. The per-site gap $D$ that sets the critical tree is, exactly, the
 Kullback--Leibler distance from the tree to its best star approximation; the
 Farris zone is the region of tree space where that distance is smallest.
 Section~\ref{sec:shared} establishes this and quantifies it, and it is why
@@ -157,7 +157,7 @@ conditional. The index fails to measure what its name says even when the
 model is exactly right and the usage exactly as prescribed:
 \S\ref{sec:shared} exhibits two configurations whose per-branch
 multiple-substitution profile is identical to the last digit and whose
-$\Delta$ differs by a factor of $36$. No accumulation of conditional
+$D$ differs by a factor of $36$. No accumulation of conditional
 criticisms yields that statement, and it does not depend on any of their
 conditions.
 
@@ -326,16 +326,16 @@ over the star anywhere is $2.5\times10^{-6}$; see \S\ref{sec:notes}.
 Under Lemma~\ref{lem:star} the three-way choice reduces \emph{exactly} to a
 two-way one, and
 \begin{equation}
-\Pr[\text{correct}]=\Phi\!\left(\frac{\sqrt L\,\Delta}{\sigma}\right),
+\Pr[\text{correct}]=\Phi\!\left(\frac{\sqrt L\,D}{\sigma}\right),
 \label{eq:two-way}
 \end{equation}
-with $\Delta$ the per-site KL gap to the better alternative.
+with $D$ the per-site KL gap to the better alternative.
 \end{proposition}
 
 \begin{proof}
 The two wrong fits coincide, so $\ell_2=\ell_3$ identically and
 $\Pr[\ell_1>\ell_2\wedge\ell_1>\ell_3]=\Pr[\ell_1>\ell_2]$. That is a
-one-sided normal probability with mean $\sqrt L\,\Delta$ and standard
+one-sided normal probability with mean $\sqrt L\,D$ and standard
 deviation $\sigma$.
 \end{proof}
 
@@ -424,20 +424,20 @@ external data, and makes the question one of internal consistency.
 
 \begin{theorem}[Resolution condition]
 \label{thm:resolution}
-Let $\Delta$ be the per-site Kullback--Leibler gap between the true tree and
+Let $D$ be the per-site Kullback--Leibler gap between the true tree and
 the better of the two alternatives, and $v_2$ its per-site variance. The tree
 length at which the recovery probability falls to the level $z$ of a
 one-sided test, $z=\Phi^{-1}(1-\alpha)$, satisfies
 \begin{equation}
-\Delta(\TL)\,\sqrt L \;=\; z\,\sqrt{v_2(\TL)} .
+D(\TL)\,\sqrt L \;=\; z\,\sqrt{v_2(\TL)} .
 \label{eq:resolution}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
 By \eqref{eq:two-way} the recovery probability is
-$\Phi(\sqrt L\,\Delta/\sigma)$, so the level is reached when
-$\sqrt L\,\Delta/\sigma=z$. The denominator is
+$\Phi(\sqrt L\,D/\sigma)$, so the level is reached when
+$\sqrt L\,D/\sigma=z$. The denominator is
 $\sigma^2=v_2$ by definition, which gives \eqref{eq:resolution}.
 \end{proof}
 
@@ -447,11 +447,11 @@ Writing $\lam{\bullet}$ for the local log-derivative with respect to the tree
 scale, the critical tree and the index at it satisfy
 \begin{equation}
 \frac{\mathrm d\log \TLstar}{\mathrm d\log L}
-=\frac{1}{2\lam\Delta-\lam{v_2}},
+=\frac{1}{2\lam D-\lam{v_2}},
 \qquad
 \Issc(L)=\Issat-C\,L^{-p},
 \qquad
-p=\frac{\lam{\Iss}}{2\lam\Delta-\lam{v_2}} .
+p=\frac{\lam{\Iss}}{2\lam D-\lam{v_2}} .
 \label{eq:exponent}
 \end{equation}
 \end{corollary}
@@ -459,17 +459,17 @@ p=\frac{\lam{\Iss}}{2\lam\Delta-\lam{v_2}} .
 \begin{proof}
 Differentiate \eqref{eq:resolution} with respect to $\log L$. With
 $r=\mathrm d\log\TLstar/\mathrm d\log L$, the left side contributes
-$\sqrt L\,(\lam\Delta\,r+\tfrac12)$ and the right side
-$\Delta\sqrt L\,\tfrac12\lam{v_2}\,r$, using $z\sqrt{v_2}=\Delta\sqrt L$ from
+$\sqrt L\,(\lam D\,r+\tfrac12)$ and the right side
+$D\sqrt L\,\tfrac12\lam{v_2}\,r$, using $z\sqrt{v_2}=D\sqrt L$ from
 \eqref{eq:resolution} itself. Equating them gives
-$r(\lam\Delta-\tfrac12\lam{v_2})=-\tfrac12$, that is the first relation. The
+$r(\lam D-\tfrac12\lam{v_2})=-\tfrac12$, that is the first relation. The
 index at the critical tree then moves as
 $\mathrm d\log\Issc/\mathrm d\log L=\lam{\Iss}\,r$, which is the third, and
 integrating gives the second.
 \end{proof}
 
 The exponent is therefore a ratio of two independently measurable rates:
-$\lam{\Iss}$ is how fast $\Iss$ saturates with tree length, and $\lam\Delta$
+$\lam{\Iss}$ is how fast $\Iss$ saturates with tree length, and $\lam D$
 is how fast the topological signal decays --- that is, the multiple-hit effect
 itself.
 
@@ -490,7 +490,7 @@ the reference $a=b=1.0$, $c=d=0.05$, $e=0.02$.}
 \label{tab:factors}
 \begin{tabular}{lrrrrrr}
 \toprule
-configuration & $\lam\Delta$ & $\lam{v_2}$ & $\lam{\Iss}$
+configuration & $\lam D$ & $\lam{v_2}$ & $\lam{\Iss}$
   & $p_{\rm pred}$ & $p_{\rm fit}$ & rel.\ err. \\
 \midrule
 reference          & 3.324 & 3.354 & 0.934 & 0.2836 & 0.2897 & $-0.021$ \\
@@ -506,31 +506,31 @@ all equal          & 1.596 & 1.600 & 0.811 & 0.5089 & 0.5085 & $+0.001$ \\
 
 \subsection{A regularity worth separating}
 
-$\lam{v_2}$ tracks $\lam\Delta$ with slope $1.0031$ and correlation $0.999966$
-across all seven configurations, so $2\lam\Delta-\lam{v_2}\approx\lam\Delta$
+$\lam{v_2}$ tracks $\lam D$ with slope $1.0031$ and correlation $0.999966$
+across all seven configurations, so $2\lam D-\lam{v_2}\approx\lam D$
 and
 \begin{equation}
-p\approx\frac{\lam{\Iss}}{\lam\Delta} .
+p\approx\frac{\lam{\Iss}}{\lam D} .
 \end{equation}
 The reason is not a coincidence of this family. In the local regime the
 likelihood-ratio relation gives $\E[\Lambda]=\frac12\Var[\Lambda]$ for close
-alternatives, that is $v_2\to2\Delta$, so the two share a rate exactly; and
+alternatives, that is $v_2\to2D$, so the two share a rate exactly; and
 the local regime is the one the resolution boundary occupies, since the
 critical tree is by construction the most saturated tree still resolvable.
 The identification is therefore exact where it is used and degrades where it
-is not: $v_2/\Delta$ is $2.0035$ on the Farris trees and $3.0054$ on the
-balanced one, rising monotonically with $\Delta$ (\S\ref{sec:shared}).
+is not: $v_2/D$ is $2.0035$ on the Farris trees and $3.0054$ on the
+balanced one, rising monotonically with $D$ (\S\ref{sec:shared}).
 Substituting it into \eqref{eq:resolution} collapses the boundary to a single
 number, \eqref{eq:critical-delta}.
 
 \subsection{Which factor matters}
 
-With $p\approx\lam{\Iss}/\lam\Delta$ the factor table reads directly
+With $p\approx\lam{\Iss}/\lam D$ the factor table reads directly
 (Fig.~\ref{fig:factors}B). The
-internal branch dominates: multiplying it by $25$ takes $\lam\Delta$ from
+internal branch dominates: multiplying it by $25$ takes $\lam D$ from
 $3.32$ to $5.09$ and $\lam{\Iss}$ from $0.93$ to $0.31$, so $p$ falls from
 $0.290$ to $0.061$ --- a factor of $4.7$. The short pendant pair is second:
-multiplying it by $4$ leaves $\lam\Delta$ flat while raising $\lam{\Iss}$ from
+multiplying it by $4$ leaves $\lam D$ flat while raising $\lam{\Iss}$ from
 $0.93$ to $1.25$, taking $p$ to $0.390$. The long pendant pair barely
 matters, because dividing it by $5$ moves both rates together and leaves the
 ratio near its reference value.
@@ -576,7 +576,7 @@ tree the local exponents across $L=3\times10^4$ to $10^6$ are
 monotonically decreasing. A single power law fits with $r^2=0.98688$; adding
 one $\log^2 L$ term lifts that to $0.999955$. The exponent extracted from a
 window is a local average of a drifting quantity, which is exactly what
-$p\approx\lam{\Iss}/\lam\Delta$ predicts, since both rates are local.
+$p\approx\lam{\Iss}/\lam D$ predicts, since both rates are local.
 
 This is why Part~I's $L^{-1/2}$ --- a correct statement about
 the \emph{sampling} threshold at a fixed tree --- does not govern $\Issc$:
@@ -612,17 +612,17 @@ likelihood's failure, which is the same claim in words; equation
 Let $P$ be the true site-pattern distribution of a quartet, $Q_i^{*}$ its
 Kullback--Leibler projection onto topology $i$, and
 $\mathrm{star}^{*}$ the star onto which both wrong topologies project. The
-per-site gap $\Delta$ of \eqref{eq:resolution} is then nothing other than the
+per-site gap $D$ of \eqref{eq:resolution} is then nothing other than the
 distance from the tree to its own best star approximation:
 \begin{equation}
-\Delta \;=\; \mathrm{KL}\!\left(P_{\rm true}\,\big\|\,\mathrm{star}^{*}\right).
+D \;=\; \mathrm{KL}\!\left(P_{\rm true}\,\big\|\,\mathrm{star}^{*}\right).
 \label{eq:delta-is-kl}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
 The expected log-likelihood advantage of the true topology over a wrong one,
-per site, is $\mathrm{KL}(P\|Q_2^{*})-\mathrm{KL}(P\|Q_1^{*})$, and $\Delta$
+per site, is $\mathrm{KL}(P\|Q_2^{*})-\mathrm{KL}(P\|Q_1^{*})$, and $D$
 is that quantity for the better of the two alternatives. The true topology's
 projection is $P$ itself, so $\mathrm{KL}(P\|Q_1^{*})=0$. Both wrong
 topologies project onto the same star (\S\ref{sec:quartet}), so their
@@ -633,10 +633,10 @@ The identity is checked numerically as well as proved: over five trees
 spanning both zones the ratio of the two sides differs from $1$ by at most
 $1.2\times10^{-10}$.
 
-If that is what $\Delta$ is, then two things that appeared to be separate
+If that is what $D$ is, then two things that appeared to be separate
 phenomena are the same quantity appearing twice. The difficulty of resolving
-a tree is $\Delta$ in the numerator of the resolution condition. The Farris
-zone is the region of tree space where $\Delta$ is small, because what makes
+a tree is $D$ in the numerator of the resolution condition. The Farris
+zone is the region of tree space where $D$ is small, because what makes
 the long-branches-sisters arrangement hard is that it drives the tree
 \emph{towards being a star}.
 
@@ -648,7 +648,7 @@ moving only the arrangement:
 \begin{center}
 \begin{tabular}{lrrrr}
 \toprule
-$r$ & $\Delta$ Farris & $\Delta$ Felsenstein & ratio
+$r$ & $D$ Farris & $D$ Felsenstein & ratio
   & $\Iss$, Farris / Felsenstein \\
 \midrule
 $0.0$ & $5.52\times10^{-4}$ & $5.52\times10^{-4}$ & $1.00$
@@ -661,14 +661,14 @@ $0.8$ & $1.94\times10^{-5}$ & $6.95\times10^{-4}$ & $35.8$
 \end{tabular}
 \end{center}
 
-$\Delta$ falls by a factor of $28$ along the Farris family and stays flat
+$D$ falls by a factor of $28$ along the Farris family and stays flat
 along the Felsenstein one, and it does so with every other tree parameter
 fixed. The Farris zone is thus a \emph{region of tree space} --- the region
 nearest the star --- rather than a separate mechanism, and the quantity that
 defines it is the same one that sets $\TLstar$ and hence $\Issc$.
 
 The last column is the sharpest single statement of \S\ref{sec:shuffle}
-available. Over this range $\Delta$ moves by a factor of $3583$ while $\Iss$
+available. Over this range $D$ moves by a factor of $3583$ while $\Iss$
 moves by $2.6\%$. Whatever the index is measuring, it is not the quantity
 that decides whether the branch can be resolved.
 
@@ -708,25 +708,25 @@ pairwise totals are equal by \eqref{eq:pairs}, and the residual is a
 second-order term. That is also why Part~I's transfer path found
 the index constant --- it held the patristic total fixed.
 
-\paragraph{What the boundary reduces to.} In the same regime $v_2\to2\Delta$.
+\paragraph{What the boundary reduces to.} In the same regime $v_2\to2D$.
 This is the local form of the likelihood-ratio relation rather than a
 phylogenetic fact: for alternatives that are close, $\E[\Lambda]=\frac12
-\Var[\Lambda]$, so $v_2/\Delta\to2$ as $\Delta\to0$. Measured on the trees
-above, $v_2/\Delta$ is $2.0035$ in the Farris zone and rises monotonically
-with $\Delta$, reaching $3.0054$ on the balanced tree where $\Delta=0.229$;
+\Var[\Lambda]$, so $v_2/D\to2$ as $D\to0$. Measured on the trees
+above, $v_2/D$ is $2.0035$ in the Farris zone and rises monotonically
+with $D$, reaching $3.0054$ on the balanced tree where $D=0.229$;
 it is a local statement, and the local regime is where the resolution
 boundary lives. Substituting into \eqref{eq:resolution},
 \begin{equation}
-\Delta(\TLstar)\;\longrightarrow\;\frac{2z^2}{L},
+D(\TLstar)\;\longrightarrow\;\frac{2z^2}{L},
 \qquad\text{that is,}\qquad
-\Delta(\TLstar)\to\frac{5.41}{L}\ \ \text{at}\ 95\% .
+D(\TLstar)\to\frac{5.41}{L}\ \ \text{at}\ 95\% .
 \label{eq:critical-delta}
 \end{equation}
 
 \begin{center}
 \begin{tabular}{lrrrr}
 \toprule
-$L$ & $\Delta(\TLstar)$ solved & $2z^2/L$ & rel.\ err. & $v_2/\Delta$ \\
+$L$ & $D(\TLstar)$ solved & $2z^2/L$ & rel.\ err. & $v_2/D$ \\
 \midrule
 $20{,}000$  & $2.870\times10^{-4}$ & $2.706\times10^{-4}$ & $+0.061$ & $2.122$ \\
 $30{,}000$  & $1.850\times10^{-4}$ & $1.804\times10^{-4}$ & $+0.026$ & $2.051$ \\
@@ -736,14 +736,14 @@ $200{,}000$ & $2.712\times10^{-5}$ & $2.706\times10^{-5}$ & $+0.002$ & $2.005$ \
 \end{tabular}
 \end{center}
 
-The error and $v_2/\Delta-2$ fall together, because as $L$ grows the critical
-tree is pushed further into saturation, $\Delta(\TLstar)\to0$, and the local
+The error and $v_2/D-2$ fall together, because as $L$ grows the critical
+tree is pushed further into saturation, $D(\TLstar)\to0$, and the local
 relation becomes exact. The statement in words is short enough to check by
 hand: \emph{$\Issc(L)$ is the index of the tree whose KL distance to its own
 best star approximation is $5.41/L$.}
 
 \paragraph{And the boundary is two-valued.} Equation
-\eqref{eq:critical-delta} locates a level set of $\Delta$, and $\Delta$ is
+\eqref{eq:critical-delta} locates a level set of $D$, and $D$ is
 \emph{not} monotone in tree length: it vanishes at both ends of the range
 (for a tree shrunk to a point, and for a tree grown past saturation) and has
 an interior maximum. $\Iss$ by contrast is monotone --- it is the ratio of
@@ -752,7 +752,7 @@ a non-monotone function of the tree, located by inverting a monotone one, and
 a level set below the maximum has \emph{two} solutions.
 
 Both are real trees, and they carry wildly different values of the index. On
-the balanced family at $L=20{,}000$, where the required $\Delta$ is
+the balanced family at $L=20{,}000$, where the required $D$ is
 $2.71\times10^{-4}$:
 
 \begin{center}
@@ -809,7 +809,7 @@ multiple hit on some branch:
 \begin{center}
 \begin{tabular}{lrrr}
 \toprule
-$r$ & $P(\text{multiple hit somewhere})$ & ratio of $\Delta$
+$r$ & $P(\text{multiple hit somewhere})$ & ratio of $D$
   & $\Iss$ ratio \\
 \midrule
 $0.0$ & $0.712085$ (identical) & $1.00$  & $1.000$ \\
@@ -820,7 +820,7 @@ $0.8$ & $0.796847$ (identical) & $35.8$  & $1.026$ \\
 \end{center}
 
 At $r=0.8$ both arrangements have $79.68\%$ of sites carrying a multiple hit
-somewhere, to the last digit, while $\Delta$ differs by a factor of $36$. The
+somewhere, to the last digit, while $D$ differs by a factor of $36$. The
 local saturation is not heavier in one than the other; it is the same number.
 
 What can differ between the arrangements is a functional of the \emph{joint}
@@ -828,7 +828,7 @@ pattern distribution, and $\Iss$ is one: it moves by $2.6\%$ across this
 range. A defence of the form ``this is saturation under another name'' must
 therefore nominate a saturation statistic with the dynamic range to carry the
 effect. The only candidate that moves at all moves by $2.6\%$, against
-$\Delta$'s $3583\%$.
+$D$'s $3583\%$.
 
 \subsection{Against Xia et al.'s empirical ordering}
 
@@ -838,7 +838,7 @@ more slowly than the symmetrical one's. The rate falls with asymmetry in
 $0.223$ (Felsenstein) at $r=0.8$. So the reported ordering is reproduced and
 explained by asymmetry, which contributes a factor of about $3$; the Farris
 arrangement adds a further factor of about $1.4$ on top, through the collapse
-of $\Delta$ described above.
+of $D$ described above.
 
 What the controlled family also shows is that rate and difficulty are
 \emph{decoupled}. Difficulty, read as the critical tree length at a fixed
@@ -846,7 +846,7 @@ $L$, falls from $5.386$ to $2.946$ in the Farris family --- the tree becomes
 harder --- but stays flat, $5.386$ to $5.506$, in the Felsenstein family,
 while the rate there still falls by a factor of $2.9$. Slowness of
 convergence is therefore not a consequence of hardness: both are downstream
-of $\Delta$, and they move together only where $\Delta$ is the thing that
+of $D$, and they move together only where $D$ is the thing that
 moves.
 
 \subsection{Relation to Part~I, and one correction to it}
@@ -876,14 +876,11 @@ trees and not the source of the zone. The zone is named by
 \citet{siddall1998}, whose title names it, and \S\ref{sec:shared} and
 \S\ref{sec:caster} follow that attribution.
 
-\paragraph{The two papers use $\Delta$ for different quantities.} In Part~I,
-$\Delta=\sum_{\mu\ne0}(w_\mu-\tau_\mu/K)\xi_\mu$ is a composition-leakage
-term. Here $\Delta=\mathrm{KL}(P_{\rm true}\|\mathrm{star}^{*})$ is the
-distance from the tree to its own best star approximation, and
-\S\ref{sec:shared} is built on that reading. The collision is an artefact of
-the two papers being written in sequence; it should be removed by renaming the
-Part~I term, which is the minor of the two and appears in a single lemma.
-Readers of this paper need only be warned that the symbols are not the same.
+\paragraph{Notation.} Part~I writes $\Delta$ for a composition-leakage term,
+$\sum_{\mu\ne0}(w_\mu-\tau_\mu/K)\xi_\mu$. The quantity named here is a
+different object --- the distance from the tree to its own best star
+approximation, \eqref{eq:delta-is-kl} --- and it is written $D$ throughout so
+that the two papers cannot be confused on a quick reading.
 
 \paragraph{Part~I measured something this paper should have used.}
 Section~2.13 of Part~I reports that in the transition band
@@ -959,7 +956,7 @@ the level. It is, in \citet{xia2003iss}'s own words, where the sequences
 the largest tree length still recoverable. The distinction is not pedantic:
 recovery against tree length rises and then falls, since at large tree
 lengths all three topologies approach the same saturated distribution and
-$\Delta$ goes to zero, so \eqref{eq:resolution} has two roots and only the
+$D$ goes to zero, so \eqref{eq:resolution} has two roots and only the
 outer one is the criterion. Reading the inner one inverts the dependence on
 alignment length.
 
@@ -1224,14 +1221,14 @@ model search finds exactly this, unprompted.
   one-dimensional in the tree geometry; base composition, GTR parameters and
   $\Gamma$ rates are further factors and have not been varied.
 \item \textbf{Maximum likelihood, and therefore the long-branch-repulsion
-  region.} $\Delta$ and $v_2$ as written are the maximum-likelihood
+  region.} $D$ and $v_2$ as written are the maximum-likelihood
   quantities, so what is quantified throughout is the boundary of the region
   in which likelihood is the method that struggles. That region has a name:
   \citet{siddall1998} defined the Farris zone as the four-taxon case where
   the long branches are themselves sisters, parsimony recovers the correct
   tree and likelihood does not, and \S\ref{sec:shared} shows the boundary in
   question to be exactly \eqref{eq:resolution}. Because that boundary is
-  driven by $\Delta$ it moves with $L$, which is why
+  driven by $D$ it moves with $L$, which is why
   \citet{leuchtenberger2020} describe the zone as ``not unambiguously
   defined for ML inference''; \eqref{eq:resolution} is the definition they
   declined to fix, and \S\ref{sec:factors} is the boundary's dependence on
@@ -1277,7 +1274,7 @@ model search finds exactly this, unprompted.
   three, because saturation is a property of the substitution process alone;
   a threshold that measures resolution power depends on all three, and
   \eqref{eq:resolution} says how --- $L$ directly, and the other two through
-  $\Delta$. The three-fold dependence of the table is therefore itself
+  $D$. The three-fold dependence of the table is therefore itself
   evidence for the power reading, and \S\ref{sec:shared} accounts for the
   topology axis qualitatively by reproducing the ordering
   \citet{xia2003iss} report.
@@ -1378,7 +1375,7 @@ measured rate ratio at the critical scale, for three configurations.}
 \includegraphics[width=\textwidth]{fig4_arrangement}
 \caption{One quantity, three appearances. The pendant sum is fixed at $4$,
 the internal branch at $0.2$, and hence the total tree length at $4.2$
-throughout; only the arrangement moves. Panel C is the point: $\Delta$ is
+throughout; only the arrangement moves. Panel C is the point: $D$ is
 exactly the KL distance from the tree to its best star approximation, and the
 Farris arrangement drives it down by a factor of $28$ while the Felsenstein
 arrangement leaves it flat. That is what the Farris zone is --- the region of
