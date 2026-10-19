@@ -74,10 +74,13 @@ composition, which its user has not fixed. The mean of $\lambda$ reduces the
 same way.
 
 The critical value fails separately: it carries no rate-heterogeneity
-coordinate, and near saturation the index is pinned within a few percent of
-its ceiling, a fifteen-fold change in the tree length at which recovery fails
-moving it by $1.2\%$. A four-taxon
-transfer of long branches at fixed patristic total makes this direct: the
+coordinate, and on a symmetric tree a fifteen-fold change in the tree length
+at which recovery fails moves it by only $1.2\%$, because there the index is
+pinned within a few percent of its ceiling and has nowhere to go. That
+insensitivity is a property of the configuration, not of the index: on a
+Farris arrangement with the same tree length and the same protocol the same
+fifteen-fold change moves the critical value by $8\%$. A four-taxon transfer
+of long branches at fixed patristic total makes the point differently: the
 index is constant along the path while recovery spans its full range.
 
 Real data occupy both: the saturated codon partition of the index's
@@ -517,13 +520,21 @@ The level set $\{\,TL:\Iss(TL;\alpha)=\theta\,\}$ --- and hence both $TL_c$
 and $\Iss(TL_c)$ --- therefore depends on $\alpha$.
 \end{proof}
 
-The dependence is not, by itself, fatal, and Section~\ref{sec:collapse} shows
-that it is weaker than it sounds: over the range of $\alpha$ that matters,
-$TL_c$ moves by a factor of $15$ while $\Issc$ moves by less than $0.01$. The
-charge is therefore not that the threshold is unusable but that it is
-mis-calibrated in a way its user cannot detect: the critical tree length does
-depend strongly on $\alpha$, the index does not carry that dependence, and a
-table with no $\alpha$ coordinate silently maps one onto the other.
+The dependence is not, by itself, fatal, and on the symmetric tree of
+Figure~\ref{fig:tlc} it is weaker than it sounds: over the range of $\alpha$
+that matters, $TL_c$ moves by a factor of $15$ while $\Issc$ moves by
+$0.0115$. That weakness is a property of the configuration, not of the
+index. On a Farris arrangement with the same tree length, the same internal
+fraction and the same protocol, the same fifteen-fold movement in $TL_c$
+moves $\Issc$ by $0.091$ --- eight times as much, and monotonically ---
+because there the index sits well below its ceiling and has room to respond
+(Figure~\ref{fig:tlc}, open symbols).
+
+The charge is therefore not that the threshold is unusable but that it is
+mis-calibrated in a way its user cannot detect: the critical tree length
+depends strongly on $\alpha$, the index does not carry that dependence in any
+form a user can read off, and a table with no $\alpha$ coordinate silently
+maps one onto the other.
 
 \subsection{When the index collapses onto \texorpdfstring{$p$}{p}-distance}
 \label{sec:criterion}
@@ -803,14 +814,25 @@ $\Pr[\hat{\mathcal T}=\mathcal T]$ depends on sequence length. The dependence
 is therefore not overlooked, and the threshold being $L$-indexed is a
 deliberate design decision rather than an error.
 
-What Theorem~\ref{thm:length} supplies is why the dependence has the form it
-does. $\Iss$ is an average over sites and cannot depend on $L$ except through
-finite-sample noise; $\HFSS$ is pooled over $NL$ observations and is
-$\sqrt N$ better determined than $\Hbar$; so $\Var(\Iss)=\Theta(L^{-1})$
-exactly, and the critical value must move with $L$ at rate $L^{-1/2}$ to hold
-a decision threshold fixed. That is the mechanism behind Figure~3, and it
-fixes the functional form of the tabulated surface rather than merely
-exhibiting it.
+What Theorem~\ref{thm:length} supplies is why the \emph{sampling} dependence
+has the form it does. $\Iss$ is an average over sites and cannot depend on
+$L$ except through finite-sample noise; $\HFSS$ is pooled over $NL$
+observations and is $\sqrt N$ better determined than $\Hbar$; so
+$\Var(\Iss)=\Theta(L^{-1})$, and a decision threshold held at a fixed
+significance level must therefore move with $L$ at rate $L^{-1/2}$.
+
+That is a statement about the noise on the estimator at a fixed tree, and an
+earlier version of this work read it as a statement about $\Issc$. It is not
+one. $\Issc$ is the index of the tree at which recovery falls to $95\%$, and
+that tree is a different tree at each $L$: adding sites moves the boundary
+outward, to configurations that are further into saturation. The threshold is
+therefore carried by the motion of the critical tree as well as by the noise,
+and the exponent governing $\Issc(L)$ is not $1/2$. In the companion paper
+\citep{xu2026part2} it is measured at $0.061$ to $0.585$ across
+configurations, drifting within a single configuration, and identified as a
+ratio of two local rates. The $L^{-1/2}$ law describes the sampling threshold
+of a fixed tree; $\Issc(L)$ is a signal threshold; they are different objects,
+and only the first is fixed by Theorem~\ref{thm:length}.
 
 \begin{corollary}[A fixed margin does not stay fixed]
 \label{cor:length}
@@ -996,17 +1018,23 @@ accurate there.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig9_tlc_alpha.png}
-\caption{The critical point against rate heterogeneity.
+\caption{The critical point against rate heterogeneity, and the index at it.
 \textbf{A}, recovery of the true quartet under maximum likelihood against
-tree length, one curve per $\Gamma$ shape, $N=4$, $L=1000$, $150$ replicates
-per point; the dashed line is $0.95$. \textbf{B}, the tree length at which
-each curve crosses it, on axes that put $\alpha=\infty$ one doubling beyond
-the largest finite shape. \textbf{C}, the exact expected index at those tree
-lengths, on the same $0$--$1$ scale as the index itself. A fifteen-fold change
-in the first has no visible effect on the second: the threshold is nearly
-invariant to rate heterogeneity because the index is nearly at its ceiling,
-not because it is well calibrated. The ladder stops at $\alpha=0.5$; see the
-text for why.}
+tree length for the symmetric tree, one curve per $\Gamma$ shape, $N=4$,
+$L=1000$, $150$ replicates per point; the dashed line is $0.95$. \textbf{B},
+the tree length at which each curve crosses it, on axes that put
+$\alpha=\infty$ one doubling beyond the largest finite shape, for the
+symmetric tree (filled) and for a Farris arrangement (open) with the same
+tree length, the same internal fraction, the same protocol and only the
+pendant split changed. \textbf{C}, the exact expected index at those tree
+lengths, on the same $0$--$1$ scale as the index itself. The two
+configurations move their critical tree length by the same factor of fifteen
+and the index by very different amounts: $0.011$ where the four pendants are
+equal, $0.091$ where the long ones are sisters. The near-invariance is
+therefore a property of the near-ceiling configuration and not of the index:
+pinned just below its ceiling the index has nowhere to move, and away from
+the ceiling it moves. The ladder stops at $\alpha=0.5$; see the text for
+why.}
 \label{fig:tlc}
 \end{figure}
 
@@ -1017,10 +1045,12 @@ The first is intrinsic. By Eq.~\eqref{eq:sensitivity} the index's elasticity
 with respect to $\Psi$ vanishes as $\Psi\to0$, whatever produced the
 divergence, so $\Iss$ is a strictly decreasing function of $\Psi$ whose slope
 goes to zero at the point where it is read. A fifteen-fold change in the tree
-length moves it by $0.0115$, which is $1.2\%$ of its scale. No amount of data
-recovers a quantity that the statistic has stopped responding to; that is a
-statement about what $\Iss$ is a function of, and it is the one the rest of
-this paper rests on.
+length moves it by $0.0115$ on the symmetric tree, which is $1.2\%$ of its
+scale, and by $0.091$ on the Farris arrangement of
+Figure~\ref{fig:tlc} --- the difference being only how far below the ceiling
+the index sits. No amount of data recovers a quantity that the statistic has
+stopped responding to; that is a statement about what $\Iss$ is a function
+of, and it is the one the rest of this paper rests on.
 
 The second is a matter of power, and it is weaker. The exact variance of
 Lemma~\ref{lem:moment}, evaluated on this quartet, gives $\mathrm{SE}(\Iss)$
@@ -1277,7 +1307,7 @@ $((A,B),(C,D))$ with pendant lengths
 \end{equation}
 so that at $t=0$ the two long branches are separated by the internal branch
 --- the Felsenstein zone \citep{felsenstein1978cases} --- and at $t=p-q$ they
-are adjacent, the Farris zone \citep{hendy1989unrooted}. The sum of the six pairwise distances is $6p+6q+4r$, independent of
+are adjacent, the Farris zone \citep{siddall1998}. The sum of the six pairwise distances is $6p+6q+4r$, independent of
 $t$; and at $r=0$ the endpoint distance multisets coincide exactly, so $\Iss$
 is identical at the two ends.
 

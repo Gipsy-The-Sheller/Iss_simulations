@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,12 +27,6 @@ Kenneth~M. Halanych.
 \newblock \emph{Molecular Phylogenetics and Evolution}, 4\penalty0
   (1):\penalty0 72--76, 1995.
 \newblock \doi{10.1006/mpev.1995.1007}.
-
-\bibitem[Hendy and Penny(1989)]{hendy1989unrooted}
-Michael~D. Hendy and David Penny.
-\newblock A framework for the quantitative study of evolutionary trees.
-\newblock \emph{Systematic Zoology}, 38\penalty0 (4):\penalty0 297--309, 1989.
-\newblock \doi{10.2307/2992396}.
 
 \bibitem[Hoang et~al.(2018)Hoang, Vinh, Flouri, Stamatakis, von Haeseler, and
   Minh]{hoang2018mpboot}
@@ -118,6 +112,13 @@ David Penny, Bennet~J. McComish, Michael~A. Charleston, and Michael~D. Hendy.
   711--723, 2001.
 \newblock \doi{10.1007/s002390010258}.
 
+\bibitem[Siddall(1998)]{siddall1998}
+Mark~E. Siddall.
+\newblock Success of parsimony in the four-taxon case: Long-branch repulsion by
+  likelihood in the {Farris} zone.
+\newblock \emph{Cladistics}, 14\penalty0 (3):\penalty0 209--220, 1998.
+\newblock \doi{10.1111/j.1096-0031.1998.tb00334.x}.
+
 \bibitem[Steel et~al.(1993)Steel, Lockhart, and Penny]{steel1993confidence}
 M.~A. Steel, P.~J. Lockhart, and D.~Penny.
 \newblock Confidence in evolutionary trees from biological sequence data.
@@ -160,6 +161,12 @@ Xuhua Xia, Zheng Xie, Marco Salemi, Lu~Chen, and Yong Wang.
 \newblock \emph{Molecular Phylogenetics and Evolution}, 26\penalty0
   (1):\penalty0 1--7, 2003.
 \newblock \doi{10.1016/S1055-7903(02)00326-3}.
+
+\bibitem[Xu(2026)]{xu2026part2}
+Zhi-Jie Xu.
+\newblock Revisiting xia's index of substitution saturation, part {II}:
+  {$I_{ss.c}$} is a power boundary, not a saturation threshold, 2026.
+\newblock Preprint.
 
 \bibitem[Yang(1994)]{yang1994discretegamma}
 Ziheng Yang.

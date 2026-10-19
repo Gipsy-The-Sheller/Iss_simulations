@@ -725,6 +725,10 @@ def fig_tlc_alpha():
     from matplotlib.colors import LinearSegmentedColormap, Normalize
     p = pd.read_csv(d)
     cr = pd.read_csv(c).sort_values("alpha")
+    # the same sweep on a Farris arrangement: identical tree length, identical
+    # internal fraction, only the pendant split changed (scripts/s14b)
+    c2 = RES / "exp7b_tlc_alpha_farris" / "critical.csv"
+    cr2 = pd.read_csv(c2).sort_values("alpha") if c2.exists() else None
 
     # Eleven categories is past what a qualitative palette can carry, so the
     # ordering is a two-hue gradient and the scale a colour bar.  A colour sits
@@ -802,6 +806,13 @@ def fig_tlc_alpha():
     for _, r in ok.iterrows():
         ax.plot(xa(r.alpha), r.tl_c, "o", ms=5.5, color=col[float(r.alpha)],
                 zorder=3)
+    if cr2 is not None:
+        ok2 = cr2.dropna(subset=["tl_c"])
+        ax.plot([xa(a) for a in ok2.alpha], ok2.tl_c, ls=":", lw=0.9,
+                color=C["grey"], zorder=1)
+        for _, r in ok2.iterrows():
+            ax.plot(xa(r.alpha), r.tl_c, "s", ms=4.4, mfc="white",
+                    mec=col[float(r.alpha)], mew=1.1, zorder=4)
     # the flat run from alpha = 8 to no gamma is one step wide; labelling each
     # point would collide, so it gets a single note
     for a in (4.0, 2.0, 1.0, 0.5):
@@ -828,8 +839,22 @@ def fig_tlc_alpha():
         for _, r in ok[np.isclose(ok.alpha, a)].head(1).iterrows():
             ax.annotate(f"{r.iss_c:.3f}", (xa(r.alpha), r.iss_c), fontsize=7,
                         textcoords="offset points", xytext=(dx, dy))
-    ax.annotate("span 0.0115, from $\\alpha=0.5$ to no $\\Gamma$",
-                (0.62, 0.45), fontsize=7.5, color=C["black"])
+    if cr2 is not None:
+        ok2 = cr2.dropna(subset=["iss_c"])
+        ax.plot([xa(a) for a in ok2.alpha], ok2.iss_c, ls=":", lw=0.9,
+                color=C["grey"], zorder=1)
+        for _, r in ok2.iterrows():
+            ax.plot(xa(r.alpha), r.iss_c, "s", ms=4.4, mfc="white",
+                    mec=col[float(r.alpha)], mew=1.1, zorder=4)
+        sp1 = ok.iss_c.max() - ok.iss_c.min()
+        sp2 = ok2.iss_c.max() - ok2.iss_c.min()
+        ax.annotate(f"filled: four equal pendants, span {sp1:.3f}\n"
+                    f"open: long pendants sisters, span {sp2:.3f}",
+                    (0.03, 0.05), fontsize=7.0, color=C["black"],
+                    xycoords="axes fraction", va="bottom")
+    else:
+        ax.annotate("span 0.0115, from $\\alpha=0.5$ to no $\\Gamma$",
+                    (0.62, 0.45), fontsize=7.5, color=C["black"])
     ax.set_ylim(0.0, 1.0)
     ax.set_ylabel(r"$I_{ss}$ at the critical tree length")
     ladder(ax)
