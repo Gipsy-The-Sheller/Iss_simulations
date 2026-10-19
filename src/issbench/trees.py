@@ -64,6 +64,34 @@ def star(n: int, d: float, labels: Optional[Sequence[str]] = None) -> Node:
     return Node("", 0.0, [Node(labels[i], d) for i in range(n)])
 
 
+def balanced(n: int, a: float, r: float,
+             labels: Optional[Sequence[str]] = None) -> Node:
+    """Balanced binary tree of n tips: pendants a, every internal edge r/2.
+
+    The same construction as scripts/s19_scope.py, which keeps its own copy
+    so that its published numbers do not move; this is the shared home for
+    the n-taxon experiments.
+    """
+    labels = labels or [f"T{i+1}" for i in range(n)]
+    if n == 1:
+        return Node(labels[0], a)
+    half = n // 2
+    return Node("", r / 2.0,
+                [balanced(half, a, r, labels[:half]),
+                 balanced(n - half, a, r, labels[half:])])
+
+
+def scale(node: Node, s: float) -> Node:
+    """Every edge length multiplied by s -- the scaling family of a tree."""
+    return Node(node.name, node.length * s,
+                [scale(c, s) for c in node.children])
+
+
+def total_length(node: Node) -> float:
+    """Sum of all edge lengths below `node` (the root's own length is 0)."""
+    return sum(c.length + total_length(c) for c in node.children)
+
+
 def transfer_path(L: float, S: float, r: float, t: float) -> Node:
     """Felsenstein -> Farris transfer, exactly as specified for experiment 3.
 

@@ -1,6 +1,6 @@
-"""Topology recovery for the four-taxon experiments.
+"""Topology recovery, four taxa and above.
 
-Three criteria, all of which reduce to choosing one of three splits:
+For four taxa all three criteria reduce to choosing one of three splits:
   ML   - delegated to IQ-TREE
   MPB  - maximum parsimony, delegated to MPBoot
   NJ   - for four taxa, neighbour joining == minimise the within-pair distance
@@ -11,6 +11,12 @@ reimplemented, so that no reported topology comes from code of ours that a
 reader would have to take on trust.  NJ is the one in-process criterion: on a
 quartet it is a deterministic function of six pairwise distances, with no
 search and no heuristic.
+
+Above four taxa there is no single split to score, so recovery is the
+Robinson-Foulds distance between the inferred and the true split sets, zero
+meaning the topology came back.  splits_of() is the version from
+scripts/s08_empirical.py, which keeps its own copy for the same reason as
+trees.balanced().
 """
 from __future__ import annotations
 
@@ -106,6 +112,56 @@ def split_of_newick(nwk: str | None) -> str | None:
             if re.search(pat, t):
                 return name
     return None
+
+
+# ------------------------------------------------------- n > 4: split sets
+def splits_of(nwk: str) -> set[frozenset[str]]:
+    """Unrooted splits of a Newick string, canonicalised by complement.
+
+    Recursive descent rather than a token loop: an earlier version collapsed
+    each clade to a single representative leaf, so every nested clade came out
+    incomplete and the shared-split counts were meaningless.
+    """
+    t = nwk.strip().rstrip(";")
+    clades: list[frozenset[str]] = []
+
+    def parse(i: int) -> tuple[frozenset[str], int]:
+        if t[i] == "(":
+            i += 1
+            leaves: set[str] = set()
+            while True:
+                sub, i = parse(i)
+                leaves |= sub
+                if i < len(t) and t[i] == ",":
+                    i += 1
+                    continue
+                break
+            assert t[i] == ")", (t[i - 20:i + 20], i)
+            i += 1
+            while i < len(t) and t[i] not in ",()":
+                i += 1                       # skip label / support / length
+            fs = frozenset(leaves)
+            clades.append(fs)
+            return fs, i
+        j = i
+        while j < len(t) and t[j] not in ",()":
+            j += 1
+        return frozenset([t[i:j].split(":")[0].strip()]), j
+
+    all_leaves, _ = parse(0)
+    n = len(all_leaves)
+    out = set()
+    for c in clades:
+        if 1 < len(c) < n - 1:               # non-trivial, and its own complement
+            other = all_leaves - c
+            out.add(c if min(c) < min(other) else frozenset(other))
+    return out
+
+
+def rf_distance(reference: set[frozenset[str]],
+                inferred: set[frozenset[str]]) -> int:
+    """Robinson-Foulds distance between two split sets (zero = same topology)."""
+    return len(reference - inferred) + len(inferred - reference)
 
 
 # --------------------------------------------------------------------- NJ
