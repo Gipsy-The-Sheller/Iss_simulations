@@ -59,6 +59,8 @@
 University, Shanghai 201620, China}
 
 \begin{abstract}
+We give an exact account of $\Issc$, Xia's critical value for substitution
+saturation, and test it in a 20,000-fragment simulation.
 $\Issc$ is used as a decision rule: when $\Iss$ exceeds $\Issc$, the data are
 declared saturated and discarded. The rule cannot carry that weight.
 
@@ -67,27 +69,24 @@ $D(\TL)\sqrt L=z\sqrt{v_2(\TL)}$, with $D$ and $v_2$ exact sums
 over the 256 site patterns. Three consequences follow, without simulation.
 First, $\Issc$ does not measure the quantity that decides recoverability:
 permuting taxa within columns preserves $\Iss$ exactly, to
-$3\times10^{-15}$, while destroying the topological signal, and along that
+$3\times10^{-15}$, while destroying the signal, and along that
 family the recovery rate sweeps from $0.71$ to $1.00$ to $1/3$ with $\Iss$
 fixed. Second, the length dependence is not a power law with a universal
 exponent; it is $\lam{\Iss}/(2\lam D-\lam{v_2})$, a ratio of two local
 rates that ranges from $0.061$ to $0.585$ across configurations. Third, for a
-subset of a concatenation the criterion is unreliable for the decision it is
-asked to make.
+subset of a concatenation it is unreliable for the decision asked of it.
 
 Running through all three is an identity: $D$ is exactly the
 Kullback--Leibler distance from the tree to its own best star approximation.
 The Farris zone is therefore not a separate mechanism but the region where
-that distance is smallest, and the same number sets both the zone and the
-critical tree; over a controlled family $D$ moves by a factor of $3583$
+that distance is smallest; over a controlled family $D$ moves by a factor of $3583$
 while $\Iss$ moves by $2.6\%$. In the local limit the boundary reduces to one
 number: $\Issc(L)$ is the index of the tree whose KL distance to its own best
 star approximation is $5.41/L$.
 
 At genome scale the account is tested. Resampled $500$ bp fragments from one
 $16$-taxon tree, banded by $\Iss$ at thresholds measured on that same tree,
-reconstruct it exactly once concatenated to $10$ kbp, including the band both
-calibrations reject; above $100$ kbp no band differs from any other. The
+reconstruct it exactly once concatenated to $10$ kbp; above $100$ kbp no band differs from any other. The
 threshold sits where recovery has fallen six points from its peak.
 \end{abstract}
 
@@ -121,7 +120,7 @@ identical $\Iss$ whose recovery rates span the whole possible range
 (\S\ref{sec:shuffle}); matched-$\Iss$ genuine trees whose recovery differs by
 up to $125$-fold (\S\ref{sec:matched}); and an exact decomposition of the
 length exponent into two measurable rates, with a one-factor-at-a-time
-account of which tree geometry moves which rate (\S\ref{sec:factors}).
+account of which tree geometry moves which rate (\S\ref{sec:factors-results}).
 
 Section~\ref{sec:subset} states the practical consequence first, because it
 follows from the definition of the criterion rather than from any of the
@@ -135,7 +134,7 @@ twice. The per-site gap $D$ that sets the critical tree is, exactly, the
 Kullback--Leibler distance from the tree to its best star approximation; the
 Farris zone is the region of tree space where that distance is smallest.
 Section~\ref{sec:shared} establishes this and quantifies it, and it is why
-the factor that dominates the length exponent (\S\ref{sec:factors}) is the
+the factor that dominates the length exponent (\S\ref{sec:factors-results}) is the
 same one that dominates the zone.
 
 \paragraph{Where this sits.} Two literatures are adjacent to this question
@@ -192,7 +191,179 @@ resampling on our own tree, and the tabulated values are used only as a
 statement about which factors matter.
 
 %% =====================================================================
-\section{The criterion is not valid for a subset of a concatenation}
+\section{Methods}
+\label{sec:methods}
+
+%% =====================================================================
+\subsection{Three topologies, three likelihoods, exactly}
+\label{sec:quartet}
+
+A quartet has three candidate topologies and therefore three likelihood
+functions. Each is a sum of $L$ independent per-site terms, so
+$(\ell_1,\ell_2,\ell_3)$ is jointly asymptotically normal and
+\begin{equation}
+\Pr[\text{correct}]=\Pr[\ell_1>\ell_2\ \wedge\ \ell_1>\ell_3]
+\end{equation}
+is a bivariate normal orthant probability whose means, variances and
+correlation are sums over the 256 site patterns. No simulation is required
+and no closed-form branch-length maximum-likelihood estimate is needed ---
+none exists.
+
+\begin{lemma}[Star projection]
+\label{lem:star}
+Both wrong topologies of a quartet have the same Kullback--Leibler projection,
+the \emph{star}: at zero internal branch the tree is the same regardless of
+which split it claims, and the star family is described identically in all
+three parametrisations.
+\end{lemma}
+
+\begin{remark}
+The lemma is checked rather than assumed. Scanning $219$ configurations by
+objective rather than by fitted branch length, the largest relative KL gain
+over the star anywhere is $2.5\times10^{-6}$; see \S\ref{sec:notes}.
+\end{remark}
+
+\begin{proposition}[Two-way reduction]
+\label{prop:two-way}
+Under Lemma~\ref{lem:star} the three-way choice reduces \emph{exactly} to a
+two-way one, and
+\begin{equation}
+\Pr[\text{correct}]=\Phi\!\left(\frac{\sqrt L\,D}{\sigma}\right),
+\label{eq:two-way}
+\end{equation}
+with $D$ the per-site KL gap to the better alternative.
+\end{proposition}
+
+\begin{proof}
+The two wrong fits coincide, so $\ell_2=\ell_3$ identically and
+$\Pr[\ell_1>\ell_2\wedge\ell_1>\ell_3]=\Pr[\ell_1>\ell_2]$. That is a
+one-sided normal probability with mean $\sqrt L\,D$ and standard
+deviation $\sigma$.
+\end{proof}
+
+One degenerate corner must be handled separately, and only a construction
+whose purpose is to remove all signal reaches it: when the three \emph{fitted}
+distributions coincide, all three likelihoods are one number and the answer is
+$1/3$, not $\Phi(0)=1/2$. See \S\ref{sec:notes}.
+
+%% =====================================================================
+%% =====================================================================
+\subsection{The critical tree}
+\label{sec:factors}
+
+Define $\Issc(L)$ by resampling: the $\Iss$ of the tree at which the recovery
+rate reaches $95\%$. This is a definition rather than a fit, needs no
+external data, and makes the question one of internal consistency.
+
+
+\begin{theorem}[Resolution condition]
+\label{thm:resolution}
+Let $D$ be the per-site Kullback--Leibler gap between the true tree and
+the better of the two alternatives, and $v_2$ its per-site variance. The tree
+length at which the recovery probability falls to the level $z$ of a
+one-sided test, $z=\Phi^{-1}(1-\alpha)$, satisfies
+\begin{equation}
+D(\TL)\,\sqrt L \;=\; z\,\sqrt{v_2(\TL)} .
+\label{eq:resolution}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:two-way} the recovery probability is
+$\Phi(\sqrt L\,D/\sigma)$, so the level is reached when
+$\sqrt L\,D/\sigma=z$. The denominator is
+$\sigma^2=v_2$ by definition, which gives \eqref{eq:resolution}.
+\end{proof}
+
+\begin{corollary}[Exponent of the length dependence]
+\label{cor:exponent}
+Writing $\lam{\bullet}$ for the local log-derivative with respect to the tree
+scale, the critical tree and the index at it satisfy
+\begin{equation}
+\frac{\mathrm d\log \TLstar}{\mathrm d\log L}
+=\frac{1}{2\lam D-\lam{v_2}},
+\qquad
+\Issc(L)=\Issat-C\,L^{-p},
+\qquad
+p=\frac{\lam{\Iss}}{2\lam D-\lam{v_2}} .
+\label{eq:exponent}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Differentiate \eqref{eq:resolution} with respect to $\log L$. With
+$r=\mathrm d\log\TLstar/\mathrm d\log L$, the left side contributes
+$\sqrt L\,(\lam D\,r+\tfrac12)$ and the right side
+$D\sqrt L\,\tfrac12\lam{v_2}\,r$, using $z\sqrt{v_2}=D\sqrt L$ from
+\eqref{eq:resolution} itself. Equating them gives
+$r(\lam D-\tfrac12\lam{v_2})=-\tfrac12$, that is the first relation. The
+index at the critical tree then moves as
+$\mathrm d\log\Issc/\mathrm d\log L=\lam{\Iss}\,r$, which is the third, and
+integrating gives the second.
+\end{proof}
+
+The exponent is therefore a ratio of two independently measurable rates:
+$\lam{\Iss}$ is how fast $\Iss$ saturates with tree length, and $\lam D$
+is how fast the topological signal decays --- that is, the multiple-hit effect
+itself.
+
+
+%% =====================================================================
+\subsection{The simulation experiment}
+\label{sec:design}
+
+The exact results need no simulation; the genome-scale test does, and its
+design is fixed before any measurement is taken.
+
+The tree is a single $16$-taxon Yule--Harding tree drawn once by AliSim and
+kept for the whole study. Fragments are $500$~bp simulated under that tree
+with every branch length multiplied by a common scale $s$, for twenty values
+of $s$ spanning $0.04$ to $6$, so that tree length is the only parameter that
+varies and the topology is held fixed. Twenty thousand fragments are drawn
+this way, forming a pool of $10$~Mbp. Because sites are i.i.d., a long
+alignment chopped into $500$~bp pieces is exactly a set of independent
+$500$~bp fragments, so one AliSim call per scale produces a whole block of
+the pool.
+
+$\Iss$ is computed per fragment, convention~A, from the simulated bases.
+The two thresholds that partition the pool are then measured on this same
+tree by the resampling procedure of \S\ref{sec:factors}: a fragment is
+called clean by a length-$L$ calibration when its $\Iss$ lies below
+$\Issc(L)$. The arms are the bands between the thresholds, plus the
+integrated pool; each is truncated to the same number of sites, so that the
+arms differ only in composition and not in length.
+
+Three methods are run on every arm: maximum likelihood under JC69 through
+IQ-TREE, and both CASTER variants. Recovery is scored as the
+Robinson--Foulds distance to the true tree, whose maximum on $16$ taxa is
+$26$. Uncertainty is estimated by a delete-a-block jackknife over the
+fragment pool rather than by independent replicates, because the question is
+how the result depends on which fragments were drawn; the pool is split into
+ten consecutive blocks and each is deleted in turn.
+
+%% =====================================================================
+\subsection{Software and reproducibility}
+\label{sec:software}
+
+Simulation uses AliSim and recovery uses IQ-TREE; \texttt{caster-site} and
+\texttt{caster-pair} are used unmodified. The quartet results --- the
+resolution condition, the exponent decomposition, the orthant probabilities
+and the closed form for CASTER's score --- are computed by enumeration and
+orthant quadrature and need no external binary at all.
+
+Every number in this paper is produced by a script in the archive, one per
+result set, and every table is read from the CSV that script writes. Code
+and result tables are at
+\url{https://github.com/Gipsy-The-Sheller/Iss_simulations}, which holds both
+papers of this series; the tag \texttt{rs-preprint} is the version this
+manuscript was built from.
+
+%% =====================================================================
+\section{Results}
+\label{sec:results}
+
+%% =====================================================================
+\subsection{The criterion is not valid for a subset of a concatenation}
 \label{sec:subset}
 
 Substitution saturation is a property of the substitution process. A
@@ -295,59 +466,8 @@ saturates them. That is precisely why the question of \S\ref{sec:subset}(iii)
 is the right one to substitute.
 
 %% =====================================================================
-\section{Three topologies, three likelihoods, exactly}
-\label{sec:quartet}
-
-A quartet has three candidate topologies and therefore three likelihood
-functions. Each is a sum of $L$ independent per-site terms, so
-$(\ell_1,\ell_2,\ell_3)$ is jointly asymptotically normal and
-\begin{equation}
-\Pr[\text{correct}]=\Pr[\ell_1>\ell_2\ \wedge\ \ell_1>\ell_3]
-\end{equation}
-is a bivariate normal orthant probability whose means, variances and
-correlation are sums over the 256 site patterns. No simulation is required
-and no closed-form branch-length maximum-likelihood estimate is needed ---
-none exists.
-
-\begin{lemma}[Star projection]
-\label{lem:star}
-Both wrong topologies of a quartet have the same Kullback--Leibler projection,
-the \emph{star}: at zero internal branch the tree is the same regardless of
-which split it claims, and the star family is described identically in all
-three parametrisations.
-\end{lemma}
-
-\begin{remark}
-The lemma is checked rather than assumed. Scanning $219$ configurations by
-objective rather than by fitted branch length, the largest relative KL gain
-over the star anywhere is $2.5\times10^{-6}$; see \S\ref{sec:notes}.
-\end{remark}
-
-\begin{proposition}[Two-way reduction]
-\label{prop:two-way}
-Under Lemma~\ref{lem:star} the three-way choice reduces \emph{exactly} to a
-two-way one, and
-\begin{equation}
-\Pr[\text{correct}]=\Phi\!\left(\frac{\sqrt L\,D}{\sigma}\right),
-\label{eq:two-way}
-\end{equation}
-with $D$ the per-site KL gap to the better alternative.
-\end{proposition}
-
-\begin{proof}
-The two wrong fits coincide, so $\ell_2=\ell_3$ identically and
-$\Pr[\ell_1>\ell_2\wedge\ell_1>\ell_3]=\Pr[\ell_1>\ell_2]$. That is a
-one-sided normal probability with mean $\sqrt L\,D$ and standard
-deviation $\sigma$.
-\end{proof}
-
-One degenerate corner must be handled separately, and only a construction
-whose purpose is to remove all signal reaches it: when the three \emph{fitted}
-distributions coincide, all three likelihoods are one number and the answer is
-$1/3$, not $\Phi(0)=1/2$. See \S\ref{sec:notes}.
-
 %% =====================================================================
-\section{$\Iss$ does not determine recoverability}
+\subsection{$\Iss$ does not determine recoverability}
 \label{sec:shuffle}
 
 \paragraph{Relation to Part~I.} Part~I
@@ -400,7 +520,8 @@ because the shuffled component is unfittable by any topology and degrades the
 \emph{wrong} topologies faster than the right one.
 
 %% =====================================================================
-\section{The same statement inside the tree family}
+%% =====================================================================
+\subsection{The same statement inside the tree family}
 \label{sec:matched}
 
 The construction above uses data that are not trees. The same conclusion can
@@ -415,67 +536,12 @@ tree $0.096$ --- a factor of $32$ --- though their $\Iss$ agrees to five
 decimals.
 
 %% =====================================================================
-\section{What sets $\Issc$, and by how much}
-\label{sec:factors}
+%% =====================================================================
+\subsection{What sets $\Issc$, and by how much}
+\label{sec:factors-results}
 
-Define $\Issc(L)$ by resampling: the $\Iss$ of the tree at which the recovery
-rate reaches $95\%$. This is a definition rather than a fit, needs no
-external data, and makes the question one of internal consistency.
 
-\subsection{The mechanism}
-
-\begin{theorem}[Resolution condition]
-\label{thm:resolution}
-Let $D$ be the per-site Kullback--Leibler gap between the true tree and
-the better of the two alternatives, and $v_2$ its per-site variance. The tree
-length at which the recovery probability falls to the level $z$ of a
-one-sided test, $z=\Phi^{-1}(1-\alpha)$, satisfies
-\begin{equation}
-D(\TL)\,\sqrt L \;=\; z\,\sqrt{v_2(\TL)} .
-\label{eq:resolution}
-\end{equation}
-\end{theorem}
-
-\begin{proof}
-By \eqref{eq:two-way} the recovery probability is
-$\Phi(\sqrt L\,D/\sigma)$, so the level is reached when
-$\sqrt L\,D/\sigma=z$. The denominator is
-$\sigma^2=v_2$ by definition, which gives \eqref{eq:resolution}.
-\end{proof}
-
-\begin{corollary}[Exponent of the length dependence]
-\label{cor:exponent}
-Writing $\lam{\bullet}$ for the local log-derivative with respect to the tree
-scale, the critical tree and the index at it satisfy
-\begin{equation}
-\frac{\mathrm d\log \TLstar}{\mathrm d\log L}
-=\frac{1}{2\lam D-\lam{v_2}},
-\qquad
-\Issc(L)=\Issat-C\,L^{-p},
-\qquad
-p=\frac{\lam{\Iss}}{2\lam D-\lam{v_2}} .
-\label{eq:exponent}
-\end{equation}
-\end{corollary}
-
-\begin{proof}
-Differentiate \eqref{eq:resolution} with respect to $\log L$. With
-$r=\mathrm d\log\TLstar/\mathrm d\log L$, the left side contributes
-$\sqrt L\,(\lam D\,r+\tfrac12)$ and the right side
-$D\sqrt L\,\tfrac12\lam{v_2}\,r$, using $z\sqrt{v_2}=D\sqrt L$ from
-\eqref{eq:resolution} itself. Equating them gives
-$r(\lam D-\tfrac12\lam{v_2})=-\tfrac12$, that is the first relation. The
-index at the critical tree then moves as
-$\mathrm d\log\Issc/\mathrm d\log L=\lam{\Iss}\,r$, which is the third, and
-integrating gives the second.
-\end{proof}
-
-The exponent is therefore a ratio of two independently measurable rates:
-$\lam{\Iss}$ is how fast $\Iss$ saturates with tree length, and $\lam D$
-is how fast the topological signal decays --- that is, the multiple-hit effect
-itself.
-
-\subsection{Verification}
+\subsubsection{Verification}
 
 Table~\ref{tab:factors} varies one factor at a time against a common
 reference. The prediction holds to a mean absolute relative error of
@@ -506,7 +572,7 @@ all equal          & 1.596 & 1.600 & 0.811 & 0.5089 & 0.5085 & $+0.001$ \\
 \end{tabular}
 \end{table}
 
-\subsection{A regularity worth separating}
+\subsubsection{A regularity worth separating}
 
 $\lam{v_2}$ tracks $\lam D$ with slope $1.0031$ and correlation $0.999966$
 across all seven configurations, so $2\lam D-\lam{v_2}\approx\lam D$
@@ -525,7 +591,7 @@ balanced one, rising monotonically with $D$ (\S\ref{sec:shared}).
 Substituting it into \eqref{eq:resolution} collapses the boundary to a single
 number, \eqref{eq:critical-delta}.
 
-\subsection{Which factor matters}
+\subsubsection{Which factor matters}
 
 With $p\approx\lam{\Iss}/\lam D$ the factor table reads directly
 (Fig.~\ref{fig:factors}B). The
@@ -537,7 +603,7 @@ $0.93$ to $1.25$, taking $p$ to $0.390$. The long pendant pair barely
 matters, because dividing it by $5$ moves both rates together and leaves the
 ratio near its reference value.
 
-\subsection{Where the criterion ceases to exist}
+\subsubsection{Where the criterion ceases to exist}
 
 Of the eight configurations scanned, seven admit a measurement and one does
 not. The near-star tree ($e=0.002$) has no crossing of $95\%$ recovery at any
@@ -548,7 +614,7 @@ $0.1\%$. The distinction is worth stating because the two are easily
 confused: a configuration whose threshold is hard to locate looks exactly
 like one that has none.
 
-\subsection{Validation against resampling}
+\subsubsection{Validation against resampling}
 \label{sec:valid}
 
 Over $16$ points spanning four Farris shapes, $\Issc$ from exact multinomial
@@ -566,7 +632,8 @@ for an $80\%$ chance of detecting a $70/30$ split --- so this is a failure to
 detect a bias, not evidence of its absence.
 
 %% =====================================================================
-\section{Why the exponent is not a constant}
+%% =====================================================================
+\subsection{Why the exponent is not a constant}
 \label{sec:curvature}
 
 Fitting $\Issat-\Issc(L)=C L^{-p}$ over a decade gives a good
@@ -586,7 +653,7 @@ that is a different object. Nor is any other single exponent available, since
 the shapes tested here, all of them symmetric in the sense $a=b$, $c=d$,
 span $p$ from $0.061$ to $0.585$.
 
-\subsection{The Farris zone and $\Issc$ are one quantity seen twice}
+\subsubsection{The Farris zone and $\Issc$ are one quantity seen twice}
 \label{sec:shared}
 
 \paragraph{What the Farris zone is.} In the Felsenstein zone the long
@@ -832,7 +899,7 @@ therefore nominate a saturation statistic with the dynamic range to carry the
 effect. The only candidate that moves at all moves by $2.6\%$, against
 $D$'s $3583\%$.
 
-\subsection{Against Xia et al.'s empirical ordering}
+\subsubsection{Against Xia et al.'s empirical ordering}
 
 Xia et al.\ report that the asymmetrical ultrametric tree's $\Issc$ converges
 more slowly than the symmetrical one's. The rate falls with asymmetry in
@@ -851,7 +918,7 @@ convergence is therefore not a consequence of hardness: both are downstream
 of $D$, and they move together only where $D$ is the thing that
 moves.
 
-\subsection{Relation to Part~I, and one correction to it}
+\subsubsection{Relation to Part~I, and one correction to it}
 \label{sec:part1}
 
 Part~I \citep{xu2026preprint} is the companion to this paper, and the two
@@ -872,11 +939,11 @@ within a single configuration, and identifies it as a ratio of two local
 rates rather than a constant. There is no universal exponent here, and in
 particular not one half.
 
-\paragraph{Part~I cites the wrong paper for the Farris zone.} Part~I assigns
-the zone to \citet{hendy1989}, which is a general framework for comparing
-trees and not the source of the zone. The zone is named by
-\citet{siddall1998}, whose title names it, and \S\ref{sec:shared} and
-\S\ref{sec:caster} follow that attribution.
+\paragraph{The zone and its name.} The four-taxon case in which the long
+branches are sisters is named by \citet{siddall1998}, whose title names it,
+and \S\ref{sec:shared} and \S\ref{sec:caster} follow that attribution;
+\citet{hendy1989} give the general framework for comparing trees that the
+formalism here uses.
 
 \paragraph{Notation.} Part~I writes $\Delta$ for a composition-leakage term,
 $\sum_{\mu\ne0}(w_\mu-\tau_\mu/K)\xi_\mu$. The quantity named here is a
@@ -902,7 +969,8 @@ its boundary where the gradient has barely begun --- is the empirical form of
 that reconciliation.
 
 %% =====================================================================
-\section{The criterion at genome scale}
+%% =====================================================================
+\subsection{The criterion at genome scale}
 \label{sec:genome}
 
 Everything to this point is quartet algebra. This section is its empirical
@@ -962,7 +1030,7 @@ $D$ goes to zero, so \eqref{eq:resolution} has two roots and only the
 outer one is the criterion. Reading the inner one inverts the dependence on
 alignment length.
 
-\subsection{The threshold is ill-conditioned}
+\subsubsection{The threshold is ill-conditioned}
 \label{sec:illcond}
 
 The cut also has to be taken with care for a reason that is a property of the
@@ -1010,7 +1078,7 @@ None of this is an argument that the index is miscalibrated. It is an
 argument that its calibration is a crossing on a flat part of a curve, and
 that flatness is a property of the quantity rather than of the estimate.
 
-\subsection{The same machinery applied to another index}
+\subsubsection{The same machinery applied to another index}
 \label{sec:w3}
 
 Before turning to the experiment, the quartet algebra can be pointed at a
@@ -1076,7 +1144,7 @@ length recovers the weight the binary behaves as if it used:
 $-0.507$, $-0.503$, $-0.502$, $-0.502$, $-0.500$. The table is CASTER's
 table.
 
-\subsection{The experiment}
+\subsubsection{The experiment}
 \label{sec:genome-exp}
 
 The pool is one $16$-taxon Yule--Harding tree drawn once, before anything was
@@ -1140,7 +1208,7 @@ identifies a real gradient --- HIGH is harder than MID is harder than CLEAN
 --- but places the boundary at a point where the gradient has barely begun,
 and then reports the placement to two decimals.
 
-\subsection{The method that was supposed to be immune}
+\subsubsection{The method that was supposed to be immune}
 \label{sec:caster}
 
 The discriminating prediction is about CASTER, and it does not survive
@@ -1175,42 +1243,32 @@ shortage of data rather than an inconsistency. In that setting likelihood
 succeeds given enough sites, and the weighting has nothing to repair.
 
 %% =====================================================================
-\section{Method notes}
-\label{sec:notes}
-
-\paragraph{A fitted branch length is not evidence.} A projection onto the star
-is not established by the fitted internal branch being small. Near saturation
-the objective is flat along that branch, so an optimiser starting away from
-the star stops wherever its gradient runs out, having gained nothing; a small
-fitted branch length is a statement about where the optimiser stopped. Judged
-by objective instead, no configuration among the $219$ scanned shows a gain
-over the star above $2.5\times10^{-6}$.
-
-\paragraph{The degenerate corner.} Permuting to $f=1$ collapses all three
-fits onto the same star, so $v_2=v_3=c_{23}\approx0$ and
-$\rho=c_{23}/\sqrt{v_2v_3}$ is $0/0$. Clipping $\rho$ to $1$ and taking the
-two-way branch returns $\Phi(0)=1/2$ where the answer is $1/3$. The two-way
-reduction is valid only when the two \emph{wrong} topologies coincide while
-the truth remains distinguishable; when all three coincide it is a genuine
-three-way tie. The construction of \S\ref{sec:shuffle} is the only one in the
-paper that reaches this corner, which is as it should be: it is the only one
-whose purpose is to remove all signal.
-
-\paragraph{Where the maximum-likelihood column comes from.} The
-maximum-likelihood entries of \S\ref{sec:genome} are quoted from a full search
-with model selection wherever that search and the faster fixed-model search
-disagree. Model selection is expensive at the top of the length axis --- on a
-$1$ Mbp alignment the model set advanced at roughly one model per minute --- so
-it was run on every arm up to $100$ kbp and above that only where the two
-searches differ; where they agree, the faster search is reported. ModelFinder
-selects JC$+$G4 on every arm on which it was run, which is itself evidence
-about the construction: the band matrices concatenate fragments drawn at
-scales spanning two orders of magnitude, so the alignment is rate
-heterogeneous between fragments and a single-rate fit is misspecified. The
-model search finds exactly this, unprompted.
 
 %% =====================================================================
-\section{Limits}
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What the criterion is}
+
+The index was introduced to answer one question --- has this alignment
+accumulated too many substitutions for its tree to be recovered --- and the
+answer it gives is a threshold comparison. What this paper shows is that the
+threshold is not a property of the substitution process. It is a property of
+the tree, through the gap $D$ between that tree and its own best star
+approximation, and of the alignment length, through the noise; the two enter
+together in \eqref{eq:resolution}, and nothing else enters.
+
+That reading dissolves the difficulty the literature has had in pinning the
+criterion down without denying that it works. A quantity defined by the
+motion of a boundary is a real quantity, and its gradient is real: the index
+separates configurations that differ in resolvability, and at genome scale it
+separates them in the right order. What it cannot do is carry a fixed cut
+across lengths, trees or taxon counts, because none of those is a
+saturating coordinate. The practical consequence is the one the last section
+measures: at the lengths genome-wide data are actually analysed at, the band
+a filter would remove is not distinguishable from the band it would keep.
+
+\subsection{Limits}
 
 \begin{itemize}
 \item \textbf{Four taxa.} The closed form is quartet-specific. The
@@ -1233,7 +1291,8 @@ model search finds exactly this, unprompted.
   driven by $D$ it moves with $L$, which is why
   \citet{leuchtenberger2020} describe the zone as ``not unambiguously
   defined for ML inference''; \eqref{eq:resolution} is the definition they
-  declined to fix, and \S\ref{sec:factors} is the boundary's dependence on
+  declined to fix, and \S\ref{sec:factors-results} is the boundary's
+  dependence on
   the tree.
 \item \textbf{On the older disagreement, and on where this paper stands in
   it.} Whether likelihood's difficulty in that region should be called a bias
@@ -1262,7 +1321,7 @@ model search finds exactly this, unprompted.
 \item $\Issc$ is defined here by resampling at a $95\%$ level, and the
   tabulated values of \citet{xia2003iss} are not used numerically. The reason
   is not that their numbers are on a different scale; it is that they are
-  numbers for different trees, and \S\ref{sec:factors} shows the tree to be
+  numbers for different trees, and \S\ref{sec:factors-results} shows the tree to be
   the dominant input. On the same alignment length, the two shapes used
   throughout this paper give $\Issc$ values of $0.33$ and $0.99$; a threshold
   is a property of a configuration before it is a property of a length, so
@@ -1309,7 +1368,14 @@ model search finds exactly this, unprompted.
 %% =====================================================================
 \section*{Data and code availability}
 
-All results are reproducible from the scripts in \texttt{Part\_2/scripts/}:
+All code and every result table are archived at
+\url{https://github.com/Gipsy-The-Sheller/Iss_simulations}, which holds both
+papers of this series; the tag \texttt{rs-preprint} is the version this
+manuscript was built from. A Zenodo deposit mirroring that tag accompanies
+submission. Nothing is behind a request.
+
+The results come from the scripts in \texttt{Part\_2/scripts/}, one per
+result set:
 \texttt{s27} (boundary machinery), \texttt{s32} (resampling definition of
 $\Issc$), \texttt{s34} (the $\Iss$-preserving path), \texttt{s35} (matched
 $\Iss$), \texttt{s36} (factor decomposition), \texttt{s37} (pointwise
@@ -1323,6 +1389,31 @@ CASTER binary), \texttt{s51} (the same matrices under ModelFinder),
 \texttt{s53} (the admissible-weight window), \texttt{s41} and \texttt{s52}
 (figures).
 No external data are used.
+
+%% =====================================================================
+\section*{Author contributions}
+\addcontentsline{toc}{section}{Author contributions}
+
+Z.-J.X. conceived the study, carried out the analysis, and wrote the
+manuscript.
+
+\section*{Competing interests}
+\addcontentsline{toc}{section}{Competing interests}
+
+The author declares no competing interests.
+
+\section*{Funding}
+\addcontentsline{toc}{section}{Funding}
+
+This research received no specific grant from any funding agency in the
+public, commercial, or not-for-profit sectors.
+
+\section*{Ethics statement}
+\addcontentsline{toc}{section}{Ethics statement}
+
+Not applicable. This study analyses published sequence alignments and
+simulated data; it involves no human participants, no human data, and no
+animals.
 
 %% =====================================================================
 \section*{Use of AI-assisted tools}
@@ -1449,6 +1540,44 @@ composition is not visible in the answer at all. The $500$ bp and $1$ kbp
 points are single fragments rather than concatenations and carry no rate.}
 \label{fig:bands}
 \end{figure}
+
+%% =====================================================================
+%% =====================================================================
+\subsection{Method notes}
+\label{sec:notes}
+
+\paragraph{A fitted branch length is not evidence.} A projection onto the star
+is not established by the fitted internal branch being small. Near saturation
+the objective is flat along that branch, so an optimiser starting away from
+the star stops wherever its gradient runs out, having gained nothing; a small
+fitted branch length is a statement about where the optimiser stopped. Judged
+by objective instead, no configuration among the $219$ scanned shows a gain
+over the star above $2.5\times10^{-6}$.
+
+\paragraph{The degenerate corner.} Permuting to $f=1$ collapses all three
+fits onto the same star, so $v_2=v_3=c_{23}\approx0$ and
+$\rho=c_{23}/\sqrt{v_2v_3}$ is $0/0$. Clipping $\rho$ to $1$ and taking the
+two-way branch returns $\Phi(0)=1/2$ where the answer is $1/3$. The two-way
+reduction is valid only when the two \emph{wrong} topologies coincide while
+the truth remains distinguishable; when all three coincide it is a genuine
+three-way tie. The construction of \S\ref{sec:shuffle} is the only one in the
+paper that reaches this corner, which is as it should be: it is the only one
+whose purpose is to remove all signal.
+
+\paragraph{Where the maximum-likelihood column comes from.} The
+maximum-likelihood entries of \S\ref{sec:genome} are quoted from a full search
+with model selection wherever that search and the faster fixed-model search
+disagree. Model selection is expensive at the top of the length axis --- on a
+$1$ Mbp alignment the model set advanced at roughly one model per minute --- so
+it was run on every arm up to $100$ kbp and above that only where the two
+searches differ; where they agree, the faster search is reported. ModelFinder
+selects JC$+$G4 on every arm on which it was run, which is itself evidence
+about the construction: the band matrices concatenate fragments drawn at
+scales spanning two orders of magnitude, so the alignment is rate
+heterogeneous between fragments and a single-rate fit is misspecified. The
+model search finds exactly this, unprompted.
+
+%% =====================================================================
 
 %% =====================================================================
 \bibliographystyle{elsarticle-harv}
